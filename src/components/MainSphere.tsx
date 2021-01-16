@@ -38,7 +38,7 @@ function QuantumSphere() {
         position={[0, -0.6 + scrollRatio * 3, -1]}
         ref={sphereMesh}
       >
-        <sphereBufferGeometry args={[1.5, 64, 64]} />
+        <sphereBufferGeometry args={[1.3, 64, 64]} />
         <meshLambertMaterial
           color={colormap(scrollRatio * 3)}
           opacity={0.8}
@@ -50,7 +50,7 @@ function QuantumSphere() {
         rotation={[rot * 0.3, rot, rot]}
         position={[0, -0.6 + scrollRatio * 3, -1]}
       >
-        <torusBufferGeometry args={[1.7, 0.05, 16, 64]} />
+        <torusBufferGeometry args={[1.5, 0.05, 16, 64]} />
         <meshLambertMaterial color={colormap(1 - scrollRatio * 3)} />
       </mesh>
     </group>
