@@ -2,8 +2,9 @@
 
 body {
   margin: 0;
-  background: linear-gradient(to right, #281c59, #49398c);
+  background: linear-gradient(to right, #343a40, #212529);
   min-height: 100vh;
 
   font-family: "Noto Sans KR", sans-serif;
+  color: white;
 }

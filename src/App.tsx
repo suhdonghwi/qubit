@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import Logo from "./components/Logo";
 
+import MainPage from "./pages/MainPage";
+
 const Header = styled.header`
   padding: 3rem 3.5rem;
   position: fixed;
@@ -14,6 +16,7 @@ function App() {
       <Header>
         <Logo />
       </Header>
+      <MainPage />
     </div>
   );
 }
