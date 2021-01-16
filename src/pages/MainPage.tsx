@@ -18,6 +18,10 @@ const TextContainer = styled.div`
   width: 60%;
   z-index: 1;
 
+  @media screen and (max-width: 830px) {
+    width: 70%;
+  }
+
   @media screen and (max-width: 590px) {
     width: 80%;
   }
@@ -35,11 +39,11 @@ const MainText = styled.h2`
   }
 
   @media screen and (max-width: 830px) {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   @media screen and (max-width: 425px) {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 `;
 
@@ -63,7 +67,7 @@ const SubText = styled.p`
   color: ${palette.grayText};
 
   @media screen and (max-width: 1100px) {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   @media screen and (max-width: 425px) {

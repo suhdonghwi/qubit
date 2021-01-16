@@ -1,4 +1,4 @@
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components/macro";
 
 import { Canvas, useFrame } from "react-three-fiber";
@@ -19,21 +19,23 @@ const Overlay = styled.div`
 
 function QuantumSphere() {
   const sphereMesh = useRef();
-  const colormap = interpolate([palette.blueQuantum, palette.redQuantum, palette.blueQuantum]);
+  const colormap = interpolate([
+    palette.blueQuantum,
+    palette.redQuantum,
+    palette.blueQuantum,
+  ]);
 
   const [color, setColor] = useState(palette.blueQuantum);
   const [yPos, setYPos] = useState(0);
 
   useFrame(() => {
-    setColor(
-      colormap(document.documentElement.scrollTop / window.innerHeight)
-    );
-    setYPos(document.documentElement.scrollTop / window.innerHeight * 3);
+    setColor(colormap(document.documentElement.scrollTop / window.innerHeight));
+    setYPos((document.documentElement.scrollTop / window.innerHeight) * 4);
   });
 
   return (
     <group>
-      <mesh position={[3, yPos, -1]} ref={sphereMesh}>
+      <mesh position={[3, -0.6 + yPos, -1]} ref={sphereMesh}>
         <sphereBufferGeometry args={[1.5, 64, 64]} />
         <meshPhongMaterial color={color} />
       </mesh>
@@ -41,33 +43,17 @@ function QuantumSphere() {
   );
 }
 export default function MainSphere() {
-  const [size, setSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  useLayoutEffect(() => {
-    function onResize(e: any) {
-      setSize({ width: e.target.innerWidth, height: e.target.innerHeight });
-    }
-
-    window.addEventListener("resize", onResize);
-
-    return () => {
-      window.removeEventListener("resize", onResize);
-    };
-  }, []);
-
   return (
     <>
       <Canvas
         style={{
           position: "absolute",
           zIndex: -2,
-          ...size,
+          width: window.innerWidth,
+          height: window.innerHeight,
         }}
       >
-        <ambientLight intensity={0.8} />
+        <ambientLight intensity={0.5} />
         <pointLight position={[5, 5, 3]} />
         <QuantumSphere />
       </Canvas>
