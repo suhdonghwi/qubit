@@ -15,7 +15,7 @@ const Container = styled.section`
 `;
 
 const TextContainer = styled.div`
-  width: 60%;
+  width: 55%;
   z-index: 1;
 
   @media screen and (max-width: 830px) {
@@ -42,7 +42,7 @@ const MainText = styled.h2`
     font-size: 2.5rem;
   }
 
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     font-size: 1.6rem;
   }
 `;
