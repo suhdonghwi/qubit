@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components/macro";
 
 import { Canvas, useFrame } from "react-three-fiber";
+
 import interpolate from "color-interpolate";
 
 import palette from "../palette";
@@ -25,22 +26,32 @@ function QuantumSphere() {
   const [rot, setRot] = useState(0);
 
   useFrame(() => {
-    setScrollRatio(
-      (document.documentElement.scrollTop / window.innerHeight) * 2
-    );
+    setScrollRatio(document.documentElement.scrollTop / window.innerHeight);
     setRot(rot + 0.05);
   });
 
   return (
     <group>
-      <mesh position={[0, -0.6 + scrollRatio, -1]} ref={sphereMesh}>
+      <mesh
+        castShadow
+        receiveShadow
+        position={[0, -0.6 + scrollRatio * 3, -1]}
+        ref={sphereMesh}
+      >
         <sphereBufferGeometry args={[1.5, 64, 64]} />
-        <meshPhongMaterial color={colormap(scrollRatio)} />
+        <meshLambertMaterial
+          color={colormap(scrollRatio * 3)}
+          opacity={0.8}
+          transparent
+        />
       </mesh>
 
-      <mesh rotation={[rot, 1, rot * 3]} position={[0, -0.6 + scrollRatio, -1]}>
+      <mesh
+        rotation={[rot * 0.3, rot, rot]}
+        position={[0, -0.6 + scrollRatio * 3, -1]}
+      >
         <torusBufferGeometry args={[1.7, 0.05, 16, 64]} />
-        <meshPhongMaterial color={colormap(1 - scrollRatio)} />
+        <meshLambertMaterial color={colormap(1 - scrollRatio * 3)} />
       </mesh>
     </group>
   );
@@ -59,7 +70,7 @@ export default function MainSphere() {
         }}
       >
         <ambientLight intensity={0.5} />
-        <pointLight position={[5, 5, 3]} />
+        <directionalLight position={[10, 10, -3]} intensity={0.5} />
         <QuantumSphere />
       </Canvas>
       <Overlay />
