@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import Logo from "./components/Logo";
-
 import MainPage from "./pages/MainPage";
 
 const Header = styled.header`
@@ -10,13 +8,16 @@ const Header = styled.header`
   position: fixed;
 `;
 
+const Body = styled.div`
+  height: 100vh;
+`;
+
 function App() {
   return (
     <div className="App">
-      <Header>
-        <Logo />
-      </Header>
+      <Header></Header>
       <MainPage />
+      <Body>asdf</Body>
     </div>
   );
 }

@@ -2,6 +2,9 @@ import React, { useRef, useState, useLayoutEffect } from "react";
 import styled from "styled-components/macro";
 
 import { Canvas, useFrame } from "react-three-fiber";
+import interpolate from "color-interpolate";
+
+import palette from "../palette";
 
 const Overlay = styled.div`
   position: absolute;
@@ -16,18 +19,23 @@ const Overlay = styled.div`
 
 function QuantumSphere() {
   const sphereMesh = useRef();
+  const colormap = interpolate([palette.blueQuantum, palette.redQuantum, palette.blueQuantum]);
 
-  const [rot, setRot] = useState(0);
+  const [color, setColor] = useState(palette.blueQuantum);
+  const [yPos, setYPos] = useState(0);
 
   useFrame(() => {
-    setRot(rot + 0.1);
+    setColor(
+      colormap(document.documentElement.scrollTop / window.innerHeight)
+    );
+    setYPos(document.documentElement.scrollTop / window.innerHeight * 3);
   });
 
   return (
     <group>
-      <mesh position={[2.5, 0, 0]} ref={sphereMesh}>
+      <mesh position={[3, yPos, -1]} ref={sphereMesh}>
         <sphereBufferGeometry args={[1.5, 64, 64]} />
-        <meshPhongMaterial color="#6590FF" />
+        <meshPhongMaterial color={color} />
       </mesh>
     </group>
   );
@@ -40,7 +48,7 @@ export default function MainSphere() {
 
   useLayoutEffect(() => {
     function onResize(e: any) {
-      setSize({ width: e.target.innerWidth, height: e.target.innerHeight});
+      setSize({ width: e.target.innerWidth, height: e.target.innerHeight });
     }
 
     window.addEventListener("resize", onResize);

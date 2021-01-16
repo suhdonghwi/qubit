@@ -30,6 +30,11 @@ const MainText = styled.h2`
   font-size: 4rem;
 
   @media screen and (max-width: 1100px) {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media screen and (max-width: 830px) {
     font-size: 2rem;
   }
 
@@ -59,6 +64,10 @@ const SubText = styled.p`
 
   @media screen and (max-width: 1100px) {
     font-size: 1rem;
+  }
+
+  @media screen and (max-width: 425px) {
+    font-size: 0.8rem;
   }
 `;
 
