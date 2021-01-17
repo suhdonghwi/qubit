@@ -45,7 +45,7 @@ const Title = styled(HighlightedText)`
   }
 `;
 
-export default function MenuPage() {
+export default function ContentSection() {
   return (
     <Container>
       <Title as="h2">Contents</Title>
