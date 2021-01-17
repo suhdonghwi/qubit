@@ -4,6 +4,8 @@ import styled from "styled-components/macro";
 import Lottie from "react-lottie-player";
 
 const Box = styled.div`
+  cursor: pointer;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,14 +13,32 @@ const Box = styled.div`
 
   width: 17rem;
   height: 17rem;
-  margin: 1rem;
+  margin: 1.5rem;
 
   border: 1px solid #495057;
   border-radius: 10px;
+
+  background-color: #212529;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+  &:hover {
+    transform: scale(1.05);
+
+    h2 {
+      color: #f8f9fa;
+    }
+  }
+
+  transition: transform 0.5s;
 `;
 
 const BoxTitle = styled.h2`
   margin: 0;
+
+  font-weight: 500;
+  color: #868e96;
+
+  transition: color 0.5s;
 `;
 
 interface MenuProps {
@@ -56,15 +76,13 @@ export default function Menu({ index, name, data }: MenuProps) {
   }
 
   return (
-    <Box>
+    <Box onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <Lottie
         loop
         animationData={data}
         play={true}
         direction={direction}
         onEnterFrame={onFrame}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
         speed={speed}
         style={{ height: "200px" }}
       />
