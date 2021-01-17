@@ -11,9 +11,17 @@ const Box = styled.div`
   align-items: center;
   justify-content: center;
 
-  width: 17rem;
-  height: 17rem;
+  width: 20rem;
+  height: 20rem;
+
+  @media screen and (max-width: 425px) {
+    width: 17rem;
+    height: 17rem;
+  }
+
   margin: 1.5rem;
+  padding: 2rem;
+  box-sizing: border-box;
 
   border: 1px solid #495057;
   border-radius: 10px;
@@ -33,7 +41,7 @@ const Box = styled.div`
 `;
 
 const BoxTitle = styled.h2`
-  margin: 0;
+  margin: auto 0 0 0;
 
   font-weight: 500;
   color: #868e96;
