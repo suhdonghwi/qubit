@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
+import Logo from "./components/Logo";
+
 import MainPage from "./pages/MainPage";
 import MenuPage from "./pages/MenuPage";
-import Logo from "./components/Logo";
+
+import Footer from "./components/Footer";
 
 const Header = styled.header`
   z-index: 2;
@@ -28,6 +31,7 @@ function App() {
       </Header>
       <MainPage />
       <MenuPage />
+      <Footer />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 import palette from "../palette";
 
 import MainSphere from "../components/MainSphere";
+import HighlightedText from "../components/HighlightedText";
 
 const Container = styled.section`
   height: 100vh;
@@ -46,19 +47,6 @@ const MainText = styled.h2`
   }
 `;
 
-const HighlightedText = styled.span`
-  font-weight: 700;
-
-  background-image: ${palette.quantumGradient};
-
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  white-space: nowrap;
-`;
-
 const SubText = styled.p`
   margin: 0;
   font-size: 1.5rem;
@@ -71,7 +59,7 @@ const SubText = styled.p`
   }
 
   @media screen and (max-width: 425px) {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 `;
 

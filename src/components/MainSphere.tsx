@@ -31,8 +31,8 @@ function QuantumSphere() {
     setRot(rot + 0.05);
   });
 
-  const qubitPos1 = new THREE.Vector3(5, 1 + scrollRatio * 3, -2),
-    qubitPos2 = new THREE.Vector3(-6, 3 + scrollRatio * 3, -5);
+  const qubitPos1 = new THREE.Vector3(5, -1 + scrollRatio * 5, -2),
+    qubitPos2 = new THREE.Vector3(-6, 3 - scrollRatio * 2, -5);
 
   return (
     <>
