@@ -51,7 +51,7 @@ export default function MenuPage() {
       <Title as="h2">Contents</Title>
       <MenuContainer>
         <Menu index={1} name="Basics" data={menu1} />
-        <Menu index={2} name="Principals" data={menu2} />
+        <Menu index={2} name="Principles" data={menu2} />
         <Menu index={3} name="Misconceptions" data={menu3} />
       </MenuContainer>
     </Container>
