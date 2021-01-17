@@ -20,7 +20,7 @@ const Box = styled.div`
   }
 
   margin: 1.5rem;
-  padding: 2rem;
+  padding: 2rem 1rem;
   box-sizing: border-box;
 
   border: 1px solid #495057;
@@ -92,7 +92,7 @@ export default function Menu({ index, name, data }: MenuProps) {
         direction={direction}
         onEnterFrame={onFrame}
         speed={speed}
-        style={{ height: "200px" }}
+        style={{ height: window.innerWidth <= 425 ? "200px" : "220px" }}
       />
       <BoxTitle>
         {index}. {name}

@@ -31,8 +31,8 @@ function QuantumSphere() {
     setRot(rot + 0.05);
   });
 
-  const qubitPos1 = new THREE.Vector3(5, 1 + scrollRatio * 3, -2),
-    qubitPos2 = new THREE.Vector3(-6, 3 + scrollRatio * 3, -5);
+  const qubitPos1 = new THREE.Vector3(5, -0.6 + scrollRatio * 3, -2)
+  , qubitPos1 = new THREE.Vector3(5, -0.6 + scrollRatio * 3, -2);
 
   return (
     <>
@@ -47,11 +47,7 @@ function QuantumSphere() {
         </mesh>
 
         <mesh
-          rotation={[
-            0.2 + scrollRatio * 3,
-            0.3 + scrollRatio * 10,
-            0.4 + scrollRatio * 10,
-          ]}
+          rotation={[scrollRatio * 3, scrollRatio * 10, scrollRatio * 10]}
           position={qubitPos1}
         >
           <torusBufferGeometry args={[1.5, 0.05, 16, 64]} />
@@ -60,25 +56,21 @@ function QuantumSphere() {
       </group>
 
       <group>
-        <mesh position={qubitPos2} ref={sphereMesh}>
+        <mesh position={qubitPos1} ref={sphereMesh}>
           <sphereBufferGeometry args={[1.3, 64, 64]} />
           <meshLambertMaterial
-            color={colormap(1 - scrollRatio * 3)}
+            color={colormap(scrollRatio * 3)}
             opacity={0.8}
             transparent
           />
         </mesh>
 
         <mesh
-          rotation={[
-            0.6 + scrollRatio * 3,
-            1.4 + scrollRatio * 10,
-            1.3 + scrollRatio * 10,
-          ]}
-          position={qubitPos2}
+          rotation={[scrollRatio * 3, scrollRatio * 10, scrollRatio * 10]}
+          position={qubitPos1}
         >
           <torusBufferGeometry args={[1.5, 0.05, 16, 64]} />
-          <meshLambertMaterial color={colormap(scrollRatio * 3)} />
+          <meshLambertMaterial color={colormap(1 - scrollRatio * 3)} />
         </mesh>
       </group>
     </>
