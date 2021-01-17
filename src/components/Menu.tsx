@@ -45,6 +45,7 @@ const BoxTitle = styled.h2`
 
   font-weight: 500;
   color: #868e96;
+  font-size: 1.3rem;
 
   transition: color 0.5s;
 `;
