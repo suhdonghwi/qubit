@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import MainPage from "./pages/MainPage";
+import MenuPage from "./pages/MenuPage";
 import Logo from "./components/Logo";
 
 const Header = styled.header`
@@ -19,10 +20,6 @@ const Header = styled.header`
   }
 `;
 
-const Body = styled.div`
-  height: 100vh;
-`;
-
 function App() {
   return (
     <div className="App">
@@ -30,7 +27,7 @@ function App() {
         <Logo />
       </Header>
       <MainPage />
-      <Body>asdf</Body>
+      <MenuPage />
     </div>
   );
 }

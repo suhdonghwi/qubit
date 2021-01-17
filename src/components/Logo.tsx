@@ -16,7 +16,6 @@ const LogoImage = styled.img`
 `;
 
 const LogoText = styled.h1`
-  color: white;
   margin: 0 0 5px 13px;
 
   font-weight: 500;

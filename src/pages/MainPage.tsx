@@ -6,7 +6,6 @@ import palette from "../palette";
 import MainSphere from "../components/MainSphere";
 
 const Container = styled.section`
-  width: 100vw;
   height: 100vh;
 
   display: flex;
@@ -48,7 +47,7 @@ const MainText = styled.h2`
 `;
 
 const HighlightedText = styled.span`
-  font-weight: 600;
+  font-weight: 700;
 
   background-image: ${palette.quantumGradient};
 
@@ -62,7 +61,8 @@ const HighlightedText = styled.span`
 
 const SubText = styled.p`
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  font-weight: 300;
 
   color: ${palette.grayText};
 
