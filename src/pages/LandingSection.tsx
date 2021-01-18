@@ -32,7 +32,6 @@ const MainText = styled.h2`
 
   font-weight: 400;
   font-size: 4rem;
-  line-height: 5.3rem;
 
   @media screen and (max-width: 1100px) {
     font-size: 3rem;

@@ -54,7 +54,7 @@ function QuantumSphere() {
           ]}
           position={qubitPos1}
         >
-          <torusBufferGeometry args={[1.5, 0.05, 16, 64]} />
+          <torusBufferGeometry args={[1.5, 0.08, 16, 64]} />
           <meshLambertMaterial color={colormap(1 - scrollRatio * 3)} />
         </mesh>
       </group>
@@ -77,7 +77,7 @@ function QuantumSphere() {
           ]}
           position={qubitPos2}
         >
-          <torusBufferGeometry args={[1.5, 0.05, 16, 64]} />
+          <torusBufferGeometry args={[1.5, 0.08, 16, 64]} />
           <meshLambertMaterial color={colormap(scrollRatio * 3)} />
         </mesh>
       </group>

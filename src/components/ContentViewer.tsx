@@ -25,10 +25,10 @@ const Title = styled.h1`
   margin: 0;
 `;
 
-const Description = styled.small`
+const Description = styled.p`
   font-size: 1.4rem;
   width: 42vw;
-  margin: 0;
+  padding: 0 0 0 2rem;
 
   color: #adb5bd;
 `;
@@ -46,7 +46,7 @@ const Block = styled.div`
 `;
 
 const TextParagraph = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 const TextSection = styled.section`
@@ -107,7 +107,7 @@ export default function ContentViewer({
 
   function onScroll(e: React.UIEvent<HTMLElement, UIEvent>) {
     const scrollTop = (e.target as any).scrollTop;
-    if (scrollTop > +200) {
+    if (scrollTop > 100) {
       setShowHead(false);
     } else {
       setShowHead(true);

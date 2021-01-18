@@ -67,19 +67,16 @@ export default function Menu({ index, name, data }: MenuProps) {
       (direction === 1 && e.currentTime > e.totalTime - 1) ||
       (direction === -1 && e.currentTime < 1)
     ) {
-      console.log(direction);
       setSpeed(0);
     }
   }
 
   function onMouseEnter() {
-    console.log("enter");
     setDirection(1);
     setSpeed(1);
   }
 
   function onMouseLeave() {
-    console.log("leave");
     setDirection(-1);
     setSpeed(1);
   }

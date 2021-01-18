@@ -1525,14 +1525,6 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
-"@react-three/postprocessing@^1.5.1":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@react-three/postprocessing/-/postprocessing-1.5.1.tgz#4612381fdcc996c0c58668f141b73d9599a6c9b0"
-  integrity sha512-zrfDIES0osRkRGw3PuwW4e1G7Zi9qxuEckX/vwuUutFB1oDacRA2P41AwoazR5Qi6qPPlX1dKn33+eLh3JBkHQ==
-  dependencies:
-    postprocessing "^6.17.1"
-    react-merge-refs "^1.1.0"
-
 "@rollup/plugin-node-resolve@^7.1.1":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-7.1.3.tgz#80de384edfbd7bfc9101164910f86078151a3eca"
@@ -8975,11 +8967,6 @@ postcss@^8.1.0:
     nanoid "^3.1.18"
     source-map "^0.6.1"
     vfile-location "^3.2.0"
-
-postprocessing@^6.17.1:
-  version "6.19.3"
-  resolved "https://registry.yarnpkg.com/postprocessing/-/postprocessing-6.19.3.tgz#e6a87b7e36aebb14c77fedb1b0dd962f367b95aa"
-  integrity sha512-Ti0/cihCj8SKgUef0zPZIZZT2elwdTCPab+o14nkOZUudeH0tASGFVRtYUHR8iIIvxmB88oQmogp+rM0dfU+eQ==
 
 prelude-ls@^1.2.1:
   version "1.2.1"

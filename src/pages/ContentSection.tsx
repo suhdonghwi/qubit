@@ -9,7 +9,7 @@ import menu2 from "../lottie/menu2.json";
 import menu3 from "../lottie/menu3.json";
 
 const Container = styled.section`
-  padding: 2rem 0 10rem 0;
+  padding: 2rem 0 12rem 0;
 
   @media screen and (max-width: 1100px) {
     padding-bottom: 7rem;
