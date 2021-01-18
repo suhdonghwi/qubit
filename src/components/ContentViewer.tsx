@@ -1,7 +1,8 @@
 import React, { useState, useLayoutEffect, useRef } from "react";
-import styled from "styled-components/macro"; 
+import styled from "styled-components/macro";
 
 import Paragraph from "../types/Paragraph";
+import GraphicsViewer from "./GraphicsViewer";
 
 const Container = styled.main`
   height: 100vh;
@@ -57,15 +58,6 @@ const TextSection = styled.section`
 
   padding: 50vh 2.5rem 2.5rem 2.5rem;
   overflow: scroll;
-`;
-
-const GraphicSection = styled.section`
-  flex: 1;
-  padding: 2.5rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 interface ContentViewerProps {
@@ -148,9 +140,7 @@ export default function ContentViewer({
         ))}
       </TextSection>
 
-      <GraphicSection>
-        { content[currentIndex].graphicContent }
-      </GraphicSection>
+      <GraphicsViewer content={content[currentIndex].graphicContent} />
     </Container>
   );
 }
