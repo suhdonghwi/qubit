@@ -4,9 +4,9 @@ import styled from "styled-components/macro";
 import Menu from "../components/Menu";
 import HighlightedText from "../components/HighlightedText";
 
-import menu1 from "../lottie/menu1.json";
-import menu2 from "../lottie/menu2.json";
-import menu3 from "../lottie/menu3.json";
+import menu1 from "../lotties/menu1.json";
+import menu2 from "../lotties/menu2.json";
+import menu3 from "../lotties/menu3.json";
 
 const Container = styled.section`
   padding: 2rem 0 12rem 0;

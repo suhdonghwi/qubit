@@ -3,7 +3,7 @@ import ContentViewer from "../components/ContentViewer";
 
 import LottieGraphic from "../components/graphics/LottieGraphic";
 
-import basic1 from "../lottie/basic/1.json";
+import basic1 from "../lotties/basic/1.json";
 
 export default function BasicPage() {
   const content = [
