@@ -4,6 +4,7 @@ import ContentViewer from "../components/ContentViewer";
 import LottieGraphic from "../components/graphics/LottieGraphic";
 
 import basic1 from "../lotties/basic/1.json";
+import basic2 from "../lotties/basic/2.json";
 
 export default function BasicPage() {
   const content = [
@@ -25,6 +26,7 @@ export default function BasicPage() {
         'Suppose we have a cat in a perfectly closed box. Inside the box, there is a poison gas bottle that opens automatically after 30 minutes with a 50% chance.  After an hour, we try to describe the cat\'s current state. What would we say? We would say, "The cat is currently dead or alive!".',
         'This means that we assumed the cat is in one definite state, dead or alive. But quantum mechanics sees it differently, and would say, "The cat is currently both dead and alive, and its state is determined the moment we open the box."',
       ],
+      graphicContent: <LottieGraphic data={basic2} loop={false} />,
     },
   ];
 

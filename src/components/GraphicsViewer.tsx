@@ -28,6 +28,7 @@ export default function GraphicsViewer({ content }: GraphicsViewerProps) {
     <Container>
       <Transition
         items={content}
+        keys={(c) => c?.props.data.nm}
         from={{ opacity: 0 }}
         enter={{ opacity: 1 }}
         leave={{ opacity: 0 }}
