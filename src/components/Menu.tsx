@@ -20,7 +20,7 @@ const Box = styled.div`
   }
 
   margin: 1.5rem;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
   box-sizing: border-box;
 
   border: 1px solid #495057;
@@ -43,7 +43,7 @@ const Box = styled.div`
 const BoxTitle = styled.h2`
   margin: auto 0 0 0;
 
-  font-weight: 500;
+  font-weight: 400;
   color: #868e96;
   font-size: 1.3rem;
 

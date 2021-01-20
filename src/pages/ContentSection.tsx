@@ -50,9 +50,9 @@ export default function ContentSection() {
     <Container>
       <Title as="h2">컨텐츠</Title>
       <MenuContainer>
-        <Menu index={1} name="Basics" data={menu1} />
-        <Menu index={2} name="Principles" data={menu2} />
-        <Menu index={3} name="Misconceptions" data={menu3} />
+        <Menu index={1} name="기본" data={menu1} />
+        <Menu index={2} name="원리" data={menu2} />
+        <Menu index={3} name="오해" data={menu3} />
       </MenuContainer>
     </Container>
   );
