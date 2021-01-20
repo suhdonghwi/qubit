@@ -1,4 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap');
+@font-face {
+  font-family: "IBM Plex Sans KR";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Light.woff")
+    format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans KR";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans KR";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-SemiBold.woff")
+    format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
 
 * {
   box-sizing: border-box;
@@ -9,6 +31,6 @@ body {
   background: #212529;
   min-height: 100vh;
 
-  font-family: 'Titillium Web', sans-serif;
+  font-family: "IBM Plex Sans KR", sans-serif;
   color: #f8f9fa;
 }

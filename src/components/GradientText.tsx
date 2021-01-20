@@ -2,9 +2,7 @@ import styled from "styled-components/macro";
 
 import palette from "../palette";
 
-const Text = styled.span`
-  font-weight: 700;
-
+const Text = styled.mark`
   background-image: ${palette.quantumGradient};
 
   -webkit-text-fill-color: transparent;

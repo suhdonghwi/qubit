@@ -16,9 +16,9 @@ const LogoImage = styled.img`
 `;
 
 const LogoText = styled.h1`
-  margin: 0 0 5px 13px;
+  margin: 0 0 0 13px;
 
-  font-weight: 500;
+  font-weight: 400;
   font-size: 1.7rem;
 
   @media screen and (max-width: 500px) {

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/macro";
 
 import Menu from "../components/Menu";
-import HighlightedText from "../components/HighlightedText";
+import GradientText from "../components/GradientText";
 
 import menu1 from "../lotties/menu1.json";
 import menu2 from "../lotties/menu2.json";
@@ -35,7 +35,7 @@ const MenuContainer = styled.div`
   justify-content: center;
 `;
 
-const Title = styled(HighlightedText)`
+const Title = styled(GradientText)`
   font-size: 4rem;
   margin: 0 0 5rem 0;
 
@@ -48,7 +48,7 @@ const Title = styled(HighlightedText)`
 export default function ContentSection() {
   return (
     <Container>
-      <Title as="h2">Contents</Title>
+      <Title as="h2">컨텐츠</Title>
       <MenuContainer>
         <Menu index={1} name="Basics" data={menu1} />
         <Menu index={2} name="Principles" data={menu2} />

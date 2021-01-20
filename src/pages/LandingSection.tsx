@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 import palette from "../palette";
 
 import MainSphere from "../components/MainSphere";
-import HighlightedText from "../components/HighlightedText";
+import GradientText from "../components/GradientText";
 
 const Container = styled.section`
   height: 100vh;
@@ -18,7 +18,7 @@ const TextContainer = styled.div`
   width: 55%;
   z-index: 1;
 
-  @media screen and (max-width: 830px) {
+  @media screen and (max-width: 1500px) {
     width: 70%;
   }
 
@@ -33,33 +33,54 @@ const MainText = styled.h2`
   font-weight: 400;
   font-size: 4rem;
 
-  @media screen and (max-width: 1100px) {
+  mark {
+    font-weight: 500;
+
+    small {
+      font-size: 2.5rem;
+      font-weight: 300;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
     font-size: 3rem;
     margin-bottom: 1.5rem;
+
+    mark small {
+      font-size: 2rem;
+    }
   }
 
-  @media screen and (max-width: 830px) {
+  @media screen and (max-width: 870px) {
     font-size: 2.5rem;
+
+    mark small {
+      font-size: 1.7rem;
+    }
   }
 
-  @media screen and (max-width: 500px) {
-    font-size: 1.6rem;
+  @media screen and (max-width: 530px) {
+    font-size: 2.5rem;
+
+    mark small {
+      font-size: 1.2rem;
+    }
   }
 `;
 
 const SubText = styled.p`
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 300;
 
   color: ${palette.grayText};
 
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: 1200px) {
     font-size: 1.2rem;
   }
 
-  @media screen and (max-width: 425px) {
-    font-size: 0.9rem;
+  @media screen and (max-width: 530px) {
+    font-size: 1.2rem;
   }
 `;
 
@@ -68,16 +89,18 @@ export default function LandingSection() {
     <Container>
       <TextContainer>
         <MainText>
-          Explore the world of
+          이미 도착한 미래,
           <br />
-          <HighlightedText>Quantum Computing</HighlightedText>
+          <GradientText>
+            양자 컴퓨터 <small>Quantum Computer</small>
+          </GradientText>
         </MainText>
         <SubText>
-          Quantum computing is great. But why is it? And how does it work? There
-          are so many misconceptions about quantum computers or quantum
-          mechanics itself - and we should know how they work to find out what
-          is actual possibilities and limitations of quantum computers. Let's
-          get into it.
+          양자 컴퓨터에 대해서 들어보신 적이 있나요? 양자 컴퓨터는 어떻게
+          동작할까요? 세간에는 양자 컴퓨터와 양자역학에 대한 오해가 정말 많이
+          퍼져있습니다. 그리고 우리가 양자 컴퓨터의 능력과 한계를 정확히 알기
+          위해서는 양자 컴퓨터가 어떻게 동작하는지 알 필요가 있습니다. 한 번
+          들어가봅시다.
         </SubText>
       </TextContainer>
       <MainSphere />
