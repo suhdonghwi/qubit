@@ -60,10 +60,16 @@ const MainText = styled.h2`
   }
 
   @media screen and (max-width: 530px) {
-    font-size: 2.5rem;
+    font-size: 2rem;
 
     mark small {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+    }
+  }
+
+  @media screen and (max-width: 340px) {
+    mark small {
+      display: none;
     }
   }
 `;
@@ -80,7 +86,7 @@ const SubText = styled.p`
   }
 
   @media screen and (max-width: 530px) {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 `;
 

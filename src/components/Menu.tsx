@@ -14,9 +14,11 @@ const Box = styled.div`
   width: 20rem;
   height: 20rem;
 
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 1200px) {
     width: 17rem;
     height: 17rem;
+    
+    margin: 1.2rem;
   }
 
   margin: 1.5rem;
@@ -90,7 +92,7 @@ export default function Menu({ index, name, data }: MenuProps) {
         direction={direction}
         onEnterFrame={onFrame}
         speed={speed}
-        style={{ height: window.innerWidth <= 425 ? "200px" : "220px" }}
+        style={{ height: window.innerWidth <= 1200 ? "200px" : "220px" }}
       />
       <BoxTitle>
         {index}. {name}

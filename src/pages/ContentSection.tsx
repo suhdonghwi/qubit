@@ -43,6 +43,12 @@ const Title = styled(GradientText)`
     font-size: 3rem;
     margin-bottom: 3rem;
   }
+
+  @media screen and (max-width: 530px) {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
 `;
 
 export default function ContentSection() {
