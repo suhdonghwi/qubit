@@ -1,4 +1,4 @@
 export default interface Paragraph {
-  textContent: string[];
+  textContent: JSX.Element[];
   graphicContent?: JSX.Element;
 }

@@ -46,10 +46,10 @@ const Block = styled.div`
   &.current {
     color: #f8f9fa;
   }
-`;
 
-const TextParagraph = styled.p`
-  font-size: 1.3rem;
+  p {
+    font-size: 1.3rem;
+  }
 `;
 
 const TextSection = styled.section`
@@ -133,9 +133,7 @@ export default function ContentViewer({
             ref={(e: any) => (paragraphsRef.current[i] = e)}
             className={currentIndex === i ? "current" : ""}
           >
-            {content.textContent.map((t, j) => (
-              <TextParagraph key={j}>{t}</TextParagraph>
-            ))}
+            {content.textContent}
           </Block>
         ))}
       </TextSection>
