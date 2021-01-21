@@ -13,7 +13,7 @@ const Container = styled.main`
 const HeadBox = styled.div`
   position: absolute;
   top: 1rem;
-  left: 2rem;
+  left: 2.5rem;
   margin: 0;
 
   transition: opacity 0.3s;
@@ -31,7 +31,7 @@ const Title = styled.h1`
 const Description = styled.p`
   font-size: 1.4rem;
   width: 42vw;
-  padding: 0 0 0 2rem;
+  padding: 0 0 0 1rem;
 
   color: #adb5bd;
 `;
