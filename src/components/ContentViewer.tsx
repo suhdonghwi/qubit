@@ -40,7 +40,7 @@ const Description = styled.p`
 
 const Block = styled.div`
   overflow: auto;
-  margin-bottom: 200px;
+  margin-bottom: 150px;
 
   color: #868e96;
   font-size: 1.3rem;
@@ -128,7 +128,7 @@ export default function ContentViewer({
     let i = 0,
       acc = 0;
     for (const height of heightList) {
-      acc += height + 200;
+      acc += height + 150;
       if (scrollTop + 200 < acc) {
         break;
       }

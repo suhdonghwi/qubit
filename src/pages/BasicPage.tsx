@@ -15,21 +15,24 @@ builder.quote()`
 
 ― Richard Feynmann (리처드 파인만)
 `.paragraph()`
-Quantum mechanics was born in the early decades of the 20th century. Numerous studies have been conducted, and the conclusions drawn from them have completely changed our view of the world. Theories of quantum mechanics sounded like pure nonsense, but they have proven to be true after many experiments. It was so unreal that one of the greatest scientists in the world - Albert Einstien did not admit quantum mechanics until he died.
-Due to its irrationality, there are so many misconceptions around quantum mechanics. The purpose of this website is to clear those misunderstandings and to give relatively easy explanation of how quantum computing works.
+여러분은 양자 컴퓨터에 대해서 들어보신 적이 있나요? 양자 컴퓨터는, 양자역학의 이론을 사용하여 고안된 새로운 종류의 컴퓨터입니다. 양자역학 자체의 비직관성 덕분에, 세간에는 양자역학과 양자 컴퓨터에 대한 오해가 많이 퍼져있습니다. 리처드 파인만의 말처럼 양자역학을 본질적으로 이해한 사람은 아무도 없지만, 이 웹사이트의 목적은 최소한의 양자역학 기본 지식과 함께 양자 컴퓨터의 동작 원리를 비교적 쉽게 설명해드리는 데에 있습니다.
+
+그럼 우선, 기본부터 알아가보도록 하겠습니다.
 `.paragraph(<LottieGraphic data={basic1} />)`
-First of all, what is quantum mechanics? Well, it is the study of tiny things. I mean, really really tiny things, like atoms, electrons, and photons. In a small world, things behave differently than we used to know thus it is a separate study from Newton's classical mechanics.
-So, how are they different? Let's see a famous thought experiment called Schrodinger's Cat.
+양자역학이 대체 무엇일까요? 아주 간단하게 말해서, 양자역학은 "작은 것들을 연구하는 학문"입니다. 원자, 전자, 광자같이 육안으로는 절대 관찰할 수 없을 만큼 작은 이 입자들의 성질을 밝혀내는 것이 양자역학의 목표입니다.
+
+이런 매우 작은 입자들의 세계를 "아원자 세계"라고 하는데, 이 아원자 세계에서는 입자들이 매우 요상하게 행동합니다. 어떻게, 얼마나 이상하게 행동하길래 그러는 걸까요? 이를 알아보기 위해서, 유명한 사고실험인 "슈뢰딩거의 고양이"를 한 번 보도록 합시다.
 `.paragraph(<LottieGraphic data={basic2} loop={false} />)`
-Suppose we have a cat in a perfectly closed box. Inside the box, there is a poison gas bottle that opens automatically after 30 minutes with a 50% chance.  After an hour, we try to describe the cat\'s current state. What would we say? We would say, "The cat is currently dead or alive!".
-This means that we assumed the cat is in one definite state, dead or alive. But quantum mechanics sees it differently, and would say, "The cat is currently both dead and alive, and its state is determined the moment we open the box."
+여러분에게 완전하게 밀폐된 상자 하나가 있습니다. 그리고 그 상자 속에는, 귀여운 고양이 한 마리와 독가스가 담긴 병이 있습니다. 그리고 30분이 지나면, 50% 확률로 그 독가스병의 마개가 자동으로 열립니다.
+
+자, 1시간이 지났습니다. 만약 누군가가 여러분에게 "지금 고양이의 상태를 설명해주세요!"라는 부탁을 한다면 여러분은 뭐라고 답변하실건가요? 아마 "고양이는 현재 죽었거나 살아있습니다." 라고 말하시겠죠. 대단히 합리적이고, 틀린 부분도 없습니다. 그런데..
 `;
 
 export default function BasicPage() {
   return (
     <ContentViewer
       title="1. 기본"
-      description="This article will cover basic knowledge to understand how quantum computers work. What is quantum? How does a quantum computer differ from a classical one? By the end of this article, you will be able to answer these questions."
+      description="이 글은 양자 컴퓨터가 어떻게 동작하는지 이해하기 위해 필요한 기본적인 지식들을 담고 있습니다. 양자역학이 뭘까? 양자 컴퓨터는 기존의 컴퓨터와 무엇이 다를까? 이 글을 읽으시면, 이 질문들에 답하실 수 있게 되실 것입니다."
       content={builder.build()}
     />
   );
