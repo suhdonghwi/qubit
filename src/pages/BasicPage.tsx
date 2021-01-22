@@ -10,7 +10,11 @@ import ContentBuilder from "../types/ContentBuilder";
 
 const builder = new ContentBuilder();
 
-builder.paragraph()`
+builder.quote()`
+양자역학을 완벽히 이해한 사람은 아무도 없다고 자신있게 말할 수 있습니다.
+
+― Richard Feynmann (리처드 파인만)
+`.paragraph()`
 Quantum mechanics was born in the early decades of the 20th century. Numerous studies have been conducted, and the conclusions drawn from them have completely changed our view of the world. Theories of quantum mechanics sounded like pure nonsense, but they have proven to be true after many experiments. It was so unreal that one of the greatest scientists in the world - Albert Einstien did not admit quantum mechanics until he died.
 Due to its irrationality, there are so many misconceptions around quantum mechanics. The purpose of this website is to clear those misunderstandings and to give relatively easy explanation of how quantum computing works.
 `.paragraph(<LottieGraphic data={basic1} />)`

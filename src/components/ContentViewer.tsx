@@ -4,6 +4,8 @@ import styled from "styled-components/macro";
 import Paragraph from "../types/Paragraph";
 import GraphicsViewer from "./GraphicsViewer";
 
+import palette from "../palette";
+
 const Container = styled.main`
   height: 100vh;
 
@@ -41,14 +43,31 @@ const Block = styled.div`
   margin-bottom: 200px;
 
   color: #868e96;
-  transition: color 0.5s;
-
-  &.current {
-    color: #f8f9fa;
-  }
+  font-size: 1.3rem;
+  transition: all 0.5s;
 
   p {
-    font-size: 1.3rem;
+  }
+
+  blockquote {
+    font-size: 1.5rem;
+    font-style: italic;
+
+    padding: 2rem 0 2rem 2rem;
+    border-left: 5px solid #868e96;
+
+    transition: all 0.5s;
+
+    margin: 0 0 0 1rem;
+  }
+
+  &.current {
+    color: ${palette.whiteText};
+
+    blockquote {
+      border-color: ${palette.whiteText};
+      color: ${palette.whiteText};
+    }
   }
 `;
 

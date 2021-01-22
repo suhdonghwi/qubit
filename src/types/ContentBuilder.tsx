@@ -21,7 +21,19 @@ export default class ContentBuilder {
   public quote(graphicContent?: JSX.Element) {
     return (textContent: TemplateStringsArray) => {
       this.result.push({
-        textContent: [<blockquote>{textContent[0]}</blockquote>],
+        textContent: [
+          <blockquote>
+            {textContent[0]
+              .trim()
+              .split("\n")
+              .map((t) => (
+                <>
+                  {t}
+                  <br />
+                </>
+              ))}
+          </blockquote>,
+        ],
         graphicContent,
       });
 
