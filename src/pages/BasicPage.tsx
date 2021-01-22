@@ -11,6 +11,7 @@ import ContentBuilder from "../types/ContentBuilder";
 const builder = new ContentBuilder();
 
 builder.quote()`
+I think I can safely say that nobody understands Quantum Mechanics.
 양자역학을 완벽히 이해한 사람은 아무도 없다고 자신있게 말할 수 있습니다.
 
 ― Richard Feynmann (리처드 파인만)
