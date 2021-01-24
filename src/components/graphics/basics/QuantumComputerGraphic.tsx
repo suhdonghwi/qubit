@@ -13,6 +13,16 @@ export default function QuantumComputerGraphic() {
     },
   });
 
+  const atomMaterialProps = useSpring({
+    from: { color: "#ff6b6b" },
+    to: async (next) => {
+      while (1) {
+        await next({ color: "#845ef7" });
+        await next({ color: "#ff6b6b" });
+      }
+    },
+  });
+
   return (
     <>
       <mesh receiveShadow castShadow position={[0, -1.7, 0]}>
@@ -37,8 +47,9 @@ export default function QuantumComputerGraphic() {
 
       <animated.mesh castShadow {...atomProps}>
         <sphereBufferGeometry args={[0.3, 64, 64]} />
-        <meshLambertMaterial color="#ff8787" />
+        <animated.meshLambertMaterial {...atomMaterialProps} />
       </animated.mesh>
+
       <Plane />
     </>
   );
