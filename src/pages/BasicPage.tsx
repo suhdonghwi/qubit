@@ -3,13 +3,15 @@ import ContentViewer from "../components/ContentViewer";
 
 import ContentBuilder from "../types/ContentBuilder";
 
+import StartFlag from "../components/graphics/StartFlag";
+
 import SubatomicGraphic from "../components/graphics/basics/SubatomicGraphic";
 import QuantumComputerGraphic from "../components/graphics/basics/QuantumComputerGraphic";
 import CatBoxGraphic from "../components/graphics/basics/CatBoxGraphic";
 
 const builder = new ContentBuilder();
 
-builder.quote()`
+builder.quote(<StartFlag />)`
 I think I can safely say that nobody understands Quantum Mechanics.
 양자역학을 완벽히 이해한 사람은 아무도 없다고 자신있게 말할 수 있습니다.
 
@@ -23,10 +25,10 @@ I think I can safely say that nobody understands Quantum Mechanics.
 
 이런 매우 작은 입자들의 세계를 "아원자 세계"라고 하는데, 이 아원자 세계에서는 입자들이 매우 요상하게 행동합니다. 어떻게, 얼마나 이상하게 행동하길래 그러는 걸까요? 이를 알아보기 위해서, 유명한 사고실험인 "슈뢰딩거의 고양이"를 한 번 보도록 합시다.
 `.paragraph(<CatBoxGraphic />)`
-여러분에게 완전하게 밀폐된 상자 하나가 있습니다. 그리고 그 상자 속에는, 귀여운 고양이 한 마리와 독가스가 담긴 병이 있습니다. 그리고 30분이 지나면, 50% 확률로 그 독가스병의 마개가 자동으로 열립니다.
+여러분에게 완전하게 밀폐된 상자 하나가 있습니다. 그리고 그 상자 속에는, 귀여운 고양이 한 마리와 독가스가 담긴 병이 들어있습니다. 그리고 30분이 지나면, 50% 확률로 그 독가스병의 마개가 자동으로 열립니다.
 
 자, 1시간이 지났습니다. 만약 누군가가 여러분에게 "지금 고양이의 상태를 설명해주세요!"라는 부탁을 한다면 여러분은 뭐라고 답변하실건가요? 아마 "고양이는 현재 죽었거나 살아있습니다." 라고 말하시겠죠. 그런데..
-
+`.paragraph()`
 양자역학은 고양이의 상태를 조금 다르게 묘사합니다. "고양이는 현재 죽어있는 동시에 살아있으며, 고양이의 상태는 우리가 상자를 열어서 관측하는 순간 하나로 결정된다!"
 `;
 
