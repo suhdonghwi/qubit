@@ -34,7 +34,7 @@ export default function GraphicsViewer({
       <World3D>
         <ambientLight intensity={0.1} />
         <pointLight
-          intensity={0.4}
+          intensity={0.5}
           position={[5, 15, 5]}
           castShadow
           shadow-mapSize-width={1024}
