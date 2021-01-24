@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components/macro";
 
 import { animated, useSpring } from "@react-spring/three";
-import { useFrame } from "react-three-fiber";
 
 import World3D from "./graphics/World3D";
 
@@ -33,7 +32,8 @@ export default function GraphicsViewer({
   return (
     <Container>
       <World3D>
-        <pointLight />
+        <pointLight intensity={0.05} />
+        <pointLight intensity={0.3} position={[0, 5, 10]} />
         <animated.group {...posProps}>
           {graphicsList
             .filter((e) => e !== undefined)
