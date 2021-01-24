@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { Canvas } from "react-three-fiber";
+import { Canvas, useFrame } from "react-three-fiber";
+import { useSpring } from "react-spring/three";
 
 const Container = styled.section`
   position: relative;
@@ -18,16 +19,32 @@ interface GraphicsViewerProps {
   index: number;
 }
 
-export default function GraphicsViewer({ graphicsList }: GraphicsViewerProps) {
+function Content({ graphicsList, index }: GraphicsViewerProps) {
+  const { pos } = useSpring({
+    pos: [index * 3, 0, 0],
+  });
+
+  useFrame(({ camera }) => {
+    camera.position.setX(pos.get()[0]);
+  });
+
+  return (
+    <>
+      <ambientLight intensity={0.5} />
+      {graphicsList
+        .filter((e) => e !== undefined)
+        .map((g, i) => (
+          <group position={[i * 3, 0, 0]}>{g}</group>
+        ))}
+    </>
+  );
+}
+
+export default function GraphicsViewer(props: GraphicsViewerProps) {
   return (
     <Container>
       <Canvas>
-        <ambientLight intensity={0.5} />
-        {graphicsList
-          .filter((e) => e !== undefined)
-          .map((g, i) => (
-            <group position={[i*3, 0, 0]}>{g}</group>
-          ))}
+        <Content {...props} />
       </Canvas>
     </Container>
   );
