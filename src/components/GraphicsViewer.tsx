@@ -3,6 +3,8 @@ import styled from "styled-components/macro";
 
 import { Transition } from "react-spring/renderprops";
 
+import World3D from "../components/graphics/World3D";
+
 const Container = styled.section`
   position: relative;
 
@@ -32,7 +34,11 @@ export default function GraphicsViewer({ content }: GraphicsViewerProps) {
         enter={{ opacity: 1 }}
         leave={{ opacity: 0 }}
       >
-        {(items) => (props) => <Box style={props}>{items}</Box>}
+        {(items) => (props) => (
+          <Box style={props}>
+            <World3D>{items || <mesh></mesh>}</World3D>
+          </Box>
+        )}
       </Transition>
     </Container>
   );

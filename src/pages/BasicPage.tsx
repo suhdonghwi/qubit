@@ -7,12 +7,26 @@ import ContentBuilder from "../types/ContentBuilder";
 
 const builder = new ContentBuilder();
 
-builder.quote()`
+builder.quote(
+  <>
+    <mesh>
+      <sphereBufferGeometry args={[1.5, 0.08, 16, 64]} />
+      <meshLambertMaterial color="white" />
+    </mesh>
+  </>
+)`
 I think I can safely say that nobody understands Quantum Mechanics.
 양자역학을 완벽히 이해한 사람은 아무도 없다고 자신있게 말할 수 있습니다.
 
 ― Richard Feynmann (리처드 파인만)
-`.paragraph(<World3D />)`
+`.paragraph(
+  <>
+    <mesh>
+      <sphereBufferGeometry args={[1.5, 0.08, 16, 64]} />
+      <meshLambertMaterial color="white" />
+    </mesh>
+  </>
+)`
 여러분은 양자 컴퓨터에 대해서 들어보신 적이 있나요? 양자 컴퓨터는, 양자역학의 이론을 사용하여 고안된 새로운 종류의 컴퓨터입니다. 양자역학 자체의 비직관성 덕분에, 세간에는 양자역학과 양자 컴퓨터에 대한 오해가 많이 퍼져있습니다. 리처드 파인만의 말처럼 양자역학을 본질적으로 이해한 사람은 아무도 없지만, 이 웹사이트의 목적은 최소한의 양자역학 기본 지식과 함께 양자 컴퓨터의 동작 원리를 비교적 쉽게 설명해드리는 데에 있습니다.
 
 그럼 우선, 기본부터 알아가보도록 하겠습니다.
