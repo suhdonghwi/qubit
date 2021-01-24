@@ -33,7 +33,7 @@ export default class ContentBuilder {
               .map((t, i) => (
                 <React.Fragment key={i}>
                   {t}
-                  {"\n"}
+                  <br />
                 </React.Fragment>
               ))}
           </blockquote>,
