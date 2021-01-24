@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { Canvas, useFrame } from "react-three-fiber";
+import { useFrame } from "react-three-fiber";
 import { useSpring } from "react-spring/three";
+
+import World3D from "./graphics/World3D";
 
 const Container = styled.section`
   position: relative;
@@ -14,12 +16,7 @@ const Container = styled.section`
   justify-content: center;
 `;
 
-interface GraphicsViewerProps {
-  graphicsList: (JSX.Element | undefined)[];
-  index: number;
-}
-
-function Content({ graphicsList, index }: GraphicsViewerProps) {
+function MoveCamera({ index }: { index: number }) {
   const { pos } = useSpring({
     pos: [index * 3, 0, 0],
   });
@@ -28,24 +25,28 @@ function Content({ graphicsList, index }: GraphicsViewerProps) {
     camera.position.setX(pos.get()[0]);
   });
 
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      {graphicsList
-        .filter((e) => e !== undefined)
-        .map((g, i) => (
-          <group position={[i * 3, 0, 0]}>{g}</group>
-        ))}
-    </>
-  );
+  return null;
 }
 
-export default function GraphicsViewer(props: GraphicsViewerProps) {
+interface GraphicsViewerProps {
+  graphicsList: (JSX.Element | undefined)[];
+  index: number;
+}
+
+export default function GraphicsViewer({
+  graphicsList,
+  index,
+}: GraphicsViewerProps) {
   return (
     <Container>
-      <Canvas>
-        <Content {...props} />
-      </Canvas>
+      <World3D>
+        {graphicsList
+          .filter((e) => e !== undefined)
+          .map((g, i) => (
+            <group position={[i * 3, 0, 0]}>{g}</group>
+          ))}
+        <MoveCamera index={index} />
+      </World3D>
     </Container>
   );
 }
