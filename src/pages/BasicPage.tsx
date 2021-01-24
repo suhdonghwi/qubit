@@ -5,6 +5,7 @@ import ContentBuilder from "../types/ContentBuilder";
 
 import SubatomicGraphic from "../components/graphics/basics/SubatomicGraphic";
 import QuantumComputerGraphic from "../components/graphics/basics/QuantumComputerGraphic";
+import CatBoxGraphic from "../components/graphics/basics/CatBoxGraphic";
 
 const builder = new ContentBuilder();
 
@@ -21,7 +22,7 @@ I think I can safely say that nobody understands Quantum Mechanics.
 양자역학이 대체 무엇일까요? 아주 간단하게 말해서, 양자역학은 "작은 것들을 연구하는 학문" 입니다. 원자, 전자, 광자같이 육안으로는 절대 관찰할 수 없을 만큼 작은 이 입자들의 성질을 밝혀내는 것이 양자역학의 목표라고 할 수 있습니다.
 
 이런 매우 작은 입자들의 세계를 "아원자 세계"라고 하는데, 이 아원자 세계에서는 입자들이 매우 요상하게 행동합니다. 어떻게, 얼마나 이상하게 행동하길래 그러는 걸까요? 이를 알아보기 위해서, 유명한 사고실험인 "슈뢰딩거의 고양이"를 한 번 보도록 합시다.
-`.paragraph()`
+`.paragraph(<CatBoxGraphic />)`
 여러분에게 완전하게 밀폐된 상자 하나가 있습니다. 그리고 그 상자 속에는, 귀여운 고양이 한 마리와 독가스가 담긴 병이 있습니다. 그리고 30분이 지나면, 50% 확률로 그 독가스병의 마개가 자동으로 열립니다.
 
 자, 1시간이 지났습니다. 만약 누군가가 여러분에게 "지금 고양이의 상태를 설명해주세요!"라는 부탁을 한다면 여러분은 뭐라고 답변하실건가요? 아마 "고양이는 현재 죽었거나 살아있습니다." 라고 말하시겠죠. 그런데..
