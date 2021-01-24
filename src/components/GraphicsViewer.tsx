@@ -32,16 +32,29 @@ export default function GraphicsViewer({
   return (
     <Container>
       <World3D>
-        <pointLight intensity={0.05} />
-        <pointLight intensity={0.3} position={[0, 5, 10]} />
+        <ambientLight intensity={0.1} />
+        <pointLight
+          intensity={0.4}
+          position={[5, 15, 5]}
+          castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+          shadow-camera-far={50}
+          shadow-camera-left={-10}
+          shadow-camera-right={10}
+          shadow-camera-top={10}
+          shadow-camera-bottom={-10}
+        />
         <animated.group {...posProps}>
-          {graphicsList
-            .filter((e) => e !== undefined)
-            .map((g, i) => (
-              <group key={i} position={[i * 12, 0, 0]}>
-                {g}
-              </group>
-            ))}
+          {graphicsList.map((g, i) => (
+            <group
+              key={i}
+              position={[i * 12, 0, 0]}
+              rotation={[0, Math.PI / 4, 0]}
+            >
+              {g}
+            </group>
+          ))}
         </animated.group>
       </World3D>
     </Container>
