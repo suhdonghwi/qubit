@@ -69,7 +69,7 @@ const TextSection = styled.section`
   background-color: #343a40;
 
   padding: 2.5rem 2.5rem 10rem 2.5rem;
-  
+
   overflow: scroll;
 `;
 
@@ -97,12 +97,15 @@ export default function ContentViewer({
 
         {content.map((content, i) => (
           <InView
+            key={i}
             rootMargin="-45% 0%"
             onChange={(inView) => inView && setCurrentIndex(i)}
           >
             {({ inView, ref }) => (
               <Block key={i} ref={ref} className={inView ? "current" : ""}>
-                {content.textContent}
+                {content.textContent.map((e, j) => (
+                  <React.Fragment key={j}>{e}</React.Fragment>
+                ))}
               </Block>
             )}
           </InView>

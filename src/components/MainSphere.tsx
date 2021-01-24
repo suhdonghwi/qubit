@@ -84,6 +84,7 @@ function QuantumSphere() {
     </>
   );
 }
+
 export default function MainSphere() {
   return (
     <>

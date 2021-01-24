@@ -1,3 +1,4 @@
+import React from "react";
 import Paragraph from "./Paragraph";
 
 export default class ContentBuilder {
@@ -10,7 +11,10 @@ export default class ContentBuilder {
   public paragraph(graphicContent?: JSX.Element) {
     return (textContent: TemplateStringsArray) => {
       this.result.push({
-        textContent: textContent[0].split("\n").map((t) => <p>{t}</p>),
+        textContent: textContent[0]
+          .split("\n")
+          .filter((v) => v !== "")
+          .map((t) => <p>{t}</p>),
         graphicContent,
       });
 
@@ -26,11 +30,11 @@ export default class ContentBuilder {
             {textContent[0]
               .trim()
               .split("\n")
-              .map((t) => (
-                <>
+              .map((t, i) => (
+                <React.Fragment key={i}>
                   {t}
-                  <br />
-                </>
+                  {"\n"}
+                </React.Fragment>
               ))}
           </blockquote>,
         ],
