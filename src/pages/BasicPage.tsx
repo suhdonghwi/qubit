@@ -1,8 +1,6 @@
 import React from "react";
 import ContentViewer from "../components/ContentViewer";
 
-import World3D from "../components/graphics/World3D";
-
 import ContentBuilder from "../types/ContentBuilder";
 
 const builder = new ContentBuilder();
@@ -10,8 +8,8 @@ const builder = new ContentBuilder();
 builder.quote(
   <>
     <mesh>
-      <sphereBufferGeometry args={[1.5, 0.08, 16, 64]} />
-      <meshLambertMaterial color="white" />
+      <sphereBufferGeometry args={[1.3, 64, 64]} />
+      <meshLambertMaterial color="blue" />
     </mesh>
   </>
 )`
@@ -22,7 +20,7 @@ I think I can safely say that nobody understands Quantum Mechanics.
 `.paragraph(
   <>
     <mesh>
-      <sphereBufferGeometry args={[1.5, 0.08, 16, 64]} />
+      <sphereBufferGeometry args={[1.3, 64, 64]} />
       <meshLambertMaterial color="white" />
     </mesh>
   </>

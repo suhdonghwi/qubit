@@ -65,10 +65,10 @@ const Block = styled.div`
 `;
 
 const TextSection = styled.section`
-  flex: 1;
   background-color: #343a40;
 
   padding: 2.5rem 2.5rem 10rem 2.5rem;
+  width: 50vw;
 
   overflow: scroll;
 `;
@@ -112,7 +112,10 @@ export default function ContentViewer({
         ))}
       </TextSection>
 
-      <GraphicsViewer content={content[currentIndex].graphicContent} />
+      <GraphicsViewer
+        graphicsList={content.map((c) => c.graphicContent)}
+        index={currentIndex}
+      />
     </Container>
   );
 }
