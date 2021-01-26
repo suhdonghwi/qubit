@@ -52,7 +52,7 @@ export default function QuantumComputerGraphic() {
         <animated.meshLambertMaterial {...atomMaterialProps} />
       </animated.mesh>
 
-      <Qubit />
+      <Qubit oneProbability={0.5} />
 
       <Plane />
     </>
