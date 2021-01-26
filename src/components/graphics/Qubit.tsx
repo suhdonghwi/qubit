@@ -8,9 +8,10 @@ import { perlin3 } from "./perlin.js";
 
 interface QubitProps {
   oneProbability: number;
+  position?: [number, number, number];
 }
 
-export default function Qubit({ oneProbability }: QubitProps) {
+export default function Qubit({ oneProbability, position }: QubitProps) {
   const geometry = new THREE.SphereGeometry(0.1, 64, 64);
 
   const colormap = interpolate(["#339af0", "#f06595"]),
@@ -35,7 +36,7 @@ export default function Qubit({ oneProbability }: QubitProps) {
   });
 
   return (
-    <mesh position={[0, 5, 0]} geometry={geometry}>
+    <mesh geometry={geometry} position={position} castShadow>
       <animated.meshLambertMaterial color={color} />
     </mesh>
   );

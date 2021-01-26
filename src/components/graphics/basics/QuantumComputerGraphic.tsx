@@ -2,8 +2,6 @@ import Plane from "../Plane";
 
 import { useSpring, animated } from "@react-spring/three";
 
-import Qubit from "../Qubit";
-
 export default function QuantumComputerGraphic() {
   const atomProps = useSpring({
     from: { position: [0, -0.3, 0] as any },
@@ -51,8 +49,6 @@ export default function QuantumComputerGraphic() {
         <sphereBufferGeometry args={[0.3, 64, 64]} />
         <animated.meshLambertMaterial {...atomMaterialProps} />
       </animated.mesh>
-
-      <Qubit oneProbability={0.5} />
 
       <Plane />
     </>
