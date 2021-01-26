@@ -33,7 +33,7 @@ const Description = styled.p`
 
 const Block = styled.div`
   overflow: auto;
-  margin-bottom: 150px;
+  margin-bottom: 100px;
 
   color: #868e96;
   font-size: 1.3rem;
