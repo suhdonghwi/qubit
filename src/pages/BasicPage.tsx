@@ -8,7 +8,7 @@ import StartFlag from "../components/graphics/StartFlag";
 import SubatomicGraphic from "../components/graphics/basics/SubatomicGraphic";
 import QuantumComputerGraphic from "../components/graphics/basics/QuantumComputerGraphic";
 import SuperpositionGraphic from "../components/graphics/basics/SuperpositionGraphic";
-import DoubleSlitsGraphic from "../components/graphics/basics/DoubleSlitsGraphic";
+import SlitsParticleGraphic from "../components/graphics/basics/SlitsParticleGraphic";
 
 const builder = new ContentBuilder();
 
@@ -24,13 +24,11 @@ I think I can safely say that nobody understands Quantum Mechanics.
 `.paragraph(SubatomicGraphic)`
 '양자역학'이 대체 무엇일까요? 아주 아주 간단하게 말해서, 양자역학은 "작은 것들을 연구하는 학문" 입니다. 원자, 전자, 광자와 같이 육안으로는 절대로 형태를 관찰할 수 없을 만큼 작은 입자들의 성질을 밝혀내는 것이 양자역학의 주된 목표라고 할 수 있습니다.
 
-이렇게 원자보다도 작은 입자들의 세계를 "아원자 세계"라고 하는데, 이 아원자 세계에서는 입자들이 매우 요상하게 행동합니다. 어떻게, 얼마나 이상하게 행동하길래 그러는 걸까요? 이를 알아보기 위해서, 유명한 사고실험인 "슈뢰딩거의 고양이"를 한 번 보도록 합시다.
-`.paragraph(DoubleSlitsGraphic)`
-이런 상황을 한 번 상상해봅시다. 여러분에게 완전하게 밀폐된 상자 하나가 있습니다. 그리고 그 상자 속에는, 귀여운 고양이 한 마리와 독가스가 담긴 병이 들어있습니다. 그리고 30분 뒤에, 50% 확률로 그 독가스병의 마개가 자동으로 열리고 우리 불쌍한 고양이는 명을 달리하게 됩니다.
+이렇게 원자보다도 작은 입자들의 세계를 "아원자 세계"라고 하는데, 이 아원자 세계에서는 입자들이 매우 요상하게 행동합니다. 어떻게, 얼마나 이상하게 행동하길래 그러는 걸까요? 이를 알아보기 위해서, 양자역학의 세계를 여는 데 결정적인 계기를 제공한, "이중 슬릿 실험"을 한 번 보도록 합시다.
+`.paragraph(SlitsParticleGraphic)`
+자, 여기에 두 개의 틈이 있는 슬릿과 벽에 착 달라붙는 공을 발사하는 장치가 있습니다. 공을 계속 발사하면 벽에 어떤 무늬가 나타날까요? 오른쪽 화면에서 버튼을 눌러서 한 번 확인해보세요.
 
-자, 1시간이 지났습니다. 만약 누군가가 여러분에게 "지금 고양이의 상태를 설명해주세요!"라는 부탁을 한다면 여러분은 뭐라고 답변하실건가요? 아마 "고양이는 현재 죽었거나 살아있습니다." 라고 말하시겠죠. 그런데..
----
-양자역학에서는 고양이의 상태를 조금 다르게 묘사합니다. "고양이는 현재 죽어있는 동시에 살아있으며, 고양이의 상태는 우리가 상자를 열어서 관측하는 순간 하나로 결정된다!"
+당연하게도, 두 개의 틈으로 지나간 공들이 두 개의 직선 띠를 형성합니다. 여기까지는 해보지 않아도 예측할 수 있을 만큼 단순하죠?
 `.paragraph(SuperpositionGraphic)`
 양자역학에서는 고양이의 상태를 조금 다르게 묘사합니다. "고양이는 현재 죽어있는 동시에 살아있으며, 고양이의 상태는 우리가 상자를 열어서 관측하는 순간 하나로 결정된다!"
 
