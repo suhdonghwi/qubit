@@ -119,7 +119,7 @@ export default function SlitsParticleGraphic({
     .fill(null)
     .map((_) => <Particle move={clicked} />);
 
-  function onClick() {
+  function onDown() {
     setClicked(true);
   }
 
@@ -145,12 +145,12 @@ export default function SlitsParticleGraphic({
         <meshLambertMaterial color="white" />
       </mesh>
 
-      <mesh position={[0, -1, 5]} >
+      <mesh position={[0, -1, 5]}>
         <boxBufferGeometry args={[1.0, 0.6, 0.5]} />
         <meshLambertMaterial color="white" />
       </mesh>
 
-      <Button onClick={onClick} position={[-2.5, -2.75, 2.3]} />
+      <Button onDown={onDown} click={clicked} position={[-2.5, -2.75, 2.3]} />
       {particles}
 
       <Plane />

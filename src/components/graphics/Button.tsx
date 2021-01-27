@@ -1,11 +1,10 @@
-import { useState } from "react";
-
 import { animated, useSpring } from "@react-spring/three";
 
 interface ButtonProps {
   onClick?(): void;
   onDown?(): void;
   onUp?(): void;
+  click: boolean;
 
   position?: [number, number, number];
 }
@@ -15,32 +14,22 @@ export default function Button({
   onDown,
   onUp,
   position,
+  click,
 }: ButtonProps) {
-  const [pushed, setPushed] = useState(false);
-
   function onOver() {
     document.documentElement.style.cursor = "pointer";
   }
 
   function onOut() {
     document.documentElement.style.cursor = "default";
-    onUpInternal();
-  }
-
-  function onDownInternal() {
-    setPushed(true);
-
-    onDown && onDown();
-  }
-
-  function onUpInternal() {
-    setPushed(false);
-
     onUp && onUp();
   }
 
   const buttonProps = useSpring({
-    position: (pushed ? [0, 0.1, 0] : [0, 0.25, 0]) as any,
+    config: {
+      tension: 230,
+    },
+    position: (click ? [0, 0.1, 0] : [0, 0.25, 0]) as any,
   });
 
   return (
@@ -51,8 +40,8 @@ export default function Button({
       </mesh>
 
       <animated.mesh
-        onPointerDown={onDownInternal}
-        onPointerUp={onUpInternal}
+        onPointerDown={onDown}
+        onPointerUp={onUp}
         onPointerOver={onOver}
         onPointerOut={onOut}
         onClick={onClick}

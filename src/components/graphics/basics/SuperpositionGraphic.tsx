@@ -7,8 +7,8 @@ import Qubit from "../Qubit";
 import Button from "../Button";
 
 export default function SuperpositionGraphic() {
-  const [pushed, setPushed] = useState(false);
-  const probability = pushed ? Math.round(Math.random()) : 0.5;
+  const [clicked, setClicked] = useState(false);
+  const probability = clicked ? Math.round(Math.random()) : 0.5;
 
   return (
     <>
@@ -21,13 +21,14 @@ export default function SuperpositionGraphic() {
         <animated.meshLambertMaterial
           color="#ffd43b"
           transparent
-          opacity={pushed ? 0.3 : 0}
+          opacity={clicked ? 0.3 : 0}
         />
       </mesh>
       <Button
         position={[0, -2.75, 2]}
-        onDown={() => setPushed(true)}
-        onUp={() => setPushed(false)}
+        onDown={() => setClicked(true)}
+        onUp={() => setClicked(false)}
+        click={clicked}
       />
       <Qubit oneProbability={probability} position={[0, -0.5, 0]} size={0.5} />
       <Plane />;
