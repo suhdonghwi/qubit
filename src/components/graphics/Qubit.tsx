@@ -9,9 +9,10 @@ import { perlin3 } from "./perlin.js";
 interface QubitProps {
   oneProbability: number;
   position?: [number, number, number];
+  size: number;
 }
 
-export default function Qubit({ oneProbability, position }: QubitProps) {
+export default function Qubit({ oneProbability, position, size }: QubitProps) {
   const geometry = new THREE.SphereGeometry(0.1, 64, 64);
 
   const colormap = interpolate(["#339af0", "#f06595"]),
@@ -28,7 +29,7 @@ export default function Qubit({ oneProbability, position }: QubitProps) {
     for (let i = 0; i < geometry.vertices.length; i++) {
       const p = geometry.vertices[i];
       p.normalize().multiplyScalar(
-        0.4 + factor.get() * perlin3(p.x * k + time, p.y * k, p.z * k)
+        size + factor.get() * perlin3(p.x * k + time, p.y * k, p.z * k)
       );
     }
 
