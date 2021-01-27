@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-import Paragraph from "../types/Paragraph";
+import Scene from "../types/Scene";
 import GraphicsViewer from "./GraphicsViewer";
 
 import palette from "../palette";
@@ -77,15 +77,16 @@ interface ContentViewerProps {
   title: string;
   description: string;
 
-  content: Paragraph[];
+  scenes: Scene[];
 }
 
 export default function ContentViewer({
   title,
   description,
-  content,
+  scenes,
 }: ContentViewerProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [sceneIndex, setSceneIndex] = useState(0);
+  const [paragraphIndex, setParagraphIndex] = useState(0);
 
   return (
     <Container>
@@ -95,26 +96,32 @@ export default function ContentViewer({
           <Description>{description}</Description>
         </HeadBox>
 
-        {content.map((content, i) => (
-          <InView
-            key={i}
-            rootMargin="-45% 0%"
-            onChange={(inView) => inView && setCurrentIndex(i)}
-          >
-            {({ inView, ref }) => (
-              <Block key={i} ref={ref} className={inView ? "current" : ""}>
-                {content.textContent.map((e, j) => (
-                  <React.Fragment key={j}>{e}</React.Fragment>
-                ))}
-              </Block>
-            )}
-          </InView>
-        ))}
+        {scenes.map((scene, sIndex) =>
+          scene.textContent.map((paragraph, pIndex) => (
+            <InView
+              key={paragraphIndex}
+              rootMargin="-45% 0%"
+              onChange={(inView) => {
+                if (inView) {
+                  setSceneIndex(sIndex);
+                  setParagraphIndex(pIndex);
+                }
+              }}
+            >
+              {({ inView, ref }) => (
+                <Block ref={ref} className={inView ? "current" : ""}>
+                  {paragraph}
+                </Block>
+              )}
+            </InView>
+          ))
+        )}
       </TextSection>
 
       <GraphicsViewer
-        graphicsList={content.map((c) => c.graphicContent)}
-        index={currentIndex}
+        scenes={scenes}
+        sceneIndex={sceneIndex}
+        paragraphIndex={paragraphIndex}
       />
     </Container>
   );

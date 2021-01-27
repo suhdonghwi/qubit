@@ -1,49 +1,59 @@
 import * as THREE from "three";
+import { useFrame } from "react-three-fiber";
 
 import Plane from "../Plane";
 
-export default function DoubleSlitsGraphic() {
-  const xMin = -5,
-    xMax = 5;
-  const yMin = -5,
-    yMax = 5;
+interface WaveProps {
+  xOffset: number;
+  yOffset: number;
 
-  const xRange = xMax - xMin,
-    yRange = yMax - yMin;
+  frequency: number;
+  amplitude: number;
+}
 
-  function f(x: number, y: number, target: THREE.Vector3) {
-    x = xRange * x + xMin;
-    y = yRange * y + yMin;
+function Wave({ xOffset, yOffset, frequency, amplitude }: WaveProps) {
+  const plane = new THREE.PlaneGeometry(8, 8, 40, 40);
+
+  function f(x: number, y: number, anim: number) {
     const z =
-      0.45 * Math.sin(Math.sqrt(x ** 2 + y ** 2) * 2.67) +
-      0.45 * Math.sin(Math.sqrt(x ** 2 + y ** 2) * 2.67);
+      amplitude *
+        Math.sin(
+          Math.sqrt((x - xOffset) ** 2 + (y + yOffset) ** 2) * frequency - anim
+        ) +
+        amplitude *
+        Math.sin(
+          Math.sqrt((x + xOffset) ** 2 + (y + yOffset) ** 2) * frequency - anim
+        );
 
-    target.set(x, y, -z);
+    return z;
   }
 
-  const plane = new THREE.ParametricGeometry(f, 50, 50);
+  useFrame(() => {
+    const a = performance.now() * 0.01;
+    plane.vertices.forEach((v) => {
+      v.z = f(v.x, v.y, a);
+    });
 
-  for (const face of plane.faces) {
-    console.log(face);
-    for (let i = 0; i < 3; i++) {
-      face.vertexColors[i] = new THREE.Color("red");
-    }
-  }
+    plane.computeVertexNormals();
+
+    plane.verticesNeedUpdate = true;
+  });
 
   return (
     <>
       <mesh
         geometry={plane}
+        position={[0, 0, 0]}
         rotation={[Math.PI / 2, 0, 0]}
       >
-        <meshLambertMaterial
-          attach="material"
-          color="white"
-          side={THREE.DoubleSide}
-        />
+        <meshLambertMaterial color="white" side={THREE.DoubleSide} />
       </mesh>
 
       <Plane />
     </>
   );
+}
+
+export default function DoubleSlitsGraphic() {
+  return <Wave xOffset={-2} yOffset={-5} frequency={5} amplitude={0.2} />;
 }

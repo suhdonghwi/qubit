@@ -1,20 +1,25 @@
 import React from "react";
-import Paragraph from "./Paragraph";
+import Scene from "./Scene";
 
 export default class ContentBuilder {
-  private result: Paragraph[];
+  private result: Scene[];
 
   constructor() {
     this.result = [];
   }
 
-  public paragraph(graphicContent?: JSX.Element) {
+  public paragraph(graphicContent: React.FunctionComponent) {
     return (textContent: TemplateStringsArray) => {
+      const blocks = textContent[0].split("---").map((s) => s.trim());
+
       this.result.push({
-        textContent: textContent[0]
-          .split("\n")
-          .filter((v) => v !== "")
-          .map((t) => <p>{t}</p>),
+        textContent: blocks.map((b) => (
+          <React.Fragment>
+            {b.split("\n\n").map((t) => (
+              <p>{t}</p>
+            ))}
+          </React.Fragment>
+        )),
         graphicContent,
       });
 
@@ -22,7 +27,7 @@ export default class ContentBuilder {
     };
   }
 
-  public quote(graphicContent?: JSX.Element) {
+  public quote(graphicContent: React.FunctionComponent) {
     return (textContent: TemplateStringsArray) => {
       this.result.push({
         textContent: [
