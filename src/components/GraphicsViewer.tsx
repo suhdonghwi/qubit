@@ -4,7 +4,6 @@ import styled from "styled-components/macro";
 import { animated, useSpring } from "@react-spring/three";
 
 import World3D from "./graphics/World3D";
-import Scene from "../types/Scene";
 
 const Container = styled.section`
   position: relative;
@@ -17,15 +16,13 @@ const Container = styled.section`
 `;
 
 interface GraphicsViewerProps {
-  scenes: Scene[];
+  renderedGraphics: JSX.Element[];
   sceneIndex: number;
-  paragraphIndex: number;
 }
 
 export default function GraphicsViewer({
-  scenes,
+  renderedGraphics,
   sceneIndex,
-  paragraphIndex,
 }: GraphicsViewerProps) {
   const currentPos: [number, number, number] = [-sceneIndex * 15, 0, 0];
   const posProps = useSpring({
@@ -48,13 +45,13 @@ export default function GraphicsViewer({
           shadow-camera-bottom={-10}
         />
         <animated.group {...posProps}>
-          {scenes.map((scene, i) => (
+          {renderedGraphics.map((content, i) => (
             <group
               key={i}
               position={[i * 15, 0, 0]}
               rotation={[0, Math.PI / 4, 0]}
             >
-              {React.createElement(scene.graphicContent, null)}
+              {content}
             </group>
           ))}
         </animated.group>

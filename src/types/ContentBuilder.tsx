@@ -1,6 +1,8 @@
 import React from "react";
 import Scene from "./Scene";
 
+import { GraphicContent } from "../types/Scene";
+
 export default class ContentBuilder {
   private result: Scene[];
 
@@ -8,15 +10,16 @@ export default class ContentBuilder {
     this.result = [];
   }
 
-  public paragraph(graphicContent: React.FunctionComponent) {
+  public paragraph(graphicContent: GraphicContent) {
     return (textContent: TemplateStringsArray) => {
       const blocks = textContent[0].split("---").map((s) => s.trim());
+      console.log(blocks);
 
       this.result.push({
         textContent: blocks.map((b) => (
           <React.Fragment>
-            {b.split("\n\n").map((t) => (
-              <p>{t}</p>
+            {b.split("\n\n").map((t, i) => (
+              <p key={i}>{t}</p>
             ))}
           </React.Fragment>
         )),
@@ -27,7 +30,7 @@ export default class ContentBuilder {
     };
   }
 
-  public quote(graphicContent: React.FunctionComponent) {
+  public quote(graphicContent: GraphicContent) {
     return (textContent: TemplateStringsArray) => {
       this.result.push({
         textContent: [

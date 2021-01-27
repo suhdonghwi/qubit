@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components/macro";
 
 import Scene from "../types/Scene";
@@ -88,6 +88,22 @@ export default function ContentViewer({
   const [sceneIndex, setSceneIndex] = useState(0);
   const [paragraphIndex, setParagraphIndex] = useState(0);
 
+  const graphics = useMemo(() => scenes.map((c) => c.graphicContent), [scenes]);
+
+  const [prev, setPrev] = useState<JSX.Element[] | null>(null);
+  const renderedGraphics: JSX.Element[] = useMemo<JSX.Element[]>(() => {
+    if (prev !== null) {
+      console.log("what");
+      const G = graphics[sceneIndex];
+      prev[sceneIndex] = <G paragraphIndex={paragraphIndex} />;
+      return prev;
+    } else {
+      const r = graphics.map((G) => <G paragraphIndex={paragraphIndex} />);
+      setPrev(r);
+      return r;
+    }
+  }, [graphics, paragraphIndex]);
+
   return (
     <Container>
       <TextSection>
@@ -99,7 +115,7 @@ export default function ContentViewer({
         {scenes.map((scene, sIndex) =>
           scene.textContent.map((paragraph, pIndex) => (
             <InView
-              key={paragraphIndex}
+              key={sIndex * 10 + pIndex}
               rootMargin="-45% 0%"
               onChange={(inView) => {
                 if (inView) {
@@ -119,9 +135,8 @@ export default function ContentViewer({
       </TextSection>
 
       <GraphicsViewer
-        scenes={scenes}
+        renderedGraphics={renderedGraphics}
         sceneIndex={sceneIndex}
-        paragraphIndex={paragraphIndex}
       />
     </Container>
   );

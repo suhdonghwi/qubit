@@ -20,7 +20,7 @@ function Wave({ xOffset, yOffset, frequency, amplitude }: WaveProps) {
         Math.sin(
           Math.sqrt((x - xOffset) ** 2 + (y + yOffset) ** 2) * frequency - anim
         ) +
-        amplitude *
+      amplitude *
         Math.sin(
           Math.sqrt((x + xOffset) ** 2 + (y + yOffset) ** 2) * frequency - anim
         );
@@ -54,6 +54,12 @@ function Wave({ xOffset, yOffset, frequency, amplitude }: WaveProps) {
   );
 }
 
-export default function DoubleSlitsGraphic() {
-  return <Wave xOffset={-2} yOffset={-5} frequency={5} amplitude={0.2} />;
+export default function DoubleSlitsGraphic({
+  paragraphIndex,
+}: {
+  paragraphIndex: number;
+}) {
+  return (
+    <Wave xOffset={-2} yOffset={-5} frequency={5} amplitude={paragraphIndex} />
+  );
 }

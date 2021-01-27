@@ -1,3 +1,5 @@
+import React from "react";
+
 import Plane from "../Plane";
 
 import { useSpring, animated } from "@react-spring/three";
