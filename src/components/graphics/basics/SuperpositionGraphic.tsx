@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { animated, useSpring } from "@react-spring/three";
+import { animated } from "@react-spring/three";
 
 import Plane from "../Plane";
 import Qubit from "../Qubit";

@@ -7,7 +7,6 @@ import StartFlag from "../components/graphics/StartFlag";
 
 import SubatomicGraphic from "../components/graphics/basics/SubatomicGraphic";
 import QuantumComputerGraphic from "../components/graphics/basics/QuantumComputerGraphic";
-import CatBoxGraphic from "../components/graphics/basics/CatBoxGraphic";
 import SuperpositionGraphic from "../components/graphics/basics/SuperpositionGraphic";
 import DoubleSlitsGraphic from "../components/graphics/basics/DoubleSlitsGraphic";
 
