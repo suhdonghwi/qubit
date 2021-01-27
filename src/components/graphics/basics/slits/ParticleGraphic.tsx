@@ -5,58 +5,9 @@ import { useFrame } from "react-three-fiber";
 
 import Plane from "../../Plane";
 import Button from "../../Button";
+
 import ProjectionScreen from "./ProjectionScreen";
-
-interface WaveProps {
-  xOffset: number;
-  yOffset: number;
-
-  frequency: number;
-  amplitude: number;
-}
-
-export function Wave({ xOffset, yOffset, frequency, amplitude }: WaveProps) {
-  const plane = new THREE.PlaneGeometry(8, 8, 40, 40);
-
-  function f(x: number, y: number, anim: number) {
-    const z =
-      amplitude *
-        Math.sin(
-          Math.sqrt((x - xOffset) ** 2 + (y + yOffset) ** 2) * frequency - anim
-        ) +
-      amplitude *
-        Math.sin(
-          Math.sqrt((x + xOffset) ** 2 + (y + yOffset) ** 2) * frequency - anim
-        );
-
-    return z;
-  }
-
-  useFrame(() => {
-    const a = performance.now() * 0.01;
-    plane.vertices.forEach((v) => {
-      v.z = f(v.x, v.y, a);
-    });
-
-    plane.computeVertexNormals();
-
-    plane.verticesNeedUpdate = true;
-  });
-
-  return (
-    <>
-      <mesh
-        geometry={plane}
-        position={[0, 0, 0]}
-        rotation={[Math.PI / 2, 0, 0]}
-      >
-        <meshLambertMaterial color="white" side={THREE.DoubleSide} />
-      </mesh>
-
-      <Plane />
-    </>
-  );
-}
+import DoubleSlits from "./DoubleSlits";
 
 function Particle({ move }: { move: boolean }) {
   const meshRef = useRef<THREE.Mesh>();
@@ -123,21 +74,7 @@ export default function SlitsParticleGraphic() {
   return (
     <>
       <ProjectionScreen />
-
-      <mesh position={[-2.8, -1.4, 0.5]} castShadow>
-        <boxBufferGeometry args={[3.3, 3, 0.15]} />
-        <meshLambertMaterial color="#ced4da" />
-      </mesh>
-
-      <mesh position={[2.8, -1.4, 0.5]} castShadow>
-        <boxBufferGeometry args={[3.3, 3, 0.15]} />
-        <meshLambertMaterial color="#ced4da" />
-      </mesh>
-
-      <mesh position={[0, -1.4, 0.5]} castShadow>
-        <boxBufferGeometry args={[1.5, 3, 0.15]} />
-        <meshLambertMaterial color="#ced4da" />
-      </mesh>
+      <DoubleSlits />
 
       <mesh position={[0, -1, 5]}>
         <boxBufferGeometry args={[1.0, 0.6, 0.5]} />
