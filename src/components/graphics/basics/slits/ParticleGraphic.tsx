@@ -3,8 +3,9 @@ import { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 import { useFrame } from "react-three-fiber";
 
-import Plane from "../Plane";
-import Button from "../Button";
+import Plane from "../../Plane";
+import Button from "../../Button";
+import ProjectionScreen from "./ProjectionScreen";
 
 interface WaveProps {
   xOffset: number;
@@ -108,11 +109,7 @@ function Particle({ move }: { move: boolean }) {
   );
 }
 
-export default function SlitsParticleGraphic({
-  paragraphIndex,
-}: {
-  paragraphIndex: number;
-}) {
+export default function SlitsParticleGraphic() {
   const [clicked, setClicked] = useState(false);
 
   const particles = Array(100)
@@ -125,29 +122,26 @@ export default function SlitsParticleGraphic({
 
   return (
     <>
-      <mesh position={[0, -0.5, -4.3]} castShadow>
-        <boxBufferGeometry args={[9, 5, 0.3]} />
-        <meshLambertMaterial color="white" />
-      </mesh>
+      <ProjectionScreen />
 
       <mesh position={[-2.8, -1.4, 0.5]} castShadow>
         <boxBufferGeometry args={[3.3, 3, 0.15]} />
-        <meshLambertMaterial color="white" />
+        <meshLambertMaterial color="#ced4da" />
       </mesh>
 
       <mesh position={[2.8, -1.4, 0.5]} castShadow>
         <boxBufferGeometry args={[3.3, 3, 0.15]} />
-        <meshLambertMaterial color="white" />
+        <meshLambertMaterial color="#ced4da" />
       </mesh>
 
       <mesh position={[0, -1.4, 0.5]} castShadow>
         <boxBufferGeometry args={[1.5, 3, 0.15]} />
-        <meshLambertMaterial color="white" />
+        <meshLambertMaterial color="#ced4da" />
       </mesh>
 
       <mesh position={[0, -1, 5]}>
         <boxBufferGeometry args={[1.0, 0.6, 0.5]} />
-        <meshLambertMaterial color="white" />
+        <meshLambertMaterial color="#ced4da" />
       </mesh>
 
       <Button onDown={onDown} click={clicked} position={[-2.5, -2.75, 2.3]} />
