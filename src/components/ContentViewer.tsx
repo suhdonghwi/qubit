@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled from "styled-components/macro";
 
 import Scene from "../types/Scene";
@@ -102,6 +102,7 @@ export default function ContentViewer({
       setPrev(r);
       return r;
     }
+  // eslint-disable-next-line
   }, [graphics, paragraphIndex]);
 
   return (

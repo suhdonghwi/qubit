@@ -1,0 +1,13 @@
+diff --git a/node_modules/@react-spring/three/package.json b/node_modules/@react-spring/three/package.json
+index ebce2a6..80b6138 100644
+--- a/node_modules/@react-spring/three/package.json
++++ b/node_modules/@react-spring/three/package.json
+@@ -22,7 +22,7 @@
+   "contributors": [
+     "Alec Larson (https://github.com/aleclarson)"
+   ],
+-  "sideEffects": false,
++  "sideEffects": true,
+   "main": "index.cjs.js",
+   "module": "index.js",
+   "types": "index.d.ts",

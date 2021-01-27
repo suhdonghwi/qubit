@@ -1,0 +1,13 @@
+diff --git a/node_modules/@react-spring/core/package.json b/node_modules/@react-spring/core/package.json
+index 0cdc46b..bcc86cf 100644
+--- a/node_modules/@react-spring/core/package.json
++++ b/node_modules/@react-spring/core/package.json
+@@ -22,7 +22,7 @@
+   "contributors": [
+     "Alec Larson (https://github.com/aleclarson)"
+   ],
+-  "sideEffects": false,
++  "sideEffects": true,
+   "main": "index.cjs.js",
+   "module": "index.js",
+   "types": "index.d.ts",
