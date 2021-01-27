@@ -16,6 +16,8 @@
     "@types/styled-components": "^5.1.7",
     "color-interpolate": "^1.0.5",
     "lottie-web": "^5.7.6",
+    "patch-package": "^6.2.2",
+    "postinstall-postinstall": "^2.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-intersection-observer": "^8.31.0",
@@ -32,9 +34,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "patch-package"
   },
-  "postinstall": "patch-package",
   "eslintConfig": {
     "extends": [
       "react-app",
