@@ -70,7 +70,7 @@ const TextSection = styled.section`
   padding: 2.5rem 2.5rem 10rem 2.5rem;
   width: 50vw;
 
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 interface ContentViewerProps {
@@ -90,10 +90,10 @@ export default function ContentViewer({
 
   const graphics = useMemo(() => scenes.map((c) => c.graphicContent), [scenes]);
 
+  // TODO: REFACTOR THIS HORRIBLE PIECE OF CODE
   const [prev, setPrev] = useState<JSX.Element[] | null>(null);
   const renderedGraphics: JSX.Element[] = useMemo<JSX.Element[]>(() => {
     if (prev !== null) {
-      console.log("what");
       const G = graphics[sceneIndex];
       prev[sceneIndex] = <G paragraphIndex={paragraphIndex} />;
       return prev;
@@ -102,7 +102,7 @@ export default function ContentViewer({
       setPrev(r);
       return r;
     }
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [graphics, paragraphIndex]);
 
   return (

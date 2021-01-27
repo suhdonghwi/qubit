@@ -13,7 +13,6 @@ export default class ContentBuilder {
   public paragraph(graphicContent: GraphicContent) {
     return (textContent: TemplateStringsArray) => {
       const blocks = textContent[0].split("---").map((s) => s.trim());
-      console.log(blocks);
 
       this.result.push({
         textContent: blocks.map((b) => (
