@@ -16,7 +16,7 @@ export default function Wave({
   frequency,
   amplitude,
 }: WaveProps) {
-  const plane = new THREE.PlaneGeometry(8, 8, 40, 40);
+  const plane = new THREE.PlaneGeometry(9, 9, 40, 40);
 
   function f(x: number, y: number, anim: number) {
     const z =
@@ -45,7 +45,7 @@ export default function Wave({
 
   return (
     <mesh geometry={plane} position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
-      <meshLambertMaterial color="white" side={THREE.DoubleSide} />
+      <meshLambertMaterial color="#ced4da" side={THREE.DoubleSide} />
     </mesh>
   );
 }

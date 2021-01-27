@@ -8,7 +8,9 @@ import StartFlag from "../components/graphics/StartFlag";
 import SubatomicGraphic from "../components/graphics/basics/SubatomicGraphic";
 import QuantumComputerGraphic from "../components/graphics/basics/QuantumComputerGraphic";
 import SuperpositionGraphic from "../components/graphics/basics/SuperpositionGraphic";
+
 import ParticleGraphic from "../components/graphics/basics/slits/ParticleGraphic";
+import SingleWaveGraphic from "../components/graphics/basics/slits/SingleWaveGraphic";
 
 const builder = new ContentBuilder();
 
@@ -29,14 +31,14 @@ I think I can safely say that nobody understands Quantum Mechanics.
 자, 여기에 두 개의 틈이 있는 슬릿과 벽에 착 달라붙는 공을 발사하는 장치가 있습니다. 공을 계속 발사하면 벽에 어떤 무늬가 나타날까요? 오른쪽 화면에서 버튼을 눌러서 한 번 확인해보세요.
 
 당연하게도, 두 개의 틈으로 지나간 공들이 두 개의 직선 띠를 형성합니다. 여기까지는 해보지 않아도 예측할 수 있을 만큼 단순하죠?
-`.paragraph(SuperpositionGraphic)`
-양자역학에서는 고양이의 상태를 조금 다르게 묘사합니다. "고양이는 현재 죽어있는 동시에 살아있으며, 고양이의 상태는 우리가 상자를 열어서 관측하는 순간 하나로 결정된다!"
+`.paragraph(SingleWaveGraphic)`
+자, 여기에 두 개의 틈이 있는 슬릿과 벽에 착 달라붙는 공을 발사하는 장치가 있습니다. 공을 계속 발사하면 벽에 어떤 무늬가 나타날까요? 오른쪽 화면에서 버튼을 눌러서 한 번 확인해보세요.
 
-이게 무슨 말같지도 않은 소리일까요? 고양이가 죽은 동시에 살아있다뇨? 게다가 관측을 하는 동시에 상태가 결정된다는건 더 말이 안되는 소리같이 들립니다.
+당연하게도, 두 개의 틈으로 지나간 공들이 두 개의 직선 띠를 형성합니다. 여기까지는 해보지 않아도 예측할 수 있을 만큼 단순하죠?
 
-하지만 놀랍게도, 이것이 현재 양자역학계에서 정설로 받아들여지고 있는 해석(코펜하겐 해석)입니다. 입자는 관측하기 전까지 여러 상태가 동시에 중첩되어 존재하며, 관측하는 순간 하나의 상태로 결정된다. 양자역학에서는 이렇게 여러 상태가 동시에 존재하는 현상을 중첩(superposition)이라고 합니다. 
+자, 여기에 두 개의 틈이 있는 슬릿과 벽에 착 달라붙는 공을 발사하는 장치가 있습니다. 공을 계속 발사하면 벽에 어떤 무늬가 나타날까요? 오른쪽 화면에서 버튼을 눌러서 한 번 확인해보세요.
 
-오른쪽 화면에서 중첩과 관찰 현상을 체험해보실 수 있습니다. 버튼을 누르기 전 우글우글하게 움직이고 있는 물질은 여러 상태가 동시에 중첩되어 있음을 나타내고, 버튼을 누르면 물질을 관측함으로서 하나의 상태(빨간색 또는 파란색)로 랜덤하게 결정되는 것입니다.
+당연하게도, 두 개의 틈으로 지나간 공들이 두 개의 직선 띠를 형성합니다. 여기까지는 해보지 않아도 예측할 수 있을 만큼 단순하죠?
 `;
 
 export default function BasicPage() {
