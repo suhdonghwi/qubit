@@ -1,9 +1,12 @@
-import { animated, useSpring } from "@react-spring/three";
+import * as THREE from "three";
+
+import { useSpring } from "@react-spring/three";
 
 import { GraphicContentProps } from "../../../../types/Scene";
 import ProjectionScreen from "./ProjectionScreen";
 import SingleSlit from "./SingleSlit";
 import Wave from "./Wave";
+import ProbCurve from "./ProbCurve";
 
 export default function SingleWaveGraphic({
   paragraphIndex,
@@ -16,17 +19,18 @@ export default function SingleWaveGraphic({
   return (
     <>
       <SingleSlit position={position} />
-
       <ProjectionScreen opacity={screenOpacity} />
 
-      <mesh position={[0, -1, -4.25]}>
-        <boxBufferGeometry args={[0.5, 5, 0.2]} />
-        <animated.meshBasicMaterial
-          color="#e64980"
-          transparent
-          opacity={screenOpacity}
-        />
-      </mesh>
+      <ProbCurve
+        opacity={screenOpacity}
+        points={[
+          new THREE.Vector3(-4, -3.5, -4.25),
+          new THREE.Vector3(-1.5, -3, -4.25),
+          new THREE.Vector3(0, 0.5, -4.25),
+          new THREE.Vector3(1.5, -3, -4.25),
+          new THREE.Vector3(4, -3.5, -4.25),
+        ]}
+      />
 
       <Wave
         xOffset={0}

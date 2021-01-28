@@ -1,9 +1,11 @@
-import { animated, useSpring } from "@react-spring/three";
+import { useSpring } from "@react-spring/three";
+import * as THREE from "three";
 
 import { GraphicContentProps } from "../../../../types/Scene";
 import ProjectionScreen from "./ProjectionScreen";
 import DoubleSlits from "./DoubleSlits";
 import Wave from "./Wave";
+import ProbCurve from "./ProbCurve";
 
 export default function DoubleWaveGraphic({
   paragraphIndex,
@@ -20,32 +22,18 @@ export default function DoubleWaveGraphic({
       <DoubleSlits position={slitPosition} />
       <ProjectionScreen opacity={screenOpacity} />
 
-      <mesh position={[0, -1, -4.25]}>
-        <boxBufferGeometry args={[0.5, 5, 0.2]} />
-        <animated.meshBasicMaterial
-          color="#e64980"
-          transparent
-          opacity={screenOpacity}
-        />
-      </mesh>
-
-      <mesh position={[-3, -1.5, -4.25]}>
-        <boxBufferGeometry args={[0.5, 3, 0.2]} />
-        <animated.meshBasicMaterial
-          color="#e64980"
-          transparent
-          opacity={screenOpacity}
-        />
-      </mesh>
-
-      <mesh position={[3, -1.5, -4.25]}>
-        <boxBufferGeometry args={[0.5, 3, 0.2]} />
-        <animated.meshBasicMaterial
-          color="#e64980"
-          transparent
-          opacity={screenOpacity}
-        />
-      </mesh>
+      <ProbCurve
+        opacity={screenOpacity}
+        points={[
+          new THREE.Vector3(-4.3, -3.5, -4.25),
+          new THREE.Vector3(-3.2, -1, -4.25),
+          new THREE.Vector3(-1.7, -3, -4.25),
+          new THREE.Vector3(0, 0.5, -4.25),
+          new THREE.Vector3(1.7, -3, -4.25),
+          new THREE.Vector3(3.2, -1, -4.25),
+          new THREE.Vector3(4.3, -3.5, -4.25),
+        ]}
+      />
 
       <Wave
         xOffset={paragraphIndex > 0 ? 1.5 : 0}
