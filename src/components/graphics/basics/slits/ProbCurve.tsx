@@ -4,7 +4,7 @@ import { animated, SpringValue } from "@react-spring/three";
 
 interface ProbCurveProps {
   points: THREE.Vector3[];
-  opacity: SpringValue<number>;
+  opacity: SpringValue<number> | number;
 }
 
 export default function ProbCurve({ points, opacity }: ProbCurveProps) {

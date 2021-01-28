@@ -72,8 +72,8 @@ export default function ParticleGraphic({
     .fill(null)
     .map((_, i) => <Particle key={i} move={clicked} />);
 
-  const { curveOpacity } = useSpring({
-    curveOpacity: paragraphIndex > 0 ? 1 : 0,
+  const curveSpring = useSpring({
+    opacity: paragraphIndex > 0 ? 1 : 0,
   });
 
   function onDown() {
@@ -86,7 +86,6 @@ export default function ParticleGraphic({
       <DoubleSlits position={[0, -1.4, 0.5]} />
 
       <ProbCurve
-        opacity={curveOpacity}
         points={[
           new THREE.Vector3(-4, -3.2, -4.25),
           new THREE.Vector3(-3, -3, -4.25),
@@ -97,6 +96,7 @@ export default function ParticleGraphic({
           new THREE.Vector3(3, -3, -4.25),
           new THREE.Vector3(4, -3.2, -4.25),
         ]}
+        {...curveSpring}
       />
 
       <mesh position={[0, -1, 5]}>

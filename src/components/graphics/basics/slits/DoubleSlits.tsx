@@ -1,12 +1,9 @@
-import { animated, SpringValue } from "@react-spring/three";
+import { GroupProps } from "react-three-fiber";
+import { animated, AnimatedProps } from "@react-spring/three";
 
-interface DoubleSlitsProps {
-  position?: SpringValue<[number, number, number]> | [number, number, number];
-}
-
-export default function DoubleSlits({ position }: DoubleSlitsProps) {
+export default function DoubleSlits(props: AnimatedProps<GroupProps>) {
   return (
-    <animated.group position={position as any}>
+    <animated.group {...props}>
       <mesh position={[-2.8, 0, 0]} castShadow>
         <boxBufferGeometry args={[3.4, 3, 0.15]} />
         <meshLambertMaterial color="#ced4da" />

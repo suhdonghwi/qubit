@@ -1,4 +1,4 @@
-import { useFrame } from "react-three-fiber";
+import { useFrame, MeshProps } from "react-three-fiber";
 import * as THREE from "three";
 
 import { animated, useSpring } from "@react-spring/three";
@@ -8,11 +8,14 @@ import { perlin3 } from "./perlin.js";
 
 interface QubitProps {
   oneProbability: number;
-  position?: [number, number, number];
   size: number;
 }
 
-export default function Qubit({ oneProbability, position, size }: QubitProps) {
+export default function Qubit({
+  oneProbability,
+  size,
+  ...props
+}: QubitProps & MeshProps) {
   const geometry = new THREE.SphereGeometry(0.1, 64, 64);
 
   const colormap = interpolate(["#339af0", "#f06595"]),
@@ -37,7 +40,7 @@ export default function Qubit({ oneProbability, position, size }: QubitProps) {
   });
 
   return (
-    <mesh geometry={geometry} position={position} castShadow>
+    <mesh geometry={geometry} castShadow {...props}>
       <animated.meshLambertMaterial color={color} />
     </mesh>
   );

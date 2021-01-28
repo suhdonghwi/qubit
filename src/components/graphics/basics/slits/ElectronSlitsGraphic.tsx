@@ -43,11 +43,11 @@ function Electron() {
 export default function ElectronSlitsGraphic({
   paragraphIndex,
 }: GraphicContentProps) {
-  const particlesProps = useSpring({
+  const particlesSpring = useSpring<{ position: any }>({
     config: {
       tension: 100,
     },
-    position: (paragraphIndex > 0 ? [0, 0, -0.1] : [0, 0, -0.5]) as any,
+    position: paragraphIndex > 0 ? [0, 0, -0.1] : [0, 0, -0.5],
   });
 
   const particles = useMemo(() => {
@@ -85,7 +85,7 @@ export default function ElectronSlitsGraphic({
       <ProjectionScreen />
       <DoubleSlits position={[0, -1.4, 0.5]} />
 
-      <animated.group {...particlesProps}>{particles}</animated.group>
+      <animated.group {...particlesSpring}>{particles}</animated.group>
 
       <mesh position={[0, -1, 5]}>
         <boxBufferGeometry args={[1.0, 0.6, 0.5]} />

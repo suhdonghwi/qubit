@@ -29,18 +29,21 @@ function Eyes() {
 export default function ElectronObserveGraphic({
   paragraphIndex,
 }: GraphicContentProps) {
-  const particlesProps = useSpring({
+  const particlesSpring = useSpring<{ position: any }>({
     config: {
-      tension: 100
+      tension: 100,
     },
-    position: (paragraphIndex > 0 ? [0, 0, -0.1] : [0, 0, -0.5]) as any,
+    position: paragraphIndex > 0 ? [0, 0, -0.1] : [0, 0, -0.5],
   });
 
   const particles = useMemo(() => {
     const list = [];
     for (let i = 0; i < 50; i++) {
       list.push(
-        <mesh key={2 * i} position={[-2.5 + Math.random(), -i * 0.075 + 1.2, -4]}>
+        <mesh
+          key={2 * i}
+          position={[-2.5 + Math.random(), -i * 0.075 + 1.2, -4]}
+        >
           <sphereBufferGeometry args={[0.08, 8, 8]} />
           <meshLambertMaterial color="#228be6" />
         </mesh>
@@ -64,7 +67,7 @@ export default function ElectronObserveGraphic({
       <ProjectionScreen />
       <DoubleSlits position={[0, -1.4, 0.5]} />
 
-      <animated.group {...particlesProps}>{particles}</animated.group>
+      <animated.group {...particlesSpring}>{particles}</animated.group>
 
       <mesh position={[0, -1, 5]}>
         <boxBufferGeometry args={[1.0, 0.6, 0.5]} />

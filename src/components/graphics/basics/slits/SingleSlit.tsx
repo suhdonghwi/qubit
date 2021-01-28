@@ -1,12 +1,10 @@
-import { animated, SpringValue } from "@react-spring/three";
+import { GroupProps } from "react-three-fiber";
 
-interface SingleSlitProps {
-  position?: SpringValue<[number, number, number]>;
-}
+import { animated, AnimatedProps } from "@react-spring/three";
 
-export default function SingleSlit({ position }: SingleSlitProps) {
+export default function SingleSlit(props: AnimatedProps<GroupProps>) {
   return (
-    <animated.group position={position as any}>
+    <animated.group {...props}>
       <mesh position={[-2.4, 0, 0]} castShadow>
         <boxBufferGeometry args={[4.3, 3, 0.15]} />
         <meshLambertMaterial color="#ced4da" />

@@ -1,3 +1,4 @@
+import { GroupProps } from "react-three-fiber";
 import { animated, useSpring } from "@react-spring/three";
 
 interface ButtonProps {
@@ -5,17 +6,15 @@ interface ButtonProps {
   onDown?(): void;
   onUp?(): void;
   click: boolean;
-
-  position?: [number, number, number];
 }
 
 export default function Button({
   onClick,
   onDown,
   onUp,
-  position,
   click,
-}: ButtonProps) {
+  ...props
+}: ButtonProps & GroupProps) {
   function onOver() {
     document.documentElement.style.cursor = "pointer";
   }
@@ -25,15 +24,15 @@ export default function Button({
     onUp && onUp();
   }
 
-  const buttonProps = useSpring({
+  const buttonSpring = useSpring<{ position: any }>({
     config: {
       tension: 230,
     },
-    position: (click ? [0, 0.1, 0] : [0, 0.25, 0]) as any,
+    position: click ? [0, 0.1, 0] : [0, 0.25, 0],
   });
 
   return (
-    <group position={position}>
+    <group {...props}>
       <mesh castShadow>
         <cylinderBufferGeometry args={[0.5, 0.5, 0.2, 32]} />
         <meshLambertMaterial color="#adb5bd" />
@@ -45,7 +44,7 @@ export default function Button({
         onPointerOver={onOver}
         onPointerOut={onOut}
         onClick={onClick}
-        {...buttonProps}
+        {...buttonSpring}
       >
         <cylinderBufferGeometry args={[0.4, 0.4, 0.3, 32]} />
         <meshLambertMaterial color="#ff6b6b" />

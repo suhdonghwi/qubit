@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import { useFrame } from "react-three-fiber";
+import { useFrame, MeshProps } from "react-three-fiber";
 
 interface WaveProps {
   xOffset: number;
@@ -9,7 +9,6 @@ interface WaveProps {
   frequency: number;
   amplitude: number;
 
-  position?: [number, number, number];
   width: number;
   height: number;
 
@@ -21,11 +20,11 @@ export default function Wave({
   yOffset,
   frequency,
   amplitude,
-  position,
   width,
   height,
   lod,
-}: WaveProps) {
+  ...props
+}: WaveProps & MeshProps) {
   const plane = new THREE.PlaneGeometry(width, height, lod || 32, lod || 32);
 
   function f(x: number, y: number, anim: number) {
@@ -54,7 +53,7 @@ export default function Wave({
   });
 
   return (
-    <mesh geometry={plane} position={position} rotation={[Math.PI / 2, 0, 0]}>
+    <mesh geometry={plane} rotation={[Math.PI / 2, 0, 0]} {...props}>
       <meshLambertMaterial color="#ced4da" side={THREE.DoubleSide} />
     </mesh>
   );

@@ -24,9 +24,9 @@ export default function GraphicsViewer({
   renderedGraphics,
   sceneIndex,
 }: GraphicsViewerProps) {
-  const currentPos: [number, number, number] = [-sceneIndex * 17, 0, 0];
-  const posProps = useSpring({
-    position: currentPos as any,
+  const currentPos = [-sceneIndex * 17, 0, 0];
+  const groupSpring = useSpring<{ position: any }>({
+    position: currentPos,
   });
 
   return (
@@ -45,7 +45,7 @@ export default function GraphicsViewer({
           shadow-camera-top={10}
           shadow-camera-bottom={-10}
         />
-        <animated.group {...posProps}>
+        <animated.group {...groupSpring}>
           {renderedGraphics.map((content, i) => (
             <group
               key={i}

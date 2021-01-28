@@ -5,17 +5,17 @@ import Plane from "../Plane";
 import { useSpring, animated } from "@react-spring/three";
 
 export default function QuantumComputerGraphic() {
-  const atomProps = useSpring({
-    from: { position: [0, -0.3, 0] as any },
+  const quantumMeshSpring = useSpring<{ position: any }>({
+    from: { position: [0, -0.3, 0] },
     to: async (next) => {
       while (1) {
-        await next({ position: [0, -0.7, 0] as any });
-        await next({ position: [0, -0.2, 0] as any });
+        await next({ position: [0, -0.7, 0] });
+        await next({ position: [0, -0.2, 0] });
       }
     },
   });
 
-  const atomMaterialProps = useSpring({
+  const quantumMaterialSpring = useSpring({
     from: { color: "#ff6b6b" },
     to: async (next) => {
       while (1) {
@@ -47,9 +47,9 @@ export default function QuantumComputerGraphic() {
         <meshLambertMaterial color="white" transparent opacity={0.2} />
       </mesh>
 
-      <animated.mesh castShadow {...atomProps}>
+      <animated.mesh castShadow {...quantumMeshSpring}>
         <sphereBufferGeometry args={[0.3, 64, 64]} />
-        <animated.meshLambertMaterial {...atomMaterialProps} />
+        <animated.meshLambertMaterial {...quantumMaterialSpring} />
       </animated.mesh>
 
       <Plane />

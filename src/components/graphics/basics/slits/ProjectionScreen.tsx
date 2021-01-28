@@ -1,7 +1,7 @@
 import { animated, SpringValue } from "@react-spring/three";
 
 interface ProjectionScreenProps {
-  opacity?: SpringValue<number>;
+  opacity?: SpringValue<number> | number;
 }
 
 export default function ProjectionScreen({ opacity }: ProjectionScreenProps) {
