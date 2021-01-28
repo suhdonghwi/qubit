@@ -26,7 +26,7 @@ export default function Wave({
   height,
   lod,
 }: WaveProps) {
-  const plane = new THREE.PlaneGeometry(width, height, lod || 40, lod || 40);
+  const plane = new THREE.PlaneGeometry(width, height, lod || 32, lod || 32);
 
   function f(x: number, y: number, anim: number) {
     const z =

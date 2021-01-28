@@ -12,6 +12,7 @@ import ParticleGraphic from "../components/graphics/basics/slits/ParticleGraphic
 import SingleWaveGraphic from "../components/graphics/basics/slits/SingleWaveGraphic";
 import DoubleWaveGraphic from "../components/graphics/basics/slits/DoubleWaveGraphic";
 import ElectronGraphic from "../components/graphics/basics/slits/ElectronGraphic";
+import ElectronSlitsGraphic from "../components/graphics/basics/slits/ElectronSlitsGraphic";
 
 const builder = new ContentBuilder();
 
@@ -49,9 +50,13 @@ I think I can safely say that nobody understands Quantum Mechanics.
 
 이 실험을 통해서, 이중 슬릿에 입자(공)을 던졌을 때와 파동을 통과시켰을 때 생겨나는 무늬가 다르다는 것을 알 수 있습니다. 파동은 두 개의 틈을 동시에 통과하고 서로 간섭할 수 있지만, 입자는 그렇지 못하기 때문에 발생한 현상입니다. 이에 과학자들은, 어떤 대상이 입자인지 파동인지 알고싶다면 이 이중 슬릿에 던져보고 생겨나는 무늬를 관찰하면 되겠다는 생각을 했습니다.
 `.paragraph(ElectronGraphic)`
-그래서 1961년, 클라우스 존슨(Claus Jonsson)은 전자를 가지고 실험을 해보기로 결심합니다. 원자의 구성 요소 중 하나인 전자를 이중 슬릿에 통과시키면 어떤 결과가 나올까요? 기존의 지식으로는, 전자는 명백하게 질량이 있는 '입자'였기 때문에 당연히 띠 무늬가 나올 것으로 예상했습니다.
+그래서 1961년, 독일의 물리학자 클라우스 존슨(Claus Jonsson)은 전자를 가지고 실험을 해보기로 결심합니다. 원자의 구성 요소 중 하나인 전자를 이중 슬릿에 통과시키면 어떤 결과가 나올까요? 기존의 지식으로는, 전자는 명백하게 질량이 있는 '입자'였기 때문에 당연히 띠 무늬가 나올 것으로 예상했습니다.
+`.paragraph(ElectronSlitsGraphic)`
+과연, 슬릿에 전자를 하나씩 마구마구 던졌을 때, 스크린에 나타나는 무늬는 어떤 무늬였을까요? 여러분은 어떻게 나올 것이라고 예상하시나요?
+---
+... 놀랍게도, 전자를 이중 슬릿에 통과시키자, 파동을 통과시켰을 때 생겼었던 간섭 무늬가 나타났습니다! 과학자들은 이 결과에 굉장히 당황했습니다. 전자는 입자가 아닌가? 어떻게 입자를 통과시켰는데 간섭 무늬가 발생할까?
 
-그래서 1961년, 클라우스 존슨(Claus Jonsson)은 전자를 가지고 실험을 해보기로 결심합니다. 원자의 구성 요소 중 하나인 전자를 이중 슬릿에 통과시키면 어떤 결과가 나올까요? 기존의 지식으로는, 전자는 명백하게 질량이 있는 '입자'였기 때문에 당연히 띠 무늬가 나올 것으로 예상했습니다.
+기존의 이론 만으로는 더 이상 설명 불가능한 현상이 발견되자, 과학자들은 직접 현상을 들여다보기로 결심합니다. 입자인 전자가 대체 어떻게 슬릿을 통과하길래 간섭 무늬가 생기는지 직접 알아보기 위해, 슬릿 앞에 관측 장치를 설치했습니다.
 `;
 
 export default function BasicPage() {
