@@ -24,7 +24,7 @@ export default function GraphicsViewer({
   renderedGraphics,
   sceneIndex,
 }: GraphicsViewerProps) {
-  const currentPos: [number, number, number] = [-sceneIndex * 15, 0, 0];
+  const currentPos: [number, number, number] = [-sceneIndex * 17, 0, 0];
   const posProps = useSpring({
     position: currentPos as any,
   });
@@ -49,7 +49,7 @@ export default function GraphicsViewer({
           {renderedGraphics.map((content, i) => (
             <group
               key={i}
-              position={[i * 15, 0, 0]}
+              position={[i * 17, 0, 0]}
               rotation={[0, Math.PI / 4, 0]}
             >
               {content}

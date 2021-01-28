@@ -30,6 +30,9 @@ export default function ElectronObserveGraphic({
   paragraphIndex,
 }: GraphicContentProps) {
   const particlesProps = useSpring({
+    config: {
+      tension: 100
+    },
     position: (paragraphIndex > 0 ? [0, 0, -0.1] : [0, 0, -0.5]) as any,
   });
 
