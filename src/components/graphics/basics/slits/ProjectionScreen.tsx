@@ -1,8 +1,18 @@
-export default function ProjectionScreen() {
+import { animated, SpringValue } from "@react-spring/three";
+
+interface ProjectionScreenProps {
+  opacity?: SpringValue<number>;
+}
+
+export default function ProjectionScreen({ opacity }: ProjectionScreenProps) {
   return (
     <mesh position={[0, -0.5, -4.35]}>
       <boxBufferGeometry args={[9, 5, 0.3]} />
-      <meshLambertMaterial color="#ced4da" />
+      <animated.meshLambertMaterial
+        color="#ced4da"
+        transparent
+        opacity={opacity}
+      />
     </mesh>
   );
 }

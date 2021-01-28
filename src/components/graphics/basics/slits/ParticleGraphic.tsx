@@ -74,7 +74,7 @@ export default function SlitsParticleGraphic() {
   return (
     <>
       <ProjectionScreen />
-      <DoubleSlits />
+      <DoubleSlits position={[0, -1.4, 0.5]} />
 
       <mesh position={[0, -1, 5]}>
         <boxBufferGeometry args={[1.0, 0.6, 0.5]} />

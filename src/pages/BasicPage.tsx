@@ -7,10 +7,10 @@ import StartFlag from "../components/graphics/StartFlag";
 
 import SubatomicGraphic from "../components/graphics/basics/SubatomicGraphic";
 import QuantumComputerGraphic from "../components/graphics/basics/QuantumComputerGraphic";
-import SuperpositionGraphic from "../components/graphics/basics/SuperpositionGraphic";
 
 import ParticleGraphic from "../components/graphics/basics/slits/ParticleGraphic";
 import SingleWaveGraphic from "../components/graphics/basics/slits/SingleWaveGraphic";
+import DoubleWaveGraphic from "../components/graphics/basics/slits/DoubleWaveGraphic";
 
 const builder = new ContentBuilder();
 
@@ -32,12 +32,17 @@ I think I can safely say that nobody understands Quantum Mechanics.
 
 당연하게도, 두 개의 틈으로 지나간 공들이 두 개의 직선 띠를 형성합니다. 여기까지는 해보지 않아도 예측할 수 있을 만큼 단순하죠?
 `.paragraph(SingleWaveGraphic)`
-자, 여기에 두 개의 틈이 있는 슬릿과 벽에 착 달라붙는 공을 발사하는 장치가 있습니다. 공을 계속 발사하면 벽에 어떤 무늬가 나타날까요? 오른쪽 화면에서 버튼을 눌러서 한 번 확인해보세요.
+그럼, 이제 '파동'의 경우를 살펴보도록 하겠습니다. 이번엔 한 개의 틈이 있는 슬릿에 파동을 통과시켜보겠습니다. 파동이 슬릿을 통과한 뒤에는 어떻게 진행할까요? 한 번 예측해보세요.
+---
+물결을 만들어서 직접 실험해보셔도 알 수 있겠지만, 슬릿의 틈을 파원으로 해서 원 모양으로 똑같이 퍼져나가게 됩니다. 벽에 그려진 빨간색 선은 주변부에 비해서 진폭이 큰 부분을 나타낸 것입니다.
 
-당연하게도, 두 개의 틈으로 지나간 공들이 두 개의 직선 띠를 형성합니다. 여기까지는 해보지 않아도 예측할 수 있을 만큼 단순하죠?
-자, 여기에 두 개의 틈이 있는 슬릿과 벽에 착 달라붙는 공을 발사하는 장치가 있습니다. 공을 계속 발사하면 벽에 어떤 무늬가 나타날까요? 오른쪽 화면에서 버튼을 눌러서 한 번 확인해보세요.
+그럼 이제 조금 더 어려운 상황을 보도록 할까요?
+`.paragraph(DoubleWaveGraphic)`
+아까 공 던지기 실험에서 보았던 이중 슬릿입니다. 이 이중 슬릿에 파동을 통과시키면 파동은 어떻게 진행하고, 벽에는 어떤 무늬가 나타날까요?
+---
+이번에는 왼쪽 슬릿에서 생기는 파동과 오른쪽 슬릿에서 생기는 파동이 동시에 진행하면서, 서로 상쇄되거나 보강되기 때문에 조금 더 복잡한 파동이 만들어집니다. 이러한 현상을 "파동의 간섭"이라고 합니다.
 
-당연하게도, 두 개의 틈으로 지나간 공들이 두 개의 직선 띠를 형성합니다. 여기까지는 해보지 않아도 예측할 수 있을 만큼 단순하죠?
+그리고 벽에도 공을 이중 슬릿에 던졌을 때와는 다른 무늬가 그려지는데, 이를 "간섭 무늬"라고 합니다.
 `;
 
 export default function BasicPage() {

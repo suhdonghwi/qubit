@@ -12,6 +12,8 @@ interface WaveProps {
   position?: [number, number, number];
   width: number;
   height: number;
+
+  lod?: number;
 }
 
 export default function Wave({
@@ -22,8 +24,9 @@ export default function Wave({
   position,
   width,
   height,
+  lod,
 }: WaveProps) {
-  const plane = new THREE.PlaneGeometry(width, height, 40, 40);
+  const plane = new THREE.PlaneGeometry(width, height, lod || 40, lod || 40);
 
   function f(x: number, y: number, anim: number) {
     const z =
