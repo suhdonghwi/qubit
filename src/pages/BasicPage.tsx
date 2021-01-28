@@ -11,6 +11,7 @@ import QuantumComputerGraphic from "../components/graphics/basics/QuantumCompute
 import ParticleGraphic from "../components/graphics/basics/slits/ParticleGraphic";
 import SingleWaveGraphic from "../components/graphics/basics/slits/SingleWaveGraphic";
 import DoubleWaveGraphic from "../components/graphics/basics/slits/DoubleWaveGraphic";
+import ElectronGraphic from "../components/graphics/basics/slits/ElectronGraphic";
 
 const builder = new ContentBuilder();
 
@@ -32,11 +33,11 @@ I think I can safely say that nobody understands Quantum Mechanics.
 
 당연하게도, 두 개의 틈으로 지나간 공들이 두 개의 직선 띠를 형성합니다. 여기까지는 해보지 않아도 예측할 수 있을 만큼 단순하죠?
 ---
-공이 벽면에 도달할 확률을 위치별로 계산해서 그래프로 나타낸다면 이렇게 나타낼 수 있을 것입니다.
+공이 벽면에 도달할 확률을 위치별로 계산해서 그래프로 그리면 이렇게 그려집니다. 실제로도 공을 발사해 보면 가장 확률이 높은 구간에 공이 도달하는 모습을 볼 수 있습니다.
 `.paragraph(SingleWaveGraphic)`
 그럼, 이제 '파동'의 경우를 살펴보도록 하겠습니다. 이번엔 한 개의 틈이 있는 슬릿에 파동을 통과시켜보겠습니다. 파동이 슬릿을 통과한 뒤에는 어떻게 진행할까요? 한 번 예측해보세요.
 ---
-욕조에 물을 채우고 물결을 만들어서 직접 실험해보실 수도 있습니다! 파동이 틈을 통과하면, 그 틈을 중심으로 해서 원 모양으로 다시 퍼져나가게 됩니다. 벽에 그려진 선은 해당 위치에 도달한 파동의 세기를 표시한 것입니다.
+파동이 틈을 통과하면, 그 틈을 중심으로 해서 원 모양으로 다시 퍼져나가게 됩니다. 욕조에 물을 채우고 물결을 만들어서 직접 실험해보실 수도 있습니다! 벽에 그려진 선은 해당 위치에 도달한 파동의 세기를 표시한 것입니다.
 
 그럼 이제 조금 더 어려운 상황을 보도록 할까요?
 `.paragraph(DoubleWaveGraphic)`
@@ -47,6 +48,10 @@ I think I can safely say that nobody understands Quantum Mechanics.
 그리고 공을 이중 슬릿에 던졌을 때는 두 줄의 띠가 나타났는데, 파동의 경우는 주변부보다 세기가 강한 부분이 2개 이상이라는 것을 볼 수 있습니다. 이 무늬를 "간섭 무늬"라고 합니다.
 
 이 실험을 통해서, 이중 슬릿에 입자(공)을 던졌을 때와 파동을 통과시켰을 때 생겨나는 무늬가 다르다는 것을 알 수 있습니다. 파동은 두 개의 틈을 동시에 통과하고 서로 간섭할 수 있지만, 입자는 그렇지 못하기 때문에 발생한 현상입니다. 이에 과학자들은, 어떤 대상이 입자인지 파동인지 알고싶다면 이 이중 슬릿에 던져보고 생겨나는 무늬를 관찰하면 되겠다는 생각을 했습니다.
+`.paragraph(ElectronGraphic)`
+그래서 1961년, 클라우스 존슨(Claus Jonsson)은 전자를 가지고 실험을 해보기로 결심합니다. 원자의 구성 요소 중 하나인 전자를 이중 슬릿에 통과시키면 어떤 결과가 나올까요? 기존의 지식으로는, 전자는 명백하게 질량이 있는 '입자'였기 때문에 당연히 띠 무늬가 나올 것으로 예상했습니다.
+
+그래서 1961년, 클라우스 존슨(Claus Jonsson)은 전자를 가지고 실험을 해보기로 결심합니다. 원자의 구성 요소 중 하나인 전자를 이중 슬릿에 통과시키면 어떤 결과가 나올까요? 기존의 지식으로는, 전자는 명백하게 질량이 있는 '입자'였기 때문에 당연히 띠 무늬가 나올 것으로 예상했습니다.
 `;
 
 export default function BasicPage() {

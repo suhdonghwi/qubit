@@ -97,6 +97,13 @@ export default function MainSphere() {
           width: window.innerWidth,
           height: window.innerHeight,
         }}
+        gl={{
+          powerPreference: "high-performance",
+          antialias: false,
+          stencil: false,
+          depth: false,
+          alpha: false,
+        }}
       >
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, -3]} intensity={0.5} />
