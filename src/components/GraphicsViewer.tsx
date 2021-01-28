@@ -37,8 +37,9 @@ export default function GraphicsViewer({
           intensity={0.5}
           position={[5, 15, 5]}
           castShadow
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+          shadow-camera-far={30}
           shadow-camera-left={-10}
           shadow-camera-right={10}
           shadow-camera-top={10}

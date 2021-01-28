@@ -57,7 +57,7 @@ export default function CatBoxGraphic() {
         color="white"
         fontSize={1}
         font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
-        position={[2.7, 2, -1]}
+        position={[2.7, 2, -0.5]}
         rotation={[0, -Math.PI / 2, 0]}
       >
         Alive?
