@@ -7,12 +7,10 @@ import { useSpring, animated } from "@react-spring/three";
 import Plane from "../../Plane";
 import ProjectionScreen from "./ProjectionScreen";
 import DoubleSlits from "./DoubleSlits";
-import ProbCurve from "./ProbCurve";
 import { GraphicContentProps } from "../../../../types/Scene";
 
 function Electron() {
   const meshRef = useRef<THREE.Mesh>();
-
   function reset() {
     meshRef.current?.position.set(0, -1, 5);
     meshRef.current?.rotation.set(0, 0, 0);
@@ -53,21 +51,24 @@ export default function ElectronSlitsGraphic({
     const list = [];
     for (let i = 0; i < 33; i++) {
       list.push(
-        <mesh position={[-3.8 + Math.random(), -i * 0.08, -4]}>
+        <mesh key={3 * i} position={[-3.8 + Math.random(), -i * 0.08, -4]}>
           <sphereBufferGeometry args={[0.08, 8, 8]} />
           <meshLambertMaterial color="#228be6" />
         </mesh>
       );
 
       list.push(
-        <mesh position={[3.7 - Math.random(), -i * 0.08, -4]}>
+        <mesh key={3 * i + 1} position={[3.7 - Math.random(), -i * 0.08, -4]}>
           <sphereBufferGeometry args={[0.08, 8, 8]} />
           <meshLambertMaterial color="#228be6" />
         </mesh>
       );
 
       list.push(
-        <mesh position={[-0.6 + Math.random(), -i * 0.12 + 1.2, -4]}>
+        <mesh
+          key={3 * i + 2}
+          position={[-0.6 + Math.random(), -i * 0.12 + 1.2, -4]}
+        >
           <sphereBufferGeometry args={[0.08, 8, 8]} />
           <meshLambertMaterial color="#228be6" />
         </mesh>

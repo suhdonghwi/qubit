@@ -13,6 +13,7 @@ import SingleWaveGraphic from "../components/graphics/basics/slits/SingleWaveGra
 import DoubleWaveGraphic from "../components/graphics/basics/slits/DoubleWaveGraphic";
 import ElectronGraphic from "../components/graphics/basics/slits/ElectronGraphic";
 import ElectronSlitsGraphic from "../components/graphics/basics/slits/ElectronSlitsGraphic";
+import ElectronObserveGraphic from "../components/graphics/basics/slits/ElectronObserveGraphic";
 
 const builder = new ContentBuilder();
 
@@ -54,9 +55,19 @@ I think I can safely say that nobody understands Quantum Mechanics.
 `.paragraph(ElectronSlitsGraphic)`
 과연, 슬릿에 전자를 하나씩 마구마구 던졌을 때, 스크린에 나타나는 무늬는 어떤 무늬였을까요? 여러분은 어떻게 나올 것이라고 예상하시나요?
 ---
-... 놀랍게도, 전자를 이중 슬릿에 통과시키자, 파동을 통과시켰을 때 생겼었던 간섭 무늬가 나타났습니다! 과학자들은 이 결과에 굉장히 당황했습니다. 전자는 입자가 아닌가? 어떻게 입자를 통과시켰는데 간섭 무늬가 발생할까?
+... 놀랍게도, 전자를 이중 슬릿에 통과시키자, 파동을 통과시켰을 때 생겼었던 간섭 무늬가 나타났습니다. 과학자들은 이 결과에 굉장히 당황했습니다. 전자는 입자가 아닌가? 어떻게 입자를 통과시켰는데 간섭 무늬가 발생할까? 전자가 슬릿의 두 틈을 동시에 통과하기라도 하는 것일까?
 
-기존의 이론 만으로는 더 이상 설명 불가능한 현상이 발견되자, 과학자들은 직접 현상을 들여다보기로 결심합니다. 입자인 전자가 대체 어떻게 슬릿을 통과하길래 간섭 무늬가 생기는지 직접 알아보기 위해, 슬릿 앞에 관측 장치를 설치했습니다.
+기존의 이론 만으로는 더 이상 설명 불가능한 현상이 발견되자, 과학자들은 직접 현상을 들여다보기로 결심합니다.
+`.paragraph(ElectronObserveGraphic)`
+입자인 전자가 대체 어떻게 슬릿을 통과하길래 간섭 무늬가 생기는지, 이를 직접 눈으로 확인하고 싶었던 과학자들은 슬릿 앞에 관측 장치를 설치했습니다. 그리고 같은 실험을 진행했습니다.
+
+하지만, 양자역학의 세계는 과학자들의 생각보다 훨씬 더 심오했습니다..
+---
+슬릿 앞에 관측 장치를 설치하고 실험을 진행하자, 이번에는 띠 모양의 무늬가 나타난 것입니다. 관측을 시작하자, 파동같은 성질을 보이던 전자가, 마치 자신이 관측당하고 있다는 사실을 알고있는 것 마냥 다시 입자처럼 행동하기 시작했다는 것입니다.
+
+과학자들은 그야말로 대혼란에 빠지게 됩니다. 이런 말도 안되는 상황이 가능한 것일까? 실험에 오류가 있는 것은 아닐까? 하지만 거듭된 실험에서도 같은 결과가 나타날 뿐이었습니다.
+
+이런 말도 안되는 결과를 해석하기 위한 이론을 과학자들이 하나둘 씩 내놓기 시작하면서, 양자역학의 시대가 열리게 되었습니다.
 `;
 
 export default function BasicPage() {

@@ -70,7 +70,7 @@ export default function ParticleGraphic({
 
   const particles = Array(100)
     .fill(null)
-    .map((_) => <Particle move={clicked} />);
+    .map((_, i) => <Particle key={i} move={clicked} />);
 
   const { curveOpacity } = useSpring({
     curveOpacity: paragraphIndex > 0 ? 1 : 0,
