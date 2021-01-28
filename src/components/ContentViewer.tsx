@@ -67,7 +67,7 @@ const Block = styled.div`
 const TextSection = styled.section`
   background-color: #343a40;
 
-  padding: 2.5rem 2.5rem 20rem 2.5rem;
+  padding: 2.5rem 2.5rem 13rem 2.5rem;
   width: 50vw;
 
   overflow-y: scroll;

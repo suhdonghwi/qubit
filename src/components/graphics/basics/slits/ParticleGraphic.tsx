@@ -2,12 +2,15 @@ import { useState, useEffect, useRef } from "react";
 
 import * as THREE from "three";
 import { useFrame } from "react-three-fiber";
+import { useSpring } from "@react-spring/three";
 
 import Plane from "../../Plane";
 import Button from "../../Button";
 
 import ProjectionScreen from "./ProjectionScreen";
 import DoubleSlits from "./DoubleSlits";
+import ProbCurve from "./ProbCurve";
+import { GraphicContentProps } from "../../../../types/Scene";
 
 function Particle({ move }: { move: boolean }) {
   const meshRef = useRef<THREE.Mesh>();
@@ -60,12 +63,18 @@ function Particle({ move }: { move: boolean }) {
   );
 }
 
-export default function SlitsParticleGraphic() {
+export default function ParticleGraphic({
+  paragraphIndex,
+}: GraphicContentProps) {
   const [clicked, setClicked] = useState(false);
 
   const particles = Array(100)
     .fill(null)
     .map((_) => <Particle move={clicked} />);
+
+  const { curveOpacity } = useSpring({
+    curveOpacity: paragraphIndex > 0 ? 1 : 0,
+  });
 
   function onDown() {
     setClicked(true);
@@ -75,6 +84,20 @@ export default function SlitsParticleGraphic() {
     <>
       <ProjectionScreen />
       <DoubleSlits position={[0, -1.4, 0.5]} />
+
+      <ProbCurve
+        opacity={curveOpacity}
+        points={[
+          new THREE.Vector3(-4, -3.2, -4.25),
+          new THREE.Vector3(-3, -3, -4.25),
+          new THREE.Vector3(-2, 0.5, -4.25),
+          new THREE.Vector3(-1, -3, -4.25),
+          new THREE.Vector3(1, -3, -4.25),
+          new THREE.Vector3(2, 0.5, -4.25),
+          new THREE.Vector3(3, -3, -4.25),
+          new THREE.Vector3(4, -3.2, -4.25),
+        ]}
+      />
 
       <mesh position={[0, -1, 5]}>
         <boxBufferGeometry args={[1.0, 0.6, 0.5]} />
