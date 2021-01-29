@@ -9,22 +9,22 @@ import GradientText from "../components/GradientText";
 const Container = styled.section`
   height: 100vh;
 
+  width: 60%;
+
+  margin: 0 auto;
+
   display: flex;
   align-items: center;
-  justify-content: center;
 `;
 
 const TextContainer = styled.div`
-  width: 55%;
+  width: 60rem;
+
   z-index: 1;
+`;
 
-  @media screen and (max-width: 1500px) {
-    width: 70%;
-  }
-
-  @media screen and (max-width: 590px) {
-    width: 80%;
-  }
+const GraphicContainer = styled.div`
+  height: 100%;
 `;
 
 const MainText = styled.h2`
@@ -97,9 +97,7 @@ export default function LandingSection() {
         <MainText>
           이미 도착한 미래,
           <br />
-          <GradientText>
-            양자 컴퓨터 <small>Quantum Computer</small>
-          </GradientText>
+          <GradientText>양자 컴퓨터</GradientText>
         </MainText>
         <SubText>
           양자 컴퓨터에 대해서 들어보신 적이 있나요? 양자 컴퓨터는 어떻게
@@ -109,7 +107,9 @@ export default function LandingSection() {
           들어가봅시다.
         </SubText>
       </TextContainer>
-      <MainSphere />
+      <GraphicContainer>
+        <MainSphere />
+      </GraphicContainer>
     </Container>
   );
 }
