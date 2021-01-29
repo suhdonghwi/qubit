@@ -6,6 +6,8 @@ import palette from "../palette";
 import MainSphere from "../components/MainSphere";
 import GradientText from "../components/GradientText";
 
+import { animated, useSpring } from "react-spring";
+
 const Container = styled.section`
   height: 100vh;
 
@@ -17,6 +19,10 @@ const Container = styled.section`
 const TextContainer = styled.div`
   width: 50%;
   z-index: 1;
+
+  @media screen and (max-width: 1400px) {
+    width: 60%;
+  }
 
   @media screen and (max-width: 1200px) {
     width: 70%;
@@ -31,7 +37,7 @@ const GraphicContainer = styled.div`
   height: 100%;
 `;
 
-const MainText = styled.h2`
+const MainText = styled(animated.h2)`
   margin: 0 0 3rem 0;
 
   font-weight: 400;
@@ -78,7 +84,7 @@ const MainText = styled.h2`
   }
 `;
 
-const SubText = styled.p`
+const SubText = styled(animated.p)`
   margin: 0;
   font-size: 1.4rem;
   font-weight: 300;
@@ -95,15 +101,39 @@ const SubText = styled.p`
 `;
 
 export default function LandingSection() {
+  const mainTextSpring = useSpring<{ opacity: any; transform: string }>({
+    config: {
+      tension: 100,
+    },
+    from: {
+      opacity: 0,
+      transform: "translateY(-100px)",
+    },
+    opacity: 1,
+    transform: "translateY(0px)",
+  });
+
+  const subTextSpring = useSpring<{ opacity: any; transform: string }>({
+    config: {
+      tension: 40,
+    },
+    from: {
+      opacity: 0,
+      transform: "translateY(50px)",
+    },
+    opacity: 1,
+    transform: "translateY(0px)",
+  });
+
   return (
     <Container>
       <TextContainer>
-        <MainText>
+        <MainText style={mainTextSpring}>
           이미 도착한 미래,
           <br />
           <GradientText>양자 컴퓨터</GradientText>
         </MainText>
-        <SubText>
+        <SubText style={subTextSpring}>
           양자 컴퓨터에 대해서 들어보신 적이 있나요? 양자 컴퓨터는 어떻게
           동작할까요? 세간에는 양자 컴퓨터와 양자역학에 대한 오해가 정말 많이
           퍼져있습니다. 그리고 우리가 양자 컴퓨터의 능력과 한계를 정확히 알기
