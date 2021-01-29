@@ -3,6 +3,7 @@ import styled from "styled-components/macro";
 
 import Scene from "../types/Scene";
 import GraphicsViewer from "./GraphicsViewer";
+import useViewerStore from "../stores/ViewerStore";
 
 import palette from "../palette";
 
@@ -85,13 +86,11 @@ export default function ContentViewer({
   description,
   scenes,
 }: ContentViewerProps) {
-  const [sceneIndex, setSceneIndex] = useState(0);
-  const [paragraphIndex, setParagraphIndex] = useState(0);
-
+  const setIndex = useViewerStore((state) => state.setIndex);
   const graphics = useMemo(() => scenes.map((c) => c.graphicContent), [scenes]);
 
   // TODO: REFACTOR THIS HORRIBLE PIECE OF CODE
-  const [prev, setPrev] = useState<JSX.Element[] | null>(null);
+  /*const [prev, setPrev] = useState<JSX.Element[] | null>(null);
   const renderedGraphics: JSX.Element[] = useMemo<JSX.Element[]>(() => {
     if (prev !== null) {
       const G = graphics[sceneIndex];
@@ -104,6 +103,7 @@ export default function ContentViewer({
     }
     // eslint-disable-next-line
   }, [graphics, paragraphIndex]);
+  */
 
   return (
     <Container>
@@ -120,8 +120,7 @@ export default function ContentViewer({
               rootMargin="-45% 0%"
               onChange={(inView) => {
                 if (inView) {
-                  setSceneIndex(sIndex);
-                  setParagraphIndex(pIndex);
+                  setIndex(sIndex, pIndex);
                 }
               }}
             >
@@ -135,10 +134,7 @@ export default function ContentViewer({
         )}
       </TextSection>
 
-      <GraphicsViewer
-        renderedGraphics={renderedGraphics}
-        sceneIndex={sceneIndex}
-      />
+      <GraphicsViewer graphics={graphics} />
     </Container>
   );
 }

@@ -43,7 +43,7 @@ export default function DoubleWaveGraphic({
         position={[0, -2.5, 0]}
         width={9}
         height={9}
-        lod={paragraphIndex > 0 ? 60 : 50}
+        lod={paragraphIndex > 0 ? 30 : 20}
       />
     </>
   );

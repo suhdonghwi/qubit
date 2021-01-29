@@ -7,6 +7,8 @@ interface World3DProps {
 }
 
 export default function World3D({ children }: World3DProps) {
+  console.log("render");
+
   return (
     <Canvas shadowMap orthographic camera={{ zoom: 50, position: [0, 5, 10] }}>
       {children}

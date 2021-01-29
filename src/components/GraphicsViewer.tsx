@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import styled from "styled-components/macro";
 
 import { animated, useSpring } from "@react-spring/three";
 
 import World3D from "./graphics/World3D";
+import { GraphicContent } from "../types/Scene";
+import useViewerStore from "../stores/ViewerStore";
 
 const Container = styled.section`
   position: relative;
@@ -16,19 +18,43 @@ const Container = styled.section`
 `;
 
 interface GraphicsViewerProps {
-  renderedGraphics: JSX.Element[];
-  sceneIndex: number;
+  graphics: GraphicContent[];
 }
 
-export default function GraphicsViewer({
-  renderedGraphics,
-  sceneIndex,
-}: GraphicsViewerProps) {
+function Graphics({ graphics }: GraphicsViewerProps) {
+  const { sceneIndex, paragraphIndex } = useViewerStore((state) => state);
+
   const currentPos = [-sceneIndex * 17, 0, 0];
   const groupSpring = useSpring<{ position: any }>({
     position: currentPos,
   });
 
+  const [prev, setPrev] = useState<JSX.Element[] | null>(null);
+  const renderedGraphics: JSX.Element[] = useMemo<JSX.Element[]>(() => {
+    if (prev !== null) {
+      const G = graphics[sceneIndex];
+      prev[sceneIndex] = <G paragraphIndex={paragraphIndex} />;
+      return prev;
+    } else {
+      const r = graphics.map((G) => <G paragraphIndex={paragraphIndex} />);
+      setPrev(r);
+      return r;
+    }
+    // eslint-disable-next-line
+  }, [graphics, paragraphIndex]);
+
+  return (
+    <animated.group {...groupSpring}>
+      {renderedGraphics.map((content, i) => (
+        <group key={i} position={[i * 17, 0, 0]} rotation={[0, Math.PI / 4, 0]}>
+          {content}
+        </group>
+      ))}
+    </animated.group>
+  );
+}
+
+export default function GraphicsViewer({ graphics }: GraphicsViewerProps) {
   return (
     <Container>
       <World3D>
@@ -45,17 +71,7 @@ export default function GraphicsViewer({
           shadow-camera-top={10}
           shadow-camera-bottom={-10}
         />
-        <animated.group {...groupSpring}>
-          {renderedGraphics.map((content, i) => (
-            <group
-              key={i}
-              position={[i * 17, 0, 0]}
-              rotation={[0, Math.PI / 4, 0]}
-            >
-              {content}
-            </group>
-          ))}
-        </animated.group>
+        <Graphics graphics={graphics} />
       </World3D>
     </Container>
   );
