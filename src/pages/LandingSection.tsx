@@ -17,6 +17,14 @@ const Container = styled.section`
 const TextContainer = styled.div`
   width: 50%;
   z-index: 1;
+
+  @media screen and (max-width: 1200px) {
+    width: 70%;
+  }
+
+  @media screen and (max-width: 530px) {
+    width: 80%;
+  }
 `;
 
 const GraphicContainer = styled.div`
