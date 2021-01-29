@@ -107,7 +107,7 @@ export default function LandingSection() {
     },
     from: {
       opacity: 0,
-      transform: "translateY(-100px)",
+      transform: "translateY(-70px)",
     },
     opacity: 1,
     transform: "translateY(0px)",
@@ -119,7 +119,7 @@ export default function LandingSection() {
     },
     from: {
       opacity: 0,
-      transform: "translateY(50px)",
+      transform: "translateY(30px)",
     },
     opacity: 1,
     transform: "translateY(0px)",
