@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo } from "react";
 
 import { animated, useSpring } from "@react-spring/three";
 

@@ -1,32 +1,81 @@
 import React from "react";
+import styled from "styled-components/macro";
 
+import { useSpring, animated } from "@react-spring/three";
 import { Canvas } from "react-three-fiber";
-import WobblySphere from "./graphics/WobblySphere";
+
+const StyledCanvas = styled(Canvas)`
+  position: absolute !important;
+  top: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+`;
 
 export default function MainSphere() {
+  const { torusPos, cylinderPos, boxPos } = useSpring<{
+    boxPos: any;
+    torusPos: any;
+    cylinderPos: any;
+  }>({
+    config: {
+      tension: 100,
+    },
+    from: {
+      boxPos: [-1.5, -4, 0],
+      torusPos: [-1.2, 4, 0],
+      cylinderPos: [1.5, -2, 0],
+    },
+    to: async (next) => {
+      await next({
+        boxPos: [-1.5, -2.5, 0],
+        torusPos: [-1.2, 2.5, 0],
+        cylinderPos: [1.5, -0.5, 0],
+      });
+
+      while (1) {
+        await next({
+          boxPos: [-1.5, -3 + Math.random(), 0],
+          torusPos: [-1.2, 2 + Math.random(), 0],
+          cylinderPos: [1.5, -1 + Math.random(), 0],
+        });
+
+        await next({
+          boxPos: [-1.5, -3 + Math.random(), 0],
+          torusPos: [-1.2, 2 + Math.random(), 0],
+          cylinderPos: [1.5, -1 + Math.random(), 0],
+        });
+      }
+    },
+  });
+
   return (
-    <Canvas
-      orthographic
-      camera={{ zoom: 100 }}
-      style={{ position: "absolute", top: 0, left: "60vw", width: "450px" }}
-    >
-      <pointLight position={[-2, 0, 0]} />
+    <StyledCanvas orthographic camera={{ zoom: 100 }}>
+      <pointLight position={[-2, 0, 1]} intensity={0.5} />
+      <ambientLight intensity={0.1} />
 
-      <WobblySphere
-        size={1.1}
-        position={[-0.5, -1.5, -3]}
-        factor={0.5}
-        color="#495057"
-      />
+      <animated.mesh
+        position={boxPos}
+        rotation={[Math.PI / 4, Math.PI / 4, Math.PI / 3]}
+      >
+        <boxBufferGeometry args={[1.7, 1.7, 1.7]} />
+        <meshLambertMaterial color="#495057" />
+      </animated.mesh>
 
-      <mesh position={[-1, 2, 0]} rotation={[Math.PI / 4, Math.PI / 4, 0]}>
-        <torusBufferGeometry args={[1.2, 0.4, 16, 100]} />
-        <meshLambertMaterial color="#343a40" />
-      </mesh>
-      <mesh position={[1, 0, 0]} rotation={[Math.PI / 4, 0, Math.PI / 6]}>
-        <cylinderGeometry args={[0.7, 0.7, 2, 100]} />
-        <meshLambertMaterial color="#343a40" />
-      </mesh>
-    </Canvas>
+      <animated.mesh
+        position={torusPos}
+        rotation={[Math.PI / 4, Math.PI / 4, 0]}
+      >
+        <torusBufferGeometry args={[1.2, 0.4, 32, 100]} />
+        <meshLambertMaterial color="#495057" />
+      </animated.mesh>
+
+      <animated.mesh
+        position={cylinderPos}
+        rotation={[Math.PI / 4, 0, Math.PI / 6]}
+      >
+        <cylinderGeometry args={[1.3, 1.3, 3, 100]} />
+        <meshLambertMaterial color="#495057" />
+      </animated.mesh>
+    </StyledCanvas>
   );
 }

@@ -9,17 +9,13 @@ import GradientText from "../components/GradientText";
 const Container = styled.section`
   height: 100vh;
 
-  width: 60%;
-
-  margin: 0 auto;
-
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 
 const TextContainer = styled.div`
-  width: 60rem;
-
+  width: 50%;
   z-index: 1;
 `;
 
