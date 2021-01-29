@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef, useState, useEffect } from "react";
 import styled from "styled-components/macro";
 
 import Scene from "../types/Scene";
@@ -34,9 +34,11 @@ const Section = styled.section`
 const TextSection = styled(Section)`
   background-color: #343a40;
 
-  padding: 2.5rem 2.5rem 25vh 2.5rem;
-
   overflow-y: scroll;
+`;
+
+const TextContainer = styled.div`
+  padding: 2.5rem 2.5rem 20vh 2.5rem;
 
   ${mobileQuery} {
     padding: 2.5rem 1.5rem 10vh 1.5rem;
@@ -78,6 +80,10 @@ const Description = styled.p`
 const Block = styled.div`
   overflow: auto;
   margin-bottom: 130px;
+
+  ${mobileQuery} {
+    margin-bottom: 100px;
+  }
 
   color: #868e96;
   font-size: 1.3rem;
@@ -124,33 +130,39 @@ export default function ContentViewer({
   const setIndex = useViewerStore((state) => state.setIndex);
   const graphics = useMemo(() => scenes.map((c) => c.graphicContent), [scenes]);
 
+  const textSectionRef = useRef<HTMLElement | null>(null);
+
+  const [, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <Container>
-      <TextSection>
-        <HeadBox>
-          <Title>{title}</Title>
-          <Description>{description}</Description>
-        </HeadBox>
+      <TextSection ref={textSectionRef}>
+        <TextContainer>
+          <HeadBox>
+            <Title>{title}</Title>
+            <Description>{description}</Description>
+          </HeadBox>
 
-        {scenes.map((scene, sIndex) =>
-          scene.textContent.map((paragraph, pIndex) => (
-            <InView
-              key={sIndex * 10 + pIndex}
-              rootMargin="-45% 0%"
-              onChange={(inView) => {
-                if (inView) {
-                  setIndex(sIndex, pIndex);
-                }
-              }}
-            >
-              {({ inView, ref }) => (
-                <Block ref={ref} className={inView ? "current" : ""}>
-                  {paragraph}
-                </Block>
-              )}
-            </InView>
-          ))
-        )}
+          {scenes.map((scene, sIndex) =>
+            scene.textContent.map((paragraph, pIndex) => (
+              <InView
+                key={sIndex * 10 + pIndex}
+                root={textSectionRef.current}
+                rootMargin="-40% 0%"
+                onChange={(inView) => inView && setIndex(sIndex, pIndex)}
+              >
+                {({ inView, ref }) => (
+                  <Block ref={ref} className={inView ? "current" : ""}>
+                    {paragraph}
+                  </Block>
+                )}
+              </InView>
+            ))
+          )}
+        </TextContainer>
       </TextSection>
 
       <GraphicSection>
