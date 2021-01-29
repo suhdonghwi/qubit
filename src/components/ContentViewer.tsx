@@ -13,6 +13,35 @@ const Container = styled.main`
   height: 100vh;
 
   display: flex;
+
+  @media screen and (orientation: portrait) {
+    flex-direction: column-reverse;
+  }
+`;
+
+const Section = styled.section`
+  width: 50vw;
+
+  @media screen and (orientation: portrait) {
+    height: 50vh;
+    width: 100vw;
+  }
+`;
+
+const TextSection = styled(Section)`
+  background-color: #343a40;
+
+  padding: 2.5rem 2.5rem 25vh 2.5rem;
+
+  overflow-y: scroll;
+`;
+
+const GraphicSection = styled(Section)`
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const HeadBox = styled.div`
@@ -26,7 +55,6 @@ const Title = styled.h1`
 
 const Description = styled.p`
   font-size: 1.4rem;
-  width: 42vw;
   padding: 0 0 0 1rem;
 
   color: #adb5bd;
@@ -63,15 +91,6 @@ const Block = styled.div`
       color: ${palette.whiteText};
     }
   }
-`;
-
-const TextSection = styled.section`
-  background-color: #343a40;
-
-  padding: 2.5rem 2.5rem 25vh 2.5rem;
-  width: 50vw;
-
-  overflow-y: scroll;
 `;
 
 interface ContentViewerProps {
@@ -134,7 +153,9 @@ export default function ContentViewer({
         )}
       </TextSection>
 
-      <GraphicsViewer graphics={graphics} />
+      <GraphicSection>
+        <GraphicsViewer graphics={graphics} />
+      </GraphicSection>
     </Container>
   );
 }
