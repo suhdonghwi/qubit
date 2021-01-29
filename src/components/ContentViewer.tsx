@@ -54,7 +54,7 @@ const GraphicSection = styled(Section)`
 `;
 
 const HeadBox = styled.div`
-  margin-bottom: 35%;
+  margin-bottom: 20vh;
 `;
 
 const Title = styled.h1`
