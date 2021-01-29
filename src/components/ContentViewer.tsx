@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components/macro";
 
 import Scene from "../types/Scene";
@@ -8,6 +8,9 @@ import useViewerStore from "../stores/ViewerStore";
 import palette from "../palette";
 
 import { InView } from "react-intersection-observer";
+
+const mobileQuery =
+  "@media screen and (orientation: portrait) and (max-width: 520px), screen and (orientation: landscape) and (max-width: 1040px)";
 
 const Container = styled.main`
   height: 100vh;
@@ -34,6 +37,10 @@ const TextSection = styled(Section)`
   padding: 2.5rem 2.5rem 25vh 2.5rem;
 
   overflow-y: scroll;
+
+  ${mobileQuery} {
+    padding: 2.5rem 1.5rem 10vh 1.5rem;
+  }
 `;
 
 const GraphicSection = styled(Section)`
@@ -49,15 +56,23 @@ const HeadBox = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 5rem;
+  font-size: 4rem;
   margin: 0;
+
+  ${mobileQuery} {
+    font-size: 3rem;
+  }
 `;
 
 const Description = styled.p`
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   padding: 0 0 0 1rem;
 
   color: #adb5bd;
+
+  ${mobileQuery} {
+    font-size: 1.1rem;
+  }
 `;
 
 const Block = styled.div`
@@ -68,11 +83,12 @@ const Block = styled.div`
   font-size: 1.3rem;
   transition: all 0.5s;
 
-  p {
+  ${mobileQuery} {
+    font-size: 1.1rem;
+    margin-bottom: 100px;
   }
 
   blockquote {
-    font-size: 1.5rem;
     font-style: italic;
 
     padding: 2rem 0 2rem 2rem;
@@ -107,22 +123,6 @@ export default function ContentViewer({
 }: ContentViewerProps) {
   const setIndex = useViewerStore((state) => state.setIndex);
   const graphics = useMemo(() => scenes.map((c) => c.graphicContent), [scenes]);
-
-  // TODO: REFACTOR THIS HORRIBLE PIECE OF CODE
-  /*const [prev, setPrev] = useState<JSX.Element[] | null>(null);
-  const renderedGraphics: JSX.Element[] = useMemo<JSX.Element[]>(() => {
-    if (prev !== null) {
-      const G = graphics[sceneIndex];
-      prev[sceneIndex] = <G paragraphIndex={paragraphIndex} />;
-      return prev;
-    } else {
-      const r = graphics.map((G) => <G paragraphIndex={paragraphIndex} />);
-      setPrev(r);
-      return r;
-    }
-    // eslint-disable-next-line
-  }, [graphics, paragraphIndex]);
-  */
 
   return (
     <Container>

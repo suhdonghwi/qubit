@@ -16,7 +16,6 @@ export default function World3D({ children }: World3DProps) {
         ? window.innerWidth
         : window.innerWidth / 2;
 
-    console.log(width);
     if (width <= 400) setZoom(25);
     else if (width <= 500) setZoom(30);
     else if (width <= 700) setZoom(40);
