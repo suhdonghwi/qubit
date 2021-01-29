@@ -10,7 +10,7 @@ import useViewerStore from "../stores/ViewerStore";
 const Container = styled.section`
   position: relative;
 
-  flex: 1;
+  width: 50vw;
 
   display: flex;
   align-items: center;
