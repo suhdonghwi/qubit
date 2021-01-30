@@ -127,7 +127,7 @@ const StyledCanvas = styled(Canvas)`
   }
 
   @media screen and (max-width: 1200px) {
-    right: -25%;
+    right: -20%;
 
     width: 500px !important;
     height: 300px !important;

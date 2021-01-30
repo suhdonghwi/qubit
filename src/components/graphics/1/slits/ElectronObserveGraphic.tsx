@@ -11,7 +11,7 @@ import Electron from "./Electron";
 import { GraphicContentProps } from "../../../../types/Scene";
 
 function Eyes() {
-  const texture = useTexture("eye.png");
+  const texture = useTexture("/eye.png");
 
   return (
     <mesh position={[1.5, 0, 2.3]} castShadow>
