@@ -1,7 +1,7 @@
 import { useSpring } from "@react-spring/three";
 import * as THREE from "three";
 
-import { GraphicContentProps } from "../../../../types/Scene";
+import { GraphicContentProps } from "types/Scene";
 import ProjectionScreen from "./ProjectionScreen";
 import DoubleSlits from "./DoubleSlits";
 import Wave from "./Wave";

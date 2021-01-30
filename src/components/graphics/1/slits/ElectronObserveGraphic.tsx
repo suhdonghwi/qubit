@@ -8,7 +8,7 @@ import ProjectionScreen from "./ProjectionScreen";
 import DoubleSlits from "./DoubleSlits";
 import Electron from "./Electron";
 
-import { GraphicContentProps } from "../../../../types/Scene";
+import { GraphicContentProps } from "types/Scene";
 
 function Eyes() {
   const texture = useTexture("/eye.png");
