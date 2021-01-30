@@ -56,21 +56,23 @@ const GraphicSection = styled(Section)`
 `;
 
 const HeadBox = styled.div`
-  margin-bottom: 20vh;
+  margin-bottom: 25%;
 `;
 
 const Title = styled.h1`
-  font-size: 4rem;
+  font-size: 3rem;
   margin: 0;
+  word-break: keep-all;
 
   ${mobileQuery} {
-    font-size: 3rem;
+    font-size: 2.3rem;
   }
 `;
 
 const Description = styled.p`
   font-size: 1.3rem;
   padding: 0 0 0 1rem;
+  margin: 2rem 0 0 0;
 
   color: #adb5bd;
 
