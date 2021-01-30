@@ -106,6 +106,7 @@ const ChapterList = styled.ol`
 
 const ChapterItem = styled.li`
   margin-bottom: 1rem;
+  color: #adb5bd;
 `;
 
 const StyledCanvas = styled(Canvas)`
