@@ -6,8 +6,6 @@ import palette from "../palette";
 import MainSphere from "../components/MainSphere";
 import GradientText from "../components/GradientText";
 
-import { animated, useSpring } from "react-spring";
-
 const Container = styled.section`
   height: 100vh;
 
@@ -55,7 +53,7 @@ const MainText = styled.h1`
   font-weight: 400;
   font-size: 4rem;
 
-  animation: 0.9s ease-out 0s 1 ${TextAppear("-70px")};
+  animation: 0.7s ease-out 0s 1 ${TextAppear("-50px")};
 
   mark {
     font-weight: 500;
@@ -81,7 +79,7 @@ const SubText = styled.p`
   font-weight: 300;
 
   color: ${palette.grayText};
-  animation: 1.5s ease-out 0s 1 ${TextAppear("50px")};
+  animation: 1.2s ease-out 0s 1 ${TextAppear("40px")};
 
   @media screen and (max-width: 1200px) {
     font-size: 1.2rem;
