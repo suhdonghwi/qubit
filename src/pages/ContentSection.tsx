@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 import MenuBox from "../components/MenuBox";
 
 const Container = styled.section`
-  padding: 2rem 0 12rem 0;
+  padding: 4rem 0 12rem 0;
 
   @media screen and (max-width: 1100px) {
     padding-bottom: 7rem;
