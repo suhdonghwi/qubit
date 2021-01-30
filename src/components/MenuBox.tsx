@@ -173,16 +173,14 @@ export default function MenuBox({
       <Heading>
         <Number>0{num}</Number>
         <Title>{title}</Title>
-        <Description>
-          {description}
-        </Description>
+        <Description>{description}</Description>
       </Heading>
 
       <StartButton>시작하기</StartButton>
 
       <ChapterList>
-        {chapters.map((chapter) => (
-          <ChapterItem>{chapter}</ChapterItem>
+        {chapters.map((chapter, i) => (
+          <ChapterItem key={i}>{chapter}</ChapterItem>
         ))}
       </ChapterList>
 
