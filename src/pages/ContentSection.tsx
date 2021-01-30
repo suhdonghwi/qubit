@@ -30,6 +30,14 @@ const MenuContainer = styled.div`
 
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 900px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 550px) {
+    width: 90%;
+  }
 `;
 
 export default function ContentSection() {
