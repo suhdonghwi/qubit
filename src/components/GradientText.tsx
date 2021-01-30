@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 import palette from "../palette";
 
 const Text = styled.mark`
-  background-image: ${palette.quantumGradient};
+  background: ${palette.quantumGradient};
 
   -webkit-text-fill-color: transparent;
   color: transparent;
@@ -14,4 +14,3 @@ const Text = styled.mark`
 `;
 
 export default Text;
-
