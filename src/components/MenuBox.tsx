@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Canvas } from "react-three-fiber";
 import { OrthographicCamera } from "@react-three/drei";
 
-import QuantumComputerGraphic from "./graphics/basics/QuantumComputerGraphic";
+import QuantumComputerGraphic from "./graphics/1/QuantumComputerGraphic";
 
 const Box = styled.article`
   position: relative;

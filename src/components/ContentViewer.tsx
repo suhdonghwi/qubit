@@ -38,7 +38,7 @@ const TextSection = styled(Section)`
 `;
 
 const TextContainer = styled.div`
-  padding: 2.5rem 2.5rem 20vh 2.5rem;
+  padding: 2.5rem 2.5rem 2.5rem 2.5rem;
 
   ${mobileQuery} {
     padding: 2.5rem 1.5rem 10vh 1.5rem;

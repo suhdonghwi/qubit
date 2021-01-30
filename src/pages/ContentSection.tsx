@@ -48,10 +48,7 @@ export default function ContentSection() {
           num={1}
           title="양자역학의 기초"
           description="양자역학이 어떤 학문인지, 어떤 계기로 탄생하게 된 학문인지 알아봅니다.  그리고 양자 컴퓨터를 이해하기 위해서 필요한 최소한의 양자역학 개념들에 대해서 다룹니다."
-          chapters={[
-            "양자역학의 등",
-            "양자 중첩과 양자 얽힘",
-          ]}
+          chapters={["양자역학의 등장", "양자 중첩과 양자 얽힘"]}
         />
       </MenuContainer>
     </Container>

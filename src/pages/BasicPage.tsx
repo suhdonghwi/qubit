@@ -5,15 +5,15 @@ import ContentBuilder from "../types/ContentBuilder";
 
 import StartFlag from "../components/graphics/StartFlag";
 
-import SubatomicGraphic from "../components/graphics/basics/SubatomicGraphic";
-import QuantumComputerGraphic from "../components/graphics/basics/QuantumComputerGraphic";
+import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
+import QuantumComputerGraphic from "../components/graphics/1/QuantumComputerGraphic";
 
-import ParticleGraphic from "../components/graphics/basics/slits/ParticleGraphic";
-import SingleWaveGraphic from "../components/graphics/basics/slits/SingleWaveGraphic";
-import DoubleWaveGraphic from "../components/graphics/basics/slits/DoubleWaveGraphic";
-import ElectronGraphic from "../components/graphics/basics/slits/ElectronGraphic";
-import ElectronSlitsGraphic from "../components/graphics/basics/slits/ElectronSlitsGraphic";
-import ElectronObserveGraphic from "../components/graphics/basics/slits/ElectronObserveGraphic";
+import ParticleGraphic from "../components/graphics/1/slits/ParticleGraphic";
+import SingleWaveGraphic from "../components/graphics/1/slits/SingleWaveGraphic";
+import DoubleWaveGraphic from "../components/graphics/1/slits/DoubleWaveGraphic";
+import ElectronGraphic from "../components/graphics/1/slits/ElectronGraphic";
+import ElectronSlitsGraphic from "../components/graphics/1/slits/ElectronSlitsGraphic";
+import ElectronObserveGraphic from "../components/graphics/1/slits/ElectronObserveGraphic";
 
 const builder = new ContentBuilder();
 
