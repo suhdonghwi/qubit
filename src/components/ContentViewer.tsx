@@ -32,7 +32,7 @@ const Section = styled.section`
 `;
 
 const TextSection = styled(Section)`
-  background-color: #343a40;
+  background-color: #212529;
 
   overflow-y: scroll;
 `;
