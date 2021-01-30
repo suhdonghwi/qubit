@@ -96,6 +96,7 @@ export default function ParticleGraphic({
           new THREE.Vector3(3, -3, -4.25),
           new THREE.Vector3(4, -3.2, -4.25),
         ]}
+        color="#1864ab"
         {...curveSpring}
       />
 
