@@ -137,7 +137,19 @@ const StyledCanvas = styled(Canvas)`
   }
 `;
 
-export default function MenuBox() {
+interface MenuBoxProps {
+  num: number;
+  title: string;
+  description: string;
+  chapters: string[];
+}
+
+export default function MenuBox({
+  num,
+  title,
+  description,
+  chapters,
+}: MenuBoxProps) {
   const [zoom, setZoom] = useState(0);
 
   const onResize = () => {
@@ -159,20 +171,19 @@ export default function MenuBox() {
   return (
     <Box>
       <Heading>
-        <Number>01</Number>
-        <Title>양자역학의 기초</Title>
+        <Number>0{num}</Number>
+        <Title>{title}</Title>
         <Description>
-          양자역학이 어떤 학문인지, 어떤 계기로 탄생하게 된 학문인지 알아봅니다.
-          그리고 양자 컴퓨터를 이해하기 위해서 필요한 최소한의 양자역학 개념들에
-          대해서 다룹니다.
+          {description}
         </Description>
       </Heading>
 
       <StartButton>시작하기</StartButton>
 
       <ChapterList>
-        <ChapterItem>양자역학의 시작과 이중 슬릿 실험</ChapterItem>
-        <ChapterItem>양자 중첩과 양자 얽힘</ChapterItem>
+        {chapters.map((chapter) => (
+          <ChapterItem>{chapter}</ChapterItem>
+        ))}
       </ChapterList>
 
       <StyledCanvas shadowMap>
