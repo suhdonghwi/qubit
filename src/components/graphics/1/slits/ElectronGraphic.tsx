@@ -1,19 +1,9 @@
-import { animated, useSpring } from "@react-spring/three";
 import { Text } from "@react-three/drei";
 
 import Plane from "../../Plane";
+import FloatingElectron from "../../FloatingElectron";
 
 export default function ElectronGraphic() {
-  const electronSpring = useSpring<{ position: any }>({
-    from: { position: [0, -0.3, 0] },
-    to: async (next) => {
-      while (1) {
-        await next({ position: [0, -0.7, 0] });
-        await next({ position: [0, -0.2, 0] });
-      }
-    },
-  });
-
   return (
     <>
       <Text
@@ -26,11 +16,7 @@ export default function ElectronGraphic() {
         Electron!
       </Text>
 
-      <animated.mesh castShadow {...electronSpring}>
-        <sphereBufferGeometry args={[0.2, 64, 64]} />
-        <meshLambertMaterial color="#228be6" />
-      </animated.mesh>
-
+      <FloatingElectron />
       <Plane />
     </>
   );

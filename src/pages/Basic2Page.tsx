@@ -6,6 +6,7 @@ import ContentBuilder from "../types/ContentBuilder";
 import StartFlag from "../components/graphics/StartFlag";
 
 import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
+import WaveParticleGraphic from "../components/graphics/2/WaveParticleGraphic";
 
 const builder = new ContentBuilder();
 
@@ -19,7 +20,7 @@ Stop telling God what to do with his dice.
 신이 주사위 가지고 뭘 하든 상관하지 말라.
 
 ― Niels Bohr (닐스 보어)
-`.paragraph(SubatomicGraphic)`
+`.paragraph(WaveParticleGraphic)`
 앞 페이지에서 보셨듯, 전자를 비롯한 양자 물질들은 어떨 때는 입자처럼 행동하다가 어떤 때는 파동처럼 행동했습니다. 이런 성질을 일컬어서 '파동-입자 이중성' 이라고 합니다. 사실 이 성질은 클라우스 존슨이 전자로 이중 슬릿 실험을 하기 한참 전에 규명된 사실입니다. 클라우스 존슨은 실험적인 결과를 내놓은 것입니다. 심지어 전자, 광자 뿐만 아니라 모든 물질이 파동의 성질을 조금이나마 가지고 있다는 것 또한 밝혀졌습니다.
 
 그리고 이런 이론을 기반으로 한 양자역학은 미시 세계의 현상을 거의 완벽에 가깝게 예측해냈습니다. 현실을 수학적, 물리적으로 계산해내는 데에 성공한 것입니다.
