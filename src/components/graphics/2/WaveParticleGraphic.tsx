@@ -1,11 +1,26 @@
 import { Text } from "@react-three/drei";
+import { animated, useSpring } from "@react-spring/three";
 
 import Plane from "../Plane";
 import FloatingElectron from "../FloatingElectron";
+import { GraphicContentProps } from "types/Scene";
 
-export default function WaveParticleGraphic() {
+export default function WaveParticleGraphic({
+  paragraphIndex,
+}: GraphicContentProps) {
+  const groupSpring = useSpring<{ rotation: any; position: any }>({
+    rotation: paragraphIndex > 0 ? [Math.PI, 0, 0] : [0, 0, 0],
+    position: paragraphIndex > 0 ? [0, -6, 0] : [0, 0, 0],
+  });
+
+  const soWhatSpring = useSpring<{ position: any }>({
+    position: paragraphIndex > 0 ? [0, -7, 0] : [0, -4, 0],
+  });
+
+  const AnimatedText = animated(Text);
+
   return (
-    <>
+    <animated.group {...groupSpring}>
       <Text
         color="white"
         fontSize={1}
@@ -26,8 +41,18 @@ export default function WaveParticleGraphic() {
         Particle!
       </Text>
 
+      <AnimatedText
+        color="white"
+        fontSize={1}
+        font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
+        rotation={[Math.PI, 0, 0]}
+        {...soWhatSpring}
+      >
+        So What?
+      </AnimatedText>
+
       <FloatingElectron />
       <Plane />
-    </>
+    </animated.group>
   );
 }
