@@ -13,9 +13,8 @@ interface GraphicsViewerProps {
 function Graphics({ graphics }: GraphicsViewerProps) {
   const { sceneIndex, paragraphIndex } = useViewerStore((state) => state);
 
-  const currentPos = [-sceneIndex * 17, 0, 0];
   const groupSpring = useSpring<{ position: any }>({
-    position: currentPos,
+    position: [-sceneIndex * 17, 0, 0],
   });
 
   const [prev, setPrev] = useState<JSX.Element[] | null>(null);

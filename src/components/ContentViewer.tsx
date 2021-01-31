@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 import Scene from "../types/Scene";
 import GraphicsViewer from "./GraphicsViewer";
 import useViewerStore from "../stores/ViewerStore";
+import Quote from "../types/Quote";
 
 import palette from "../palette";
 
@@ -38,10 +39,11 @@ const TextSection = styled(Section)`
 `;
 
 const TextContainer = styled.div`
-  padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+  height: 100%;
+  padding: 0 2.5rem 0 2.5rem;
 
   ${mobileQuery} {
-    padding: 2.5rem 1.5rem 10vh 1.5rem;
+    padding: 0 1.5rem 0 1.5rem;
   }
 `;
 
@@ -55,8 +57,13 @@ const GraphicSection = styled(Section)`
   justify-content: center;
 `;
 
-const HeadBox = styled.div`
-  margin-bottom: 25%;
+const Cover = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
 `;
 
 const Title = styled.h1`
@@ -72,13 +79,40 @@ const Title = styled.h1`
 const Description = styled.p`
   font-size: 1.3rem;
   padding: 0 0 0 1rem;
-  margin: 2rem 0 0 0;
+  margin: 2rem 0 5rem 0;
 
   color: #adb5bd;
 
   ${mobileQuery} {
     font-size: 1.1rem;
   }
+`;
+
+const Blockquote = styled.blockquote`
+  position: relative;
+  font-family: "Nanum Myeongjo", serif;
+  font-style: italic;
+
+  word-break: keep-all;
+
+  font-size: 1.2rem;
+  line-height: 2.2rem;
+
+  small {
+    font-size: 1rem;
+    color: #adb5bd;
+  }
+
+  &:before {
+    display: block;
+    content: "“";
+    position: absolute;
+    font-size: 4rem;
+
+    color: #868e96;
+    left: -60px;
+  }
+
 `;
 
 const Block = styled.div`
@@ -98,30 +132,15 @@ const Block = styled.div`
     margin-bottom: 100px;
   }
 
-  blockquote {
-    font-style: italic;
-
-    padding: 2rem 0 2rem 2rem;
-    border-left: 5px solid #868e96;
-
-    transition: all 0.5s;
-
-    margin: 0 0 0 1rem;
-  }
-
   &.current {
     color: ${palette.whiteText};
-
-    blockquote {
-      border-color: ${palette.whiteText};
-      color: ${palette.whiteText};
-    }
   }
 `;
 
 interface ContentViewerProps {
   title: string;
   description: string;
+  quote: Quote;
 
   scenes: Scene[];
 }
@@ -130,6 +149,7 @@ export default function ContentViewer({
   title,
   description,
   scenes,
+  quote,
 }: ContentViewerProps) {
   const setIndex = useViewerStore((state) => state.setIndex);
   const graphics = useMemo(() => scenes.map((c) => c.graphicContent), [scenes]);
@@ -145,10 +165,18 @@ export default function ContentViewer({
     <Container>
       <TextSection ref={textSectionRef}>
         <TextContainer>
-          <HeadBox>
+          <Cover>
             <Title>{title}</Title>
             <Description>{description}</Description>
-          </HeadBox>
+            <Blockquote>
+              {quote.eng}
+              <br />
+              {quote.kor}
+              <br />
+              <br />
+              <small>― {quote.by}</small>
+            </Blockquote>
+          </Cover>
 
           {scenes.map((scene, sIndex) =>
             scene.textContent.map((paragraph, pIndex) => (
@@ -156,7 +184,10 @@ export default function ContentViewer({
                 key={sIndex * 10 + pIndex}
                 root={textSectionRef.current}
                 rootMargin="-40% 0%"
-                onChange={(inView) => inView && setIndex(sIndex, pIndex)}
+                onChange={(inView) => {
+                  console.log(inView);
+                  return inView && setIndex(sIndex, pIndex);
+                }}
               >
                 {({ inView, ref }) => (
                   <Block ref={ref} className={inView ? "current" : ""}>

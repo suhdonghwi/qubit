@@ -29,29 +29,6 @@ export default class ContentBuilder {
     };
   }
 
-  public quote(graphicContent: GraphicContent) {
-    return (textContent: TemplateStringsArray) => {
-      this.result.push({
-        textContent: [
-          <blockquote>
-            {textContent[0]
-              .trim()
-              .split("\n")
-              .map((t, i) => (
-                <React.Fragment key={i}>
-                  {t}
-                  <br />
-                </React.Fragment>
-              ))}
-          </blockquote>,
-        ],
-        graphicContent,
-      });
-
-      return this;
-    };
-  }
-
   public build() {
     return this.result;
   }

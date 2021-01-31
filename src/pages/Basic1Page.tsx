@@ -17,12 +17,7 @@ import ElectronObserveGraphic from "../components/graphics/1/slits/ElectronObser
 
 const builder = new ContentBuilder();
 
-builder.quote(StartFlag)`
-I think I can safely say that nobody understands Quantum Mechanics.
-양자역학을 완벽히 이해한 사람은 아무도 없다고 자신있게 말할 수 있습니다.
-
-― Richard Feynmann (리처드 파인만)
-`.paragraph(QuantumComputerGraphic)`
+builder.paragraph(QuantumComputerGraphic)`
 여러분은 양자 컴퓨터에 대해서 들어보신 적이 있나요? 양자 컴퓨터는, 양자역학의 이론을 사용하여 고안된 새로운 종류의 컴퓨터입니다. 양자역학 자체의 비직관적성 때문인지는 몰라도, 세간에는 양자역학과 양자 컴퓨터에 대한 오해가 많이 퍼져있습니다. 이 웹사이트의 목적은 최소한의 양자역학 기본 지식과 함께 양자 컴퓨터의 동작 원리를 비교적 쉽게 설명해드리는 데에 있습니다.
 
 양자 컴퓨터를 이해하기 위해서는 양자역학에 대해서 어느정도 이해를 하고 있어야겠죠? 그럼 우선, 기본부터 알아가보도록 하겠습니다.
@@ -79,6 +74,13 @@ export default function Basic1Page() {
     <ContentViewer
       title="1. 양자역학의 등장"
       description="양자 컴퓨터를 이해하기 위해서, 먼저 양자 컴퓨터의 이론적 기반인 양자역학에 대해 조금씩 알아가보도록 합시다. 양자역학은 어떤 학문일까? 양자역학은 무엇을 계기로 등장하였을까? 이 페이지를 읽으시면, 이 질문들에 답하실 수 있게 될 것입니다."
+      quote={{
+        eng:
+          "I think I can safely say that nobody understands Quantum Mechanics.",
+        kor:
+          "양자역학을 완벽히 이해한 사람은 아무도 없다고 자신있게 말할 수 있습니다.",
+        by: "Richard Feynmann (리처드 파인만)",
+      }}
       scenes={builder.build()}
     />
   );
