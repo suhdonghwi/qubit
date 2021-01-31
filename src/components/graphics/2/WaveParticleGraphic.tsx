@@ -48,7 +48,7 @@ export default function WaveParticleGraphic({
         rotation={[Math.PI, 0, 0]}
         {...soWhatSpring}
       >
-        So What?
+        ...So What?
       </AnimatedText>
 
       <FloatingElectron />

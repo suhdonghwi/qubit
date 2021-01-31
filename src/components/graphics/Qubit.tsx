@@ -1,9 +1,8 @@
-import { MeshProps } from "react-three-fiber";
+import { MeshProps, useFrame } from "react-three-fiber";
+import { perlin3 } from "./perlin.js";
+import * as THREE from "three";
 
 import { animated, useSpring } from "@react-spring/three";
-import interpolate from "color-interpolate";
-
-import WobblySphere from "./WobblySphere";
 
 interface QubitProps {
   oneProbability: number;
@@ -15,15 +14,49 @@ export default function Qubit({
   size,
   ...props
 }: QubitProps & MeshProps) {
-  const colormap = interpolate(["#339af0", "#f06595"]),
-    unstability = -2 * Math.abs(oneProbability - 0.5) + 1;
-  const { factor, color } = useSpring({
-    factor: unstability * 0.2,
-    color: colormap(oneProbability),
+  const unstability = -2 * Math.abs(oneProbability - 0.5) + 1;
+  const { factor } = useSpring({
+    factor: unstability * 0.4,
   });
-  const AnimatedSphere = animated(WobblySphere);
+
+  const sphereSpring = useSpring({
+    config: {
+      tension: 100,
+    },
+    from: { color: "#339af0" },
+    to: async (next) => {
+      while (1) {
+        await next({
+          color: "#339af0",
+        });
+        await next({
+          color: "#f06595",
+        });
+      }
+    },
+  });
+
+  const geometry = new THREE.SphereGeometry(0.1, 64, 64);
+
+  useFrame(() => {
+    const time = performance.now() * 0.001,
+      k = 1;
+
+    for (let i = 0; i < geometry.vertices.length; i++) {
+      const p = geometry.vertices[i];
+      p.normalize().multiplyScalar(
+        size + factor.get() * perlin3(p.x * k + time, p.y * k, p.z * k)
+      );
+    }
+
+    geometry.verticesNeedUpdate = true; //must be set or vertices will not update
+  });
 
   return (
-    <AnimatedSphere size={size} factor={factor} color={color} {...props} />
+    <>
+      <mesh geometry={geometry} {...props} castShadow>
+        <animated.meshLambertMaterial {...sphereSpring} />
+      </mesh>
+    </>
   );
 }

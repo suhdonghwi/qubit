@@ -29,8 +29,7 @@ function Graphics({ graphics }: GraphicsViewerProps) {
       setPrev(r);
       return r;
     }
-    // eslint-disable-next-line
-  }, [graphics, paragraphIndex]);
+  }, [graphics, paragraphIndex, prev, sceneIndex]);
 
   return (
     <animated.group {...groupSpring}>

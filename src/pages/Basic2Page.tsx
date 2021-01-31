@@ -7,6 +7,7 @@ import StartFlag from "../components/graphics/StartFlag";
 
 import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import WaveParticleGraphic from "../components/graphics/2/WaveParticleGraphic";
+import SuperpositionGraphic from "../components/graphics/2/SuperpositionGraphic";
 
 const builder = new ContentBuilder();
 
@@ -30,7 +31,7 @@ Stop telling God what to do with his dice.
 예를들어, 우리가 뉴턴의 F = ma 라는 공식에 대해서는 F는 힘이고, m은 질량, a는 가속도라는 것을 알고 있습니다. 그리고 각각은 물리학에서 명료하게 정의된 개념입니다.
 
 하지만 양자역학에서 사용되는 공식은, '결과값은 정확하게 나오지만 중간에 튀어나오는 값들이 대체 무엇을 의미하는 값인지' 모르는 상태라는 것입니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(SuperpositionGraphic)`
 그래서 과학자들은 양자역학을 현실의 관점에서 해석하는 다양한 방식을 제시하였고, 그 중 현재 가장 널리 받아들여지는 것이 바로 '코펜하겐 해석'입니다. 코펜하겐 해석에 따르면, 전자 이중 슬릿 실험은 다음과 같이 해석됩니다.
 
 "전자는 관측되기 전까지 확률적으로 존재 가능한 모든 위치에 동시에 존재하며, 관측되는 순간 하나의 위치로 결정된다."
