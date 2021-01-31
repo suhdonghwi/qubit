@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useMemo, useRef } from "react";
 
 import { animated, useSpring } from "@react-spring/three";
 
@@ -17,17 +17,13 @@ function Graphics({ graphics }: GraphicsViewerProps) {
     position: [-sceneIndex * 17, 0, 0],
   });
 
-  const rendered = useRef<JSX.Element[] | null>(
+  const rendered = useRef<JSX.Element[]>(
     graphics.map((G) => <G paragraphIndex={paragraphIndex} />)
   );
 
-  useEffect(() => {
-    if (rendered.current !== null) {
-      const Graphic = graphics[sceneIndex];
-      rendered.current[sceneIndex] = (
-        <Graphic paragraphIndex={paragraphIndex} />
-      );
-    }
+  useMemo(() => {
+    const Graphic = graphics[sceneIndex];
+    rendered.current[sceneIndex] = <Graphic paragraphIndex={paragraphIndex} />;
   }, [graphics, paragraphIndex, sceneIndex]);
 
   return (

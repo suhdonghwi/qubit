@@ -3,8 +3,6 @@ import ContentViewer from "../components/ContentViewer";
 
 import ContentBuilder from "../types/ContentBuilder";
 
-import StartFlag from "../components/graphics/StartFlag";
-
 import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import WaveParticleGraphic from "../components/graphics/2/WaveParticleGraphic";
 import SuperpositionGraphic from "../components/graphics/2/SuperpositionGraphic";
