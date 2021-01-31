@@ -73,7 +73,7 @@ export default function Basic1Page() {
   return (
     <ContentViewer
       title="1. 양자역학의 등장"
-      description="양자 컴퓨터를 이해하기 위해서, 먼저 양자 컴퓨터의 이론적 기반인 양자역학에 대해 조금씩 알아가보도록 합시다. 양자역학은 어떤 학문일까? 양자역학은 무엇을 계기로 등장하였을까? 이 페이지를 읽으시면, 이 질문들에 답하실 수 있게 될 것입니다."
+      description="양자역학은 무슨 학문일까? 양자역학은 무엇을 계기로 등장했을까? 양자 컴퓨터의 이론적 기반인 양자역학에 대해 조금씩 알아가보도록 합시다."
       quote={{
         eng:
           "I think I can safely say that nobody understands Quantum Mechanics.",

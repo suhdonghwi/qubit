@@ -10,8 +10,15 @@ import palette from "../palette";
 
 import { InView } from "react-intersection-observer";
 
-const mobileQuery =
-  "@media screen and (orientation: portrait) and (max-width: 520px), screen and (orientation: landscape) and (max-width: 1040px)";
+const maxWidth = (x: number) =>
+  `@media screen and (orientation: portrait) and (max-width: ${x}px), screen and (orientation: landscape) and (max-width: ${
+    x * 2
+  }px)`;
+
+const maxHeight = (x: number) =>
+  `@media screen and (orientation: portrait) and (max-height: ${
+    x * 2
+  }px), screen and (orientation: landscape) and (max-height: ${x}px)`;
 
 const Container = styled.main`
   height: 100vh;
@@ -42,7 +49,7 @@ const TextContainer = styled.div`
   height: 100%;
   padding: 0 2.5rem 0 2.5rem;
 
-  ${mobileQuery} {
+  ${maxWidth(520)} {
     padding: 0 1.5rem 0 1.5rem;
   }
 `;
@@ -58,33 +65,48 @@ const GraphicSection = styled(Section)`
 `;
 
 const Cover = styled.div`
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 
   align-items: center;
   justify-content: center;
+
+  ${maxHeight(550)} {
+    margin: 3rem 0 4rem 0;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 3rem;
   margin: 0;
-  word-break: keep-all;
 
-  ${mobileQuery} {
+  width: 100%;
+  word-break: keep-all;
+  text-align: center;
+
+  ${maxWidth(520)} {
     font-size: 2.3rem;
   }
 `;
 
 const Description = styled.p`
   font-size: 1.3rem;
-  padding: 0 0 0 1rem;
-  margin: 2rem 0 5rem 0;
+  margin: 2rem 0 0 0;
 
   color: #adb5bd;
+  width: 80%;
 
-  ${mobileQuery} {
+  ${maxWidth(520)} {
     font-size: 1.1rem;
+  }
+
+  ${maxWidth(1000)} {
+    width: 90%;
+  }
+
+  ${maxWidth(700)} {
+    width: 100%;
   }
 `;
 
@@ -93,10 +115,9 @@ const Blockquote = styled.blockquote`
   font-family: "Nanum Myeongjo", serif;
   font-style: italic;
 
-  word-break: keep-all;
-
   font-size: 1.2rem;
   line-height: 2.2rem;
+  margin: 7rem 0 0 0;
 
   small {
     font-size: 1rem;
@@ -110,7 +131,24 @@ const Blockquote = styled.blockquote`
     font-size: 4rem;
 
     color: #868e96;
-    left: -60px;
+    left: -40px;
+    top: -20px;
+
+    ${maxWidth(700)} {
+      left: -30px;
+    }
+
+    ${maxWidth(520)} {
+      left: -20px;
+    }
+  }
+
+  ${maxWidth(520)} {
+    font-size: 1rem;
+
+    small {
+      font-size: 0.8rem;
+    }
   }
 
 `;
@@ -119,7 +157,7 @@ const Block = styled.div`
   overflow: auto;
   margin-bottom: 130px;
 
-  ${mobileQuery} {
+  ${maxWidth(520)} {
     margin-bottom: 100px;
   }
 
@@ -127,7 +165,7 @@ const Block = styled.div`
   font-size: 1.3rem;
   transition: all 0.5s;
 
-  ${mobileQuery} {
+  ${maxWidth(520)} {
     font-size: 1.1rem;
     margin-bottom: 100px;
   }
