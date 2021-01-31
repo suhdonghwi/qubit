@@ -16,8 +16,8 @@ export default function StartFlag() {
         <meshLambertMaterial color="#868e96" />
       </mesh>
 
-      {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-        <mesh key={n} position={[n, -3, n]}>
+      {[1, 2, 3, 4].map((n) => (
+        <mesh key={n} position={[n*1.5, -3, n*1.5]}>
           <cylinderBufferGeometry args={[0.15, 0.15, 0.03, 32]} />
           <meshLambertMaterial color="#868e96" />
         </mesh>
