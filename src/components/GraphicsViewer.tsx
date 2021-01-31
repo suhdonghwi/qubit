@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { animated, useSpring } from "@react-spring/three";
 
@@ -17,26 +17,31 @@ function Graphics({ graphics }: GraphicsViewerProps) {
     position: [-sceneIndex * 17, 0, 0],
   });
 
-  const [prev, setPrev] = useState<JSX.Element[] | null>(null);
-  const renderedGraphics: JSX.Element[] = useMemo<JSX.Element[]>(() => {
-    if (prev !== null) {
-      const G = graphics[sceneIndex];
-      prev[sceneIndex] = <G paragraphIndex={paragraphIndex} />;
-      return prev;
-    } else {
-      const r = graphics.map((G) => <G paragraphIndex={paragraphIndex} />);
-      setPrev(r);
-      return r;
+  const rendered = useRef<JSX.Element[] | null>(
+    graphics.map((G) => <G paragraphIndex={paragraphIndex} />)
+  );
+
+  useEffect(() => {
+    if (rendered.current !== null) {
+      const Graphic = graphics[sceneIndex];
+      rendered.current[sceneIndex] = (
+        <Graphic paragraphIndex={paragraphIndex} />
+      );
     }
-  }, [graphics, paragraphIndex, prev, sceneIndex]);
+  }, [graphics, paragraphIndex, sceneIndex]);
 
   return (
     <animated.group {...groupSpring}>
-      {renderedGraphics.map((content, i) => (
-        <group key={i} position={[i * 17, 0, 0]} rotation={[0, Math.PI / 4, 0]}>
-          {content}
-        </group>
-      ))}
+      {rendered.current &&
+        rendered.current.map((content, i) => (
+          <group
+            key={i}
+            position={[i * 17, 0, 0]}
+            rotation={[0, Math.PI / 4, 0]}
+          >
+            {content}
+          </group>
+        ))}
     </animated.group>
   );
 }

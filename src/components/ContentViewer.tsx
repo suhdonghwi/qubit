@@ -1,11 +1,12 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
 import styled from "styled-components/macro";
 
-import Scene from "../types/Scene";
+import Scene, { GraphicContent } from "../types/Scene";
 import GraphicsViewer from "./GraphicsViewer";
 import useViewerStore from "../stores/ViewerStore";
 import Quote from "../types/Quote";
 
+import StartFlag from "./graphics/StartFlag";
 import palette from "../palette";
 
 import { InView } from "react-intersection-observer";
@@ -150,7 +151,6 @@ const Blockquote = styled.blockquote`
       font-size: 0.8rem;
     }
   }
-
 `;
 
 const Block = styled.div`
@@ -190,7 +190,11 @@ export default function ContentViewer({
   quote,
 }: ContentViewerProps) {
   const setIndex = useViewerStore((state) => state.setIndex);
-  const graphics = useMemo(() => scenes.map((c) => c.graphicContent), [scenes]);
+  const graphics = useMemo(
+    () =>
+      [StartFlag as GraphicContent].concat(scenes.map((c) => c.graphicContent)),
+    [scenes]
+  );
 
   const textSectionRef = useRef<HTMLElement | null>(null);
 
@@ -206,14 +210,20 @@ export default function ContentViewer({
           <Cover>
             <Title>{title}</Title>
             <Description>{description}</Description>
-            <Blockquote>
-              {quote.eng}
-              <br />
-              {quote.kor}
-              <br />
-              <br />
-              <small>― {quote.by}</small>
-            </Blockquote>
+            <InView
+              root={textSectionRef.current}
+              rootMargin="-40% 0%"
+              onChange={(inView) => inView && setIndex(0, 0)}
+            >
+              <Blockquote>
+                {quote.eng}
+                <br />
+                {quote.kor}
+                <br />
+                <br />
+                <small>― {quote.by}</small>
+              </Blockquote>
+            </InView>
           </Cover>
 
           {scenes.map((scene, sIndex) =>
@@ -222,10 +232,7 @@ export default function ContentViewer({
                 key={sIndex * 10 + pIndex}
                 root={textSectionRef.current}
                 rootMargin="-40% 0%"
-                onChange={(inView) => {
-                  console.log(inView);
-                  return inView && setIndex(sIndex, pIndex);
-                }}
+                onChange={(inView) => inView && setIndex(sIndex + 1, pIndex)}
               >
                 {({ inView, ref }) => (
                   <Block ref={ref} className={inView ? "current" : ""}>
