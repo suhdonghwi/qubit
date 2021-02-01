@@ -170,6 +170,11 @@ const Block = styled.div`
     margin-bottom: 100px;
   }
 
+  cite {
+    color: #868e96;
+    font-size: 1rem;
+  }
+
   &.current {
     color: ${palette.whiteText};
   }

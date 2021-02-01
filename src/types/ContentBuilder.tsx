@@ -10,7 +10,7 @@ export default class ContentBuilder {
     this.result = [];
   }
 
-  public paragraph(graphicContent: GraphicContent) {
+  public paragraph(graphicContent: GraphicContent, citation?: string) {
     return (textContent: TemplateStringsArray) => {
       const blocks = textContent[0].split("---").map((s) => s.trim());
 
@@ -20,6 +20,7 @@ export default class ContentBuilder {
             {b.split("\n\n").map((t, i) => (
               <p key={i}>{t}</p>
             ))}
+            {citation && <cite>{citation}</cite>}
           </React.Fragment>
         )),
         graphicContent,

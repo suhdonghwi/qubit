@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { MeshProps, useFrame } from "react-three-fiber";
 import { perlin3 } from "./perlin.js";
 import * as THREE from "three";
@@ -36,7 +37,7 @@ export default function Qubit({
     },
   });
 
-  const geometry = new THREE.SphereGeometry(0.1, 64, 64);
+  const geometry = useMemo(() => new THREE.SphereGeometry(0.1, 64, 64), []);
 
   useFrame(() => {
     const time = performance.now() * 0.001,
