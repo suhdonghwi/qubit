@@ -9,6 +9,7 @@ import SuperpositionGraphic from "../components/graphics/2/SuperpositionGraphic"
 import WaveFunctionGraphic from "../components/graphics/2/WaveFunctionGraphic";
 import DiceGraphic from "../components/graphics/2/DiceGraphic";
 import MeasureGraphic from "../components/graphics/2/MeasureGraphic";
+import EntanglementGraphic from "../components/graphics/2/EntanglementGraphic";
 
 const builder = new ContentBuilder();
 
@@ -46,7 +47,7 @@ builder.paragraph(WaveParticleGraphic)`
 화면에서 버튼을 눌러서 한 번 확인해보세요. 관측을 하기 전 우글우글 거리는 것은 빨간색인 상태와 파란색인 상태가 중첩되어있음을 나타낸 것이고, 버튼을 눌러 관측하면 두 상태 중 하나로 결정되게 됩니다.
 
 이 양자 중첩은 양자역학의 굉장히 기본적인 원리이고, 양자 컴퓨터의 원리를 설명할 때도 중요한 역할을 하니 잘 알아두셨으면 좋겠습니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(EntanglementGraphic)`
 양자 중첩 외에도 굉장히 중요한 성질이 하나 더 있습니다. 바로 양자 얽힘(Quantum entanglement)입니다. 양자 얽힘은 말 그대로 양자 물질들이 서로 얽혀있는 현상인데요, 과연 얽혀있다는게 무슨 의미일까요?
 
 여기에 두 개의 양자 물질이 있습니다. 이 양자 물질들은 빨간색이거나 파란색인 상태를 가질 수 있지만, 현재는 두 상태가 동시에 중첩되어있습니다.
