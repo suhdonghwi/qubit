@@ -51,11 +51,10 @@ const TextSection = styled(Section)`
 `;
 
 const TextContainer = styled.div`
-  height: 100%;
-  padding: 0 2.5rem 0 2.5rem;
+  padding: 0 2.5rem 30% 2.5rem;
 
   ${maxWidth(520)} {
-    padding: 0 1.5rem 0 1.5rem;
+    padding: 0 1.5rem 30% 1.5rem;
   }
 `;
 
@@ -70,15 +69,21 @@ const GraphicSection = styled(Section)`
 `;
 
 const Cover = styled.div`
-  min-height: 100%;
   display: flex;
   flex-direction: column;
 
   align-items: center;
   justify-content: center;
 
+  height: 100vh;
+
+  @media screen and (orientation: portrait) {
+    height: 50vh;
+  }
+
   ${maxHeight(550)} {
     margin: 3rem 0 4rem 0;
+    height: auto;
   }
 `;
 
