@@ -7,6 +7,7 @@ import { Canvas } from "react-three-fiber";
 
 const StyledCanvas = styled(Canvas)`
   position: absolute !important;
+  height: calc(100vh + 150px) !important;
   top: 0 !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
