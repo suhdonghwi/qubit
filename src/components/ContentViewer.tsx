@@ -11,6 +11,7 @@ import { FaChevronDown } from "react-icons/fa";
 import palette from "../palette";
 
 import toc from "toc.json";
+import NextPrev from "./NextPrev";
 
 import { InView } from "react-intersection-observer";
 
@@ -47,14 +48,16 @@ const TextSection = styled(Section)`
   position: relative;
   background-color: #212529;
 
+  padding-bottom: 3rem;
+
   overflow-y: scroll;
 `;
 
 const TextContainer = styled.div`
-  padding: 0 2.5rem 30% 2.5rem;
+  padding: 0 2.5rem 20% 2.5rem;
 
   ${maxWidth(520)} {
-    padding: 0 1.5rem 30% 1.5rem;
+    padding: 0 1.5rem 20% 1.5rem;
   }
 `;
 
@@ -314,6 +317,7 @@ export default function ContentViewer({
             ))
           )}
         </TextContainer>
+        <NextPrev chapter={chapter} index={index} />
       </TextSection>
 
       <GraphicSection>
