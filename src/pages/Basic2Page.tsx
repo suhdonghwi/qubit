@@ -6,6 +6,8 @@ import ContentBuilder from "../types/ContentBuilder";
 import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import WaveParticleGraphic from "../components/graphics/2/WaveParticleGraphic";
 import SuperpositionGraphic from "../components/graphics/2/SuperpositionGraphic";
+import WaveFunctionGraphic from "../components/graphics/2/WaveFunctionGraphic";
+import DiceGraphic from "../components/graphics/2/DiceGraphic";
 
 const builder = new ContentBuilder();
 
@@ -25,7 +27,7 @@ builder.paragraph(WaveParticleGraphic)`
 "전자는 관측되기 전까지 확률적으로 존재 가능한 모든 위치에 동시에 존재하며, 관측되는 순간 하나의 위치로 결정된다."
 
 이런 현상을 양자 중첩(Quantum superposition)이라고 합니다. 동시에 여러 상태가 중첩되어 있다는 말입니다. 관측되지 않은 전자는 이쪽에 있을 확률, 저쪽에 있을 확률 등등이 중첩되어 있었기 때문에 서로 간섭하는 파동처럼 행동했고, 관측되는 순간 다른 곳에 존재할 확률이 없어지고 하나의 위치로 결정되었기 때문에 그 뒤로는 입자처럼 행동했다는 것입니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(WaveFunctionGraphic)`
 관측하기 전까지는 여러 상태가 중첩되어 있다가, 관측하는 순간 하나로 결정된다는 것이 무슨 의미일까요?
 
 입자의 상태에 관한 확률은 '파동 함수'로부터 얻어집니다. 화면에서 보시는 것은, 아직 관측이 안된 전자가 특정 위치에 존재할 확률을 나타낸 파동 함수(정확히는 파동 함수의 절댓값의 제곱)를 시각화한 것입니다. 보시다시피 중간 부분에 존재할 확률이 가장 높고, 중간에서 멀어질 수록 점점 확률이 작아집니다. 하지만 관측을 하는 순간..
@@ -33,10 +35,10 @@ builder.paragraph(WaveParticleGraphic)`
 이렇게 위치가 결정되면서 다른 위치에 존재할 확률은 0에 수렴하게 되고 파동 함수가 '붕괴'합니다.
 
 이는 마치, 여러분이 즉석 로또를 샀을 때 긁어보기 전에는 당첨되는 상태와 당첨되지 않는 상태가 중첩되어 있지만 긁는 순간 둘 중 하나로 결정되면서 다른 하나의 상태가 될 확률은 없어지는 것과 비슷합니다.
-`.paragraph(SubatomicGraphic)`
-이런 확률론적 해석은 초기에 일부 물리학자들의 반발을 샀습니다. 특히, 역사상 가장 위대한 과학자 중 한 명인 알버트 아인슈타인 또한 코펜하겐 해석을 완강하게 부인했습니다. "신은 주사위를 던지지 않는다."와 같은 명언을 남기면서 말이죠.
+`.paragraph(DiceGraphic)`
+이런 확률론적 해석은 초기에 일부 물리학자들의 반발을 샀습니다. 특히, 역사상 가장 위대한 과학자 중 한 명인 알버트 아인슈타인 또한 코펜하겐 해석을 완강하게 부인했습니다. "신은 주사위를 던지지 않는다."와 같은 명언을 남기면서 말이죠. 코펜하겐 해석의 대표 주자 중 한 명인 보어는 이에 대해서 "신이 주사위 가지고 뭘 하든 상관하지 말라."라며 강경하게 대응하기도 했습니다.
 
-하지만 학계에서는 대부분 코펜하겐 해석을 받아들이고 있고, 아인슈타인이 틀렸었음을 인정하고 있습니다. 그렇지만 코펜하겐 해석이 완벽하게 옳은 이론이라는 것은 아니며, 논란의 여지가 많은 것 또한 사실입니다. 
+현재 물리학계에서는 상당수의 과학자가 코펜하겐 해석을 받아들이고 있고, 아인슈타인이 틀렸었음을 인정하고 있습니다. 그렇지만 코펜하겐 해석이 완벽하게 옳은 이론이라는 것은 아니며, 논란의 여지가 많은 것 또한 사실입니다. 아직까지도 양자역학의 새로운 해석 방식이 끊임없이 연구되는 중입니다.
 `.paragraph(SubatomicGraphic)`
 정리하자면, 양자 중첩은 양자 물질이 관측되기 전까지 가능한 상태가 모두 확률적으로 중첩되어있는 상태를 일컫는 말입니다.
 
@@ -63,7 +65,7 @@ export default function Basic2Page() {
   return (
     <ContentViewer
       title="2. 양자 중첩과 양자 얽힘"
-      description="양자역학의"
+      description="코펜하겐 해석의 주요 내용이자 양자역학의 기본적 원리인 양자 중첩과 양자 얽힘에 대해서 알아봅니다."
       scenes={builder.build()}
       quote={{
         eng: "Stop telling God what to do with his dice.",
