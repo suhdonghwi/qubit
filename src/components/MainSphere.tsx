@@ -51,22 +51,22 @@ export default function MainSphere() {
     },
     to: async (next) => {
       await next({
-        boxPos: [-1.5, -2.5, 0],
-        torusPos: [-1.2, 2.5, 0],
-        cylinderPos: [1.5, -0.5, 0],
+        boxPos: [-1.5, -1.5, 0],
+        torusPos: [-1.2, 3, 0],
+        cylinderPos: [1.5, 0.5, 0],
       });
 
       while (1) {
         await next({
-          boxPos: [-1.5, -3 + Math.random(), 0],
-          torusPos: [-1.2, 2 + Math.random(), 0],
-          cylinderPos: [1.5, -1 + Math.random(), 0],
+          boxPos: [-1.5, -2 + Math.random(), 0],
+          torusPos: [-1.2, 2.5 + Math.random(), 0],
+          cylinderPos: [1.5, Math.random(), 0],
         });
 
         await next({
-          boxPos: [-1.5, -3 + Math.random(), 0],
-          torusPos: [-1.2, 2 + Math.random(), 0],
-          cylinderPos: [1.5, -1 + Math.random(), 0],
+          boxPos: [-1.5, -2 + Math.random(), 0],
+          torusPos: [-1.2, 2.5 + Math.random(), 0],
+          cylinderPos: [1.5, -0.5 + Math.random(), 0],
         });
       }
     },
