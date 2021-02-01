@@ -17,13 +17,19 @@ function Graphics({ graphics }: GraphicsViewerProps) {
     position: [-sceneIndex * 17, 0, 0],
   });
 
-  const rendered = useRef<JSX.Element[]>(
-    graphics.map((G) => <G paragraphIndex={paragraphIndex} />)
-  );
+  const rendered = useRef<JSX.Element[]>();
 
   useMemo(() => {
-    const Graphic = graphics[sceneIndex];
-    rendered.current[sceneIndex] = <Graphic paragraphIndex={paragraphIndex} />;
+    if (rendered.current === undefined) {
+      rendered.current = graphics.map((G) => (
+        <G paragraphIndex={paragraphIndex} />
+      ));
+    } else {
+      const Graphic = graphics[sceneIndex];
+      rendered.current[sceneIndex] = (
+        <Graphic paragraphIndex={paragraphIndex} />
+      );
+    }
   }, [graphics, paragraphIndex, sceneIndex]);
 
   return (

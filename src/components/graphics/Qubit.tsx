@@ -3,12 +3,15 @@ import { MeshProps, useFrame } from "react-three-fiber";
 import { perlin3 } from "./perlin.js";
 import * as THREE from "three";
 
+import interpolate from "color-interpolate";
 import { animated, useSpring } from "@react-spring/three";
 
 interface QubitProps {
   oneProbability: number;
   size: number;
 }
+
+const colormap = interpolate(["#339af0", "#f06595"]);
 
 export default function Qubit({
   oneProbability,
@@ -17,24 +20,14 @@ export default function Qubit({
 }: QubitProps & MeshProps) {
   const unstability = -2 * Math.abs(oneProbability - 0.5) + 1;
   const { factor } = useSpring({
-    factor: unstability * 0.4,
+    factor: unstability * 0.3,
   });
 
   const sphereSpring = useSpring({
     config: {
       tension: 100,
     },
-    from: { color: "#339af0" },
-    to: async (next) => {
-      while (1) {
-        await next({
-          color: "#339af0",
-        });
-        await next({
-          color: "#f06595",
-        });
-      }
-    },
+    color: colormap(oneProbability),
   });
 
   const geometry = useMemo(() => new THREE.SphereGeometry(0.1, 64, 64), []);

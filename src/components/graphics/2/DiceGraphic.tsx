@@ -14,7 +14,6 @@ function Dice() {
       groupRef.current.rotation.x = groupRef.current.rotation.y += 0.05;
     }
   });
-  console.log(nodes);
 
   return (
     <group ref={groupRef} position={[0, 1, 0]}>
