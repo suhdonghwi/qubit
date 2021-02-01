@@ -30,7 +30,7 @@ export default function Qubit({
     color: colormap(oneProbability),
   });
 
-  const geometry = useMemo(() => new THREE.SphereGeometry(0.1, 24, 24), []);
+  const geometry = useMemo(() => new THREE.SphereGeometry(0.1, 20, 20), []);
 
   useFrame(() => {
     const time = performance.now() * 0.001,

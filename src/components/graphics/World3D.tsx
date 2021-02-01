@@ -1,6 +1,6 @@
 import { OrthographicCamera } from "@react-three/drei";
 import React, { useLayoutEffect, useState } from "react";
-import { Perf } from "r3f-perf";
+// import { Perf } from "r3f-perf";
 
 import { Canvas } from "react-three-fiber";
 

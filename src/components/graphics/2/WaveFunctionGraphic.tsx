@@ -25,7 +25,7 @@ function f(x: number, y: number, anim: number) {
 }
 
 function FunctionPlane({ run }: { run: boolean }) {
-  const plane = new THREE.PlaneGeometry(9, 9, 60, 60);
+  const plane = new THREE.PlaneGeometry(9, 9, 30, 30);
 
   const { anim } = useSpring({
     anim: run ? 1 : 0,
