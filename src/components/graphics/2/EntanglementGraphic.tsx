@@ -1,15 +1,24 @@
 import { useState } from "react";
 
-import { animated } from "@react-spring/three";
+import { animated, useSpring } from "@react-spring/three";
 
 import Plane from "../Plane";
 import Qubit from "../Qubit";
 import Button from "../Button";
+import { GraphicContentProps } from "types/Scene";
 
-export default function EntanglementGraphic() {
+const AnimatedButton = animated(Button);
+
+export default function EntanglementGraphic({
+  paragraphIndex,
+}: GraphicContentProps) {
   const [clicked, setClicked] = useState(false);
   const probability1 = clicked ? Math.round(Math.random()) : 0.5;
   const probability2 = probability1 === 1 ? 0 : probability1 === 0 ? 1 : 0.5;
+
+  const buttonSpring = useSpring<{ position: any }>({
+    position: paragraphIndex > 0 ? [0, -2.75, 3] : [0, -3.5, 3],
+  });
 
   return (
     <>
@@ -25,11 +34,11 @@ export default function EntanglementGraphic() {
           opacity={clicked ? 0.3 : 0}
         />
       </mesh>
-      <Button
-        position={[0, -2.75, 3]}
+      <AnimatedButton
         onDown={() => setClicked(true)}
         onUp={() => setClicked(false)}
         click={clicked}
+        {...buttonSpring}
       />
       <Qubit
         oneProbability={probability1}
