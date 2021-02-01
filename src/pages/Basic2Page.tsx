@@ -68,8 +68,8 @@ builder.paragraph(WaveParticleGraphic)`
 export default function Basic2Page() {
   return (
     <ContentViewer
-      title="2. 양자 중첩과 양자 얽힘"
-      description="코펜하겐 해석의 주요 내용이자 양자역학의 기본적 원리인 양자 중첩과 양자 얽힘에 대해서 알아봅니다."
+      chapter={1}
+      index={2}
       scenes={builder.build()}
       quote={{
         eng: "Stop telling God what to do with his dice.",

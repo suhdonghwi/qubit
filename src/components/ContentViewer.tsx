@@ -10,6 +10,8 @@ import StartFlag from "./graphics/StartFlag";
 import { FaChevronDown } from "react-icons/fa";
 import palette from "../palette";
 
+import toc from "toc.json";
+
 import { InView } from "react-intersection-observer";
 
 const maxWidth = (x: number) =>
@@ -77,6 +79,17 @@ const Cover = styled.div`
 
   ${maxHeight(550)} {
     margin: 3rem 0 4rem 0;
+  }
+`;
+
+const Chapter = styled.small`
+  font-size: 1.5rem;
+  color: #adb5bd;
+  margin-bottom: 1rem;
+
+  ${maxWidth(520)} {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -215,16 +228,17 @@ const DownArrow = styled.span`
 `;
 
 interface ContentViewerProps {
-  title: string;
-  description: string;
+  chapter: number;
+  index: number;
+
   quote: Quote;
 
   scenes: Scene[];
 }
 
 export default function ContentViewer({
-  title,
-  description,
+  chapter,
+  index,
   scenes,
   quote,
 }: ContentViewerProps) {
@@ -242,6 +256,10 @@ export default function ContentViewer({
     setMounted(true);
   }, []);
 
+  const chapterTitle = toc[chapter - 1].title;
+  const title = toc[chapter - 1].content[index - 1].title;
+  const description = toc[chapter - 1].content[index - 1].description;
+
   return (
     <Container>
       <TextSection ref={textSectionRef}>
@@ -251,7 +269,12 @@ export default function ContentViewer({
 
         <TextContainer>
           <Cover>
-            <Title>{title}</Title>
+            <Chapter>
+              0{chapter} {chapterTitle}
+            </Chapter>
+            <Title>
+              {index}. {title}
+            </Title>
             <Description>{description}</Description>
             <InView
               root={textSectionRef.current}
