@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
-import styled from "styled-components/macro";
+import styled, { keyframes } from "styled-components/macro";
 
 import Scene, { GraphicContent } from "../types/Scene";
 import GraphicsViewer from "./GraphicsViewer";
@@ -7,6 +7,7 @@ import useViewerStore from "../stores/ViewerStore";
 import Quote from "../types/Quote";
 
 import StartFlag from "./graphics/StartFlag";
+import { FaChevronDown } from "react-icons/fa";
 import palette from "../palette";
 
 import { InView } from "react-intersection-observer";
@@ -41,6 +42,7 @@ const Section = styled.section`
 `;
 
 const TextSection = styled(Section)`
+  position: relative;
   background-color: #212529;
 
   overflow-y: scroll;
@@ -57,7 +59,6 @@ const TextContainer = styled.div`
 
 const GraphicSection = styled(Section)`
   background-color: #101112;
-
 
   position: relative;
 
@@ -181,6 +182,38 @@ const Block = styled.div`
   }
 `;
 
+const Bounce = keyframes`
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+`;
+
+const DownArrow = styled.span`
+  position: absolute;
+  font-size: 1.5rem;
+  color: #adb5bd;
+
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  animation: ${Bounce} 2s infinite;
+
+  ${maxHeight(550)} {
+    display: none;
+  }
+`;
+
 interface ContentViewerProps {
   title: string;
   description: string;
@@ -212,6 +245,10 @@ export default function ContentViewer({
   return (
     <Container>
       <TextSection ref={textSectionRef}>
+        <DownArrow>
+          <FaChevronDown />
+        </DownArrow>
+
         <TextContainer>
           <Cover>
             <Title>{title}</Title>
