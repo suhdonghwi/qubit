@@ -41,7 +41,7 @@ const Section = styled.section`
 `;
 
 const TextSection = styled(Section)`
-  background-color: #343a40;
+  background-color: #212529;
 
   overflow-y: scroll;
 `;
@@ -56,7 +56,8 @@ const TextContainer = styled.div`
 `;
 
 const GraphicSection = styled(Section)`
-  background-color: #212529;
+  background-color: #101112;
+
 
   position: relative;
 
