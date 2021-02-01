@@ -8,6 +8,7 @@ import WaveParticleGraphic from "../components/graphics/2/WaveParticleGraphic";
 import SuperpositionGraphic from "../components/graphics/2/SuperpositionGraphic";
 import WaveFunctionGraphic from "../components/graphics/2/WaveFunctionGraphic";
 import DiceGraphic from "../components/graphics/2/DiceGraphic";
+import MeasureGraphic from "../components/graphics/2/MeasureGraphic";
 
 const builder = new ContentBuilder();
 
@@ -39,7 +40,7 @@ builder.paragraph(WaveParticleGraphic)`
 이런 확률론적 해석은 초기에 일부 물리학자들의 반발을 샀습니다. 특히, 역사상 가장 위대한 과학자 중 한 명인 알버트 아인슈타인 또한 코펜하겐 해석을 완강하게 부인했습니다. "신은 주사위를 던지지 않는다."와 같은 명언을 남기면서 말이죠. 코펜하겐 해석의 대표 주자 중 한 명인 보어는 이에 대해서 "신이 주사위 가지고 뭘 하든 상관하지 말라."라며 강경하게 대응하기도 했습니다.
 
 현재 물리학계에서는 상당수의 과학자가 코펜하겐 해석을 받아들이고 있고, 아인슈타인이 틀렸었음을 인정하고 있습니다. 그렇지만 코펜하겐 해석이 완벽하게 옳은 이론이라는 것은 아니며, 논란의 여지가 많은 것 또한 사실입니다. 아직까지도 양자역학의 새로운 해석 방식이 끊임없이 연구되는 중입니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(MeasureGraphic)`
 정리하자면, 양자 중첩은 양자 물질이 관측되기 전까지 가능한 상태가 모두 확률적으로 중첩되어있는 상태를 일컫는 말입니다.
 
 화면에서 버튼을 눌러서 한 번 확인해보세요. 관측을 하기 전 우글우글 거리는 것은 빨간색인 상태와 파란색인 상태가 중첩되어있음을 나타낸 것이고, 버튼을 눌러 관측하면 두 상태 중 하나로 결정되게 됩니다.

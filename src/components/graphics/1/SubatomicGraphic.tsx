@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
+import * as THREE from "three";
 
 import Plane from "../Plane";
 
 import { useFrame } from "react-three-fiber";
 
 export function BohrAtom() {
-  const [time, setTime] = useState(0);
+  const groupRef = useRef<THREE.Group>();
+  const electronsRef = useRef<THREE.Group>();
 
   useFrame(() => {
-    setTime((t) => t + 0.05);
+    if (groupRef.current !== undefined && electronsRef.current !== undefined) {
+      const time = performance.now() * 0.005;
+      groupRef.current.rotation.set(time * 0.5, time * 0.5, 0);
+      electronsRef.current.rotation.set(0, time * 0.5, 0);
+    }
   });
 
   return (
-    <group rotation={[time * 0.5, time * 0.5, 0]}>
+    <group ref={groupRef}>
       <mesh position={[-0.2, 0, 0]} castShadow>
         <sphereBufferGeometry args={[0.2, 64, 64]} />
         <meshLambertMaterial color="#ff8787" />
@@ -38,22 +44,17 @@ export function BohrAtom() {
         <meshLambertMaterial color="#adb5bd" transparent opacity={0.2} />
       </mesh>
 
-      <mesh position={[Math.sin(time) * 2, 0, Math.cos(time) * 2]} castShadow>
-        <sphereBufferGeometry args={[0.1, 64, 64]} />
-        <meshLambertMaterial color="#748ffc" />
-      </mesh>
+      <group ref={electronsRef}>
+        <mesh castShadow position={[2, 0, 0]}>
+          <sphereBufferGeometry args={[0.1, 64, 64]} />
+          <meshLambertMaterial color="#748ffc" />
+        </mesh>
 
-      <mesh
-        position={[
-          Math.sin(time + Math.PI) * 2,
-          0,
-          Math.cos(time + Math.PI) * 2,
-        ]}
-        castShadow
-      >
-        <sphereBufferGeometry args={[0.1, 64, 64]} />
-        <meshLambertMaterial color="#748ffc" />
-      </mesh>
+        <mesh castShadow position={[-2, 0, 0]}>
+          <sphereBufferGeometry args={[0.1, 64, 64]} />
+          <meshLambertMaterial color="#748ffc" />
+        </mesh>
+      </group>
     </group>
   );
 }

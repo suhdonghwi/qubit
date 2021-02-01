@@ -53,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "r3f-perf": "^0.79.0"
   }
 }

@@ -1530,6 +1530,11 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
+"@react-icons/all-files@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@react-icons/all-files/-/all-files-4.1.0.tgz#477284873a0821928224b6fc84c62d2534d6650b"
+  integrity sha512-hxBI2UOuVaI3O/BhQfhtb4kcGn9ft12RWAFVMUeNjqqhLsHvFtzIkFaptBJpFDANTKoDfdVoHTKZDlwKCACbMQ==
+
 "@react-spring/animated@9.0.0-rc.3":
   version "9.0.0-rc.3"
   resolved "https://registry.yarnpkg.com/@react-spring/animated/-/animated-9.0.0-rc.3.tgz#e792cb76aacecfc78db2be6020ac11ce96503eb5"
@@ -9309,6 +9314,15 @@ querystringify@^2.1.1:
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.2.0.tgz#3345941b4153cb9d082d8eee4cda2016a9aef7f6"
   integrity sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==
 
+r3f-perf@^0.79.0:
+  version "0.79.0"
+  resolved "https://registry.yarnpkg.com/r3f-perf/-/r3f-perf-0.79.0.tgz#5224f46a418868041d99a9bfaf45fdba8f05c3f2"
+  integrity sha512-c561ONKW09XOGDgK/QyH4nAghJOAyTctRvcdF1BtwcZV8hJrxOpmCsEqOUOAAYZRYJyNxAFZVZjqhGg5AlmLvQ==
+  dependencies:
+    "@react-icons/all-files" "^4.1.0"
+    lerp "^1.0.3"
+    zustand "^3.2.0"
+
 raf@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
@@ -12054,7 +12068,7 @@ yargs@^15.4.1:
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
 
-zustand@^3.0.3, zustand@^3.3.1:
+zustand@^3.0.3, zustand@^3.2.0, zustand@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.3.1.tgz#de5c4b51112b84e0f819d8b3f336fbfbc087d758"
   integrity sha512-o0rgrBsi29nCkPHdhtkAHisCIlmRUoXOV+1AmDMeCgkGG0i5edFSpGU0KiZYBvFmBYycnck4Z07JsLYDjSET9g==
