@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
+import * as THREE from "three";
 import styled from "styled-components/macro";
 
 import { useSpring, animated } from "@react-spring/three";
@@ -12,13 +13,24 @@ const StyledCanvas = styled(Canvas)`
 `;
 
 export default function MainSphere() {
-  const [scroll, setScroll] = useState(document.body.scrollTop);
+  const torusRef = useRef<THREE.Mesh>();
+  const boxRef = useRef<THREE.Mesh>();
+  const cylinderRef = useRef<THREE.Mesh>();
 
   function onScroll() {
-    setScroll(document.documentElement.scrollTop);
+    const scroll = document.documentElement.scrollTop;
+
+    if (torusRef.current)
+      torusRef.current.rotation.x = Math.PI / 4 + scroll / 150;
+
+    if (boxRef.current) boxRef.current.rotation.y = scroll / 200;
+
+    if (cylinderRef.current)
+      cylinderRef.current.rotation.z = Math.PI / 6 + scroll / 300;
   }
 
   useEffect(() => {
+    onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   });
@@ -65,24 +77,27 @@ export default function MainSphere() {
       <ambientLight intensity={0.1} />
 
       <animated.mesh
+        ref={boxRef}
         position={boxPos}
-        rotation={[Math.PI / 4, scroll / 200, Math.PI / 3]}
+        rotation={[Math.PI / 4, 0, Math.PI / 3]}
       >
         <boxBufferGeometry args={[1.7, 1.7, 1.7]} />
         <meshLambertMaterial color="#495057" />
       </animated.mesh>
 
       <animated.mesh
+        ref={torusRef}
         position={torusPos}
-        rotation={[Math.PI / 4 + scroll / 150, Math.PI / 4, 0]}
+        rotation={[Math.PI / 4, Math.PI / 4, 0]}
       >
         <torusBufferGeometry args={[1.2, 0.4, 32, 100]} />
         <meshLambertMaterial color="#495057" />
       </animated.mesh>
 
       <animated.mesh
+        ref={cylinderRef}
         position={cylinderPos}
-        rotation={[Math.PI / 4, 0, Math.PI / 6 + scroll / 300]}
+        rotation={[Math.PI / 4, 0, Math.PI / 6]}
       >
         <cylinderGeometry args={[1.3, 1.3, 3, 100]} />
         <meshLambertMaterial color="#495057" />
