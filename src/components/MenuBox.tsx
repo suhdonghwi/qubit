@@ -11,7 +11,7 @@ const Box = styled.article`
   position: relative;
   width: 100%;
 
-  background-color: #212529;
+  background-color: #16181a;
   border-radius: 10px;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 
