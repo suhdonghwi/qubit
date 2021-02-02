@@ -56,8 +56,25 @@ const TextSection = styled(Section)`
 const TextContainer = styled.div`
   padding: 0 2.5rem 20% 2.5rem;
 
+  @media screen and (min-width: 2000px) {
+    padding-bottom: 40%;
+  }
+
+  @media screen and (max-width: 800px) {
+    padding-bottom: 10%;
+  }
+
+  @media screen and (max-width: 520px) {
+    padding-bottom: 5%;
+  }
+
+  @media screen and (max-width: 42px) {
+    padding-bottom: 0;
+  }
+
   ${maxWidth(520)} {
-    padding: 0 1.5rem 20% 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 `;
 
