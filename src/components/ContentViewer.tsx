@@ -116,6 +116,7 @@ const Title = styled.h1`
 
 const Description = styled.p`
   font-size: 1.3rem;
+  text-align: center;
   margin: 2rem 0 0 0;
 
   color: #adb5bd;
