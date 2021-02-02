@@ -1,6 +1,9 @@
+import Qubit from "./Qubit";
 export default function StartFlag() {
   return (
     <>
+      <Qubit />
+
       <mesh position={[0, -2, 0]}>
         <cylinderBufferGeometry args={[0.1, 0.1, 2, 32]} />
         <meshLambertMaterial color="#ffe066" />
@@ -17,7 +20,7 @@ export default function StartFlag() {
       </mesh>
 
       {[1, 2, 3, 4].map((n) => (
-        <mesh key={n} position={[n*1.5, -3, n*1.5]}>
+        <mesh key={n} position={[n * 1.5, -3, n * 1.5]}>
           <cylinderBufferGeometry args={[0.15, 0.15, 0.03, 32]} />
           <meshLambertMaterial color="#868e96" />
         </mesh>
