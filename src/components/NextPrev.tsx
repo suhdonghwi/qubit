@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+import { maxWidth } from "../utils/MediaQuery";
 import toc from "toc.json";
 
 const Container = styled.div`
   padding: 0 2rem;
   display: flex;
   width: 100%;
+
+  ${maxWidth(420)} {
+    padding: 0 1rem;
+  }
 `;
 
 const Navigation = styled.div`
@@ -33,6 +38,10 @@ const Navigation = styled.div`
 
 const Text = styled.div`
   margin: 0 0.5rem;
+
+  ${maxWidth(420)} {
+    margin: 0 0.2rem;
+  }
 `;
 
 interface NextPrevProps {

@@ -9,21 +9,11 @@ import Quote from "../types/Quote";
 import StartFlag from "./graphics/StartFlag";
 import { FaChevronDown } from "react-icons/fa";
 import palette from "../palette";
-
+import { maxWidth, maxHeight } from "../utils/MediaQuery";
 import toc from "toc.json";
 import NextPrev from "./NextPrev";
 
 import { InView } from "react-intersection-observer";
-
-const maxWidth = (x: number) =>
-  `@media screen and (orientation: portrait) and (max-width: ${x}px), screen and (orientation: landscape) and (max-width: ${
-    x * 2
-  }px)`;
-
-const maxHeight = (x: number) =>
-  `@media screen and (orientation: portrait) and (max-height: ${
-    x * 2
-  }px), screen and (orientation: landscape) and (max-height: ${x}px)`;
 
 const Container = styled.main`
   height: 100vh;
