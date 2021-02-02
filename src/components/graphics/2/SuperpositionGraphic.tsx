@@ -1,7 +1,7 @@
 import { Text } from "@react-three/drei";
 
 import Plane from "../Plane";
-import Qubit from "../Qubit";
+import WobblySphere from "../WobblySphere";
 
 export default function SuperpositionGraphic() {
   return (
@@ -15,7 +15,7 @@ export default function SuperpositionGraphic() {
       >
         Superposition!
       </Text>
-      <Qubit oneProbability={0.5} position={[0, -0.5, 0]} size={1} />
+      <WobblySphere oneProbability={0.5} position={[0, -0.5, 0]} size={1} />
       <Plane />;
     </>
   );

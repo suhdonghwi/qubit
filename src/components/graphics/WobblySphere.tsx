@@ -13,7 +13,7 @@ interface QubitProps {
 
 const colormap = interpolate(["#339af0", "#f06595"]);
 
-export default function Qubit({
+export default function WobblySphere({
   oneProbability,
   size,
   ...props

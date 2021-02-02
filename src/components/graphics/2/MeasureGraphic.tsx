@@ -3,7 +3,7 @@ import { useState } from "react";
 import { animated } from "@react-spring/three";
 
 import Plane from "../Plane";
-import Qubit from "../Qubit";
+import WobblySphere from "../WobblySphere";
 import Button from "../Button";
 
 export default function SuperpositionGraphic() {
@@ -30,7 +30,7 @@ export default function SuperpositionGraphic() {
         onUp={() => setClicked(false)}
         click={clicked}
       />
-      <Qubit oneProbability={probability} position={[0, -0.5, 0]} size={0.5} />
+      <WobblySphere oneProbability={probability} position={[0, -0.5, 0]} size={0.5} />
       <Plane />;
     </>
   );

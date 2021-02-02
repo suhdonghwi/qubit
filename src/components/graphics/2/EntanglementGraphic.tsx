@@ -3,7 +3,7 @@ import { useState } from "react";
 import { animated, useSpring } from "@react-spring/three";
 
 import Plane from "../Plane";
-import Qubit from "../Qubit";
+import WobblySphere from "../WobblySphere";
 import Button from "../Button";
 import { GraphicContentProps } from "types/Scene";
 
@@ -40,12 +40,12 @@ export default function EntanglementGraphic({
         click={clicked}
         {...buttonSpring}
       />
-      <Qubit
+      <WobblySphere
         oneProbability={probability1}
         position={[0, -0.5, -1.5]}
         size={0.5}
       />
-      <Qubit
+      <WobblySphere
         oneProbability={probability2}
         position={[0, -0.5, 1.5]}
         size={0.5}
