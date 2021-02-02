@@ -1,14 +1,24 @@
 import * as THREE from "three";
 import { useFrame } from "react-three-fiber";
 
-export default function Qubit() {
+import { useSpring } from "@react-spring/three";
+
+interface QubitProps {
+  oneProbability: number;
+}
+
+export default function Qubit({ oneProbability }: QubitProps) {
+  const { offset } = useSpring({
+    offset: -(oneProbability * 1.4 - 0.7),
+  });
+
   const material = new THREE.ShaderMaterial({
     uniforms: {
       color1: {
-        value: new THREE.Color("#e03131"),
+        value: new THREE.Color("#fa5252"),
       },
       color2: {
-        value: new THREE.Color("#3b5bdb"),
+        value: new THREE.Color("#364fc7"),
       },
       offset: { value: 0 },
     },
@@ -34,12 +44,14 @@ export default function Qubit() {
   });
 
   useFrame(() => {
-    //material.uniforms.offset.value += 0.01;
+    material.uniforms.offset.value = offset.get();
   });
 
   return (
-    <mesh material={material} rotation={[0, -Math.PI / 4, Math.PI / 2]}>
-      <sphereBufferGeometry args={[1, 64, 64]} />
-    </mesh>
+    <group>
+      <mesh material={material} rotation={[0, -Math.PI / 4, Math.PI / 2]}>
+        <sphereBufferGeometry args={[2, 64, 64]} />
+      </mesh>
+    </group>
   );
 }
