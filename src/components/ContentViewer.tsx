@@ -270,7 +270,9 @@ export default function ContentViewer({
   const [, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
-  }, []);
+
+    return () => setIndex(0, 0);
+  }, [setIndex]);
 
   const chapterTitle = toc[chapter - 1].title;
   const title = toc[chapter - 1].content[index - 1].title;

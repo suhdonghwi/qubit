@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { maxWidth } from "../utils/MediaQuery";
 import toc from "toc.json";
 
@@ -14,8 +15,9 @@ const Container = styled.div`
   }
 `;
 
-const Navigation = styled.div`
+const Navigation = styled(Link)`
   cursor: pointer;
+  text-decoration: none;
 
   display: flex;
   align-items: center;
@@ -40,7 +42,7 @@ const Text = styled.div`
   margin: 0 0.5rem;
 
   ${maxWidth(420)} {
-    margin: 0 0.2rem;
+    margin: 0 0.3rem;
   }
 `;
 
@@ -54,14 +56,18 @@ export default function NextPrev({ chapter, index }: NextPrevProps) {
     realIndex = index - 1;
 
   const list = toc
-    .map((c, i) => c.content.map((a, j) => `${i + 1}-${j + 1} ${a.title}`))
+    .map((c, i) =>
+      c.content.map((a, j) => ({
+        title: `${i + 1}-${j + 1} ${a.title}`,
+        route: a.route,
+      }))
+    )
     .flat();
 
   let count = realIndex;
   for (let i = 0; i < realChapter; i++) {
     count += toc[i].content.length;
   }
-  console.log(count);
 
   const prev = list[count - 1],
     next = list[count + 1];
@@ -69,15 +75,15 @@ export default function NextPrev({ chapter, index }: NextPrevProps) {
   return (
     <Container>
       {prev && (
-        <Navigation>
+        <Navigation to={prev.route}>
           <FaChevronLeft />
-          <Text>{prev}</Text>
+          <Text>{prev.title}</Text>
         </Navigation>
       )}
 
       {next && (
-        <Navigation>
-          <Text>{next}</Text>
+        <Navigation to={next.route}>
+          <Text>{next.title}</Text>
           <FaChevronRight />
         </Navigation>
       )}
