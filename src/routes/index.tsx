@@ -4,6 +4,7 @@ import MainPage from "../pages/MainPage";
 
 import Basic1Page from "../pages/Basic1Page";
 import Basic2Page from "../pages/Basic2Page";
+import Principle1Page from "../pages/Principle1Page";
 
 export default function Root() {
   return (
@@ -12,6 +13,7 @@ export default function Root() {
         <Route path="/" exact component={MainPage} />
         <Route path="/basic/1" exact component={Basic1Page} />
         <Route path="/basic/2" exact component={Basic2Page} />
+        <Route path="/principle/1" exact component={Principle1Page} />
         <Redirect path="*" to="/" />
       </Switch>
     </BrowserRouter>

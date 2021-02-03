@@ -1,9 +1,6 @@
-import Qubit from "./Qubit";
 export default function StartFlag() {
   return (
     <>
-      <Qubit oneProbability={0.5} />
-
       <mesh position={[0, -2, 0]}>
         <cylinderBufferGeometry args={[0.1, 0.1, 2, 32]} />
         <meshLambertMaterial color="#ffe066" />
