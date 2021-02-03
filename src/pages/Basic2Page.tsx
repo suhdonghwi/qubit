@@ -3,7 +3,6 @@ import ContentViewer from "../components/ContentViewer";
 
 import ContentBuilder from "../types/ContentBuilder";
 
-import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import WaveParticleGraphic from "../components/graphics/2/WaveParticleGraphic";
 import SuperpositionGraphic from "../components/graphics/2/SuperpositionGraphic";
 import WaveFunctionGraphic from "../components/graphics/2/WaveFunctionGraphic";
@@ -61,7 +60,7 @@ builder.paragraph(WaveParticleGraphic)`
 이는 곧 '빛보다 빠른 무언가'을 의미했고, 광속을 넘어서는 정보의 전달은 특수 상대성이론에 위배되었기 때문에 아인슈타인은 양자 얽힘을 부정했습니다. 하지만 이후 양자 얽힘을 통해서 빛보다 빠른 속도로 '유의미한 정보'를 전달할 수 없음이 밝혀져 양자 얽힘 이론은 유지되었습니다.
 
 어찌보면 양자 중첩보다도 더 기묘한 현상이라고 볼 수 있습니다. 아인슈타인은 이를 으스스한 현상(spooky action)이라고 표현하기까지 했습니다. 아직 양자 얽힘이 어떤 이유에서 발생하는 것인지, 이에 대한 근본적인 해석을 내놓은 이론은 없습니다.
-`.paragraph(SubatomicGraphic)`
+---
 이제 양자역학의 기초적인 내용과 함께, 양자 컴퓨터를 받아들일 준비가 되신 것 같습니다. 양자역학의 대표적인 응용분야 중 하나인, 양자 컴퓨터에 대해서 알아가보도록 합시다!
 `;
 
