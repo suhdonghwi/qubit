@@ -3,7 +3,6 @@ import ContentViewer from "../components/ContentViewer";
 
 import ContentBuilder from "../types/ContentBuilder";
 
-import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import ComputerGraphic from "../components/graphics/3/ComputerGraphic";
 import BitGraphic from "../components/graphics/3/BitGraphic";
 import QubitGraphic from "../components/graphics/3/QubitGraphic";
@@ -13,7 +12,10 @@ import SpinGraphic from "../components/graphics/3/SpinGraphic";
 
 const builder = new ContentBuilder();
 
-builder.paragraph(ComputerGraphic)`
+builder.paragraph(
+  ComputerGraphic,
+  "Computer graphic by Robert Schlyter in poly.google.com"
+)`
 이제 본격적으로 양자 컴퓨터의 원리에 대해서 알아갈 차례입니다.
 
 우선, 우리가 지금 사용하고 있는 컴퓨터를 먼저 봅시다. 양자 컴퓨터와 대비해서, 우리가 지금 일상 생활에서 사용하고 있는 데스크탑, 노트북은 고전 컴퓨터(Classical computer)라고 부릅니다. 실상은 전혀 고전적이지 않고 첨단 기술이 잔뜩 들어간 기기지만, 양자 컴퓨터라는 새로운 종류의 컴퓨터와 대비하기 위해서 이렇게 부르는 것입니다.
