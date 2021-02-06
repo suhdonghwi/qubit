@@ -11,7 +11,7 @@ interface BitProps {
 
 export default function Bit({ one, radius, ...props }: BitProps & MeshProps) {
   return (
-    <mesh rotation={[0, -Math.PI / 4, Math.PI / 2]} {...props}>
+    <mesh castShadow rotation={[0, -Math.PI / 4, Math.PI / 2]} {...props}>
       <sphereBufferGeometry args={[radius, 64, 64]} />
       <meshLambertMaterial color={one ? "#ff6b6b" : "#339af0"} />
       <Text

@@ -5,6 +5,7 @@ import ContentBuilder from "../types/ContentBuilder";
 
 import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import ComputerGraphic from "../components/graphics/3/ComputerGraphic";
+import BitGraphic from "../components/graphics/3/BitGraphic";
 
 const builder = new ContentBuilder();
 
@@ -16,7 +17,7 @@ builder.paragraph(ComputerGraphic)`
 고전 컴퓨터는 이미 많은 일들을 해내고 있습니다. 재미있는 영상을 틀어주고, 지구 반대편에 사는 친구와 대화할 수 있게 해주며, 내일의 날씨를 예측하고, 세계 최고의 바둑 프로 기사를 이깁니다.
 
 하지만 이런 대단한 기계도, 기본적인 동작 원리는 아주 단순합니다. 혹시 컴퓨터가 속에서 어떻게 계산을 하는지 알고 계신가요?
-`.paragraph(SubatomicGraphic)`
+`.paragraph(BitGraphic)`
 컴퓨터는 '비트(bit)'라는 최소 단위를 가지고 연산을 합니다. 비트는 한 번에 0 또는 1의 값을 가질 수 있습니다.
 
 컴퓨터는 0과 1밖에 모른다는 이야기가 바로 이것을 두고 하는 말입니다. 컴퓨터의 중앙 처리 장치인 CPU는 13이라는 숫자를 그대로 해석할 수 없습니다. 십진수인 13을 이진수 1101로 바꿔서 다룰 수 있을 뿐입니다.
