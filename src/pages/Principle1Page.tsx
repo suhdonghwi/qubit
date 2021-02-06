@@ -9,6 +9,7 @@ import BitGraphic from "../components/graphics/3/BitGraphic";
 import QubitGraphic from "../components/graphics/3/QubitGraphic";
 import BitCountGraphic from "../components/graphics/3/BitCountGraphic";
 import QubitConcurrentGraphic from "../components/graphics/3/QubitConcurrentGraphic";
+import SpinGraphic from "../components/graphics/3/SpinGraphic";
 
 const builder = new ContentBuilder();
 
@@ -44,7 +45,7 @@ builder.paragraph(ComputerGraphic)`
 숫자의 거대함보다도, 저런 많은 정보를 '동시에' 표현할 수 있음에 더 주목하셔야합니다. 고전적인 비트도 충분히 많은 수가 있으면 많은 가짓수의 정보를 표현할 수 있지만, 큐비트처럼 이를 '동시에' 나타낼 수는 없습니다. 이 중첩의 원리가, 고전 컴퓨터와 양자 컴퓨터를 본질적으로 구별하는 특성입니다.
 
 아직 이 동시성이 어떻게 유용하게 사용되는지는 아직 설명을 드리지 않았지만, 큐비트가 양자 중첩의 원리를 이용한다는 것만 알아주셨으면 좋겠습니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(SpinGraphic)`
 큐비트는 어떤 특정한 물질을 가리키는 말이 아니며, 오히려 추상적인 개념입니다. 2개의 양자 상태를 안정적으로 표현할 수 있는 양자 물질이면 어떤 것이든지 큐비트가 될 수 있습니다. 실제로 큐비트를 실제 세계에서 물리적으로 구현하는 방법은 여러가지가 존재합니다.
 
 예를 들어서, 전자는 '스핀'이라는 고유한 특성을 가집니다. 전자가 어느 방향으로 회전하는지(실제로 고전 물리학에서 말하는 회전과는 다르긴 합니다)를 나타내는 값인데, 스핀 업(Up)의 상태일 수도 있고 스핀 다운(Down)의 상태에 있을 수도 있습니다.
