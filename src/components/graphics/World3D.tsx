@@ -31,7 +31,7 @@ export default function World3D({ children }: World3DProps) {
   });
 
   return (
-    <Canvas shadowMap gl={{ antialias: false }}>
+    <Canvas shadowMap gl={{ antialias: true }}>
       <OrthographicCamera
         position={[0, 3.5, 10]}
         rotation={[-Math.PI / 8, 0, 0]}

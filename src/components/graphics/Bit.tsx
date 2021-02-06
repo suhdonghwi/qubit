@@ -1,4 +1,3 @@
-import * as THREE from "three";
 import { MeshProps } from "react-three-fiber";
 
 import { Text } from "@react-three/drei";
@@ -17,7 +16,7 @@ export default function Bit({ one, radius, ...props }: BitProps & MeshProps) {
       <Text
         fontSize={radius * 1.4}
         font={fonts.raleway}
-        position={[0.5, 0, 1]}
+        position={[radius * 0.6, 0, radius]}
         rotation={[0, 0, -Math.PI / 2]}
       >
         {one ? "1" : "0"}

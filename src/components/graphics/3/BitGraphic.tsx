@@ -4,7 +4,7 @@ import Plane from "../Plane";
 import Bit from "../Bit";
 import fonts from "fonts.json";
 
-export default function BitCountGraphic() {
+export default function BitGraphic() {
   const binString = ["1", "0", "1"];
 
   return (

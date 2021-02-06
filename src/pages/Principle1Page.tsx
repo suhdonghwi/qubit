@@ -6,6 +6,7 @@ import ContentBuilder from "../types/ContentBuilder";
 import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import ComputerGraphic from "../components/graphics/3/ComputerGraphic";
 import BitGraphic from "../components/graphics/3/BitGraphic";
+import QubitGraphic from "../components/graphics/3/QubitGraphic";
 import BitCountGraphic from "../components/graphics/3/BitCountGraphic";
 
 const builder = new ContentBuilder();
@@ -24,7 +25,7 @@ builder.paragraph(ComputerGraphic)`
 컴퓨터는 0과 1밖에 모른다는 이야기가 바로 이것을 두고 하는 말입니다. 컴퓨터의 중앙 처리 장치인 CPU는 13이라는 숫자를 그대로 해석할 수 없습니다. 십진수인 13을 이진수 1101로 바꿔서 다룰 수 있을 뿐입니다.
 
 이런 단순하기 짝이 없는 비트가 수없이 많이 모여서 대단히 복잡하고 정교한 연산을 수행한다는 것이 놀랍지 않나요?
-`.paragraph(SubatomicGraphic)`
+`.paragraph(QubitGraphic)`
 그렇다면 양자 컴퓨터의 최소 연산 단위는 무엇일까요? 바로 큐비트(qubit)입니다. 고전 컴퓨터에서 사용하는 비트랑 비슷하지만, 양자역학의 원리가 적용된 비트입니다.
 
 어떤 양자역학의 원리가 적용되어있을까요? 이전 페이지에서, 양자역학의 기본 원리 중 하나인 양자 중첩에 대해서 알아보았습니다. 양자 중첩은 확률적으로 가능한 상태들이 동시에 중첩되어있는 현상이었죠.

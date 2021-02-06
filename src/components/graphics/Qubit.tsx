@@ -63,22 +63,17 @@ export default function Qubit({
       {...props}
     >
       <sphereBufferGeometry args={[radius, 64, 64]} />
-      <Text
-        fontSize={radius * 1.4}
-        font={fonts.raleway}
-        position={[0.5, 0, 1]}
+      <group
+        position={[radius * 0.6, 0, radius]}
         rotation={[0, 0, -Math.PI / 2]}
       >
-        <animated.meshBasicMaterial color="white" opacity={zeroOpacity} />0
-      </Text>
-      <Text
-        fontSize={radius * 1.4}
-        font={fonts.raleway}
-        position={[0.5, 0, 1]}
-        rotation={[0, 0, -Math.PI / 2]}
-      >
-        <animated.meshBasicMaterial color="white" opacity={oneOpacity} />1
-      </Text>
+        <Text fontSize={radius * 1.4} font={fonts.raleway}>
+          <animated.meshBasicMaterial color="white" opacity={zeroOpacity} />0
+        </Text>
+        <Text fontSize={radius * 1.4} font={fonts.raleway}>
+          <animated.meshBasicMaterial color="white" opacity={oneOpacity} />1
+        </Text>
+      </group>
     </mesh>
   );
 }
