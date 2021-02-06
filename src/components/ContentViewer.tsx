@@ -296,7 +296,7 @@ export default function ContentViewer({
             <Description>{description}</Description>
             <InView
               root={textSectionRef.current}
-              rootMargin="-40% 0%"
+              rootMargin="-45% 0%"
               onChange={(inView) => inView && setIndex(0, 0)}
             >
               <Blockquote>
@@ -315,7 +315,7 @@ export default function ContentViewer({
               <InView
                 key={sIndex * 10 + pIndex}
                 root={textSectionRef.current}
-                rootMargin="-40% 0%"
+                rootMargin="-45% 0%"
                 onChange={(inView) => inView && setIndex(sIndex + 1, pIndex)}
               >
                 {({ inView, ref }) => (

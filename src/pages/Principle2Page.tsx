@@ -5,6 +5,7 @@ import ContentBuilder from "../types/ContentBuilder";
 
 import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import CubeGraphic from "../components/graphics/4/CubeGraphic";
+import DiceGraphic from "../components/graphics/4/DiceGraphic";
 
 const builder = new ContentBuilder();
 
@@ -15,7 +16,7 @@ builder.paragraph(
 이번 페이지는, 양자 컴퓨팅의 핵심이라고 할 수 있는 양자 알고리즘에 대해서 알아보겠습니다. 내용이 많고 복잡할 수 있지만, 최대한 간단하고 이해하기 쉽게 설명하기 위해 노력해보겠습니다.
 
 우선 알고리즘이란, 특정한 문제를 해결하기 위한 절차를 말합니다. 컴퓨터는 주어진 문제를 해결하기 위해서, 정해진 절차를 따라가며 계산을 합니다. 여기서 문제는 어떤 것이든 될 수 있습니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(DiceGraphic)`
 양자 알고리즘에 대해서 보기 전에, 고전 컴퓨터의 알고리즘에 대해서 먼저 알아보도록 하겠습니다.
 
 아주 간단한 문제를 하나 볼까요? 0부터 7까지의 정수 중에서 무작위하게 하나를 고르고, 컴퓨터에게 고른 숫자가 무엇인지 맞춰보라는 문제를 내봅시다. 고전 컴퓨터로는 이 문제를 어떻게 접근할 수 있을까요?
@@ -23,7 +24,7 @@ builder.paragraph(
 아쉽게도 숫자의 범위 말고는 주어진 힌트가 하나도 없으므로, 그냥 때려맞추는 방법 밖에 없습니다.
 `.paragraph(SubatomicGraphic)`
 예를 들어 정답 숫자가 3이라고 해봅시다. 첫번째 시도에서는 숫자 1을 나타내는 비트 001을 넣어보겠습니다.
----
+
 그러면 문제 기계가 들어온 비트를 관측하고, 정답과 비교합니다. 정답은 3인데 1로 관측되었으니 틀렸다고 하겠죠?
 `.paragraph(SubatomicGraphic)`
 두번째 시도입니다. 두번째 시도에서는 숫자 5을 나타내는 비트 101을 넣어보겠습니다.

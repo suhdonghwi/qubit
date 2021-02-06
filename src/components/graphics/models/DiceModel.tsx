@@ -20,19 +20,22 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Model(props: JSX.IntrinsicElements["group"]) {
+export default function Model(
+  props: JSX.IntrinsicElements["group"] & { xDelta: number; yDelta: number }
+) {
   const group = useRef<THREE.Group>();
   const { nodes, materials } = useGLTF("/models/dice.glb") as GLTFResult;
 
   useFrame(() => {
     if (group.current !== undefined) {
-      group.current.rotation.x = group.current.rotation.y += 0.05;
+      group.current.rotation.x += props.xDelta;
+      group.current.rotation.y += props.yDelta;
     }
   });
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <group rotation={[2.3, -0.81, -0.84]}>
+      <group rotation={[2.5, -0.81, -0.84]}>
         <mesh
           castShadow
           material={materials.white}
