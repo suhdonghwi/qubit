@@ -1,26 +1,16 @@
 import { Suspense } from "react";
-import * as THREE from "three";
 import Plane from "../Plane";
+import ComputerModel from "../models/ComputerModel";
 
-import { useGLTF } from "@react-three/drei";
-
-function Computer() {
-  const gltf = useGLTF("/models/computer.glb");
-
-  return (
-    <primitive
-      object={gltf.scene}
-      scale={[7, 7, 7]}
-      rotation={[0, Math.PI, 0]}
-    />
-  );
-}
-
-export default function DiceGraphic() {
+export default function ComputerGraphic() {
   return (
     <>
       <Suspense fallback={null}>
-        <Computer />
+        <ComputerModel
+          rotation={[0, Math.PI, 0]}
+          scale={[7, 7, 7]}
+          position={[0, -2, 1]}
+        />
       </Suspense>
       <Plane />
     </>
