@@ -6,6 +6,7 @@ import ContentBuilder from "../types/ContentBuilder";
 import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import ComputerGraphic from "../components/graphics/3/ComputerGraphic";
 import BitGraphic from "../components/graphics/3/BitGraphic";
+import BitCountGraphic from "../components/graphics/3/BitCountGraphic";
 
 const builder = new ContentBuilder();
 
@@ -29,7 +30,7 @@ builder.paragraph(ComputerGraphic)`
 어떤 양자역학의 원리가 적용되어있을까요? 이전 페이지에서, 양자역학의 기본 원리 중 하나인 양자 중첩에 대해서 알아보았습니다. 양자 중첩은 확률적으로 가능한 상태들이 동시에 중첩되어있는 현상이었죠.
 
 큐비트는 이 양자 중첩 현상을 이용해서, 비트처럼 0 또는 1의 값을 둘 중 하나만 가지는 것이 아니라 0과 1이 동시에 중첩되어있는 상태를 가집니다. 0 또는 1로 확정되어있는 것이 아니라, 그 사이 어딘가에 존재하는 것입니다. 뭔가 기묘한데, 이렇게 중첩 상태를 가지는 것이 컴퓨터로서 어떤 이점이 있는 것일까요?
-`.paragraph(SubatomicGraphic)`
+`.paragraph(BitCountGraphic)`
 여러분에게 고전적인 비트 3개가 있다고 해봅시다. 이 비트 3개로 표현할 수 있는 정보의 가짓수는 얼마나 될까요? 이진수로 세어보면, 0부터 7까지 총 8개의 정보를 나타낼 수 있음을 알 수 있습니다.
 
 하지만, 비트를 이용해서 한 번에 여러 정보를 동시에 표현하지는 못합니다. 즉, 3개의 비트에 각각 0 또는 1의 값을 부여함으로써 8개의 가능한 정보 중에서 하나만을 골라서 표현할 수 있는 것입니다.
