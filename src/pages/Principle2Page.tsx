@@ -4,10 +4,14 @@ import ContentViewer from "../components/ContentViewer";
 import ContentBuilder from "../types/ContentBuilder";
 
 import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
+import CubeGraphic from "../components/graphics/4/CubeGraphic";
 
 const builder = new ContentBuilder();
 
-builder.paragraph(SubatomicGraphic)`
+builder.paragraph(
+  CubeGraphic,
+  "Cube graphic by Butanol Mustermann in poly.google.com"
+)`
 이번 페이지는, 양자 컴퓨팅의 핵심이라고 할 수 있는 양자 알고리즘에 대해서 알아보겠습니다. 내용이 많고 복잡할 수 있지만, 최대한 간단하고 이해하기 쉽게 설명하기 위해 노력해보겠습니다.
 
 우선 알고리즘이란, 특정한 문제를 해결하기 위한 절차를 말합니다. 컴퓨터는 주어진 문제를 해결하기 위해서, 정해진 절차를 따라가며 계산을 합니다. 여기서 문제는 어떤 것이든 될 수 있습니다.
