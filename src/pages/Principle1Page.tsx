@@ -8,6 +8,7 @@ import ComputerGraphic from "../components/graphics/3/ComputerGraphic";
 import BitGraphic from "../components/graphics/3/BitGraphic";
 import QubitGraphic from "../components/graphics/3/QubitGraphic";
 import BitCountGraphic from "../components/graphics/3/BitCountGraphic";
+import QubitConcurrentGraphic from "../components/graphics/3/QubitConcurrentGraphic";
 
 const builder = new ContentBuilder();
 
@@ -35,7 +36,7 @@ builder.paragraph(ComputerGraphic)`
 여러분에게 고전적인 비트 3개가 있다고 해봅시다. 이 비트 3개로 표현할 수 있는 정보의 가짓수는 얼마나 될까요? 이진수로 세어보면, 0부터 7까지 총 8개의 정보를 나타낼 수 있음을 알 수 있습니다.
 
 하지만, 비트를 이용해서 한 번에 여러 정보를 동시에 표현하지는 못합니다. 즉, 3개의 비트에 각각 0 또는 1의 값을 부여함으로써 8개의 가능한 정보 중에서 하나만을 골라서 표현할 수 있는 것입니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(QubitConcurrentGraphic)`
 반면, 큐비트는 양자 중첩 원리를 이용하기 때문에 한 번에 여러 정보를 동시에 표현하는 것이 가능합니다. 3개의 큐비트가 있으면, 고전적인 비트처럼 한 번에 하나만 표현할 수 있는 것이 아니라 가능한 정보의 가짓수 8개를 모두 동시에 표현할 수 있다는 것입니다.
 
 잘 실감이 안나시나요? 여러분에게 20개의 큐비트가 있으면, 그 큐비트들은 모여서 동시에 1,048,576개의 정보를 표현할 수 있습니다. 고작 20개의 큐비트가요!

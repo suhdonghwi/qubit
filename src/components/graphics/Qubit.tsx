@@ -58,6 +58,7 @@ export default function Qubit({
 
   return (
     <mesh
+      castShadow
       material={material}
       rotation={[0, -Math.PI / 4, Math.PI / 2]}
       {...props}
