@@ -2,6 +2,8 @@ import { Suspense } from "react";
 import Plane from "../Plane";
 import ComputerModel from "../models/ComputerModel";
 
+import Qubit from "../Qubit";
+
 export default function ComputerGraphic() {
   return (
     <>
@@ -12,6 +14,8 @@ export default function ComputerGraphic() {
           position={[0, -2, 1]}
         />
       </Suspense>
+      <Qubit oneProbability={0.5} radius={1} position={[0, 3, 0]} />
+
       <Plane />
     </>
   );

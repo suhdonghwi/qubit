@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { useFrame } from "react-three-fiber";
+import { useFrame, GroupProps } from "react-three-fiber";
 
 import { animated, useSpring } from "@react-spring/three";
 import { Text } from "@react-three/drei";
@@ -7,9 +7,14 @@ import fonts from "fonts.json";
 
 interface QubitProps {
   oneProbability: number;
+  radius: number;
 }
 
-export default function Qubit({ oneProbability }: QubitProps) {
+export default function Qubit({
+  oneProbability,
+  radius,
+  ...props
+}: QubitProps & GroupProps) {
   const { offset, zeroOpacity, oneOpacity } = useSpring({
     offset: -(oneProbability * 1.4 - 0.7),
     zeroOpacity: 1 - oneProbability,
@@ -52,9 +57,9 @@ export default function Qubit({ oneProbability }: QubitProps) {
   });
 
   return (
-    <group>
+    <group {...props}>
       <mesh material={material} rotation={[0, -Math.PI / 4, Math.PI / 2]}>
-        <sphereBufferGeometry args={[1, 64, 64]} />
+        <sphereBufferGeometry args={[radius, 64, 64]} />
       </mesh>
       <Text
         fontSize={1.4}
@@ -62,11 +67,7 @@ export default function Qubit({ oneProbability }: QubitProps) {
         position={[-4, 2.3, 4]}
         rotation={[0, -Math.PI / 4, 0]}
       >
-        <animated.meshBasicMaterial
-          color="white"
-          opacity={1 - oneProbability}
-        />
-        0
+        <animated.meshBasicMaterial color="white" opacity={zeroOpacity} />0
       </Text>
       <Text
         fontSize={1.4}
@@ -74,7 +75,7 @@ export default function Qubit({ oneProbability }: QubitProps) {
         position={[-4, 2.3, 4]}
         rotation={[0, -Math.PI / 4, 0]}
       >
-        <animated.meshBasicMaterial color="white" opacity={oneProbability} />1
+        <animated.meshBasicMaterial color="white" opacity={oneOpacity} />1
       </Text>
     </group>
   );
