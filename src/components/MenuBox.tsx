@@ -52,7 +52,7 @@ const Title = styled.h1`
 const Description = styled.p`
   font-size: 1.3rem;
   color: #868e96;
-  width: 70%;
+  width: 75%;
 
   margin: 2rem 0;
 
