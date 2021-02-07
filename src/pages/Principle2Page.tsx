@@ -12,6 +12,7 @@ import QuantumGuessGraphic from "../components/graphics/4/QuantumGuessGraphic";
 import WaveFunctionGraphic from "../components/graphics/4/WaveFunctionGraphic";
 import ActualWaveFunctionGraphic from "components/graphics/4/ActualWaveFunctionGraphic";
 import DestructiveGraphic from "components/graphics/4/DestructiveGraphic";
+import ConstructiveGraphic from "components/graphics/4/ConstructiveGraphic";
 
 const builder = new ContentBuilder();
 
@@ -78,7 +79,7 @@ builder.paragraph(
 이 말은, 두 개의 확률이 파동처럼 서로 간섭하여 증폭되거나 상쇄될 수 있음을 의미합니다. 예를 들어서...
 `.paragraph(DestructiveGraphic)`
 '오답 관측'을 나타내는 음의 확률 파동과 양의 확률 파동이 서로 만나 상쇄되어서 파동의 크기가 줄어들 수 있습니다. 오답을 관측할 확률 파동의 크기가 줄었다는 것은, 오답을 관측할 확률이 줄었다는 것이므로 "알고리즘의 효율이 증가했다"라고 할 수 있습니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(ConstructiveGraphic)`
 반대로, '정답 관측'을 나타내는 양의 확률 파동 2개가 서로 만나 증폭되어서 파동의 크기가 증가할 수 있습니다. 이는 정답을 관측할 확률이 늘었다는 것이므로 이 역시 "알고리즘의 효율이 증가했다"라고 할 수 있는 것입니다.
 
 양자 컴퓨터는 바로 이런 방식을 이용해 고전 컴퓨터에 비해 알고리즘을 훨씬 더 효율적으로 실행합니다. 고전 컴퓨터는 고전 확률 체계를 이용하기 때문에, 음의 확률 파동과 같은 성질을 알고리즘 계산에 사용할 수 없습니다. 어떤 사람들은 양자 컴퓨팅을 '음의 부호가 있는 확률론'이라고 부르기도 합니다.
