@@ -3,7 +3,6 @@ import ContentViewer from "../components/ContentViewer";
 
 import ContentBuilder from "../types/ContentBuilder";
 
-import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import CubeGraphic from "../components/graphics/4/CubeGraphic";
 import DiceGraphic from "../components/graphics/4/DiceGraphic";
 import GuessGraphic from "../components/graphics/4/GuessGraphic";
@@ -92,6 +91,10 @@ builder.paragraph(
 그로버의 알고리즘은, 임의의 함수 f에 대해서 찾고자 하는 함숫값 a가 있으면 f(c) = a를 만족하는 c를 효율적으로 찾을 수 있게 해주는 알고리즘입니다. 숫자 맞추기 문제의 경우 'f(c) = 정답'을 만족하는 비트 c를 찾는 것이 목표였죠.
 
 고전적인 알고리즘은 N개의 숫자 중에서 정답을 찾아내기까지 걸리는 시간이 N에 비례하지만, 그로버의 알고리즘은 N의 제곱근에 비례합니다. 예를 들어서, 1,000,000개의 숫자 중에서 정답을 찾으려면 고전적인 알고리즘으로는 1,000,000에 해당하는 연산량이 필요했습니다. 하지만 그로버의 알고리즘을 사용하면 대략 1,000만큼의 연산량으로 해결할 수 있습니다.
+---
+그로버의 알고리즘 외에도 함수의 종류를 판별하는 도이치-조사 알고리즘, 소인수 분해를 빠르게 처리할 수 있는 쇼어 알고리즘 등이 있습니다. 아직은 많은 종류가 개발된 상태는 아니며, 과학자들은 양자 컴퓨터로 더 효율적으로 해결할 수 있는 문제와 알고리즘이 존재하는지 연구하고 있습니다.
+
+양자 컴퓨터가 고전 컴퓨터보다 더 빠르게 해결할 수 있는 문제가 많아지면 많아질수록 양자 컴퓨터의 범용성은 올라갈 것이고, 과학 연구 분야에 유용하게 사용될 수 있을 것입니다.
 `;
 
 export default function Principle2Page() {

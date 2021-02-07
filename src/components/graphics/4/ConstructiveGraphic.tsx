@@ -1,7 +1,5 @@
 import { Text } from "@react-three/drei";
-import { animated, useSpring } from "@react-spring/three";
 import FunctionPlane from "../FunctionPlane";
-import { GraphicContentProps } from "types/Scene";
 
 import fonts from "fonts.json";
 import bell from "utils/BellFunction";
