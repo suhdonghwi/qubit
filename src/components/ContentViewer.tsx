@@ -44,21 +44,21 @@ const TextSection = styled(Section)`
 `;
 
 const TextContainer = styled.div`
-  padding: 0 2.5rem 20% 2.5rem;
+  padding: 0 2.5rem 35% 2.5rem;
 
   @media screen and (min-width: 2000px) {
-    padding-bottom: 40%;
+    padding-bottom: 45%;
   }
 
   @media screen and (max-width: 800px) {
-    padding-bottom: 10%;
+    padding-bottom: 15%;
   }
 
   @media screen and (max-width: 520px) {
-    padding-bottom: 5%;
+    padding-bottom: 10%;
   }
 
-  @media screen and (max-width: 42px) {
+  @media screen and (max-width: 420px) {
     padding-bottom: 0;
   }
 
@@ -208,6 +208,10 @@ const Block = styled.div`
 
   &.current {
     color: ${palette.whiteText};
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 `;
 
