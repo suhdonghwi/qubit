@@ -71,7 +71,12 @@ export default function Qubit({
           />
           0
         </Text>
-        <Text fontSize={radius * 1.4} font={fonts.raleway} renderOrder={-1}>
+        <Text
+          position={[0, 0, 0.05]}
+          fontSize={radius * 1.4}
+          font={fonts.raleway}
+          renderOrder={-1}
+        >
           <animated.meshBasicMaterial color="white" opacity={oneProbability} />1
         </Text>
       </group>
