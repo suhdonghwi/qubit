@@ -30,7 +30,8 @@ function Graphics({ graphics }: GraphicsViewerProps) {
         <Graphic paragraphIndex={paragraphIndex} />
       );
     }
-  }, [graphics, paragraphIndex, sceneIndex]);
+    // eslint-disable-next-line
+  }, [graphics, paragraphIndex]);
 
   return (
     <animated.group {...groupSpring}>

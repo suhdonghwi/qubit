@@ -6,6 +6,7 @@ import ContentBuilder from "../types/ContentBuilder";
 import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import CubeGraphic from "../components/graphics/4/CubeGraphic";
 import DiceGraphic from "../components/graphics/4/DiceGraphic";
+import GuessGraphic from "../components/graphics/4/GuessGraphic";
 
 const builder = new ContentBuilder();
 
@@ -22,7 +23,7 @@ builder.paragraph(
 아주 간단한 문제를 하나 볼까요? 0부터 7까지의 정수 중에서 무작위하게 하나를 고르고, 컴퓨터에게 고른 숫자가 무엇인지 맞춰보라는 문제를 내봅시다. 고전 컴퓨터로는 이 문제를 어떻게 접근할 수 있을까요?
 
 아쉽게도 숫자의 범위 말고는 주어진 힌트가 하나도 없으므로, 그냥 때려맞추는 방법 밖에 없습니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(GuessGraphic)`
 예를 들어 정답 숫자가 3이라고 해봅시다. 첫번째 시도에서는 숫자 1을 나타내는 비트 001을 넣어보겠습니다.
 
 그러면 문제 기계가 들어온 비트를 관측하고, 정답과 비교합니다. 정답은 3인데 1로 관측되었으니 틀렸다고 하겠죠?

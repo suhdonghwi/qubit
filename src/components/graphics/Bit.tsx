@@ -18,6 +18,7 @@ export default function Bit({ one, radius, ...props }: BitProps & MeshProps) {
         font={fonts.raleway}
         position={[radius * 0.6, 0, radius]}
         rotation={[0, 0, -Math.PI / 2]}
+        renderOrder={-1}
       >
         {one ? "1" : "0"}
       </Text>
