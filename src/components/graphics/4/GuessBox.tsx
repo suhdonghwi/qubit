@@ -60,7 +60,7 @@ export default function GuessGraphic({
             >
               <cylinderGeometry args={[0.25, 0.05, 2.3, 16]} />
               <animated.meshLambertMaterial
-                color="#ffe066"
+                color="#ffd43b"
                 transparent
                 opacity={lightOpacity}
               />

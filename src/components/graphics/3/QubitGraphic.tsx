@@ -1,25 +1,23 @@
-import { useEffect, useState } from "react";
+import { useSpring, animated } from "@react-spring/three";
 import { Text } from "@react-three/drei";
 
 import Plane from "../Plane";
 import Qubit from "../Qubit";
 import fonts from "fonts.json";
 
+const AnimatedQubit = animated(Qubit);
+
 export default function QubitGraphic() {
-  const [prob, setProb] = useState(0.3);
-
-  useEffect(() => {
-    function update() {
-      if (prob > 0.5) {
-        setProb(0.3);
-      } else {
-        setProb(0.7);
+  const { prob } = useSpring({
+    from: {
+      prob: 0.5,
+    },
+    to: async (next) => {
+      while (1) {
+        await next({ prob: 0.3 });
+        await next({ prob: 0.7 });
       }
-    }
-
-    const id = setInterval(update, 700);
-
-    return () => clearInterval(id);
+    },
   });
 
   return (
@@ -33,7 +31,7 @@ export default function QubitGraphic() {
         Qubit
       </Text>
 
-      <Qubit oneProbability={prob} radius={1.5} />
+      <AnimatedQubit oneProbability={prob} radius={1.5} />
 
       <Plane />
     </>
