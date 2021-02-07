@@ -9,6 +9,7 @@ import DiceGraphic from "../components/graphics/4/DiceGraphic";
 import GuessGraphic from "../components/graphics/4/GuessGraphic";
 import ComputerGraphic from "../components/graphics/3/ComputerGraphic";
 import QuantumGuessGraphic from "../components/graphics/4/QuantumGuessGraphic";
+import WaveFunctionGraphic from "../components/graphics/4/WaveFunctionGraphic";
 
 const builder = new ContentBuilder();
 
@@ -53,18 +54,17 @@ builder.paragraph(
 버튼을 눌러서 모든 상태가 같은 확률로 중첩되어있는 상태의 큐비트를 넣어보세요. 그러면 문제 기계 내부에서 입력을 정답과 비교하기 위해서 "관측"을 합니다. 바로 이 관측 단계에서 문제가 발생합니다.
 
 양자 중첩 상태는 관측을 하는 순간 하나의 상태로 결정되며, 중첩인 상태가 풀린다고 했었죠. 중첩 상태인 큐비트를 넣어봤자 정답과 비교하기 위해 관측을 하는 이상 하나로 결정된 상태를 넣은 것이나 다름 없습니다.
-`.paragraph(SubatomicGraphic)`
-이를 이전에 보여드렸던 파동함수(의 절댓값의 제곱) 그래프로 나타내면 이렇습니다.
+`.paragraph(WaveFunctionGraphic)`
+지금 이 상황을 이전에 보여드렸던 파동함수(의 절댓값의 제곱) 그래프로 나타내면 이렇습니다.
 
-틀린 답안을 관측하게 될 확률이 더 높고, 맞는 답안을 관측하게 될 확률은 현저하게 작습니다. 즉, 중첩이 되었건 어쨌건 관측을 했을 때 정답이 나오게 될 확률은 여전히 1/8인 것입니다.
----
-나머지 7/8 확률로는 오답을 관측하게 됩니다.
+틀린 답안을 관측하게 될 확률이 더 높고, 맞는 답안을 관측하게 될 확률은 현저하게 작습니다. 즉, 중첩이 되었건 어쨌건 마지막에 관측을 했을 때 정답이 나오게 될 확률은 여전히 1/8인 것입니다. 나머지 7/8 확률로는 오답을 관측하게 됩니다.
 
 그럼, 결국에는 고전 컴퓨터랑 똑같을 뿐인데 대체 양자 컴퓨터가 왜 효율적이라는 것이며, 어떤게 혁신적이라는 것일까요?
-`.paragraph(SubatomicGraphic)`
-양자 컴퓨터의 혁신성은 양자 알고리즘에 있습니다. 양자 알고리즘은, 양자역학의 원리를 이용해서 틀린 답안이 관측될 확률을 줄이고 맞는 답안이 관측될 확률을 높입니다. 실제로 관측을 해서 하나로 결정이 되기 이전에 말입니다.
 ---
+양자 컴퓨터의 혁신성은 양자 알고리즘에 있습니다. 양자 알고리즘은, 양자역학의 원리를 이용해서 틀린 답안이 관측될 확률을 줄이고 맞는 답안이 관측될 확률을 높입니다. 실제로 관측을 하기 전에 말이죠.
+
 그렇게 되면, 관측을 했을 때 더 높은 확률로 맞는 답안이 나오게 될 것이고, 궁극적으로는 전체적인 알고리즘 실행 시간이 줄어들게 되는 것입니다. 정답을 맞추기 위해 무작위하게 때려 맞추는 횟수가 훨씬 더 줄어들기 때문입니다.
+`.paragraph(SubatomicGraphic)`
 `;
 
 export default function Principle2Page() {
