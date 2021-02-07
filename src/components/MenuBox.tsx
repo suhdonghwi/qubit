@@ -107,7 +107,11 @@ const ChapterList = styled.ol`
 
 const ChapterItem = styled.li`
   margin-bottom: 1rem;
+
   color: #adb5bd;
+  a {
+    color: #adb5bd;
+  }
 `;
 
 const StyledCanvas = styled(Canvas)`
@@ -183,8 +187,10 @@ export default function MenuBox({
       <StartLink to={toc[num - 1].content[0].route}>시작하기</StartLink>
 
       <ChapterList>
-        {chapters.map((chapter, i) => (
-          <ChapterItem key={i}>{chapter}</ChapterItem>
+        {toc[num - 1].content.map((chapter, i) => (
+          <ChapterItem key={i}>
+            <Link to={chapter.route}>{chapter.title}</Link>
+          </ChapterItem>
         ))}
       </ChapterList>
 
