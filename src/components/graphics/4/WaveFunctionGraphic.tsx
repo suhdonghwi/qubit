@@ -6,6 +6,7 @@ import { GraphicContentProps } from "types/Scene";
 
 import Plane from "../Plane";
 import fonts from "fonts.json";
+import bell from "utils/BellFunction";
 
 function f1(x: number, y: number, anim: number) {
   const spread = 1,
@@ -14,15 +15,7 @@ function f1(x: number, y: number, anim: number) {
   const xOffset = -2,
     yOffset = -2;
 
-  return (
-    -amplitude *
-    Math.exp(
-      -(
-        (Math.pow(x - xOffset, 2) + Math.pow(y - yOffset, 2)) /
-        (2 * Math.pow(spread, 2))
-      )
-    )
-  );
+  return bell(spread, amplitude, xOffset, yOffset, x, y);
 }
 
 function f2(x: number, y: number, anim: number) {
@@ -32,15 +25,7 @@ function f2(x: number, y: number, anim: number) {
   const xOffset = 2,
     yOffset = 2;
 
-  return (
-    -amplitude *
-    Math.exp(
-      -(
-        (Math.pow(x - xOffset, 2) + Math.pow(y - yOffset, 2)) /
-        (2 * Math.pow(spread, 2))
-      )
-    )
-  );
+  return bell(spread, amplitude, xOffset, yOffset, x, y);
 }
 
 function f(x: number, y: number, anim: number) {
