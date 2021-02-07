@@ -1,5 +1,5 @@
 import { useState, useLayoutEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -65,12 +65,12 @@ const Description = styled.p`
   }
 `;
 
-const StartButton = styled.button`
+const StartLink = styled(Link)`
   cursor: pointer;
-  appearance: none;
 
   font-size: 1.1rem;
-  padding: 0.5rem 1.8rem;
+  text-decoration: none;
+  padding: 0.4rem 1.8rem;
   color: white;
 
   border: 2px solid #ced4da;
@@ -155,7 +155,6 @@ export default function MenuBox({
   graphic,
 }: MenuBoxProps) {
   const [zoom, setZoom] = useState(0);
-  const history = useHistory();
 
   const onResize = () => {
     if (window.innerWidth <= 1200) {
@@ -181,9 +180,7 @@ export default function MenuBox({
         <Description>{description}</Description>
       </Heading>
 
-      <StartButton onClick={() => history.push(toc[num - 1].content[0].route)}>
-        시작하기
-      </StartButton>
+      <StartLink to={toc[num - 1].content[0].route}>시작하기</StartLink>
 
       <ChapterList>
         {chapters.map((chapter, i) => (
