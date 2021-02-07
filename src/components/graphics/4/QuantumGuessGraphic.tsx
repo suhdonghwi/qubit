@@ -6,12 +6,20 @@ import Qubit from "../Qubit";
 import Button from "../Button";
 
 import GuessBox from "./GuessBox";
+import { GraphicContentProps } from "types/Scene";
 
 const AnimatedBox = animated(GuessBox);
 const AnimatedQubit = animated(Qubit);
+const AnimatedButton = animated(Button);
 
-export default function QuantumGuessGraphic() {
+export default function QuantumGuessGraphic({
+  paragraphIndex,
+}: GraphicContentProps) {
   const [pressed, setPressed] = useState(false);
+
+  const { buttonPosition } = useSpring({
+    buttonPosition: [-3, paragraphIndex > 0 ? -2.75 : -3.5, 3] as any,
+  });
 
   const [props, set] = useSpring(() => ({
     inputScale: [1, 1, 0] as any,
@@ -70,10 +78,10 @@ export default function QuantumGuessGraphic() {
         ))}
       </animated.group>
 
-      <Button
+      <AnimatedButton
         click={pressed}
         onClick={() => setPressed(true)}
-        position={[-3, -2.75, 3]}
+        position={buttonPosition}
       />
 
       <Plane />
