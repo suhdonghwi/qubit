@@ -7,6 +7,7 @@ import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import CubeGraphic from "../components/graphics/4/CubeGraphic";
 import DiceGraphic from "../components/graphics/4/DiceGraphic";
 import GuessGraphic from "../components/graphics/4/GuessGraphic";
+import ComputerGraphic from "../components/graphics/3/ComputerGraphic";
 
 const builder = new ContentBuilder();
 
@@ -23,19 +24,21 @@ builder.paragraph(
 아주 간단한 문제를 하나 볼까요? 0부터 7까지의 정수 중에서 무작위하게 하나를 고르고, 컴퓨터에게 고른 숫자가 무엇인지 맞춰보라는 문제를 내봅시다. 고전 컴퓨터로는 이 문제를 어떻게 접근할 수 있을까요?
 
 아쉽게도 숫자의 범위 말고는 주어진 힌트가 하나도 없으므로, 그냥 때려맞추는 방법 밖에 없습니다.
-`.paragraph(GuessGraphic)`
-예를 들어 정답 숫자가 3이라고 해봅시다. 첫번째 시도에서는 숫자 1을 나타내는 비트 001을 넣어보겠습니다.
+`.paragraph(() => (
+  <GuessGraphic input={[false, false, true]} correct={false} />
+))`
+예를 들어 정답 숫자가 3이라고 해봅시다. 첫번째 시도에서는 숫자 1을 나타내는 비트 001을 넣어보겠습니다. 버튼을 눌러서 직접 확인해보세요!
 
-그러면 문제 기계가 들어온 비트를 관측하고, 정답과 비교합니다. 정답은 3인데 1로 관측되었으니 틀렸다고 하겠죠?
-`.paragraph(SubatomicGraphic)`
+그러면 문제 기계가 들어온 입력 비트를 관측하고, 정답과 비교합니다. 정답은 3인데 1로 관측되었으니 틀렸다고 하겠죠?
+`.paragraph(() => <GuessGraphic input={[true, false, true]} correct={false} />)`
 두번째 시도입니다. 두번째 시도에서는 숫자 5을 나타내는 비트 101을 넣어보겠습니다.
 
 역시 틀렸다고 나옵니다.
-`.paragraph(SubatomicGraphic)`
-세번째 시도입니다. 이번에는 숫자 3을 나타내는 비트 010을 넣어보겠습니다.
+`.paragraph(() => <GuessGraphic input={[false, true, true]} correct={true} />)`
+세번째 시도입니다. 이번에는 숫자 3을 나타내는 비트 011을 넣어보겠습니다.
 
 그러면 들어온 비트를 관측하고, 정답과 일치하니 맞았다고 해줍니다. 세번째 시도만에 맞췄네요!
-`.paragraph(SubatomicGraphic)`
+`.paragraph(ComputerGraphic)`
 고전 컴퓨터는 이 문제를 이런 방식으로 접근하는 것이 최선입니다. 아무런 정보가 없는 상태에서 랜덤한 숫자를 맞추라고 하니 그냥 하나씩 넣어보는 방법 밖에는 없는 것입니다. 각 시도에서 정답을 맞출 확률은 1/8 이겠죠.
 
 그나마 아까 보여드린 예시에서는 세번째 시도만에 맞추었지만, 운이 정말 안좋다면 7번만에 맞추었을 수도 있습니다. 숫자의 범위가 커지면 커질수록 각 시도에서 정답을 맞출 확률은 줄어듭니다. 만약 숫자의 범위가 1 부터 1,000,000이었다면? 로또를 사는 것이 차라리 나아보입니다.
