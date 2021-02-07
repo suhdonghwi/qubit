@@ -3,16 +3,18 @@ import ContentViewer from "../components/ContentViewer";
 
 import ContentBuilder from "../types/ContentBuilder";
 
-import CubeGraphic from "../components/graphics/4/CubeGraphic";
-import DiceGraphic from "../components/graphics/4/DiceGraphic";
-import GuessGraphic from "../components/graphics/4/GuessGraphic";
-import ComputerGraphic from "../components/graphics/3/ComputerGraphic";
-import QuantumGuessGraphic from "../components/graphics/4/QuantumGuessGraphic";
-import WaveFunctionGraphic from "../components/graphics/4/WaveFunctionGraphic";
-import ActualWaveFunctionGraphic from "../components/graphics/4/ActualWaveFunctionGraphic";
-import DestructiveGraphic from "../components/graphics/4/DestructiveGraphic";
-import ConstructiveGraphic from "../components/graphics/4/ConstructiveGraphic";
-import RaceGraphic from "../components/graphics/4/RaceGraphic";
+import { DiceGraphic } from "../components/graphics/2";
+import { ComputerGraphic } from "../components/graphics/3";
+import {
+  CubeGraphic,
+  GuessGraphic,
+  QuantumGuessGraphic,
+  WaveFunctionGraphic,
+  ActualWaveFunctionGraphic,
+  DestructiveGraphic,
+  ConstructiveGraphic,
+  RaceGraphic,
+} from "../components/graphics/4";
 
 const builder = new ContentBuilder();
 

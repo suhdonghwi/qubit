@@ -3,12 +3,14 @@ import ContentViewer from "../components/ContentViewer";
 
 import ContentBuilder from "../types/ContentBuilder";
 
-import WaveParticleGraphic from "../components/graphics/2/WaveParticleGraphic";
-import SuperpositionGraphic from "../components/graphics/2/SuperpositionGraphic";
-import WaveFunctionGraphic from "../components/graphics/2/WaveFunctionGraphic";
-import DiceGraphic from "../components/graphics/2/DiceGraphic";
-import MeasureGraphic from "../components/graphics/2/MeasureGraphic";
-import EntanglementGraphic from "../components/graphics/2/EntanglementGraphic";
+import {
+  WaveParticleGraphic,
+  SuperpositionGraphic,
+  WaveFunctionGraphic,
+  DiceGraphic,
+  MeasureGraphic,
+  EntanglementGraphic,
+} from "../components/graphics/2";
 
 const builder = new ContentBuilder();
 

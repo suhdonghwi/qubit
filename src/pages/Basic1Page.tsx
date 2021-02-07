@@ -3,15 +3,16 @@ import ContentViewer from "../components/ContentViewer";
 
 import ContentBuilder from "../types/ContentBuilder";
 
-import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
-import QuantumComputerGraphic from "../components/graphics/1/QuantumComputerGraphic";
-
-import ParticleGraphic from "../components/graphics/1/slits/ParticleGraphic";
-import SingleWaveGraphic from "../components/graphics/1/slits/SingleWaveGraphic";
-import DoubleWaveGraphic from "../components/graphics/1/slits/DoubleWaveGraphic";
-import ElectronGraphic from "../components/graphics/1/slits/ElectronGraphic";
-import ElectronSlitsGraphic from "../components/graphics/1/slits/ElectronSlitsGraphic";
-import ElectronObserveGraphic from "../components/graphics/1/slits/ElectronObserveGraphic";
+import {
+  SubatomicGraphic,
+  QuantumComputerGraphic,
+  ParticleGraphic,
+  SingleWaveGraphic,
+  DoubleWaveGraphic,
+  ElectronGraphic,
+  ElectronSlitsGraphic,
+  ElectronObserveGraphic,
+} from "../components/graphics/1";
 
 const builder = new ContentBuilder();
 

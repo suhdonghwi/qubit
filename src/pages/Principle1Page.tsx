@@ -3,12 +3,14 @@ import ContentViewer from "../components/ContentViewer";
 
 import ContentBuilder from "../types/ContentBuilder";
 
-import ComputerGraphic from "../components/graphics/3/ComputerGraphic";
-import BitGraphic from "../components/graphics/3/BitGraphic";
-import QubitGraphic from "../components/graphics/3/QubitGraphic";
-import BitCountGraphic from "../components/graphics/3/BitCountGraphic";
-import QubitConcurrentGraphic from "../components/graphics/3/QubitConcurrentGraphic";
-import SpinGraphic from "../components/graphics/3/SpinGraphic";
+import {
+  ComputerGraphic,
+  BitGraphic,
+  QubitGraphic,
+  BitCountGraphic,
+  QubitConcurrentGraphic,
+  SpinGraphic,
+} from "../components/graphics/3";
 
 const builder = new ContentBuilder();
 
