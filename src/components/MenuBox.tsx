@@ -1,15 +1,16 @@
 import { useState, useLayoutEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import styled from "styled-components";
 
 import { Canvas } from "react-three-fiber";
 import { OrthographicCamera } from "@react-three/drei";
-
-import QuantumComputerGraphic from "./graphics/1/QuantumComputerGraphic";
+import toc from "toc.json";
 
 const Box = styled.article`
   position: relative;
   width: 100%;
+  margin-bottom: 5rem;
 
   background-color: #16181a;
   border-radius: 10px;
@@ -112,7 +113,7 @@ const ChapterItem = styled.li`
 const StyledCanvas = styled(Canvas)`
   position: absolute !important;
   width: 700px !important;
-  height: 400px !important;
+  height: 500px !important;
 
   top: 50%;
   right: -10%;
@@ -130,7 +131,7 @@ const StyledCanvas = styled(Canvas)`
     right: -20%;
 
     width: 500px !important;
-    height: 300px !important;
+    height: 400px !important;
   }
 
   @media screen and (max-width: 1000px) {
@@ -143,6 +144,7 @@ interface MenuBoxProps {
   title: string;
   description: string;
   chapters: string[];
+  graphic: JSX.Element;
 }
 
 export default function MenuBox({
@@ -150,8 +152,10 @@ export default function MenuBox({
   title,
   description,
   chapters,
+  graphic,
 }: MenuBoxProps) {
   const [zoom, setZoom] = useState(0);
+  const history = useHistory();
 
   const onResize = () => {
     if (window.innerWidth <= 1200) {
@@ -177,7 +181,9 @@ export default function MenuBox({
         <Description>{description}</Description>
       </Heading>
 
-      <StartButton>시작하기</StartButton>
+      <StartButton onClick={() => history.push(toc[num - 1].content[0].route)}>
+        시작하기
+      </StartButton>
 
       <ChapterList>
         {chapters.map((chapter, i) => (
@@ -206,9 +212,7 @@ export default function MenuBox({
           shadow-camera-bottom={-10}
         />
 
-        <group rotation={[0, Math.PI / 4, 0]}>
-          <QuantumComputerGraphic />
-        </group>
+        <group rotation={[0, Math.PI / 4, 0]}>{graphic}</group>
       </StyledCanvas>
     </Box>
   );
