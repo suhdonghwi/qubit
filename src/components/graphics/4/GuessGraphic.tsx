@@ -17,22 +17,10 @@ interface GuessGraphicProps {
 export default function GuessGraphic({ input, correct }: GuessGraphicProps) {
   const [pressed, setPressed] = useState(false);
 
-  const {
-    inputScale,
-    bitsPosition,
-    boxOpacity,
-    lightOpacity,
-    outputOpacity,
-  } = useSpring<{
-    inputScale: any;
-    bitsPosition: any;
-    boxOpacity: number;
-    lightOpacity: number;
-    outputOpacity: number;
-  }>({
+  const props = useSpring({
     from: {
-      inputScale: [1, 1, 0],
-      bitsPosition: [-1.1, 2, 0],
+      inputScale: [1, 1, 0] as any,
+      bitsPosition: [-1.1, 2, 0] as any,
       boxOpacity: 1,
       lightOpacity: 0,
       outputOpacity: 0,
@@ -47,7 +35,7 @@ export default function GuessGraphic({ input, correct }: GuessGraphicProps) {
         });
         await next({ boxOpacity: 0.5 });
         await next({ lightOpacity: 0.5, delay: 300 });
-        await next({ boxOpacity: 1, outputOpacity: 1, delay: 700 });
+        await next({ outputOpacity: 1, delay: 700 });
       }
     },
   });
@@ -55,14 +43,14 @@ export default function GuessGraphic({ input, correct }: GuessGraphicProps) {
   return (
     <>
       <AnimatedBox
-        boxOpacity={boxOpacity}
-        inputScale={inputScale}
-        lightOpacity={lightOpacity}
-        outputOpacity={outputOpacity}
+        boxOpacity={props.boxOpacity}
+        inputScale={props.inputScale}
+        lightOpacity={props.lightOpacity}
+        outputOpacity={props.outputOpacity}
         correct={correct}
       />
 
-      <animated.group position={bitsPosition}>
+      <animated.group position={props.bitsPosition}>
         {[0, 1, 2].map((n) => (
           <Bit
             key={n}

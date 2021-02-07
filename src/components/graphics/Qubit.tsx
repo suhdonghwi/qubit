@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { useFrame, MeshProps } from "react-three-fiber";
 
-import { animated, useSpring } from "@react-spring/three";
+import { animated } from "@react-spring/three";
 import { Text } from "@react-three/drei";
 import fonts from "fonts.json";
 
@@ -15,11 +15,7 @@ export default function Qubit({
   radius,
   ...props
 }: QubitProps & MeshProps) {
-  const { offset, zeroOpacity, oneOpacity } = useSpring({
-    offset: -(oneProbability * 1.4 - 0.7),
-    zeroOpacity: 1 - oneProbability,
-    oneOpacity: oneProbability,
-  });
+  const offset = -(oneProbability * 1.4 - 0.7);
 
   const material = new THREE.ShaderMaterial({
     uniforms: {
@@ -53,7 +49,7 @@ export default function Qubit({
   });
 
   useFrame(() => {
-    material.uniforms.offset.value = offset.get();
+    material.uniforms.offset.value = offset;
   });
 
   return (
@@ -68,11 +64,15 @@ export default function Qubit({
         position={[radius * 0.6, 0, radius]}
         rotation={[0, 0, -Math.PI / 2]}
       >
-        <Text fontSize={radius * 1.4} font={fonts.raleway}>
-          <animated.meshBasicMaterial color="white" opacity={zeroOpacity} />0
+        <Text fontSize={radius * 1.4} font={fonts.raleway} renderOrder={-1}>
+          <animated.meshBasicMaterial
+            color="white"
+            opacity={1 - oneProbability}
+          />
+          0
         </Text>
-        <Text fontSize={radius * 1.4} font={fonts.raleway}>
-          <animated.meshBasicMaterial color="white" opacity={oneOpacity} />1
+        <Text fontSize={radius * 1.4} font={fonts.raleway} renderOrder={-1}>
+          <animated.meshBasicMaterial color="white" opacity={oneProbability} />1
         </Text>
       </group>
     </mesh>

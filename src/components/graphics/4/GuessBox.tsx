@@ -58,7 +58,7 @@ export default function GuessGraphic({
               rotation={[0, 0, Math.PI / 2]}
               renderOrder={-1}
             >
-              <cylinderGeometry args={[0.3, 0.05, 2.3, 16]} />
+              <cylinderGeometry args={[0.25, 0.05, 2.3, 16]} />
               <animated.meshLambertMaterial
                 color="#ffe066"
                 transparent

@@ -8,6 +8,7 @@ import CubeGraphic from "../components/graphics/4/CubeGraphic";
 import DiceGraphic from "../components/graphics/4/DiceGraphic";
 import GuessGraphic from "../components/graphics/4/GuessGraphic";
 import ComputerGraphic from "../components/graphics/3/ComputerGraphic";
+import QuantumGuessGraphic from "../components/graphics/4/QuantumGuessGraphic";
 
 const builder = new ContentBuilder();
 
@@ -42,7 +43,7 @@ builder.paragraph(
 고전 컴퓨터는 이 문제를 이런 방식으로 접근하는 것이 최선입니다. 아무런 정보가 없는 상태에서 랜덤한 숫자를 맞추라고 하니 그냥 하나씩 넣어보는 방법 밖에는 없는 것입니다. 각 시도에서 정답을 맞출 확률은 1/8 이겠죠.
 
 그나마 아까 보여드린 예시에서는 세번째 시도만에 맞추었지만, 운이 정말 안좋다면 7번만에 맞추었을 수도 있습니다. 숫자의 범위가 커지면 커질수록 각 시도에서 정답을 맞출 확률은 줄어듭니다. 만약 숫자의 범위가 1 부터 1,000,000이었다면? 로또를 사는 것이 차라리 나아보입니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(QuantumGuessGraphic)`
 자, 그럼 이제 양자 컴퓨터의 경우를 보도록 하겠습니다. 양자 컴퓨터는 입력으로 고전적인 비트 대신 큐비트를 넣습니다. 양자 컴퓨터는 이 문제를 어떻게 해결할까요? 과연 고전 컴퓨터보다 효율적으로 해결할 수 있을까요?
 
 양자 컴퓨터의 효율성에 대해서는 오해가 많습니다. 가령, "큐비트는 모든 상태가 중첩되어 있기 때문에 가능한 상태를 모두 병렬적으로 동시에 확인해볼 수 있다" 라고 생각하시는 경우가 있습니다. 이 말이 맞다면, 양자 컴퓨터는 숫자 맞추기 문제를 항상 첫번째 시도만에 해결할 수 있을 것입니다. 0부터 7까지 중첩된 상태를 넣으면 그 중 하나는 정답일테니까요!
