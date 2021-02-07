@@ -10,9 +10,10 @@ import GuessGraphic from "../components/graphics/4/GuessGraphic";
 import ComputerGraphic from "../components/graphics/3/ComputerGraphic";
 import QuantumGuessGraphic from "../components/graphics/4/QuantumGuessGraphic";
 import WaveFunctionGraphic from "../components/graphics/4/WaveFunctionGraphic";
-import ActualWaveFunctionGraphic from "components/graphics/4/ActualWaveFunctionGraphic";
-import DestructiveGraphic from "components/graphics/4/DestructiveGraphic";
-import ConstructiveGraphic from "components/graphics/4/ConstructiveGraphic";
+import ActualWaveFunctionGraphic from "../components/graphics/4/ActualWaveFunctionGraphic";
+import DestructiveGraphic from "../components/graphics/4/DestructiveGraphic";
+import ConstructiveGraphic from "../components/graphics/4/ConstructiveGraphic";
+import RaceGraphic from "../components/graphics/4/RaceGraphic";
 
 const builder = new ContentBuilder();
 
@@ -77,12 +78,20 @@ builder.paragraph(
 실제로 파동 함수는 원래 복소 함수, 즉 허수를 포함하는 복소수 값을 가지는 함수입니다. 즉, 양자역학에서의 확률 진폭은 0과 양수 뿐만 아니라 음수, 심지어는 허수까지 가능하다는 것입니다.
 
 이 말은, 두 개의 확률이 파동처럼 서로 간섭하여 증폭되거나 상쇄될 수 있음을 의미합니다. 예를 들어서...
-`.paragraph(DestructiveGraphic)`
-'오답 관측'을 나타내는 음의 확률 파동과 양의 확률 파동이 서로 만나 상쇄되어서 파동의 크기가 줄어들 수 있습니다. 오답을 관측할 확률 파동의 크기가 줄었다는 것은, 오답을 관측할 확률이 줄었다는 것이므로 "알고리즘의 효율이 증가했다"라고 할 수 있습니다.
 `.paragraph(ConstructiveGraphic)`
-반대로, '정답 관측'을 나타내는 양의 확률 파동 2개가 서로 만나 증폭되어서 파동의 크기가 증가할 수 있습니다. 이는 정답을 관측할 확률이 늘었다는 것이므로 이 역시 "알고리즘의 효율이 증가했다"라고 할 수 있는 것입니다.
+'정답 관측'을 나타내는 양의 확률 파동 2개가 서로 만나 증폭되어서 진폭이 커질 수 있습니다. 정답을 관측할 확률 파동의 진폭이 커졌다는 것은, 정답을 관측할 확률이 커졌다는 것이므로 "알고리즘의 효율이 증가했다"라고 할 수 있습니다.
+`.paragraph(DestructiveGraphic)`
+반대로, '오답 관측'을 나타내는 음의 확률 파동과 양의 확률 파동이 서로 만나 상쇄되어서 진폭이 줄어들 수도 있습니다. 이는 오답을 관측할 확률이 줄었다는 것이므로 이 역시 "알고리즘의 효율이 증가했다"라고 할 수 있습니다.
 
-양자 컴퓨터는 바로 이런 방식을 이용해 고전 컴퓨터에 비해 알고리즘을 훨씬 더 효율적으로 실행합니다. 고전 컴퓨터는 고전 확률 체계를 이용하기 때문에, 음의 확률 파동과 같은 성질을 알고리즘 계산에 사용할 수 없습니다. 어떤 사람들은 양자 컴퓨팅을 '음의 부호가 있는 확률론'이라고 부르기도 합니다.
+양자 컴퓨터는 바로 이런 방식을 이용해서 고전 컴퓨터에 비해 알고리즘을 훨씬 더 효율적으로 실행합니다. 고전 컴퓨터는 고전 확률 체계 기반이기 때문에, 음의 확률 파동과 같은 성질을 알고리즘 계산에 사용할 수 없습니다. 어떤 사람들은 양자 컴퓨팅을 '음의 부호가 있는 확률론'이라고 부르기도 합니다.
+---
+하지만, 모든 알고리즘을 양자 컴퓨터가 고전 컴퓨터보다 더 빠르게 실행할 수 있는 것은 아닙니다. 확률 파동의 간섭 현상을 적절하고 효율적으로 활용할 수 있는 양자 알고리즘이 새로 개발되어야하기 때문입니다. 그리고 이는 굉장히 어려운 일입니다.
+`.paragraph(RaceGraphic)`
+실제로 개발된 양자 알고리즘 중에는, 처음에 예시로 들었던 '숫자 맞추기' 문제를 효율적으로 해결할 수 있는 알고리즘이 있습니다. 바로 그로버의 알고리즘(Grover's algorithm)입니다.
+
+그로버의 알고리즘은, 임의의 함수 f에 대해서 찾고자 하는 함숫값 a가 있으면 f(c) = a를 만족하는 c를 효율적으로 찾을 수 있게 해주는 알고리즘입니다. 숫자 맞추기 문제의 경우 'f(c) = 정답'을 만족하는 비트 c를 찾는 것이 목표였죠.
+
+고전적인 알고리즘은 N개의 숫자 중에서 정답을 찾아내기까지 걸리는 시간이 N에 비례하지만, 그로버의 알고리즘은 N의 제곱근에 비례합니다. 예를 들어서, 1,000,000개의 숫자 중에서 정답을 찾으려면 고전적인 알고리즘으로는 1,000,000에 해당하는 연산량이 필요했습니다. 하지만 그로버의 알고리즘을 사용하면 대략 1,000만큼의 연산량으로 해결할 수 있습니다.
 `;
 
 export default function Principle2Page() {

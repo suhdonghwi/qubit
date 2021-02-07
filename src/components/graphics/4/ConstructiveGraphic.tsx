@@ -30,30 +30,17 @@ function f(x: number, y: number, anim: number) {
   return f1(x, y, anim) + f2(x, y, anim);
 }
 
-const AnimatedText = animated(Text);
-
-export default function DestructiveGraphic({
-  paragraphIndex,
-}: GraphicContentProps) {
-  const { titleOpacity } = useSpring({
-    titleOpacity: paragraphIndex,
-  });
-
+export default function DestructiveGraphic() {
   return (
     <>
-      <AnimatedText
+      <Text
         fontSize={0.7}
         font={fonts.raleway}
         position={[0, 3, 0]}
         rotation={[0, -Math.PI / 4, 0]}
       >
-        Complex function!
-        <animated.meshBasicMaterial
-          color="#e9ecef"
-          transparent
-          opacity={titleOpacity}
-        />
-      </AnimatedText>
+        Constructive
+      </Text>
 
       <FunctionPlane run loop tension={100} f={f} />
     </>
