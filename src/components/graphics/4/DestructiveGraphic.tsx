@@ -6,11 +6,11 @@ import { GraphicContentProps } from "types/Scene";
 import fonts from "fonts.json";
 
 function f1(x: number, y: number, anim: number) {
-  const spread = 1,
-    amplitude = 5 - anim * 7.5;
+  const spread = 0.8,
+    amplitude = 4;
 
-  const xOffset = -1.5,
-    yOffset = -1.5;
+  const xOffset = -2 + anim * 2,
+    yOffset = -2 + anim * 2;
 
   return (
     -amplitude *
@@ -24,11 +24,11 @@ function f1(x: number, y: number, anim: number) {
 }
 
 function f2(x: number, y: number, anim: number) {
-  const spread = 1,
-    amplitude = 2 + anim * 1.5;
+  const spread = 0.8,
+    amplitude = -3;
 
-  const xOffset = 1.5,
-    yOffset = 1.5;
+  const xOffset = 2 - anim * 2,
+    yOffset = 2 - anim * 2;
 
   return (
     -amplitude *
@@ -47,7 +47,7 @@ function f(x: number, y: number, anim: number) {
 
 const AnimatedText = animated(Text);
 
-export default function ActualWaveFunctionGraphic({
+export default function DestructiveGraphic({
   paragraphIndex,
 }: GraphicContentProps) {
   const { titleOpacity } = useSpring({
@@ -70,7 +70,7 @@ export default function ActualWaveFunctionGraphic({
         />
       </AnimatedText>
 
-      <FunctionPlane run={paragraphIndex > 0} f={f} />
+      <FunctionPlane run loop tension={100} f={f} />
     </>
   );
 }

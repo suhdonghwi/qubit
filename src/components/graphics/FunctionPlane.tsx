@@ -3,17 +3,33 @@ import { useFrame } from "react-three-fiber";
 
 import { useSpring } from "@react-spring/three";
 
-function FunctionPlane({
-  run,
-  f,
-}: {
+interface FunctionPlaneProps {
   run: boolean;
+  loop?: boolean;
+  tension?: number;
   f: (x: number, y: number, anim: number) => number;
-}) {
-  const plane = new THREE.PlaneGeometry(9, 9, 64, 64);
+}
+
+function FunctionPlane({ run, loop, tension, f }: FunctionPlaneProps) {
+  const plane = new THREE.PlaneGeometry(9, 9, 30, 30);
 
   const { anim } = useSpring({
-    anim: run ? 1 : 0,
+    config: {
+      tension,
+    },
+    from: {
+      anim: 0,
+    },
+    to: async (next) => {
+      if (loop) {
+        while (1) {
+          await next({ anim: 0 });
+          await next({ anim: 1 });
+        }
+      } else if (run) {
+        await next({ anim: 1 });
+      }
+    },
   });
 
   useFrame(() => {

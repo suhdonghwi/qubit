@@ -10,6 +10,8 @@ import GuessGraphic from "../components/graphics/4/GuessGraphic";
 import ComputerGraphic from "../components/graphics/3/ComputerGraphic";
 import QuantumGuessGraphic from "../components/graphics/4/QuantumGuessGraphic";
 import WaveFunctionGraphic from "../components/graphics/4/WaveFunctionGraphic";
+import ActualWaveFunctionGraphic from "components/graphics/4/ActualWaveFunctionGraphic";
+import DestructiveGraphic from "components/graphics/4/DestructiveGraphic";
 
 const builder = new ContentBuilder();
 
@@ -64,7 +66,7 @@ builder.paragraph(
 양자 컴퓨터의 혁신성은 양자 알고리즘에 있습니다. 양자 알고리즘은, 양자역학의 원리를 이용해서 틀린 답안이 관측될 확률을 줄이고 맞는 답안이 관측될 확률을 높입니다. 실제로 관측을 하기 전에 말이죠.
 
 그렇게 되면, 관측을 했을 때 더 높은 확률로 맞는 답안이 나오게 될 것이고, 궁극적으로는 전체적인 알고리즘 실행 시간이 줄어들게 되는 것입니다. 정답을 맞추기 위해 무작위하게 때려 맞추는 횟수가 훨씬 더 줄어들기 때문입니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(ActualWaveFunctionGraphic)`
 대체 어떤 원리를 이용하길래 관측을 하기도 전에 정답을 맞출 확률을 올릴 수 있는 것일까요?
 
 특정한 양자 상태를 관측할 확률은 파동 함수로부터 구할 수 있다고 말씀 드렸었죠? 파동 함숫값의 크기에 제곱을 하면 됩니다. 짤막하게 언급을 하기도 했지만, 지금까지 보여드린 파동 함수의 시각화는 사실 원본 파동 함수가 아니라 "파동 함수의 크기에 제곱"을 한 함수를 나타낸 것입니다.
@@ -74,10 +76,10 @@ builder.paragraph(
 실제로 파동 함수는 원래 복소 함수, 즉 허수를 포함하는 복소수 값을 가지는 함수입니다. 즉, 양자역학에서의 확률 진폭은 0과 양수 뿐만 아니라 음수, 심지어는 허수까지 가능하다는 것입니다.
 
 이 말은, 두 개의 확률이 파동처럼 서로 간섭하여 증폭되거나 상쇄될 수 있음을 의미합니다. 예를 들어서...
+`.paragraph(DestructiveGraphic)`
+'오답 관측'을 나타내는 음의 확률 파동과 양의 확률 파동이 서로 만나 상쇄되어서 파동의 크기가 줄어들 수 있습니다. 오답을 관측할 확률 파동의 크기가 줄었다는 것은, 오답을 관측할 확률이 줄었다는 것이므로 "알고리즘의 효율이 증가했다"라고 할 수 있습니다.
 `.paragraph(SubatomicGraphic)`
-오답을 관측함에 대한 음의 확률 파동과 양의 확률 파동이 서로 만나 상쇄되어서 파동의 크기가 줄어들 수 있습니다. 오답을 관측할 확률 파동의 크기가 줄었다는 것은, 오답을 관측할 확률이 줄었다는 것이므로 "알고리즘의 효율이 증가했다"라고 할 수 있습니다.
-`.paragraph(SubatomicGraphic)`
-반대로, 정답을 관측함에 대한 양의 확률 파동 2개가 서로 만나 증폭되어서 파동의 크기가 증가할 수 있습니다. 이는 정답을 관측할 확률이 늘었다는 것이므로 이 역시 "알고리즘의 효율이 증가했다"라고 할 수 있는 것입니다.
+반대로, '정답 관측'을 나타내는 양의 확률 파동 2개가 서로 만나 증폭되어서 파동의 크기가 증가할 수 있습니다. 이는 정답을 관측할 확률이 늘었다는 것이므로 이 역시 "알고리즘의 효율이 증가했다"라고 할 수 있는 것입니다.
 
 양자 컴퓨터는 바로 이런 방식을 이용해 고전 컴퓨터에 비해 알고리즘을 훨씬 더 효율적으로 실행합니다. 고전 컴퓨터는 고전 확률 체계를 이용하기 때문에, 음의 확률 파동과 같은 성질을 알고리즘 계산에 사용할 수 없습니다. 어떤 사람들은 양자 컴퓨팅을 '음의 부호가 있는 확률론'이라고 부르기도 합니다.
 `;
