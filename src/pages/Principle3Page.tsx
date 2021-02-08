@@ -3,7 +3,8 @@ import ContentViewer from "../components/ContentViewer";
 
 import ContentBuilder from "../types/ContentBuilder";
 
-import SubatomicGraphic from "components/graphics/1/SubatomicGraphic";
+import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
+import { NotGateGraphic, AndGateGraphic } from "../components/graphics/5";
 
 const builder = new ContentBuilder();
 
@@ -11,9 +12,9 @@ builder.paragraph(SubatomicGraphic)`
 이제 양자 알고리즘의 원리에 대해서 알았으니, 양자 컴퓨터가 실제로 계산을 할 때는 어떻게 하는지에 대해서 알아보도록 하겠습니다.
 
 계속 그래왔던 것처럼, 양자 컴퓨터의 경우를 보기 전에 고전 컴퓨터는 어떻게 하는지부터 보겠습니다. 고전 컴퓨터는 비트를 가지고 연산을 하기 위해서 '논리 게이트'를 사용합니다. 논리 게이트는 비트를 입력으로 받고, 비트를 출력으로 하는 아주 단순한 연산 최소 단위입니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(NotGateGraphic)`
 예를 들어, NOT 게이트는 비트 0을 입력으로 받으면 비트 1을 출력으로 하고, 비트 1을 입력으로 받으면 비트 0을 출력으로 합니다. 즉, 비트를 반대로 바꾸어주는 역할을 합니다.
-`.paragraph(SubatomicGraphic)`
+`.paragraph(AndGateGraphic)`
 AND 게이트는 NOT 게이트와는 다르게 두 개의 비트를 입력으로 받습니다. 만약 두 비트가 모두 1이면 1을 출력하고, 아닌 경우는 0을 출력합니다.
 
 다른 게이트도 비슷하게 서로 다른 입력에 대해서 각각의 출력을 내놓습니다. 이렇게 정말 단순한 논리 게이트들이 모여서 수식을 계산하고, 체스를 두면서, 내일의 날씨를 예측해냅니다. 놀라운 일이 아닐 수 없습니다.
