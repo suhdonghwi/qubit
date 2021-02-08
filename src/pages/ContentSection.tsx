@@ -5,6 +5,7 @@ import MenuBox from "../components/MenuBox";
 
 import { QuantumComputerGraphic } from "../components/graphics/1";
 import { CubeGraphic } from "../components/graphics/4";
+import { DiceGraphic } from "components/graphics/2";
 
 const Container = styled.section`
   padding: 4rem 0 12rem 0;
@@ -34,6 +35,10 @@ const MenuContainer = styled.div`
   align-items: center;
   justify-content: center;
 
+  @media screen and (max-width: 1200px) {
+    width: 75%;
+  }
+
   @media screen and (max-width: 900px) {
     width: 80%;
   }
@@ -57,6 +62,12 @@ export default function ContentSection() {
           num={2}
           description="양자역학의 원리를 기반으로 동작하는 양자 컴퓨터의 개념에 대해서 알아봅니다. 양자 컴퓨터의 실제 응용 원리에 대해서 다룹니다."
           graphic={<CubeGraphic />}
+        />
+
+        <MenuBox
+          num={3}
+          description="양자역학과 양자 컴퓨터에 대해서 흔하게 퍼져있는 잘못된 이야기들과 오해들을 해소합니다."
+          graphic={<DiceGraphic />}
         />
       </MenuContainer>
     </Container>
