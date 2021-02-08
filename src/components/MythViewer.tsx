@@ -61,6 +61,7 @@ const Block = styled.article`
 const MythTitle = styled.h2`
   font-size: 2.2rem;
   color: #e9ecef;
+  word-break: keep-all;
 
   @media screen and (max-width: 450px) {
     font-size: 1.8rem;
