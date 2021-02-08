@@ -6,12 +6,11 @@ import { maxWidth } from "../utils/MediaQuery";
 import toc from "toc.json";
 
 const Container = styled.div`
-  padding: 0 2rem;
   display: flex;
   width: 100%;
 
   ${maxWidth(420)} {
-    padding: 2rem 1rem 0 1rem;
+    padding-top: 2rem;
   }
 `;
 

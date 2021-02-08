@@ -217,6 +217,14 @@ const Block = styled.div`
   }
 `;
 
+const NextPrevContainer = styled.div`
+  padding: 0 2rem;
+
+  ${maxWidth(420)} {
+    padding: 0 1rem;
+  }
+`;
+
 const Bounce = keyframes`
   0%,
   20%,
@@ -339,7 +347,10 @@ export default function ContentViewer({
             ))
           )}
         </TextContainer>
-        <NextPrev chapter={chapter} index={index} />
+
+        <NextPrevContainer>
+          <NextPrev chapter={chapter} index={index} />
+        </NextPrevContainer>
       </TextSection>
 
       <GraphicSection>
