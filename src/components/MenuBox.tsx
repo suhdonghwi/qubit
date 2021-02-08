@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { Canvas } from "react-three-fiber";
 import { OrthographicCamera } from "@react-three/drei";

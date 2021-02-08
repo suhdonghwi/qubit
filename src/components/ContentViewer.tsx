@@ -13,6 +13,7 @@ import palette from "../palette";
 import { maxWidth, maxHeight } from "../utils/MediaQuery";
 import toc from "toc.json";
 import NextPrev from "./NextPrev";
+import Navigation from "./Navigation";
 
 import { InView } from "react-intersection-observer";
 
@@ -288,6 +289,8 @@ export default function ContentViewer({
       <Helmet>
         <title>{`${chapter}-${index}. ${title} ― Qubit`}</title>
       </Helmet>
+
+      <Navigation />
 
       <TextSection ref={textSectionRef}>
         <DownArrow>

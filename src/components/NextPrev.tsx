@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { maxWidth } from "../utils/MediaQuery";
