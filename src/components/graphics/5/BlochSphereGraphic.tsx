@@ -32,9 +32,9 @@ export default function BlochSphereGraphic({
   return (
     <>
       <Text
-        fontSize={1}
+        fontSize={0.7}
         font={fonts.raleway}
-        position={[0, 3, 0]}
+        position={[0, 4.5, 0]}
         rotation={[0, -Math.PI / 4, 0]}
       >
         Bloch Sphere
@@ -44,8 +44,9 @@ export default function BlochSphereGraphic({
         radius={2}
         phi={phi}
         theta={theta}
-        position={[0, -2, 0]}
+        position={[0, 0, 0]}
       />
+      <Plane opacity={0.3} />
     </>
   );
 }

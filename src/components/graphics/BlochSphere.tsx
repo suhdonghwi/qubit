@@ -40,7 +40,7 @@ export default function BlochSphere({
   ...props
 }: BlochSphereProps & MeshProps) {
   return (
-    <mesh rotation={[-Math.PI / 2, 0, Math.PI]} {...props}>
+    <mesh rotation={[-Math.PI / 2, 0, Math.PI]} castShadow {...props}>
       <sphereBufferGeometry args={[radius, 32, 32]} />
       <meshLambertMaterial color="#f8f9fa" transparent opacity={0.2} />
 
@@ -115,7 +115,7 @@ export default function BlochSphere({
             Math.cos(theta)
           )
         }
-        color="#d40f0f"
+        color="#e00b0b"
         radius={radius}
       />
     </mesh>
