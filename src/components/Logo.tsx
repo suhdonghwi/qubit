@@ -8,10 +8,10 @@ const Container = styled.div`
 `;
 
 const LogoImage = styled.img`
-  height: 48px;
+  height: 40px;
 
   @media screen and (max-width: 500px) {
-    height: 28px;
+    height: 24px;
   }
 `;
 
