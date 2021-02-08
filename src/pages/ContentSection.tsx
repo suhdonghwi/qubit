@@ -5,7 +5,6 @@ import MenuBox from "../components/MenuBox";
 
 import { QuantumComputerGraphic } from "../components/graphics/1";
 import { CubeGraphic } from "../components/graphics/4";
-import toc from "toc.json";
 
 const Container = styled.section`
   padding: 4rem 0 12rem 0;
