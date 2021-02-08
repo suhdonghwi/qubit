@@ -40,12 +40,7 @@ export default function BlochSphereGraphic({
         Bloch Sphere
       </Text>
 
-      <AnimatedSphere
-        radius={2}
-        phi={phi}
-        theta={theta}
-        position={[0, 0, 0]}
-      />
+      <AnimatedSphere radius={2} phi={phi} theta={theta} position={[0, 0, 0]} />
       <Plane opacity={0.3} />
     </>
   );

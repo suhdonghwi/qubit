@@ -74,12 +74,12 @@ export default function Navigation() {
           <Logo />
         </LogoContainer>
         <List>
-          {toc.map((chapter) => (
-            <ChapterItem>
+          {toc.map((chapter, i) => (
+            <ChapterItem key={i}>
               {chapter.title}
               <List>
-                {chapter.content.map((article) => (
-                  <ArticleItem>
+                {chapter.content.map((article, j) => (
+                  <ArticleItem key={j}>
                     <StyledLink to={article.route}>{article.title}</StyledLink>
                   </ArticleItem>
                 ))}

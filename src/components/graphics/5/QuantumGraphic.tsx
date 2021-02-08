@@ -14,6 +14,9 @@ interface QuantumGraphicProps {
   outputPhi: number;
   outputTheta: number;
 
+  controlPhi?: number;
+  controlTheta?: number;
+
   name: string;
 }
 
@@ -22,6 +25,8 @@ export default function QuantumGraphic({
   inputTheta,
   outputPhi,
   outputTheta,
+  controlPhi,
+  controlTheta,
   name,
 }: QuantumGraphicProps) {
   const [pressed, setPressed] = useState(false);
@@ -48,6 +53,21 @@ export default function QuantumGraphic({
     <>
       <QuantumSingleGate name={name} radius={2} />
       <AnimatedSphere radius={1} {...sphereSpring} />
+
+      {controlPhi !== undefined && controlTheta !== undefined && (
+        <>
+          <BlochSphere
+            radius={1}
+            phi={controlPhi}
+            theta={controlTheta}
+            position={[6, 0, 0]}
+          />
+          <mesh rotation={[0, 0, Math.PI / 2]} position={[3, 0, 0]}>
+            <cylinderBufferGeometry args={[0.15, 0.05, 2, 32]} />
+            <meshBasicMaterial color="#845ef7" />
+          </mesh>
+        </>
+      )}
 
       <Button
         click={pressed}
