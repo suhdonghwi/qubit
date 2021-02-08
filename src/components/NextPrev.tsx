@@ -28,7 +28,7 @@ const Navigation = styled(Link)`
 
   transition: color 0.5s;
 
-  &:last-child {
+  &.next {
     margin-left: auto;
   }
 
@@ -74,14 +74,14 @@ export default function NextPrev({ chapter, index }: NextPrevProps) {
   return (
     <Container>
       {prev && (
-        <Navigation to={prev.route}>
+        <Navigation to={prev.route} className="prev">
           <FaChevronLeft />
           <Text>{prev.title}</Text>
         </Navigation>
       )}
 
       {next && (
-        <Navigation to={next.route}>
+        <Navigation to={next.route} className="next">
           <Text>{next.title}</Text>
           <FaChevronRight />
         </Navigation>
