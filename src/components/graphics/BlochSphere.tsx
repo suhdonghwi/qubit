@@ -2,6 +2,7 @@ import { Vector3 } from "three";
 import { Text } from "@react-three/drei";
 
 import fonts from "fonts.json";
+import { MeshProps } from "react-three-fiber";
 
 function AxisArrow({
   dir,
@@ -32,9 +33,14 @@ interface BlochSphereProps {
   phi: number;
 }
 
-export default function BlochSphere({ radius, theta, phi }: BlochSphereProps) {
+export default function BlochSphere({
+  radius,
+  theta,
+  phi,
+  ...props
+}: BlochSphereProps & MeshProps) {
   return (
-    <mesh rotation={[-Math.PI / 2, 0, Math.PI]}>
+    <mesh rotation={[-Math.PI / 2, 0, Math.PI]} {...props}>
       <sphereBufferGeometry args={[radius, 32, 32]} />
       <meshLambertMaterial color="#f8f9fa" transparent opacity={0.2} />
 
@@ -109,7 +115,7 @@ export default function BlochSphere({ radius, theta, phi }: BlochSphereProps) {
             Math.cos(theta)
           )
         }
-        color="#ff0000"
+        color="#d40f0f"
         radius={radius}
       />
     </mesh>

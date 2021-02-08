@@ -1,8 +1,10 @@
 import { useSpring, animated } from "@react-spring/three";
+import { Text } from "@react-three/drei";
 
 import Plane from "../Plane";
 import BlochSphere from "../BlochSphere";
 import { GraphicContentProps } from "types/Scene";
+import fonts from "fonts.json";
 
 const AnimatedSphere = animated(BlochSphere);
 
@@ -23,14 +25,27 @@ export default function BlochSphereGraphic({
   }
 
   const { phi, theta } = useSpring({
-    phi: 0,
+    phi: -Math.PI / 8,
     theta: t,
   });
 
   return (
     <>
-      <AnimatedSphere radius={2} phi={phi} theta={theta} />
-      <Plane />
+      <Text
+        fontSize={1}
+        font={fonts.raleway}
+        position={[0, 3, 0]}
+        rotation={[0, -Math.PI / 4, 0]}
+      >
+        Bloch Sphere
+      </Text>
+
+      <AnimatedSphere
+        radius={2}
+        phi={phi}
+        theta={theta}
+        position={[0, -2, 0]}
+      />
     </>
   );
 }
