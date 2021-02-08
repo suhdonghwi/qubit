@@ -145,19 +145,11 @@ const StyledCanvas = styled(Canvas)`
 
 interface MenuBoxProps {
   num: number;
-  title: string;
   description: string;
-  chapters: string[];
   graphic: JSX.Element;
 }
 
-export default function MenuBox({
-  num,
-  title,
-  description,
-  chapters,
-  graphic,
-}: MenuBoxProps) {
+export default function MenuBox({ num, description, graphic }: MenuBoxProps) {
   const [zoom, setZoom] = useState(0);
 
   const onResize = () => {
@@ -180,7 +172,7 @@ export default function MenuBox({
     <Box>
       <Heading>
         <Number>0{num}</Number>
-        <Title>{title}</Title>
+        <Title>{toc[num - 1].title}</Title>
         <Description>{description}</Description>
       </Heading>
 

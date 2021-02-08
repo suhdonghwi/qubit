@@ -50,17 +50,13 @@ export default function ContentSection() {
       <MenuContainer>
         <MenuBox
           num={1}
-          title={toc[0].title}
           description="양자역학이 어떤 학문인지, 어떤 계기로 탄생하게 된 학문인지 알아봅니다. 그리고 양자 컴퓨터를 이해하기 위해서 필요한 최소한의 양자역학 개념들에 대해서 다룹니다."
-          chapters={toc[0].content.map((c) => c.title)}
           graphic={<QuantumComputerGraphic />}
         />
 
         <MenuBox
           num={2}
-          title={toc[1].title}
           description="양자역학의 원리를 기반으로 동작하는 양자 컴퓨터의 개념에 대해서 알아봅니다. 양자 컴퓨터의 실제 응용 원리에 대해서 다룹니다."
-          chapters={toc[1].content.map((c) => c.title)}
           graphic={<CubeGraphic />}
         />
       </MenuContainer>
