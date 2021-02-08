@@ -1,6 +1,6 @@
 export type Myth = {
   title: string;
-  content: JSX.Element[];
+  content: string[];
 };
 
 export default class MythBuilder {
@@ -18,7 +18,7 @@ export default class MythBuilder {
 
       this.result.push({
         title: `${this.counter}. ${title}`,
-        content: paragraphs.map((p) => <p>{p}</p>),
+        content: paragraphs,
       });
       this.counter++;
       return this;

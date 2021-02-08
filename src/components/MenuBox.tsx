@@ -54,7 +54,7 @@ const Description = styled.p`
   color: #868e96;
   width: 75%;
 
-  margin: 2rem 0;
+  margin: 2rem 0 2.4rem 0;
 
   @media screen and (max-width: 1000px) {
     width: 100%;

@@ -56,15 +56,6 @@ const Description = styled.p`
 
 const Block = styled.article`
   margin-bottom: 5rem;
-
-  p {
-    font-size: 1.3rem;
-    color: #ced4da;
-
-    @media screen and (max-width: 450px) {
-      font-size: 1.1rem;
-    }
-  }
 `;
 
 const MythTitle = styled.h2`
@@ -74,6 +65,19 @@ const MythTitle = styled.h2`
   @media screen and (max-width: 450px) {
     font-size: 1.8rem;
   }
+`;
+
+const MythContent = styled.p`
+  font-size: 1.3rem;
+  color: #ced4da;
+
+  @media screen and (max-width: 450px) {
+    font-size: 1.1rem;
+  }
+`;
+
+const NextPrevContainer = styled.div`
+  margin-top: 8rem;
 `;
 
 interface MythViewerProps {
@@ -102,11 +106,15 @@ export default function MythViewer({ chapter, index, myths }: MythViewerProps) {
       {myths.map((myth, i) => (
         <Block key={i}>
           <MythTitle>오해 {myth.title}</MythTitle>
-          {myth.content}
+          {myth.content.map((p, j) => (
+            <MythContent key={j}>{p}</MythContent>
+          ))}
         </Block>
       ))}
 
-      <NextPrev chapter={chapter} index={index} />
+      <NextPrevContainer>
+        <NextPrev chapter={chapter} index={index} />
+      </NextPrevContainer>
     </Container>
   );
 }

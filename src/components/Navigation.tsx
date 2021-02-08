@@ -23,12 +23,12 @@ const Pop = styled.div`
   transition: transform 0.3s;
 
   &:hover {
-    transform: translateX(280px);
+    transform: translateX(300px);
   }
 `;
 
 const Nav = styled.nav`
-  width: 280px;
+  width: 300px;
 
   position: absolute;
   top: 0rem;
