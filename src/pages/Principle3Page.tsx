@@ -3,7 +3,6 @@ import ContentViewer from "../components/ContentViewer";
 
 import ContentBuilder from "../types/ContentBuilder";
 
-import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
 import {
   LogicGatesGraphic,
   NotGateGraphic,
@@ -85,7 +84,7 @@ Pauli X 게이트 외에도 Y축을 기준으로 대칭시키는 Pauli Y 게이�
 Hadamard 게이트 또한 블로흐 구면 위에서 화살표의 조작으로 표현할 수 있습니다. "화살표를 x축과 z축이 이루는 각의 이등분선을 기준으로 대칭"하는 것입니다. 실행 과정과 비교해보시면 정말 그렇다는 것을 알 수 있습니다.
 
 실제로 Hadamard 게이트를 연산하기 위해서는 Hadamard 행렬을 적용시키는 등의 과정이 필요하지만, 블로흐 구면을 이용하니 이렇게 직관적으로 이해할 수 있습니다. 블로흐 구면은 이렇게 여러모로 유용한 점이 많은 표현 방식입니다.
-`.paragraph(EntanglementGraphic)`
+`.paragraph(() => <EntanglementGraphic paragraphIndex={1} />)`
 지금까지는 하나의 큐비트에 대해서 동작하는 양자 논리 게이트들을 보여드렸습니다. 그런데, 첫 장에서 소개해드린 양자역학의 원리 중에서 아직 양자 컴퓨터의 응용을 보여드리지 않은 것이 있습니다. 바로 양자 얽힘입니다.
 
 양자 얽힘은 두 양자 물질이 얽혀있는 상태에서 둘 중 하나를 관측하면 나머지 하나의 상태도 즉시 알 수 있다는 것이었습니다. 양자 컴퓨터에서 이 양자 얽힘은 어떻게 표현될까요?
