@@ -4,11 +4,15 @@ import ContentViewer from "../components/ContentViewer";
 import ContentBuilder from "../types/ContentBuilder";
 
 import SubatomicGraphic from "../components/graphics/1/SubatomicGraphic";
-import { NotGateGraphic, AndGateGraphic } from "../components/graphics/5";
+import {
+  LogicGatesGraphic,
+  NotGateGraphic,
+  AndGateGraphic,
+} from "../components/graphics/5";
 
 const builder = new ContentBuilder();
 
-builder.paragraph(SubatomicGraphic)`
+builder.paragraph(LogicGatesGraphic)`
 이제 양자 알고리즘의 원리에 대해서 알았으니, 양자 컴퓨터가 실제로 계산을 할 때는 어떻게 하는지에 대해서 알아보도록 하겠습니다.
 
 계속 그래왔던 것처럼, 양자 컴퓨터의 경우를 보기 전에 고전 컴퓨터는 어떻게 하는지부터 보겠습니다. 고전 컴퓨터는 비트를 가지고 연산을 하기 위해서 '논리 게이트'를 사용합니다. 논리 게이트는 비트를 입력으로 받고, 비트를 출력으로 하는 아주 단순한 연산 최소 단위입니다.
