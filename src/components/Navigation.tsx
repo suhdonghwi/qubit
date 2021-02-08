@@ -6,7 +6,7 @@ import toc from "toc.json";
 import { Link } from "react-router-dom";
 
 const Pop = styled.div`
-  position: absolute;
+  position: fixed;
   top: 2rem;
   left: 0rem;
 
