@@ -132,7 +132,7 @@ const StyledCanvas = styled(Canvas)`
   }
 
   @media screen and (max-width: 1200px) {
-    right: -20%;
+    right: -15%;
 
     width: 500px !important;
     height: 400px !important;
@@ -199,12 +199,12 @@ export default function MenuBox({ num, description, graphic }: MenuBoxProps) {
           intensity={0.5}
           position={[5, 15, 5]}
           castShadow
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
-          shadow-camera-left={-10}
-          shadow-camera-right={10}
-          shadow-camera-top={10}
-          shadow-camera-bottom={-10}
+          shadow-mapSize-width={512}
+          shadow-mapSize-height={512}
+          shadow-camera-left={-5}
+          shadow-camera-right={5}
+          shadow-camera-top={5}
+          shadow-camera-bottom={-5}
         />
 
         <group rotation={[0, Math.PI / 4, 0]}>{graphic}</group>
