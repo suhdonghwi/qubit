@@ -70,7 +70,7 @@ const StartLink = styled(Link)`
 
   font-size: 1.1rem;
   text-decoration: none;
-  padding: 0.4rem 1.8rem;
+  padding: 0.3rem 1.8rem;
   color: white;
 
   border: 2px solid #ced4da;
