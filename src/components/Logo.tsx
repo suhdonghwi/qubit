@@ -1,12 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 import logo from "../logo.svg";
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: #f8f9fa;
-`;
 
 const Container = styled.div`
   display: flex;
@@ -35,11 +29,9 @@ const LogoText = styled.h1`
 
 export default function Logo() {
   return (
-    <StyledLink to="/">
-      <Container>
-        <LogoImage src={logo} />
-        <LogoText>Qubit</LogoText>
-      </Container>
-    </StyledLink>
+    <Container>
+      <LogoImage src={logo} />
+      <LogoText>Qubit</LogoText>
+    </Container>
   );
 }
