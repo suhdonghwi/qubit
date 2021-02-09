@@ -6,8 +6,15 @@ import Navigation from "./Navigation";
 import toc from "toc.json";
 import NextPrev from "./NextPrev";
 
-const Container = styled.main`
-  margin: 0 auto;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: #212529;
+`;
+
+const Main = styled.main`
   width: 50%;
 
   padding: 4rem 0;
@@ -95,27 +102,29 @@ export default function MythViewer({ chapter, index, myths }: MythViewerProps) {
 
   return (
     <Container>
-      <Navigation />
-      <Chapter>
-        0{chapter} {chapterTitle}
-      </Chapter>
-      <Title>
-        {index}. {title}
-      </Title>
-      <Description>{description}</Description>
+      <Main>
+        <Navigation />
+        <Chapter>
+          0{chapter} {chapterTitle}
+        </Chapter>
+        <Title>
+          {index}. {title}
+        </Title>
+        <Description>{description}</Description>
 
-      {myths.map((myth, i) => (
-        <Block key={i}>
-          <MythTitle>오해 {myth.title}</MythTitle>
-          {myth.content.map((p, j) => (
-            <MythContent key={j}>{p}</MythContent>
-          ))}
-        </Block>
-      ))}
+        {myths.map((myth, i) => (
+          <Block key={i}>
+            <MythTitle>오해 {myth.title}</MythTitle>
+            {myth.content.map((p, j) => (
+              <MythContent key={j}>{p}</MythContent>
+            ))}
+          </Block>
+        ))}
 
-      <NextPrevContainer>
-        <NextPrev chapter={chapter} index={index} />
-      </NextPrevContainer>
+        <NextPrevContainer>
+          <NextPrev chapter={chapter} index={index} />
+        </NextPrevContainer>
+      </Main>
     </Container>
   );
 }
