@@ -12,7 +12,7 @@ const Header = styled.header`
   z-index: 2;
 
   padding: 2rem 2.5rem;
-  position: fixed;
+  position: absolute;
 
   @media screen and (max-width: 500px) {
     padding: 1rem 1.5rem;
