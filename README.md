@@ -6,10 +6,7 @@
 ✏️ 만약 잘못된 내용/수정이 필요한 내용을 발견하셨다면, 본 레포에 이슈를 올려주시면 감사하겠습니다.
 ```
 
-<p align="center">
-  <img width="450" src="https://user-images.githubusercontent.com/8275026/107494251-e89ef300-6bd1-11eb-916e-5789f3a46b4a.png"/>
-  <img width="450" src="https://user-images.githubusercontent.com/8275026/107494245-e63c9900-6bd1-11eb-90cf-8aeb0acf8fdd.png"/>
-</p>
+![Example content image](https://user-images.githubusercontent.com/8275026/107494245-e63c9900-6bd1-11eb-90cf-8aeb0acf8fdd.png)
 
 ## 🔗 주요 라이브러리
 
