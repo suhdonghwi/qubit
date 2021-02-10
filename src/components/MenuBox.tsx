@@ -116,7 +116,7 @@ const ChapterItem = styled.li`
 
 const StyledCanvas = styled(Canvas)`
   position: absolute !important;
-  width: 700px !important;
+  width: 650px !important;
   height: 500px !important;
 
   top: 50%;
@@ -128,7 +128,7 @@ const StyledCanvas = styled(Canvas)`
   }
 
   @media screen and (max-width: 1400px) {
-    right: -30%;
+    right: -20%;
   }
 
   @media screen and (max-width: 1200px) {
