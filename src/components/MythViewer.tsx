@@ -44,6 +44,7 @@ const Chapter = styled.small`
 const Title = styled.h1`
   font-size: 3rem;
   margin: 0.5rem 0;
+  word-break: keep-all;
 
   @media screen and (max-width: 450px) {
     font-size: 2rem;
@@ -71,7 +72,7 @@ const MythTitle = styled.h2`
   word-break: keep-all;
 
   @media screen and (max-width: 450px) {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 `;
 
