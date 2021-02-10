@@ -10,7 +10,7 @@ const Container = styled.div`
   width: 100%;
 
   ${maxWidth(420)} {
-    padding-top: 2rem;
+    padding-top: 4rem;
   }
 `;
 
