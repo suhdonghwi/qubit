@@ -108,6 +108,26 @@ export default function BlochSphere({
           1
         </Text>
 
+        <group rotation={[phi, theta, 0]}>
+          <mesh
+            rotation={[Math.PI / 2, 0, 0]}
+            position={[0, 0, radius / 2 - 0.1]}
+          >
+            <cylinderBufferGeometry args={[0.06, 0.06, radius - 0.2, 32, 32]} />
+            <meshLambertMaterial color="#eb0c0c" />
+
+            <mesh position={[0, radius / 2, 0]}>
+              <cylinderBufferGeometry args={[0, 0.1, 0.2, 32, 32]} />
+              <meshLambertMaterial color="#eb0c0c" />
+            </mesh>
+          </mesh>
+
+          <mesh visible={false}>
+            <sphereBufferGeometry args={[radius, 1, 1]} />
+          </mesh>
+        </group>
+
+        {/*
         <AxisArrow
           dir={
             new Vector3(
@@ -118,7 +138,7 @@ export default function BlochSphere({
           }
           color="#eb0c0c"
           radius={radius}
-        />
+          />*/}
       </mesh>
     </mesh>
   );
