@@ -7,7 +7,6 @@ import {
   SubatomicGraphic,
   QuantumComputerGraphic,
   ParticleGraphic,
-  SingleWaveGraphic,
   DoubleWaveGraphic,
   ElectronGraphic,
   ElectronSlitsGraphic,
@@ -35,16 +34,10 @@ builder.paragraph(QuantumComputerGraphic)`
 
 실제로도 공을 발사해 보면 가장 확률이 높은 구간에 공이 대부분 도달한다는 것을 알 수 있습니다.
 
-`.paragraph(SingleWaveGraphic)`
+`.paragraph(DoubleWaveGraphic)`
 그럼, 이제 '파동'의 경우를 살펴보도록 하겠습니다. 파동은 진동이 퍼져나가는 현상으로, 물수제비를 던지면 수면에 물결파가 생기는 것이 대표적인 예시입니다.
 
-  아까는 두 개의 틈이 있는 슬릿에 공을 던졌었는데요, 이번에는 한 개의 틈이 있는 슬릿에 파동을 통과시켜보겠습니다. 파동은 입자(공)와는 성질이 조금 다르죠? 파동이 슬릿을 통과한 뒤에는 어떻게 진행할까요? 한 번 예측해보세요.
----
-파동이 틈을 통과하면, 그 틈을 중심으로 해서 원 모양으로 다시 퍼져나가게 됩니다. 집에서 욕조에 물을 채우고 물결파로 한 번 실험해보세요! 벽에 그려진 선은 해당 위치에 도달한 파동의 세기를 표시한 것입니다.
-
-그럼 이제 조금 더 어려운 상황을 보도록 할까요?
-`.paragraph(DoubleWaveGraphic)`
-이번엔 아까 공 던지기 실험에서 보았던 이중 슬릿입니다. 이 이중 슬릿에 파동을 통과시키면 파동은 어떻게 진행하고, 벽에는 어떤 모양의 그래프가 그려질까요? 쉽지는 않겠지만, 한 번 생각해보세요!
+아까는 이중 슬릿에 공을 던졌었는데요, 이번에는 파동을 통과시켜보겠습니다. 파동은 입자(공)와는 성질이 조금 다르죠? 파동이 슬릿을 통과한 뒤에는 어떻게 진행하고, 벽에는 어떤 모양의 그래프가 그려질까요? 쉽지는 않겠지만, 한 번 예측해보세요.
 ---
 파동이 두 개의 틈을 통과하면, 왼쪽 틈에서 생기는 파동과 오른쪽 틈에서 생기는 파동이 동시에 진행합니다. 두 파동이 진행하다가 만나게 되면 서로 상쇄되거나 보강되는 상호작용을 하기 때문에 조금 더 복잡한 모양의 파동이 만들어집니다. 이렇게 여러 개의 파동이 만나 위상이 달라지는 현상을 "파동의 간섭"이라고 합니다.
 
@@ -77,10 +70,8 @@ export default function Basic1Page() {
       chapter={1}
       index={1}
       quote={{
-        eng:
-          "I think I can safely say that nobody understands Quantum Mechanics.",
-        kor:
-          "양자역학을 완벽히 이해한 사람은 아무도 없다고 자신있게 말할 수 있습니다.",
+        eng: "I think I can safely say that nobody understands Quantum Mechanics.",
+        kor: "양자역학을 완벽히 이해한 사람은 아무도 없다고 자신있게 말할 수 있습니다.",
         by: "Richard Feynmann (리처드 파인만)",
       }}
       scenes={builder.build()}
