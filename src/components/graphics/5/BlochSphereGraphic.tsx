@@ -25,7 +25,7 @@ export default function BlochSphereGraphic({
   }
 
   const { phi, theta } = useSpring({
-    phi: -Math.PI / 8,
+    phi: 0,
     theta: t,
   });
 
