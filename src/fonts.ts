@@ -1,3 +1,3 @@
-import raleway from "@fontsource/raleway/files/raleway-latin-400-normal.woff?url";
+import raleway from "./assets/fonts/raleway-black.woff?url";
 
 export default { raleway };

@@ -22,7 +22,7 @@ Preserve the existing visible interface and copy. Do not introduce controls, hel
 - Particles and impact patterns are instanced. The dice is generated procedurally, removing the original model download. Smaller spheres use fewer segments.
 - Motion uses delta time, cancellation-aware springs, and visibility/reduced-motion handling. The original 3D buttons support keyboard activation through the existing canvas; the existing menu supports touch and keyboard navigation.
 - Measurements sample at interaction time and remain stable across rerenders. Probability-to-angle conversion now keeps the 20% example consistent with the Bloch sphere.
-- Pretendard is bundled locally for page text and the original Raleway for 3D labels, with its license included. Page text uses variable Unicode subsets to avoid downloading unused glyphs. Lesson quotations use locally bundled Nanum Myeongjo for a serif treatment; paragraphs share a global 1.5 line height.
+- Pretendard is bundled locally for page text and the exact original Raleway Black (900) font file for 3D labels, with its license included. Page text uses variable Unicode subsets to avoid downloading unused glyphs. Lesson quotations use locally bundled Nanum Myeongjo for a serif treatment; paragraphs share a global 1.5 line height.
 
 ## Verification
 
