@@ -1,3 +1,4 @@
+import { positionProps } from "utils/AnimatedVector";
 import { Text } from "@react-three/drei";
 import { animated, useSpring } from "@react-spring/three";
 
@@ -5,7 +6,7 @@ import FunctionPlane from "../FunctionPlane";
 import { GraphicContentProps } from "types/Scene";
 
 import Plane from "../Plane";
-import fonts from "fonts.json";
+import fonts from "fonts";
 import bell from "utils/BellFunction";
 
 function f1(x: number, y: number, anim: number) {
@@ -38,8 +39,16 @@ export default function WaveFunctionGraphic({
   paragraphIndex,
 }: GraphicContentProps) {
   const { wrongPosition, correctPosition, titleOpacity } = useSpring({
-    wrongPosition: [-2, paragraphIndex > 0 ? 1.5 : 3, -2] as any,
-    correctPosition: [2, paragraphIndex > 0 ? 1.4 : -0.1, 2] as any,
+    wrongPosition: [-2, paragraphIndex > 0 ? 1.5 : 3, -2] as [
+      number,
+      number,
+      number,
+    ],
+    correctPosition: [2, paragraphIndex > 0 ? 1.4 : -0.1, 2] as [
+      number,
+      number,
+      number,
+    ],
     titleOpacity: paragraphIndex,
   });
 
@@ -48,7 +57,7 @@ export default function WaveFunctionGraphic({
       <AnimatedText
         fontSize={0.7}
         font={fonts.raleway}
-        position={wrongPosition}
+        {...positionProps(wrongPosition)}
         rotation={[0, -Math.PI / 4, 0]}
         color="#e03131"
       >
@@ -58,7 +67,7 @@ export default function WaveFunctionGraphic({
       <AnimatedText
         fontSize={0.7}
         font={fonts.raleway}
-        position={correctPosition}
+        {...positionProps(correctPosition)}
         rotation={[0, -Math.PI / 4, 0]}
         color="#2f9e44"
       >

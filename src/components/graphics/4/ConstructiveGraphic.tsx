@@ -1,7 +1,7 @@
 import { Text } from "@react-three/drei";
 import FunctionPlane from "../FunctionPlane";
 
-import fonts from "fonts.json";
+import fonts from "fonts";
 import bell from "utils/BellFunction";
 
 function f1(x: number, y: number, anim: number) {

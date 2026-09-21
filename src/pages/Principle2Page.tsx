@@ -20,7 +20,7 @@ const builder = new ContentBuilder();
 
 builder.paragraph(
   CubeGraphic,
-  "Cube graphic by Butanol Mustermann in poly.google.com"
+  "Cube graphic by Butanol Mustermann in poly.google.com",
 )`
 이번 페이지는, 양자 컴퓨팅의 핵심이라고 할 수 있는 양자 알고리즘에 대해서 알아보겠습니다. 내용이 많고 복잡할 수 있지만, 최대한 간단하고 이해하기 쉽게 설명하기 위해 노력해보겠습니다.
 

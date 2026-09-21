@@ -1,22 +1,25 @@
+import { useSceneRunning } from "components/graphics/SceneRuntime";
 import { useState, useEffect } from "react";
 import { Text } from "@react-three/drei";
 
 import Plane from "../Plane";
 import Bit from "../Bit";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 export default function BitCountGraphic() {
   const [num, setNum] = useState(0);
   const binString = num.toString(2).padStart(3, "0").split("");
 
+  const running = useSceneRunning();
   useEffect(() => {
+    if (!running) return;
     function update() {
-      setNum((num + 1) % 8);
+      setNum((value) => (value + 1) % 8);
     }
 
     const id = setInterval(update, 500);
     return () => clearInterval(id);
-  });
+  }, [running]);
 
   return (
     <>

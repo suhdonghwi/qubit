@@ -1,11 +1,11 @@
 import { Text } from "@react-three/drei";
 
 import { animated } from "@react-spring/three";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 interface GuessBoxProps {
   boxOpacity: number;
-  inputScale: [number, number, number];
+  inputDepth: number;
   lightOpacity: number;
   outputOpacity: number;
   correct: boolean;
@@ -13,7 +13,7 @@ interface GuessBoxProps {
 
 export default function GuessGraphic({
   boxOpacity,
-  inputScale,
+  inputDepth,
   lightOpacity,
   outputOpacity,
   correct,
@@ -21,15 +21,15 @@ export default function GuessGraphic({
   return (
     <>
       <mesh position={[0, -1.5, 0]}>
-        <boxBufferGeometry args={[4, 2, 4]} />
+        <boxGeometry args={[4, 2, 4]} />
         <animated.meshLambertMaterial
           color="#868e96"
           transparent
           opacity={boxOpacity}
         />
 
-        <animated.mesh position={[-1.1, 1, 0]} scale={inputScale}>
-          <boxBufferGeometry args={[0.7, 0.05, 3]} />
+        <animated.mesh position={[-1.1, 1, 0]} scale={[1, 1, inputDepth]}>
+          <boxGeometry args={[0.7, 0.05, 3]} />
           <animated.meshLambertMaterial
             color="#343a40"
             transparent
@@ -50,7 +50,7 @@ export default function GuessGraphic({
       <group>
         {[0, 1, 2].map((n) => (
           <mesh key={n} position={[1.5, -2, n - 1]}>
-            <boxBufferGeometry args={[0.3, 0.3, 0.5]} />
+            <boxGeometry args={[0.3, 0.3, 0.5]} />
             <meshLambertMaterial color="#343a40" />
 
             <mesh

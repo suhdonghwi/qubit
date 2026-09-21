@@ -1,11 +1,12 @@
-import styled from "styled-components/macro";
+import { useEffect, useId, useRef, useState } from "react";
+import { styled } from "styled-components";
 
 import { FaBars } from "react-icons/fa";
 import Logo from "./Logo";
 import toc from "toc.json";
 import { Link } from "react-router-dom";
 
-const Pop = styled.div`
+const Pop = styled.div<{ $open: boolean }>`
   position: fixed;
   top: 2rem;
   left: 0rem;
@@ -17,14 +18,22 @@ const Pop = styled.div`
   padding: 0.8rem 0.8rem 0.6rem 0.8rem;
 
   background-color: #343a40;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
 
-  transform: translateX(0);
+  transform: translateX(${({ $open }) => ($open ? "300px" : "0")});
   transition: transform 0.5s;
+`;
 
-  &:hover {
-    transform: translateX(300px);
-  }
+const Toggle = styled.button`
+  display: block;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
 `;
 
 const Nav = styled.nav`
@@ -38,7 +47,9 @@ const Nav = styled.nav`
 
   background-color: #343a40;
   padding: 2rem 1rem;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
 `;
 
 const LogoContainer = styled.div`
@@ -66,10 +77,46 @@ const StyledLink = styled(Link)`
 `;
 
 export default function Navigation() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const id = useId();
+  useEffect(() => {
+    const dismiss = (event: PointerEvent) => {
+      if (event.target instanceof Node && !ref.current?.contains(event.target))
+        setOpen(false);
+    };
+    document.addEventListener("pointerdown", dismiss);
+    return () => document.removeEventListener("pointerdown", dismiss);
+  }, []);
   return (
-    <Pop>
-      <FaBars />
-      <Nav>
+    <Pop
+      ref={ref}
+      $open={open}
+      onPointerEnter={(event) => {
+        if (event.pointerType === "mouse") setOpen(true);
+      }}
+      onPointerLeave={(event) => {
+        if (event.pointerType === "mouse") setOpen(false);
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          setOpen(false);
+          trigger.current?.focus();
+        }
+      }}
+    >
+      <Toggle
+        ref={trigger}
+        type="button"
+        aria-label="목차"
+        aria-expanded={open}
+        aria-controls={id}
+        onClick={() => setOpen(!open)}
+      >
+        <FaBars />
+      </Toggle>
+      <Nav id={id} inert={!open} aria-hidden={!open}>
         <LogoContainer>
           <Logo />
         </LogoContainer>
@@ -80,7 +127,12 @@ export default function Navigation() {
               <List>
                 {chapter.content.map((article, j) => (
                   <ArticleItem key={j}>
-                    <StyledLink to={article.route}>{article.title}</StyledLink>
+                    <StyledLink
+                      to={article.route}
+                      onClick={() => setOpen(false)}
+                    >
+                      {article.title}
+                    </StyledLink>
                   </ArticleItem>
                 ))}
               </List>

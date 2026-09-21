@@ -3,7 +3,7 @@ import { Text } from "@react-three/drei";
 
 import Plane from "../Plane";
 import DiceModel from "../models/DiceModel";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 export default function DiceGraphic() {
   return (

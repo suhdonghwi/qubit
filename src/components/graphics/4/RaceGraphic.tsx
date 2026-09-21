@@ -1,3 +1,5 @@
+import { useSceneRunning } from "components/graphics/SceneRuntime";
+import { positionProps } from "utils/AnimatedVector";
 import { animated, useSpring } from "@react-spring/three";
 
 import Plane from "../Plane";
@@ -8,40 +10,47 @@ const AnimatedBit = animated(Bit);
 const AnimatedQubit = animated(Qubit);
 
 export default function RaceGraphic() {
+  const running = useSceneRunning();
   const { bitPosition } = useSpring({
+    pause: !running,
     config: {
       tension: 100,
     },
     from: {
-      bitPosition: [-3, -2, -2] as any,
+      bitPosition: [-3, -2, -2] as [number, number, number],
     },
     to: async (next) => {
-      while (1) {
-        await next({ bitPosition: [3, -2, -2] });
-        await next({ bitPosition: [-3, -2, -2] });
+      let active = true;
+      while (active) {
+        active = !(await next({ bitPosition: [3, -2, -2] })).cancelled;
+        if (!active) return;
+        if ((await next({ bitPosition: [-3, -2, -2] })).cancelled) return;
       }
     },
   });
 
   const { qubitPosition } = useSpring({
+    pause: !running,
     from: {
-      qubitPosition: [-3, -2, 2] as any,
+      qubitPosition: [-3, -2, 2] as [number, number, number],
     },
     to: async (next) => {
-      while (1) {
-        await next({ qubitPosition: [3, -2, 2] });
-        await next({ qubitPosition: [-3, -2, 2] });
+      let active = true;
+      while (active) {
+        active = !(await next({ qubitPosition: [3, -2, 2] })).cancelled;
+        if (!active) return;
+        if ((await next({ qubitPosition: [-3, -2, 2] })).cancelled) return;
       }
     },
   });
 
   return (
     <>
-      <AnimatedBit radius={0.5} one={false} position={bitPosition} />
+      <AnimatedBit radius={0.5} one={false} {...positionProps(bitPosition)} />
       <AnimatedQubit
         radius={0.5}
         oneProbability={0.5}
-        position={qubitPosition}
+        {...positionProps(qubitPosition)}
       />
       <Plane />
     </>

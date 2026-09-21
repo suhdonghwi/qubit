@@ -11,12 +11,9 @@ interface ProbCurveProps {
 export default function ProbCurve({ points, opacity, color }: ProbCurveProps) {
   const curve = new THREE.CatmullRomCurve3(points);
 
-  const tube = new THREE.BufferGeometry().fromGeometry(
-    new THREE.TubeGeometry(curve, undefined, 0.1)
-  );
-
   return (
-    <mesh geometry={tube} position={[0, 1, 0]}>
+    <mesh position={[0, 1, 0]}>
+      <tubeGeometry args={[curve, 64, 0.1, 8]} />
       <animated.meshBasicMaterial
         color={color || "#c92a2a"}
         transparent

@@ -1,26 +1,33 @@
+import { useSceneRunning } from "components/graphics/SceneRuntime";
 import { useSpring, animated } from "@react-spring/three";
 import { Text } from "@react-three/drei";
 
 import Plane from "../Plane";
 import Qubit from "../Qubit";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 const AnimatedQubit = animated(Qubit);
 
 export default function BitCountGraphic() {
+  const running = useSceneRunning();
   const { prob1, prob2, prob3 } = useSpring({
+    pause: !running,
     from: {
       prob1: 0.5,
       prob2: 0.5,
       prob3: 0.5,
     },
     to: async (next) => {
-      while (1) {
-        await next({
-          prob1: Math.random(),
-          prob2: Math.random(),
-          prob3: Math.random(),
-        });
+      let active = true;
+      while (active) {
+        active = !(
+          await next({
+            prob1: Math.random(),
+            prob2: Math.random(),
+            prob3: Math.random(),
+          })
+        ).cancelled;
+        if (!active) return;
       }
     },
   });

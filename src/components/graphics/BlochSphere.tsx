@@ -1,8 +1,8 @@
 import { Vector3 } from "three";
 import { Text } from "@react-three/drei";
 
-import fonts from "fonts.json";
-import { MeshProps } from "react-three-fiber";
+import fonts from "fonts";
+import { ThreeElements } from "@react-three/fiber";
 
 function AxisArrow({
   dir,
@@ -38,15 +38,15 @@ export default function BlochSphere({
   phi,
   theta,
   ...props
-}: BlochSphereProps & MeshProps) {
+}: BlochSphereProps & ThreeElements["mesh"]) {
   return (
     <mesh {...props}>
       <mesh rotation={[-Math.PI / 2, 0, Math.PI]} castShadow>
-        <sphereBufferGeometry args={[radius, 32, 32]} />
+        <sphereGeometry args={[radius, 32, 32]} />
         <meshLambertMaterial color="#f8f9fa" transparent opacity={0.2} />
 
         <mesh>
-          <torusBufferGeometry args={[radius, 0.02, 64, 64]} />
+          <torusGeometry args={[radius, 0.02, 12, 64]} />
           <meshLambertMaterial color="#f8f9fa" />
         </mesh>
 
@@ -113,17 +113,17 @@ export default function BlochSphere({
             rotation={[Math.PI / 2, 0, 0]}
             position={[0, 0, radius / 2 - 0.1]}
           >
-            <cylinderBufferGeometry args={[0.06, 0.06, radius - 0.2, 32, 32]} />
+            <cylinderGeometry args={[0.06, 0.06, radius - 0.2, 32, 32]} />
             <meshLambertMaterial color="#eb0c0c" />
 
             <mesh position={[0, radius / 2, 0]}>
-              <cylinderBufferGeometry args={[0, 0.1, 0.2, 32, 32]} />
+              <cylinderGeometry args={[0, 0.1, 0.2, 32, 32]} />
               <meshLambertMaterial color="#eb0c0c" />
             </mesh>
           </mesh>
 
           <mesh visible={false}>
-            <sphereBufferGeometry args={[radius, 1, 1]} />
+            <sphereGeometry args={[radius, 1, 1]} />
           </mesh>
         </group>
 

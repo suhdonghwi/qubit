@@ -1,10 +1,8 @@
-import React, { useMemo, useRef, useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components/macro";
-import { Helmet } from "react-helmet";
+import React, { useEffect, useMemo, useState } from "react";
+import { styled, keyframes } from "styled-components";
 
 import Scene, { GraphicContent } from "../types/Scene";
 import GraphicsViewer from "./GraphicsViewer";
-import useViewerStore from "../stores/ViewerStore";
 import Quote from "../types/Quote";
 
 import StartFlag from "./graphics/StartFlag";
@@ -15,10 +13,8 @@ import toc from "toc.json";
 import NextPrev from "./NextPrev";
 import Navigation from "./Navigation";
 
-import { InView } from "react-intersection-observer";
-
 const Container = styled.main`
-  height: 100vh;
+  height: 100dvh;
 
   display: flex;
 
@@ -31,7 +27,7 @@ const Section = styled.section`
   width: 50vw;
 
   @media screen and (orientation: portrait) {
-    height: 50vh;
+    height: 50dvh;
     width: 100vw;
   }
 `;
@@ -46,11 +42,7 @@ const TextSection = styled(Section)`
 `;
 
 const TextContainer = styled.div`
-  padding: 0 2.5rem 35% 2.5rem;
-
-  @media screen and (min-width: 2000px) {
-    padding-bottom: 45%;
-  }
+  padding: 0 2.5rem 4rem 2.5rem;
 
   @media screen and (max-width: 800px) {
     padding-bottom: 15%;
@@ -87,10 +79,10 @@ const Cover = styled.div`
   align-items: center;
   justify-content: center;
 
-  height: 100vh;
+  height: 100dvh;
 
   @media screen and (orientation: portrait) {
-    height: 50vh;
+    height: 50dvh;
   }
 
   ${maxHeight(550)} {
@@ -145,12 +137,12 @@ const Description = styled.p`
 `;
 
 const Blockquote = styled.blockquote`
-  position: relative;
   font-family: "Nanum Myeongjo", serif;
+  position: relative;
   font-style: italic;
 
   font-size: 1.2rem;
-  line-height: 2.2rem;
+  line-height: 1.85;
   margin: 7rem 0 0 0;
 
   small {
@@ -272,21 +264,63 @@ export default function ContentViewer({
   scenes,
   quote,
 }: ContentViewerProps) {
-  const setIndex = useViewerStore((state) => state.setIndex);
+  const [{ sceneIndex, paragraphIndex }, setStep] = useState({
+    sceneIndex: 0,
+    paragraphIndex: 0,
+  });
   const graphics = useMemo(
     () =>
       [StartFlag as GraphicContent].concat(scenes.map((c) => c.graphicContent)),
-    [scenes]
+    [scenes],
   );
 
-  const textSectionRef = useRef<HTMLElement | null>(null);
+  const [textRoot, setTextRoot] = useState<HTMLElement | null>(null);
 
-  const [, setMounted] = useState(false);
   useEffect(() => {
-    setMounted(true);
-
-    return () => setIndex(0, 0);
-  }, [setIndex]);
+    if (!textRoot) return;
+    const steps = Array.from(
+      textRoot.querySelectorAll<HTMLElement>("[data-step]"),
+    );
+    const updateStep = () => {
+      if (!steps.length) return;
+      const atBottom =
+        textRoot.scrollTop + textRoot.clientHeight >= textRoot.scrollHeight - 2;
+      const center =
+        textRoot.getBoundingClientRect().top + textRoot.clientHeight / 2;
+      let selected = steps[0];
+      if (atBottom) {
+        selected = steps[steps.length - 1];
+      } else {
+        let nearest = Infinity;
+        for (const step of steps) {
+          const { top, bottom } = step.getBoundingClientRect();
+          const distance = Math.max(top - center, center - bottom, 0);
+          if (distance < nearest) {
+            nearest = distance;
+            selected = step;
+          }
+        }
+      }
+      const [sceneIndex, paragraphIndex] = selected.dataset
+        .step!.split("-")
+        .map(Number);
+      setStep((previous) =>
+        previous.sceneIndex === sceneIndex &&
+        previous.paragraphIndex === paragraphIndex
+          ? previous
+          : { sceneIndex, paragraphIndex },
+      );
+    };
+    textRoot.addEventListener("scroll", updateStep, { passive: true });
+    const resize = new ResizeObserver(updateStep);
+    resize.observe(textRoot);
+    steps.forEach((step) => resize.observe(step));
+    updateStep();
+    return () => {
+      textRoot.removeEventListener("scroll", updateStep);
+      resize.disconnect();
+    };
+  }, [textRoot, scenes]);
 
   const chapterTitle = toc[chapter - 1].title;
   const title = toc[chapter - 1].content[index - 1].title;
@@ -294,13 +328,13 @@ export default function ContentViewer({
 
   return (
     <Container>
-      <Helmet>
+      <>
         <title>{`${chapter}-${index}. ${title} ― Qubit`}</title>
-      </Helmet>
+      </>
 
       <Navigation />
 
-      <TextSection ref={textSectionRef}>
+      <TextSection ref={setTextRoot} tabIndex={0} aria-label="학습 내용">
         <DownArrow>
           <FaChevronDown />
         </DownArrow>
@@ -310,41 +344,34 @@ export default function ContentViewer({
             <Chapter>
               0{chapter} {chapterTitle}
             </Chapter>
-            <Title>
+            <Title id={`lesson-${chapter}-${index}`}>
               {index}. {title}
             </Title>
             <Description>{description}</Description>
-            <InView
-              root={textSectionRef.current}
-              rootMargin="-45% 0%"
-              onChange={(inView) => inView && setIndex(0, 0)}
-            >
-              <Blockquote>
-                {quote.eng}
-                <br />
-                {quote.kor}
-                <br />
-                <br />
-                <small>― {quote.by}</small>
-              </Blockquote>
-            </InView>
+            <Blockquote data-step="0-0">
+              {quote.eng}
+              <br />
+              {quote.kor}
+              <br />
+              <br />
+              <small>― {quote.by}</small>
+            </Blockquote>
           </Cover>
 
           {scenes.map((scene, sIndex) =>
             scene.textContent.map((paragraph, pIndex) => (
-              <InView
-                key={sIndex * 10 + pIndex}
-                root={textSectionRef.current}
-                rootMargin="-45% 0%"
-                onChange={(inView) => inView && setIndex(sIndex + 1, pIndex)}
+              <Block
+                key={`${sIndex}-${pIndex}`}
+                data-step={`${sIndex + 1}-${pIndex}`}
+                className={
+                  sceneIndex === sIndex + 1 && paragraphIndex === pIndex
+                    ? "current"
+                    : ""
+                }
               >
-                {({ inView, ref }) => (
-                  <Block ref={ref} className={inView ? "current" : ""}>
-                    {paragraph}
-                  </Block>
-                )}
-              </InView>
-            ))
+                {paragraph}
+              </Block>
+            )),
           )}
         </TextContainer>
 
@@ -353,8 +380,16 @@ export default function ContentViewer({
         </NextPrevContainer>
       </TextSection>
 
-      <GraphicSection>
-        <GraphicsViewer graphics={graphics} />
+      <GraphicSection
+        aria-labelledby={`lesson-${chapter}-${index}`}
+        data-scene={sceneIndex}
+        data-paragraph={paragraphIndex}
+      >
+        <GraphicsViewer
+          graphics={graphics}
+          sceneIndex={sceneIndex}
+          paragraphIndex={paragraphIndex}
+        />
       </GraphicSection>
     </Container>
   );

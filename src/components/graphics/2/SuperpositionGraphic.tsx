@@ -2,7 +2,7 @@ import { Text } from "@react-three/drei";
 
 import Plane from "../Plane";
 import WobblySphere from "../WobblySphere";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 export default function SuperpositionGraphic() {
   return (

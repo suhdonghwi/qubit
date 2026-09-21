@@ -1,17 +1,21 @@
-import { MeshProps } from "react-three-fiber";
+import { ThreeElements } from "@react-three/fiber";
 
 import { Text } from "@react-three/drei";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 interface BitProps {
   one: boolean;
   radius: number;
 }
 
-export default function Bit({ one, radius, ...props }: BitProps & MeshProps) {
+export default function Bit({
+  one,
+  radius,
+  ...props
+}: BitProps & ThreeElements["mesh"]) {
   return (
     <mesh castShadow rotation={[0, -Math.PI / 4, Math.PI / 2]} {...props}>
-      <sphereBufferGeometry args={[radius, 64, 64]} />
+      <sphereGeometry args={[radius, 24, 16]} />
       <meshLambertMaterial color={one ? "#ff6b6b" : "#339af0"} />
       <Text
         fontSize={radius * 1.4}

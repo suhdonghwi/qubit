@@ -4,7 +4,7 @@ export default function bell(
   xOffset: number,
   yOffset: number,
   x: number,
-  y: number
+  y: number,
 ) {
   return (
     -amplitude *
@@ -12,7 +12,7 @@ export default function bell(
       -(
         (Math.pow(x - xOffset, 2) + Math.pow(y - yOffset, 2)) /
         (2 * Math.pow(spread, 2))
-      )
+      ),
     )
   );
 }

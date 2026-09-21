@@ -1,44 +1,52 @@
 import { OrthographicCamera } from "@react-three/drei";
-import React, { useLayoutEffect, useState } from "react";
-// import { Perf } from "r3f-perf";
+import { Suspense, type ReactNode } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import { SpringContext } from "@react-spring/three";
+import { useInView } from "react-intersection-observer";
+import { useMediaQuery, usePageVisible } from "../../utils/useMediaQuery";
+import GraphicsBoundary from "./GraphicsBoundary";
+import { SceneRunning } from "./SceneRuntime";
 
-import { Canvas } from "react-three-fiber";
-
-interface World3DProps {
-  children: React.ReactNode;
+function Camera() {
+  const { width, height } = useThree((state) => state.size);
+  const zoom = Math.max(12, Math.min(width / 14, height / 12, 55));
+  return (
+    <OrthographicCamera
+      position={[0, 3.5, 10]}
+      rotation={[-Math.PI / 8, 0, 0]}
+      zoom={zoom}
+      makeDefault
+    />
+  );
 }
 
-export default function World3D({ children }: World3DProps) {
-  const [zoom, setZoom] = useState(0);
-
-  const onResize = () => {
-    const width =
-      window.innerWidth < window.innerHeight
-        ? window.innerWidth
-        : window.innerWidth / 2;
-
-    if (width <= 400) setZoom(25);
-    else if (width <= 460) setZoom(30);
-    else if (width <= 530) setZoom(35);
-    else if (width <= 700) setZoom(40);
-    else setZoom(45);
-  };
-
-  useLayoutEffect(() => {
-    onResize();
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  });
+export default function World3D({ children }: { children: ReactNode }) {
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const smallScreen = useMediaQuery("(max-width: 700px)");
+  const visible = usePageVisible();
+  const { ref, inView } = useInView();
+  const running = !reducedMotion && visible && inView;
 
   return (
-    <Canvas shadowMap gl={{ antialias: true }}>
-      <OrthographicCamera
-        position={[0, 3.5, 10]}
-        rotation={[-Math.PI / 8, 0, 0]}
-        zoom={zoom}
-        makeDefault
-      />
-      {children}
-    </Canvas>
+    <div ref={ref} className="world3d">
+      <GraphicsBoundary>
+        <Canvas
+          shadows={!smallScreen}
+          dpr={smallScreen ? 1 : [1, 1.75]}
+          frameloop={running ? "always" : "demand"}
+          gl={{ antialias: true, powerPreference: "default" }}
+          fallback={null}
+        >
+          <SpringContext
+            value={{ pause: !visible || !inView, immediate: reducedMotion }}
+          >
+            <Camera />
+            <Suspense fallback={null}>
+              <SceneRunning value={running}>{children}</SceneRunning>
+            </Suspense>
+          </SpringContext>
+        </Canvas>
+      </GraphicsBoundary>
+    </div>
   );
 }

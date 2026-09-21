@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { positionProps } from "utils/AnimatedVector";
+import { useState } from "react";
 import { useSpring, animated } from "@react-spring/three";
 
 import Plane from "../Plane";
@@ -18,55 +19,66 @@ export default function QuantumGuessGraphic({
   const [pressed, setPressed] = useState(false);
 
   const { buttonPosition } = useSpring({
-    buttonPosition: [-3, paragraphIndex > 0 ? -2.75 : -3.5, 3] as any,
+    buttonPosition: [-3, paragraphIndex > 0 ? -2.75 : -3.5, 3] as [
+      number,
+      number,
+      number,
+    ],
   });
 
-  const [props, set] = useSpring(() => ({
-    inputScale: [1, 1, 0] as any,
-    bitsPosition: [-1.1, 2, 0] as any,
-    boxOpacity: 1,
-    lightOpacity: 0,
-    prob1: 0.5,
-    prob2: 0.5,
-    prob3: 0.5,
-    outputOpacity: 0,
-  }));
-
-  useEffect(() => {
-    async function animate() {
-      await set({ inputScale: [1, 1, 1], config: { duration: 500 } });
-      await set({
-        bitsPosition: [-1.1, -2, 0],
-        config: { duration: 1000 },
-        delay: 500,
-      });
-      await set({ boxOpacity: 0.5 });
-      await set({
-        lightOpacity: 0.5,
-        prob1: 1,
-        prob2: 1,
-        prob3: 0,
-        delay: 300,
-      });
-      await set({ outputOpacity: 1, delay: 700 });
-    }
-
-    if (pressed) {
-      animate();
-    }
-  }, [pressed, set]);
+  const props = useSpring({
+    from: {
+      inputDepth: 0,
+      bitsPosition: [-1.1, 2, 0] as [number, number, number],
+      boxOpacity: 1,
+      lightOpacity: 0,
+      prob1: 0.5,
+      prob2: 0.5,
+      prob3: 0.5,
+      outputOpacity: 0,
+    },
+    to: async (next) => {
+      if (!pressed) return;
+      if ((await next({ inputDepth: 1, config: { duration: 500 } })).cancelled)
+        return;
+      if (
+        (
+          await next({
+            bitsPosition: [-1.1, -2, 0],
+            config: { duration: 1000 },
+            delay: 500,
+          })
+        ).cancelled
+      )
+        return;
+      if ((await next({ boxOpacity: 0.5 })).cancelled) return;
+      if (
+        (
+          await next({
+            lightOpacity: 0.5,
+            prob1: 1,
+            prob2: 1,
+            prob3: 0,
+            delay: 300,
+          })
+        ).cancelled
+      )
+        return;
+      await next({ outputOpacity: 1, delay: 700 });
+    },
+  });
 
   return (
     <>
       <AnimatedBox
         boxOpacity={props.boxOpacity}
-        inputScale={props.inputScale}
+        inputDepth={props.inputDepth}
         lightOpacity={props.lightOpacity}
         outputOpacity={props.outputOpacity}
         correct={false}
       />
 
-      <animated.group position={props.bitsPosition}>
+      <animated.group {...positionProps(props.bitsPosition)}>
         {[props.prob1, props.prob2, props.prob3].map((p, i) => (
           <AnimatedQubit
             key={i}
@@ -81,7 +93,7 @@ export default function QuantumGuessGraphic({
       <AnimatedButton
         click={pressed}
         onClick={() => setPressed(true)}
-        position={buttonPosition}
+        {...positionProps(buttonPosition)}
       />
 
       <Plane />

@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import "@fontsource/nanum-myeongjo/400.css";
+import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+import { StrictMode } from "react";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App";
 
-ReactDOM.render(
-  <React.StrictMode>
+const root = document.getElementById("root")!;
+const app = (
+  <StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const pathname = window.location.pathname.replace(/\/$/, "") || "/";
+if (root.hasChildNodes() && root.dataset.prerenderRoute === pathname)
+  hydrateRoot(root, app);
+else createRoot(root).render(app);

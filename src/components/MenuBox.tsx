@@ -1,9 +1,12 @@
-import { useState, useLayoutEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { useMediaQuery, usePageVisible } from "../utils/useMediaQuery";
+import { SpringContext } from "@react-spring/three";
+import { SceneRunning } from "./graphics/SceneRuntime";
 import { Link } from "react-router-dom";
 
-import styled from "styled-components/macro";
+import { styled } from "styled-components";
 
-import { Canvas } from "react-three-fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrthographicCamera } from "@react-three/drei";
 import toc from "toc.json";
 
@@ -14,7 +17,9 @@ const Box = styled.article`
 
   background-color: #16181a;
   border-radius: 10px;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow:
+    0 19px 38px rgba(0, 0, 0, 0.3),
+    0 15px 12px rgba(0, 0, 0, 0.22);
 
   padding: 3rem 4rem;
 
@@ -146,30 +151,21 @@ const StyledCanvas = styled(Canvas)`
 interface MenuBoxProps {
   num: number;
   description: string;
-  graphic: JSX.Element;
+  graphic: React.ReactElement;
 }
 
 export default function MenuBox({ num, description, graphic }: MenuBoxProps) {
-  const [zoom, setZoom] = useState(0);
-
-  const onResize = () => {
-    if (window.innerWidth <= 1200) {
-      setZoom(35);
-    } else if (window.innerWidth <= 1400) {
-      setZoom(40);
-    } else {
-      setZoom(50);
-    }
-  };
-
-  useLayoutEffect(() => {
-    onResize();
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  });
+  const { ref, inView } = useInView({ rootMargin: "100px" });
+  const narrow = useMediaQuery("(max-width: 1000px)");
+  const medium = useMediaQuery("(max-width: 1200px)");
+  const wide = useMediaQuery("(max-width: 1400px)");
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const visible = usePageVisible();
+  const running = inView && visible && !reducedMotion;
+  const zoom = medium ? 35 : wide ? 40 : 50;
 
   return (
-    <Box>
+    <Box ref={ref}>
       <Heading>
         <Number>0{num}</Number>
         <Title>{toc[num - 1].title}</Title>
@@ -186,29 +182,41 @@ export default function MenuBox({ num, description, graphic }: MenuBoxProps) {
         ))}
       </ChapterList>
 
-      <StyledCanvas shadowMap>
-        <OrthographicCamera
-          position={[0, 2, 10]}
-          rotation={[-Math.PI / 8, 0, 0]}
-          zoom={zoom}
-          makeDefault
-        />
+      {!narrow && (
+        <StyledCanvas
+          shadows
+          dpr={[1, 1.5]}
+          frameloop={running ? "always" : "demand"}
+        >
+          <SpringContext
+            value={{ pause: !visible || !inView, immediate: reducedMotion }}
+          >
+            <SceneRunning value={running}>
+              <OrthographicCamera
+                position={[0, 2, 10]}
+                rotation={[-Math.PI / 8, 0, 0]}
+                zoom={zoom}
+                makeDefault
+              />
 
-        <ambientLight intensity={0.1} />
-        <pointLight
-          intensity={0.5}
-          position={[5, 15, 5]}
-          castShadow
-          shadow-mapSize-width={512}
-          shadow-mapSize-height={512}
-          shadow-camera-left={-5}
-          shadow-camera-right={5}
-          shadow-camera-top={5}
-          shadow-camera-bottom={-5}
-        />
+              <ambientLight intensity={0.7} />
+              <directionalLight
+                intensity={2.5}
+                position={[5, 15, 5]}
+                castShadow
+                shadow-mapSize-width={512}
+                shadow-mapSize-height={512}
+                shadow-camera-left={-5}
+                shadow-camera-right={5}
+                shadow-camera-top={5}
+                shadow-camera-bottom={-5}
+              />
 
-        <group rotation={[0, Math.PI / 4, 0]}>{graphic}</group>
-      </StyledCanvas>
+              <group rotation={[0, Math.PI / 4, 0]}>{graphic}</group>
+            </SceneRunning>
+          </SpringContext>
+        </StyledCanvas>
+      )}
     </Box>
   );
 }

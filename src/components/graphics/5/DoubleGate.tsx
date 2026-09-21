@@ -1,9 +1,10 @@
+import { useSceneRunning } from "components/graphics/SceneRuntime";
 import { useState, useEffect } from "react";
 import { Text } from "@react-three/drei";
 
-import fonts from "fonts.json";
+import fonts from "fonts";
 import Bit from "../Bit";
-import { GroupProps } from "react-three-fiber";
+import { ThreeElements } from "@react-three/fiber";
 
 interface SingleGateProps {
   name?: string;
@@ -14,11 +15,13 @@ export default function SingleGate({
   name,
   f,
   ...props
-}: SingleGateProps & GroupProps) {
+}: SingleGateProps & ThreeElements["group"]) {
   const [input1, setInput1] = useState(false);
   const [input2, setInput2] = useState(false);
 
+  const running = useSceneRunning();
   useEffect(() => {
+    if (!running) return;
     const id = setInterval(() => {
       if (input1 && input2) {
         setInput1(false);
@@ -34,12 +37,12 @@ export default function SingleGate({
     }, 500);
 
     return () => clearInterval(id);
-  }, [input1, input2]);
+  }, [running, input1, input2]);
 
   return (
     <group {...props}>
       <mesh castShadow position={[0, -2, 0]}>
-        <boxBufferGeometry args={[3, 2, 3]} />
+        <boxGeometry args={[3, 2, 3]} />
         <meshLambertMaterial color="#868e96" />
 
         <Text
@@ -72,17 +75,17 @@ export default function SingleGate({
         )}
 
         <mesh castShadow position={[-1.5, -0.2, -0.5]}>
-          <boxBufferGeometry args={[0.05, 0.3, 0.3]} />
+          <boxGeometry args={[0.05, 0.3, 0.3]} />
           <meshLambertMaterial color="#e9ecef" />
         </mesh>
 
         <mesh castShadow position={[-1.5, -0.2, 0.5]}>
-          <boxBufferGeometry args={[0.05, 0.3, 0.3]} />
+          <boxGeometry args={[0.05, 0.3, 0.3]} />
           <meshLambertMaterial color="#e9ecef" />
         </mesh>
 
         <mesh castShadow position={[0, -0.2, 1.5]}>
-          <boxBufferGeometry args={[0.3, 0.3, 0.05]} />
+          <boxGeometry args={[0.3, 0.3, 0.05]} />
           <meshLambertMaterial color="#e9ecef" />
         </mesh>
 
@@ -91,7 +94,7 @@ export default function SingleGate({
           position={[-2.5, -0.2, -0.5]}
           rotation={[0, 0, Math.PI / 2]}
         >
-          <cylinderBufferGeometry args={[0.05, 0.05, 2, 64]} />
+          <cylinderGeometry args={[0.05, 0.05, 2, 64]} />
           <meshLambertMaterial color="#e9ecef" />
         </mesh>
 
@@ -100,7 +103,7 @@ export default function SingleGate({
           position={[-2.5, -0.2, 0.5]}
           rotation={[0, 0, Math.PI / 2]}
         >
-          <cylinderBufferGeometry args={[0.05, 0.05, 2, 64]} />
+          <cylinderGeometry args={[0.05, 0.05, 2, 64]} />
           <meshLambertMaterial color="#e9ecef" />
         </mesh>
 
@@ -109,7 +112,7 @@ export default function SingleGate({
           position={[0, -0.2, 2.5]}
           rotation={[Math.PI / 2, 0, 0]}
         >
-          <cylinderBufferGeometry args={[0.05, 0.05, 2, 64]} />
+          <cylinderGeometry args={[0.05, 0.05, 2, 64]} />
           <meshLambertMaterial color="#e9ecef" />
         </mesh>
       </mesh>

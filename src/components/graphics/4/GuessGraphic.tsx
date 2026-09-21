@@ -1,3 +1,4 @@
+import { positionProps } from "utils/AnimatedVector";
 import { useState } from "react";
 import { useSpring, animated } from "@react-spring/three";
 
@@ -19,15 +20,15 @@ export default function GuessGraphic({ input, correct }: GuessGraphicProps) {
 
   const props = useSpring({
     from: {
-      inputScale: [1, 1, 0] as any,
-      bitsPosition: [-1.1, 2, 0] as any,
+      inputDepth: 0,
+      bitsPosition: [-1.1, 2, 0] as [number, number, number],
       boxOpacity: 1,
       lightOpacity: 0,
       outputOpacity: 0,
     },
     to: async (next) => {
       if (pressed) {
-        await next({ inputScale: [1, 1, 1], config: { duration: 500 } });
+        await next({ inputDepth: 1, config: { duration: 500 } });
         await next({
           bitsPosition: [-1.1, -2, 0],
           config: { duration: 1000 },
@@ -44,13 +45,13 @@ export default function GuessGraphic({ input, correct }: GuessGraphicProps) {
     <>
       <AnimatedBox
         boxOpacity={props.boxOpacity}
-        inputScale={props.inputScale}
+        inputDepth={props.inputDepth}
         lightOpacity={props.lightOpacity}
         outputOpacity={props.outputOpacity}
         correct={correct}
       />
 
-      <animated.group position={props.bitsPosition}>
+      <animated.group {...positionProps(props.bitsPosition)}>
         {[0, 1, 2].map((n) => (
           <Bit
             key={n}

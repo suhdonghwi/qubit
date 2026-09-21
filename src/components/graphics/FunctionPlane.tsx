@@ -1,5 +1,7 @@
+import { useSceneRunning } from "components/graphics/SceneRuntime";
+import { useSceneFrame } from "components/graphics/SceneRuntime";
+import { useRef } from "react";
 import * as THREE from "three";
-import { useFrame } from "react-three-fiber";
 
 import { useSpring } from "@react-spring/three";
 
@@ -11,9 +13,12 @@ interface FunctionPlaneProps {
 }
 
 function FunctionPlane({ run, loop, tension, f }: FunctionPlaneProps) {
-  const plane = new THREE.PlaneGeometry(9, 9, 30, 30);
+  const previous = useRef<{ value: number; f: typeof f } | null>(null);
+  const plane = useRef<THREE.PlaneGeometry>(null);
 
+  const running = useSceneRunning();
   const { anim } = useSpring({
+    pause: Boolean(loop) && !running,
     config: {
       tension,
     },
@@ -22,31 +27,36 @@ function FunctionPlane({ run, loop, tension, f }: FunctionPlaneProps) {
     },
     to: async (next) => {
       if (loop) {
-        while (1) {
-          await next({ anim: 0 });
-          await next({ anim: 1 });
+        let active = true;
+        while (active) {
+          active = !(await next({ anim: 0 })).cancelled;
+          if (!active) return;
+          if ((await next({ anim: 1 })).cancelled) return;
         }
-      } else if (run) {
-        await next({ anim: 1 });
+      } else {
+        await next({ anim: run ? 1 : 0 });
       }
     },
   });
 
-  useFrame(() => {
-    plane.vertices.forEach((v) => {
-      v.z = f(v.x, v.y, anim.get());
-    });
-
-    plane.computeVertexNormals();
-    plane.verticesNeedUpdate = true;
+  useSceneFrame(() => {
+    const geometry = plane.current;
+    if (!geometry) return;
+    const value = anim.get();
+    if (previous.current?.value === value && previous.current.f === f) return;
+    previous.current = { value, f };
+    const position = geometry.attributes.position;
+    for (let i = 0; i < position.count; i++) {
+      position.setZ(i, f(position.getX(i), position.getY(i), value));
+    }
+    position.needsUpdate = true;
+    geometry.computeVertexNormals();
+    geometry.computeBoundingSphere();
   });
 
   return (
-    <mesh
-      geometry={plane}
-      rotation={[Math.PI / 2, 0, 0]}
-      position={[0, -2.9, 0]}
-    >
+    <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, -2.9, 0]}>
+      <planeGeometry ref={plane} args={[9, 9, 30, 30]} />
       <meshLambertMaterial color="#ced4da" side={THREE.DoubleSide} />
     </mesh>
   );

@@ -1,3 +1,4 @@
+import { thetaFromProbability } from "../domain/quantum";
 import React from "react";
 import ContentViewer from "../components/ContentViewer";
 
@@ -55,9 +56,9 @@ AND 게이트는 NOT 게이트와는 다르게 두 개의 비트를 입력으로
 `.paragraph(() => (
   <QuantumGraphic
     inputPhi={0}
-    inputTheta={Math.PI * 0.2}
+    inputTheta={thetaFromProbability(0.2)}
     outputPhi={0}
-    outputTheta={Math.PI * 0.8}
+    outputTheta={thetaFromProbability(0.8)}
     name="Pauli X"
   />
 ))`
@@ -131,8 +132,7 @@ export default function Principle2Page() {
       index={3}
       scenes={builder.build()}
       quote={{
-        eng:
-          "A computer is a stupid machine with the ability to do incredibly smart things.",
+        eng: "A computer is a stupid machine with the ability to do incredibly smart things.",
         kor: "컴퓨터는 놀랍도록 똑똑한 일을 할 수 있는 멍청한 기계이다.",
         by: "Bill Bryson (빌 브라이슨)",
       }}
