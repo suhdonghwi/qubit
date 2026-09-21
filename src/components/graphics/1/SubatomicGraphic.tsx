@@ -4,15 +4,15 @@ import * as THREE from "three";
 
 import Plane from "../Plane";
 
-
-
 export function BohrAtom() {
   const groupRef = useRef<THREE.Group>(null);
   const electronsRef = useRef<THREE.Group>(null);
 
-  useSceneFrame(() => {
+  const elapsed = useRef(0);
+  useSceneFrame((_, delta) => {
+    elapsed.current += delta;
     if (groupRef.current != null && electronsRef.current != null) {
-      const time = performance.now() * 0.005;
+      const time = elapsed.current * 5;
       groupRef.current.rotation.set(time * 0.5, time * 0.5, 0);
       electronsRef.current.rotation.set(0, time * 0.5, 0);
     }

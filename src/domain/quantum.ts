@@ -24,6 +24,13 @@ export function probabilityFromTheta(theta: number): number {
   return Math.sin(theta / 2) ** 2;
 }
 
-export function blochVector(theta: number, phi: number): [number, number, number] {
-  return [Math.sin(theta) * Math.cos(phi), Math.sin(theta) * Math.sin(phi), Math.cos(theta)];
+export function blochVector(
+  theta: number,
+  phi: number,
+): [number, number, number] {
+  return [
+    Math.sin(theta) * Math.cos(phi),
+    Math.sin(theta) * Math.sin(phi),
+    Math.cos(theta),
+  ];
 }

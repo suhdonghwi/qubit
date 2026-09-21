@@ -11,7 +11,6 @@ interface ProbCurveProps {
 export default function ProbCurve({ points, opacity, color }: ProbCurveProps) {
   const curve = new THREE.CatmullRomCurve3(points);
 
-
   return (
     <mesh position={[0, 1, 0]}>
       <tubeGeometry args={[curve, 64, 0.1, 8]} />

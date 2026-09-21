@@ -2,7 +2,7 @@ import { useSceneRunning } from "components/graphics/SceneRuntime";
 import { useState, useEffect } from "react";
 import { Text } from "@react-three/drei";
 
-import fonts from "fonts.json";
+import fonts from "fonts";
 import Bit from "../Bit";
 import { ThreeElements } from "@react-three/fiber";
 

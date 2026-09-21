@@ -11,8 +11,6 @@
 # production
 /build
 /dist
-/playwright-report
-/test-results
 
 # misc
 .DS_Store

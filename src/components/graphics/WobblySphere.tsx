@@ -32,17 +32,23 @@ export default function WobblySphere({
     color: blue.clone().lerp(pink, oneProbability).getStyle(),
   });
 
+  const time = useRef(0);
   const geometry = useRef<THREE.SphereGeometry>(null);
 
-  useSceneFrame(({ clock }) => {
+  useSceneFrame((_, delta) => {
+    time.current += delta;
     const sphere = geometry.current;
     if (!sphere) return;
     const position = sphere.attributes.position;
     for (let i = 0; i < position.count; i++) {
-      const x = position.getX(i), y = position.getY(i), z = position.getZ(i);
+      const x = position.getX(i),
+        y = position.getY(i),
+        z = position.getZ(i);
       const length = Math.hypot(x, y, z);
-      const nx = x / length, ny = y / length, nz = z / length;
-      const radius = size + factor.get() * noise(nx + clock.elapsedTime, ny, nz);
+      const nx = x / length,
+        ny = y / length,
+        nz = z / length;
+      const radius = size + factor.get() * noise(nx + time.current, ny, nz);
       position.setXYZ(i, nx * radius, ny * radius, nz * radius);
     }
     position.needsUpdate = true;

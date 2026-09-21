@@ -2,8 +2,6 @@ import { useSceneFrame } from "components/graphics/SceneRuntime";
 import type * as THREE from "three";
 import { useRef, useEffect } from "react";
 
-
-
 export default function Electron() {
   const meshRef = useRef<THREE.Mesh>(null);
 

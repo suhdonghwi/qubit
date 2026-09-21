@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 import logo from "../logo.svg";
 
 const Container = styled.div`
@@ -15,7 +15,7 @@ const LogoImage = styled.img`
   }
 `;
 
-const LogoText = styled.h1`
+const LogoText = styled.span`
   margin: 0 0 0 13px;
 
   font-weight: 400;
@@ -30,7 +30,7 @@ const LogoText = styled.h1`
 export default function Logo() {
   return (
     <Container>
-      <LogoImage src={logo} />
+      <LogoImage src={logo} alt="" />
       <LogoText>Qubit</LogoText>
     </Container>
   );

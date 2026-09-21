@@ -1,14 +1,18 @@
 import { ThreeElements } from "@react-three/fiber";
 
 import { Text } from "@react-three/drei";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 interface BitProps {
   one: boolean;
   radius: number;
 }
 
-export default function Bit({ one, radius, ...props }: BitProps & ThreeElements["mesh"]) {
+export default function Bit({
+  one,
+  radius,
+  ...props
+}: BitProps & ThreeElements["mesh"]) {
   return (
     <mesh castShadow rotation={[0, -Math.PI / 4, Math.PI / 2]} {...props}>
       <sphereGeometry args={[radius, 24, 16]} />

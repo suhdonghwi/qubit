@@ -1,7 +1,7 @@
+import { useSceneRunning } from "components/graphics/SceneRuntime";
 import { useSceneFrame } from "components/graphics/SceneRuntime";
 import { useRef } from "react";
 import * as THREE from "three";
-
 
 import { useSpring } from "@react-spring/three";
 
@@ -16,7 +16,9 @@ function FunctionPlane({ run, loop, tension, f }: FunctionPlaneProps) {
   const previous = useRef<{ value: number; f: typeof f } | null>(null);
   const plane = useRef<THREE.PlaneGeometry>(null);
 
+  const running = useSceneRunning();
   const { anim } = useSpring({
+    pause: Boolean(loop) && !running,
     config: {
       tension,
     },
@@ -25,12 +27,14 @@ function FunctionPlane({ run, loop, tension, f }: FunctionPlaneProps) {
     },
     to: async (next) => {
       if (loop) {
-        while (1) {
-          await next({ anim: 0 });
-          await next({ anim: 1 });
+        let active = true;
+        while (active) {
+          active = !(await next({ anim: 0 })).cancelled;
+          if (!active) return;
+          if ((await next({ anim: 1 })).cancelled) return;
         }
-      } else if (run) {
-        await next({ anim: 1 });
+      } else {
+        await next({ anim: run ? 1 : 0 });
       }
     },
   });
@@ -51,10 +55,7 @@ function FunctionPlane({ run, loop, tension, f }: FunctionPlaneProps) {
   });
 
   return (
-    <mesh
-      rotation={[Math.PI / 2, 0, 0]}
-      position={[0, -2.9, 0]}
-    >
+    <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, -2.9, 0]}>
       <planeGeometry ref={plane} args={[9, 9, 30, 30]} />
       <meshLambertMaterial color="#ced4da" side={THREE.DoubleSide} />
     </mesh>

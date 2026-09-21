@@ -1,3 +1,4 @@
+import { useSceneRunning } from "components/graphics/SceneRuntime";
 import { positionProps } from "utils/AnimatedVector";
 import React from "react";
 
@@ -6,22 +7,29 @@ import Plane from "../Plane";
 import { useSpring, animated } from "@react-spring/three";
 
 export default function QuantumComputerGraphic() {
+  const running = useSceneRunning();
   const quantumMeshSpring = useSpring<{ position: [number, number, number] }>({
+    pause: !running,
     from: { position: [0, -0.3, 0] },
     to: async (next) => {
-      while (1) {
-        await next({ position: [0, -0.7, 0] });
-        await next({ position: [0, -0.2, 0] });
+      let active = true;
+      while (active) {
+        active = !(await next({ position: [0, -0.7, 0] })).cancelled;
+        if (!active) return;
+        if ((await next({ position: [0, -0.2, 0] })).cancelled) return;
       }
     },
   });
 
   const quantumMaterialSpring = useSpring({
+    pause: !running,
     from: { color: "#ff6b6b" },
     to: async (next) => {
-      while (1) {
-        await next({ color: "#845ef7" });
-        await next({ color: "#ff6b6b" });
+      let active = true;
+      while (active) {
+        active = !(await next({ color: "#845ef7" })).cancelled;
+        if (!active) return;
+        if ((await next({ color: "#ff6b6b" })).cancelled) return;
       }
     },
   });

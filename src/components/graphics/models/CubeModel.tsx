@@ -8,9 +8,6 @@ import * as THREE from "three";
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
-
-
-
 type GLTFResult = ReturnType<typeof useGLTF> & {
   nodes: {
     group33035333: THREE.Mesh;
@@ -60,7 +57,8 @@ export default function Model(props: ThreeElements["group"]) {
 
   useSceneFrame((_, delta) => {
     if (group.current != null) {
-      group.current.rotation.x = group.current.rotation.y += 1.2 * Math.min(delta, 0.05);
+      group.current.rotation.x = group.current.rotation.y +=
+        1.2 * Math.min(delta, 0.05);
     }
   });
 
@@ -210,4 +208,3 @@ export default function Model(props: ThreeElements["group"]) {
     </group>
   );
 }
-

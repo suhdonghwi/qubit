@@ -7,8 +7,6 @@ import * as THREE from "three";
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
-
-
 type GLTFResult = ReturnType<typeof useGLTF> & {
   nodes: {
     group24878451: THREE.Mesh;
@@ -203,4 +201,3 @@ export default function Model(props: ThreeElements["group"]) {
     </group>
   );
 }
-

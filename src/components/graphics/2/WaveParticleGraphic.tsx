@@ -5,14 +5,17 @@ import { animated, useSpring } from "@react-spring/three";
 import Plane from "../Plane";
 import FloatingElectron from "../FloatingElectron";
 import { GraphicContentProps } from "types/Scene";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 const AnimatedText = animated(Text);
 
 export default function WaveParticleGraphic({
   paragraphIndex,
 }: GraphicContentProps) {
-  const groupSpring = useSpring<{ rotation: [number, number, number]; position: [number, number, number] }>({
+  const groupSpring = useSpring<{
+    rotation: [number, number, number];
+    position: [number, number, number];
+  }>({
     rotation: paragraphIndex > 0 ? [Math.PI, 0, 0] : [0, 0, 0],
     position: paragraphIndex > 0 ? [0, -6, 0] : [0, 0, 0],
   });
@@ -21,9 +24,11 @@ export default function WaveParticleGraphic({
     position: paragraphIndex > 0 ? [0, -7, 0] : [0, -4, 0],
   });
 
-
   return (
-    <animated.group {...positionProps(groupSpring.position)} {...rotationProps(groupSpring.rotation)}>
+    <animated.group
+      {...positionProps(groupSpring.position)}
+      {...rotationProps(groupSpring.rotation)}
+    >
       <Text
         color="white"
         fontSize={1}

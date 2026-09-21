@@ -1,11 +1,11 @@
 import { useMemo, useRef } from "react";
 import { useSceneFrame } from "components/graphics/SceneRuntime";
 import * as THREE from "three";
-import {  ThreeElements } from "@react-three/fiber";
+import { ThreeElements } from "@react-three/fiber";
 
 import { animated } from "@react-spring/three";
 import { Text } from "@react-three/drei";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 interface QubitProps {
   oneProbability: number;
@@ -20,17 +20,18 @@ export default function Qubit({
   const offset = -(oneProbability * 1.4 - 0.7);
 
   const material = useRef<THREE.ShaderMaterial>(null);
-  const shader = useMemo(() => ({
-    uniforms: {
-      color1: {
-        value: new THREE.Color("#fa5252"),
+  const shader = useMemo(
+    () => ({
+      uniforms: {
+        color1: {
+          value: new THREE.Color("#fa5252"),
+        },
+        color2: {
+          value: new THREE.Color("#364fc7"),
+        },
+        offset: { value: 0 },
       },
-      color2: {
-        value: new THREE.Color("#364fc7"),
-      },
-      offset: { value: 0 },
-    },
-    vertexShader: `
+      vertexShader: `
     varying vec2 vUv;
 
     void main() {
@@ -38,7 +39,7 @@ export default function Qubit({
       gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }
   `,
-    fragmentShader: `
+      fragmentShader: `
     uniform vec3 color1;
     uniform vec3 color2;
     uniform float offset;
@@ -51,19 +52,21 @@ export default function Qubit({
       #include <colorspace_fragment>
     }
   `,
-  }), []);
+    }),
+    [],
+  );
 
   useSceneFrame(() => {
     if (material.current) material.current.uniforms.offset.value = offset;
   });
 
   return (
-    <mesh
-      castShadow
-      rotation={[0, -Math.PI / 4, Math.PI / 2]}
-      {...props}
-    >
-      <shaderMaterial ref={material} {...shader} uniforms-offset-value={offset} />
+    <mesh castShadow rotation={[0, -Math.PI / 4, Math.PI / 2]} {...props}>
+      <shaderMaterial
+        ref={material}
+        {...shader}
+        uniforms-offset-value={offset}
+      />
       <sphereGeometry args={[radius, 24, 16]} />
       <group
         position={[radius * 0.6, 0, radius]}
@@ -72,7 +75,8 @@ export default function Qubit({
         <Text fontSize={radius * 1.4} font={fonts.raleway} renderOrder={-1}>
           <animated.meshBasicMaterial
             color="white"
-            transparent opacity={1 - oneProbability}
+            transparent
+            opacity={1 - oneProbability}
           />
           0
         </Text>
@@ -82,7 +86,12 @@ export default function Qubit({
           font={fonts.raleway}
           renderOrder={-1}
         >
-          <animated.meshBasicMaterial color="white" transparent opacity={oneProbability} />1
+          <animated.meshBasicMaterial
+            color="white"
+            transparent
+            opacity={oneProbability}
+          />
+          1
         </Text>
       </group>
     </mesh>

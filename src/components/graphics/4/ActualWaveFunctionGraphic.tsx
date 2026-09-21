@@ -3,7 +3,7 @@ import { animated, useSpring } from "@react-spring/three";
 import FunctionPlane from "../FunctionPlane";
 import { GraphicContentProps } from "types/Scene";
 
-import fonts from "fonts.json";
+import fonts from "fonts";
 import bell from "utils/BellFunction";
 
 function f1(x: number, y: number, anim: number) {

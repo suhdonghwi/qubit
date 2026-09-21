@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { maxWidth } from "../utils/MediaQuery";
@@ -59,7 +59,7 @@ export default function NextPrev({ chapter, index }: NextPrevProps) {
       c.content.map((a, j) => ({
         title: `${i + 1}-${j + 1} ${a.title}`,
         route: a.route,
-      }))
+      })),
     )
     .flat();
 

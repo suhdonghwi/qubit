@@ -12,9 +12,11 @@ export default function DoubleWaveGraphic({
   paragraphIndex,
 }: GraphicContentProps) {
   const { slitPosition, screenOpacity } = useSpring({
-    slitPosition: (paragraphIndex > 0
-      ? [0, -1.4, 4.5]
-      : [0, -1.4, -4.5]) as [number, number, number],
+    slitPosition: (paragraphIndex > 0 ? [0, -1.4, 4.5] : [0, -1.4, -4.5]) as [
+      number,
+      number,
+      number,
+    ],
     screenOpacity: paragraphIndex > 0 ? 1 : 0,
   });
 

@@ -4,7 +4,6 @@ import { positionProps } from "utils/AnimatedVector";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-
 import { useSpring, animated } from "@react-spring/three";
 
 import Plane from "../../Plane";
@@ -53,13 +52,14 @@ export default function ElectronSlitsGraphic({
     position: paragraphIndex > 0 ? [0, 0, -0.1] : [0, 0, -0.5],
   });
 
-
   return (
     <>
       <ProjectionScreen />
       <DoubleSlits position={[0, -1.4, 0.5]} />
 
-      <animated.group {...positionProps(particlesSpring.position)}><ImpactPattern observed={false} /></animated.group>
+      <animated.group {...positionProps(particlesSpring.position)}>
+        <ImpactPattern observed={false} />
+      </animated.group>
 
       <mesh position={[0, -1, 5]}>
         <boxGeometry args={[1.0, 0.6, 0.5]} />

@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2022"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
@@ -18,28 +14,13 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "components/*": [
-        "./src/components/*"
-      ],
-      "types/*": [
-        "./src/types/*"
-      ],
-      "utils/*": [
-        "./src/utils/*"
-      ],
-      "fonts.json": [
-        "./src/fonts.json"
-      ],
-      "toc.json": [
-        "./src/toc.json"
-      ]
+      "components/*": ["./src/components/*"],
+      "types/*": ["./src/types/*"],
+      "utils/*": ["./src/utils/*"],
+      "toc.json": ["./src/toc.json"],
+      "fonts": ["./src/fonts.ts"]
     },
-    "types": [
-      "vite/client"
-    ]
+    "types": ["vite/client"]
   },
-  "include": [
-    "src",
-    "vite.config.ts"
-  ]
+  "include": ["src", "vite.config.ts"]
 }

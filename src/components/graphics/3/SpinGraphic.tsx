@@ -1,11 +1,11 @@
 import { useSceneFrame } from "components/graphics/SceneRuntime";
 import { useRef } from "react";
-import {  ThreeElements } from "@react-three/fiber";
+import { ThreeElements } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
 import * as THREE from "three";
 
 import Plane from "../Plane";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 function Spinner(props: ThreeElements["group"]) {
   const groupRef = useRef<THREE.Group>(null);

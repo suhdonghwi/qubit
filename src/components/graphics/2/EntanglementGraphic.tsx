@@ -1,6 +1,5 @@
-import { measure } from "../../../domain/quantum";
+import { useMeasurement } from "../../../features/measurement/useMeasurement";
 import { positionProps } from "utils/AnimatedVector";
-import { useState } from "react";
 
 import { animated, useSpring } from "@react-spring/three";
 
@@ -14,7 +13,7 @@ const AnimatedButton = animated(Button);
 export default function EntanglementGraphic({
   paragraphIndex,
 }: GraphicContentProps) {
-  const [outcome, setOutcome] = useState<0 | 1 | null>(null);
+  const { outcome, begin, end } = useMeasurement();
   const clicked = outcome !== null;
   const probability1 = outcome ?? 0.5;
   const probability2 = probability1 === 1 ? 0 : probability1 === 0 ? 1 : 0.5;
@@ -38,8 +37,8 @@ export default function EntanglementGraphic({
         />
       </mesh>
       <AnimatedButton
-        onDown={() => setOutcome(measure(0.5, Math.random()))}
-        onUp={() => setOutcome(null)}
+        onDown={begin}
+        onUp={end}
         click={clicked}
         {...positionProps(buttonSpring.position)}
       />

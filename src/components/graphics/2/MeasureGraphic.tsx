@@ -1,5 +1,4 @@
-import { measure } from "../../../domain/quantum";
-import { useState } from "react";
+import { useMeasurement } from "../../../features/measurement/useMeasurement";
 
 import { animated } from "@react-spring/three";
 
@@ -8,7 +7,7 @@ import WobblySphere from "../WobblySphere";
 import Button from "../Button";
 
 export default function SuperpositionGraphic() {
-  const [outcome, setOutcome] = useState<0 | 1 | null>(null);
+  const { outcome, begin, end } = useMeasurement();
   const clicked = outcome !== null;
   const probability = outcome ?? 0.5;
 
@@ -28,11 +27,15 @@ export default function SuperpositionGraphic() {
       </mesh>
       <Button
         position={[0, -2.75, 2]}
-        onDown={() => setOutcome(measure(0.5, Math.random()))}
-        onUp={() => setOutcome(null)}
+        onDown={begin}
+        onUp={end}
         click={clicked}
       />
-      <WobblySphere oneProbability={probability} position={[0, -0.5, 0]} size={0.5} />
+      <WobblySphere
+        oneProbability={probability}
+        position={[0, -0.5, 0]}
+        size={0.5}
+      />
       <Plane />
     </>
   );

@@ -1,7 +1,7 @@
 import { Vector3 } from "three";
 import { Text } from "@react-three/drei";
 
-import fonts from "fonts.json";
+import fonts from "fonts";
 import { ThreeElements } from "@react-three/fiber";
 
 function AxisArrow({

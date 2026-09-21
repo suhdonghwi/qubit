@@ -4,7 +4,7 @@ import { Text } from "@react-three/drei";
 import Plane from "../Plane";
 import BlochSphere from "../BlochSphere";
 import { GraphicContentProps } from "types/Scene";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 const AnimatedSphere = animated(BlochSphere);
 

@@ -16,7 +16,7 @@ const builder = new ContentBuilder();
 
 builder.paragraph(
   ComputerGraphic,
-  "Computer graphic by Robert Schlyter in poly.google.com"
+  "Computer graphic by Robert Schlyter in poly.google.com",
 )`
 이제 본격적으로 양자 컴퓨터의 원리에 대해서 알아갈 차례입니다.
 

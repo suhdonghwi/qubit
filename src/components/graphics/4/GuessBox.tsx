@@ -1,7 +1,7 @@
 import { Text } from "@react-three/drei";
 
 import { animated } from "@react-spring/three";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 interface GuessBoxProps {
   boxOpacity: number;

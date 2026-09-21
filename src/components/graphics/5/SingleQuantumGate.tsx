@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import * as THREE from "three";
 import { Text } from "@react-three/drei";
 
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 interface SingleQuantumGateProps {
   radius: number;
@@ -13,22 +13,23 @@ export default function SingleQuantumGate({
   radius,
   name,
 }: SingleQuantumGateProps) {
-  const shader = useMemo(() => ({
-    uniforms: {
-      color1: {
-        value: new THREE.Color("#e03131"),
+  const shader = useMemo(
+    () => ({
+      uniforms: {
+        color1: {
+          value: new THREE.Color("#e03131"),
+        },
+        color2: {
+          value: new THREE.Color("#6741d9"),
+        },
+        bboxMin: {
+          value: new THREE.Vector3(-radius - 0.2, -radius - 0.2, -0.2),
+        },
+        bboxMax: {
+          value: new THREE.Vector3(radius + 0.2, radius + 0.2, 0.2),
+        },
       },
-      color2: {
-        value: new THREE.Color("#6741d9"),
-      },
-      bboxMin: {
-        value: new THREE.Vector3(-radius - 0.2, -radius - 0.2, -0.2),
-      },
-      bboxMax: {
-        value: new THREE.Vector3(radius + 0.2, radius + 0.2, 0.2),
-      },
-    },
-    vertexShader: `
+      vertexShader: `
     uniform vec3 bboxMin;
     uniform vec3 bboxMax;
   
@@ -39,7 +40,7 @@ export default function SingleQuantumGate({
       gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
     }
   `,
-    fragmentShader: `
+      fragmentShader: `
     uniform vec3 color1;
     uniform vec3 color2;
   
@@ -52,7 +53,9 @@ export default function SingleQuantumGate({
       #include <colorspace_fragment>
     }
   `,
-  }), [radius]);
+    }),
+    [radius],
+  );
 
   return (
     <group>

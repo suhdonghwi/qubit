@@ -38,13 +38,14 @@ export default function ElectronObserveGraphic({
     position: paragraphIndex > 0 ? [0, 0, -0.1] : [0, 0, -0.5],
   });
 
-
   return (
     <>
       <ProjectionScreen />
       <DoubleSlits position={[0, -1.4, 0.5]} />
 
-      <animated.group {...positionProps(particlesSpring.position)}><ImpactPattern observed={true} /></animated.group>
+      <animated.group {...positionProps(particlesSpring.position)}>
+        <ImpactPattern observed={true} />
+      </animated.group>
 
       <mesh position={[0, -1, 5]}>
         <boxGeometry args={[1.0, 0.6, 0.5]} />

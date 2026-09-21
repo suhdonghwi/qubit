@@ -3,7 +3,7 @@ import { Text } from "@react-three/drei";
 import Plane from "../Plane";
 import SingleGate from "./SingleGate";
 import DoubleGate from "./DoubleGate";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 export default function LogicGatesGraphic() {
   const scale: [number, number, number] = [0.7, 0.7, 0.7];

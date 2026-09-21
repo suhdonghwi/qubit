@@ -1,7 +1,9 @@
 import { ThreeElements } from "@react-three/fiber";
 import { animated, AnimatedProps } from "@react-spring/three";
 
-export default function DoubleSlits(props: AnimatedProps<ThreeElements["group"]>) {
+export default function DoubleSlits(
+  props: AnimatedProps<ThreeElements["group"]>,
+) {
   return (
     <animated.group {...props}>
       <mesh position={[-2.8, 0, 0]} castShadow receiveShadow>

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import { styled, keyframes } from "styled-components";
 
 import Scene, { GraphicContent } from "../types/Scene";
 import GraphicsViewer from "./GraphicsViewer";
@@ -16,7 +16,7 @@ import Navigation from "./Navigation";
 import { InView } from "react-intersection-observer";
 
 const Container = styled.main`
-  height: 100vh;
+  height: 100dvh;
 
   display: flex;
 
@@ -29,7 +29,7 @@ const Section = styled.section`
   width: 50vw;
 
   @media screen and (orientation: portrait) {
-    height: 50vh;
+    height: 50dvh;
     width: 100vw;
   }
 `;
@@ -85,10 +85,10 @@ const Cover = styled.div`
   align-items: center;
   justify-content: center;
 
-  height: 100vh;
+  height: 100dvh;
 
   @media screen and (orientation: portrait) {
-    height: 50vh;
+    height: 50dvh;
   }
 
   ${maxHeight(550)} {
@@ -270,15 +270,21 @@ export default function ContentViewer({
   scenes,
   quote,
 }: ContentViewerProps) {
-  const [{ sceneIndex, paragraphIndex }, setStep] = useState({ sceneIndex: 0, paragraphIndex: 0 });
+  const [{ sceneIndex, paragraphIndex }, setStep] = useState({
+    sceneIndex: 0,
+    paragraphIndex: 0,
+  });
   const setIndex = (sceneIndex: number, paragraphIndex: number) => {
-    setStep((step) => step.sceneIndex === sceneIndex && step.paragraphIndex === paragraphIndex
-      ? step : { sceneIndex, paragraphIndex });
+    setStep((step) =>
+      step.sceneIndex === sceneIndex && step.paragraphIndex === paragraphIndex
+        ? step
+        : { sceneIndex, paragraphIndex },
+    );
   };
   const graphics = useMemo(
     () =>
       [StartFlag as GraphicContent].concat(scenes.map((c) => c.graphicContent)),
-    [scenes]
+    [scenes],
   );
 
   const [textRoot, setTextRoot] = useState<HTMLElement | null>(null);
@@ -305,7 +311,7 @@ export default function ContentViewer({
             <Chapter>
               0{chapter} {chapterTitle}
             </Chapter>
-            <Title>
+            <Title id={`lesson-${chapter}-${index}`}>
               {index}. {title}
             </Title>
             <Description>{description}</Description>
@@ -334,12 +340,16 @@ export default function ContentViewer({
                 onChange={(inView) => inView && setIndex(sIndex + 1, pIndex)}
               >
                 {({ inView, ref }) => (
-                  <Block ref={ref} data-step={`${sIndex + 1}-${pIndex}`} className={inView ? "current" : ""}>
+                  <Block
+                    ref={ref}
+                    data-step={`${sIndex + 1}-${pIndex}`}
+                    className={inView ? "current" : ""}
+                  >
                     {paragraph}
                   </Block>
                 )}
               </InView>
-            ))
+            )),
           )}
         </TextContainer>
 
@@ -348,8 +358,16 @@ export default function ContentViewer({
         </NextPrevContainer>
       </TextSection>
 
-      <GraphicSection data-scene={sceneIndex} data-paragraph={paragraphIndex}>
-        <GraphicsViewer graphics={graphics} sceneIndex={sceneIndex} paragraphIndex={paragraphIndex} />
+      <GraphicSection
+        aria-labelledby={`lesson-${chapter}-${index}`}
+        data-scene={sceneIndex}
+        data-paragraph={paragraphIndex}
+      >
+        <GraphicsViewer
+          graphics={graphics}
+          sceneIndex={sceneIndex}
+          paragraphIndex={paragraphIndex}
+        />
       </GraphicSection>
     </Container>
   );

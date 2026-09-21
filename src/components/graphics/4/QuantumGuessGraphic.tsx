@@ -1,5 +1,5 @@
 import { positionProps } from "utils/AnimatedVector";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSpring, animated } from "@react-spring/three";
 
 import Plane from "../Plane";
@@ -19,43 +19,54 @@ export default function QuantumGuessGraphic({
   const [pressed, setPressed] = useState(false);
 
   const { buttonPosition } = useSpring({
-    buttonPosition: [-3, paragraphIndex > 0 ? -2.75 : -3.5, 3] as [number, number, number],
+    buttonPosition: [-3, paragraphIndex > 0 ? -2.75 : -3.5, 3] as [
+      number,
+      number,
+      number,
+    ],
   });
 
-  const [props, set] = useSpring(() => ({
-    inputDepth: 0,
-    bitsPosition: [-1.1, 2, 0] as [number, number, number],
-    boxOpacity: 1,
-    lightOpacity: 0,
-    prob1: 0.5,
-    prob2: 0.5,
-    prob3: 0.5,
-    outputOpacity: 0,
-  }));
-
-  useEffect(() => {
-    async function animate() {
-      await set({ inputDepth: 1, config: { duration: 500 } });
-      await set({
-        bitsPosition: [-1.1, -2, 0],
-        config: { duration: 1000 },
-        delay: 500,
-      });
-      await set({ boxOpacity: 0.5 });
-      await set({
-        lightOpacity: 0.5,
-        prob1: 1,
-        prob2: 1,
-        prob3: 0,
-        delay: 300,
-      });
-      await set({ outputOpacity: 1, delay: 700 });
-    }
-
-    if (pressed) {
-      animate();
-    }
-  }, [pressed, set]);
+  const props = useSpring({
+    from: {
+      inputDepth: 0,
+      bitsPosition: [-1.1, 2, 0] as [number, number, number],
+      boxOpacity: 1,
+      lightOpacity: 0,
+      prob1: 0.5,
+      prob2: 0.5,
+      prob3: 0.5,
+      outputOpacity: 0,
+    },
+    to: async (next) => {
+      if (!pressed) return;
+      if ((await next({ inputDepth: 1, config: { duration: 500 } })).cancelled)
+        return;
+      if (
+        (
+          await next({
+            bitsPosition: [-1.1, -2, 0],
+            config: { duration: 1000 },
+            delay: 500,
+          })
+        ).cancelled
+      )
+        return;
+      if ((await next({ boxOpacity: 0.5 })).cancelled) return;
+      if (
+        (
+          await next({
+            lightOpacity: 0.5,
+            prob1: 1,
+            prob2: 1,
+            prob3: 0,
+            delay: 300,
+          })
+        ).cancelled
+      )
+        return;
+      await next({ outputOpacity: 1, delay: 700 });
+    },
+  });
 
   return (
     <>

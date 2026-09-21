@@ -1,5 +1,5 @@
 import { positionProps } from "utils/AnimatedVector";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSpring, animated } from "@react-spring/three";
 
 import BlochSphere from "../BlochSphere";
@@ -32,28 +32,30 @@ export default function QuantumGraphic({
 }: QuantumGraphicProps) {
   const [pressed, setPressed] = useState(false);
 
-  const [sphereSpring, set] = useSpring(() => ({
-    position: [0, 0, -4] as [number, number, number],
-    phi: inputPhi,
-    theta: inputTheta,
-  }));
-
-  useEffect(() => {
-    async function animate() {
-      await set({ position: [0, 0, 0] });
-      await set({ phi: outputPhi, theta: outputTheta });
-      await set({ position: [0, 0, 4] });
-    }
-
-    if (pressed) {
-      animate();
-    }
-  }, [pressed, outputPhi, outputTheta, set]);
+  const sphereSpring = useSpring({
+    from: {
+      position: [0, 0, -4] as [number, number, number],
+      phi: inputPhi,
+      theta: inputTheta,
+    },
+    to: async (next) => {
+      if (!pressed) return;
+      if ((await next({ position: [0, 0, 0] })).cancelled) return;
+      if ((await next({ phi: outputPhi, theta: outputTheta })).cancelled)
+        return;
+      await next({ position: [0, 0, 4] });
+    },
+  });
 
   return (
     <>
       <QuantumSingleGate name={name} radius={2} />
-      <AnimatedSphere radius={1} {...positionProps(sphereSpring.position)} phi={sphereSpring.phi} theta={sphereSpring.theta} />
+      <AnimatedSphere
+        radius={1}
+        {...positionProps(sphereSpring.position)}
+        phi={sphereSpring.phi}
+        theta={sphereSpring.theta}
+      />
 
       {controlPhi != null && controlTheta != null && (
         <>

@@ -1,21 +1,26 @@
+import { useSceneRunning } from "components/graphics/SceneRuntime";
 import { useSpring, animated } from "@react-spring/three";
 import { Text } from "@react-three/drei";
 
 import Plane from "../Plane";
 import Qubit from "../Qubit";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 const AnimatedQubit = animated(Qubit);
 
 export default function QubitGraphic() {
+  const running = useSceneRunning();
   const { prob } = useSpring({
+    pause: !running,
     from: {
       prob: 0.5,
     },
     to: async (next) => {
-      while (1) {
-        await next({ prob: 0.3 });
-        await next({ prob: 0.7 });
+      let active = true;
+      while (active) {
+        active = !(await next({ prob: 0.3 })).cancelled;
+        if (!active) return;
+        if ((await next({ prob: 0.7 })).cancelled) return;
       }
     },
   });

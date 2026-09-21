@@ -2,7 +2,7 @@ import { Text } from "@react-three/drei";
 
 import Plane from "../../Plane";
 import FloatingElectron from "../../FloatingElectron";
-import fonts from "fonts.json";
+import fonts from "fonts";
 
 export default function ElectronGraphic() {
   return (

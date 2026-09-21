@@ -45,17 +45,43 @@ interface WaveProps {
   lod?: number;
 }
 
-export default function Wave({ xOffset, yOffset, frequency, amplitude, width, height, lod = 32, ...props }: WaveProps & ThreeElements["mesh"]) {
+export default function Wave({
+  xOffset,
+  yOffset,
+  frequency,
+  amplitude,
+  width,
+  height,
+  lod = 32,
+  ...props
+}: WaveProps & ThreeElements["mesh"]) {
   const material = useRef<ShaderMaterial>(null);
-  const uniforms = useMemo(() => ({
-    time: { value: 0 }, xOffset: { value: xOffset }, yOffset: { value: yOffset },
-    frequency: { value: frequency }, amplitude: { value: amplitude }, color: { value: new Color("#ced4da") },
-  }), [xOffset, yOffset, frequency, amplitude]);
+  const uniforms = useMemo(
+    () => ({
+      time: { value: 0 },
+      xOffset: { value: xOffset },
+      yOffset: { value: yOffset },
+      frequency: { value: frequency },
+      amplitude: { value: amplitude },
+      color: { value: new Color("#ced4da") },
+    }),
+    [xOffset, yOffset, frequency, amplitude],
+  );
   useSceneFrame((_, delta) => {
     if (material.current) material.current.uniforms.time.value += delta * 10;
   });
-  return <mesh rotation={[Math.PI / 2, 0, 0]} {...props} frustumCulled={false}>
-    <planeGeometry args={[width, height, Math.max(lod, 48), Math.max(lod, 48)]} />
-    <shaderMaterial ref={material} uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader} side={DoubleSide} />
-  </mesh>;
+  return (
+    <mesh rotation={[Math.PI / 2, 0, 0]} {...props} frustumCulled={false}>
+      <planeGeometry
+        args={[width, height, Math.max(lod, 48), Math.max(lod, 48)]}
+      />
+      <shaderMaterial
+        ref={material}
+        uniforms={uniforms}
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+        side={DoubleSide}
+      />
+    </mesh>
+  );
 }
