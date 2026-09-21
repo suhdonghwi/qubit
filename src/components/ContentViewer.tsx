@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { styled, keyframes } from "styled-components";
 
 import Scene, { GraphicContent } from "../types/Scene";
@@ -12,8 +12,6 @@ import { maxWidth, maxHeight } from "../utils/MediaQuery";
 import toc from "toc.json";
 import NextPrev from "./NextPrev";
 import Navigation from "./Navigation";
-
-import { InView } from "react-intersection-observer";
 
 const Container = styled.main`
   height: 100dvh;
@@ -270,13 +268,6 @@ export default function ContentViewer({
     sceneIndex: 0,
     paragraphIndex: 0,
   });
-  const setIndex = (sceneIndex: number, paragraphIndex: number) => {
-    setStep((step) =>
-      step.sceneIndex === sceneIndex && step.paragraphIndex === paragraphIndex
-        ? step
-        : { sceneIndex, paragraphIndex },
-    );
-  };
   const graphics = useMemo(
     () =>
       [StartFlag as GraphicContent].concat(scenes.map((c) => c.graphicContent)),
@@ -284,6 +275,52 @@ export default function ContentViewer({
   );
 
   const [textRoot, setTextRoot] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!textRoot) return;
+    const steps = Array.from(
+      textRoot.querySelectorAll<HTMLElement>("[data-step]"),
+    );
+    const updateStep = () => {
+      if (!steps.length) return;
+      const atBottom =
+        textRoot.scrollTop + textRoot.clientHeight >= textRoot.scrollHeight - 2;
+      const center =
+        textRoot.getBoundingClientRect().top + textRoot.clientHeight / 2;
+      let selected = steps[0];
+      if (atBottom) {
+        selected = steps[steps.length - 1];
+      } else {
+        let nearest = Infinity;
+        for (const step of steps) {
+          const { top, bottom } = step.getBoundingClientRect();
+          const distance = Math.max(top - center, center - bottom, 0);
+          if (distance < nearest) {
+            nearest = distance;
+            selected = step;
+          }
+        }
+      }
+      const [sceneIndex, paragraphIndex] = selected.dataset
+        .step!.split("-")
+        .map(Number);
+      setStep((previous) =>
+        previous.sceneIndex === sceneIndex &&
+        previous.paragraphIndex === paragraphIndex
+          ? previous
+          : { sceneIndex, paragraphIndex },
+      );
+    };
+    textRoot.addEventListener("scroll", updateStep, { passive: true });
+    const resize = new ResizeObserver(updateStep);
+    resize.observe(textRoot);
+    steps.forEach((step) => resize.observe(step));
+    updateStep();
+    return () => {
+      textRoot.removeEventListener("scroll", updateStep);
+      resize.disconnect();
+    };
+  }, [textRoot, scenes]);
 
   const chapterTitle = toc[chapter - 1].title;
   const title = toc[chapter - 1].content[index - 1].title;
@@ -311,40 +348,29 @@ export default function ContentViewer({
               {index}. {title}
             </Title>
             <Description>{description}</Description>
-            <InView
-              root={textRoot}
-              rootMargin="-45% 0%"
-              onChange={(inView) => inView && setIndex(0, 0)}
-            >
-              <Blockquote>
-                {quote.eng}
-                <br />
-                {quote.kor}
-                <br />
-                <br />
-                <small>― {quote.by}</small>
-              </Blockquote>
-            </InView>
+            <Blockquote data-step="0-0">
+              {quote.eng}
+              <br />
+              {quote.kor}
+              <br />
+              <br />
+              <small>― {quote.by}</small>
+            </Blockquote>
           </Cover>
 
           {scenes.map((scene, sIndex) =>
             scene.textContent.map((paragraph, pIndex) => (
-              <InView
+              <Block
                 key={`${sIndex}-${pIndex}`}
-                root={textRoot}
-                rootMargin="-45% 0%"
-                onChange={(inView) => inView && setIndex(sIndex + 1, pIndex)}
+                data-step={`${sIndex + 1}-${pIndex}`}
+                className={
+                  sceneIndex === sIndex + 1 && paragraphIndex === pIndex
+                    ? "current"
+                    : ""
+                }
               >
-                {({ inView, ref }) => (
-                  <Block
-                    ref={ref}
-                    data-step={`${sIndex + 1}-${pIndex}`}
-                    className={inView ? "current" : ""}
-                  >
-                    {paragraph}
-                  </Block>
-                )}
-              </InView>
+                {paragraph}
+              </Block>
             )),
           )}
         </TextContainer>
