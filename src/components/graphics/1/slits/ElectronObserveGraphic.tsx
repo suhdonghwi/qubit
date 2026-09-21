@@ -1,5 +1,6 @@
+import ImpactPattern from "./ImpactPattern";
 import { positionProps } from "utils/AnimatedVector";
-import { Suspense, useMemo } from "react";
+import { Suspense } from "react";
 
 import { useSpring, animated } from "@react-spring/three";
 import { useTexture } from "@react-three/drei";
@@ -37,38 +38,13 @@ export default function ElectronObserveGraphic({
     position: paragraphIndex > 0 ? [0, 0, -0.1] : [0, 0, -0.5],
   });
 
-  const particles = useMemo(() => {
-    const list = [];
-    for (let i = 0; i < 50; i++) {
-      list.push(
-        <mesh
-          key={2 * i}
-          position={[-2.5 + Math.random(), -i * 0.075 + 1.2, -4]}
-        >
-          <sphereGeometry args={[0.08, 8, 8]} />
-          <meshLambertMaterial color="#228be6" />
-        </mesh>
-      );
-
-      list.push(
-        <mesh
-          key={2 * i + 1}
-          position={[2.5 - Math.random(), -i * 0.075 + 1.2, -4]}
-        >
-          <sphereGeometry args={[0.08, 8, 8]} />
-          <meshLambertMaterial color="#228be6" />
-        </mesh>
-      );
-    }
-    return list;
-  }, []);
 
   return (
     <>
       <ProjectionScreen />
       <DoubleSlits position={[0, -1.4, 0.5]} />
 
-      <animated.group {...positionProps(particlesSpring.position)}>{particles}</animated.group>
+      <animated.group {...positionProps(particlesSpring.position)}><ImpactPattern observed={true} /></animated.group>
 
       <mesh position={[0, -1, 5]}>
         <boxGeometry args={[1.0, 0.6, 0.5]} />

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import * as THREE from "three";
 import { Text } from "@react-three/drei";
 
@@ -12,10 +13,7 @@ export default function SingleQuantumGate({
   radius,
   name,
 }: SingleQuantumGateProps) {
-  const geometry = new THREE.TorusGeometry(radius, 0.2, 64, 64);
-  geometry.computeBoundingBox();
-
-  const material = new THREE.ShaderMaterial({
+  const shader = useMemo(() => ({
     uniforms: {
       color1: {
         value: new THREE.Color("#e03131"),
@@ -24,10 +22,10 @@ export default function SingleQuantumGate({
         value: new THREE.Color("#6741d9"),
       },
       bboxMin: {
-        value: geometry.boundingBox?.min,
+        value: new THREE.Vector3(-radius - 0.2, -radius - 0.2, -0.2),
       },
       bboxMax: {
-        value: geometry.boundingBox?.max,
+        value: new THREE.Vector3(radius + 0.2, radius + 0.2, 0.2),
       },
     },
     vertexShader: `
@@ -50,13 +48,18 @@ export default function SingleQuantumGate({
     void main() {
       
       gl_FragColor = vec4(mix(color1, color2, vUv.y), 1.0);
+      #include <tonemapping_fragment>
+      #include <colorspace_fragment>
     }
   `,
-  });
+  }), [radius]);
 
   return (
     <group>
-      <mesh castShadow material={material} geometry={geometry} />
+      <mesh castShadow>
+        <torusGeometry args={[radius, 0.2, 12, 64]} />
+        <shaderMaterial {...shader} />
+      </mesh>
 
       <Text
         fontSize={0.8}

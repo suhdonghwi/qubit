@@ -21,22 +21,22 @@ export function BohrAtom() {
   return (
     <group ref={groupRef}>
       <mesh position={[-0.2, 0, 0]} castShadow>
-        <sphereGeometry args={[0.2, 64, 64]} />
+        <sphereGeometry args={[0.2, 24, 16]} />
         <meshLambertMaterial color="#ff8787" />
       </mesh>
 
       <mesh position={[0, 0.2, -0.2]} castShadow>
-        <sphereGeometry args={[0.2, 64, 64]} />
+        <sphereGeometry args={[0.2, 24, 16]} />
         <meshLambertMaterial color="#ff8787" />
       </mesh>
 
       <mesh position={[0.2, 0, 0]} castShadow>
-        <sphereGeometry args={[0.2, 64, 64]} />
+        <sphereGeometry args={[0.2, 24, 16]} />
         <meshLambertMaterial color="#adb5bd" />
       </mesh>
 
       <mesh position={[0.1, 0.2, 0]} castShadow>
-        <sphereGeometry args={[0.2, 64, 64]} />
+        <sphereGeometry args={[0.2, 24, 16]} />
         <meshLambertMaterial color="#adb5bd" />
       </mesh>
 
@@ -47,12 +47,12 @@ export function BohrAtom() {
 
       <group ref={electronsRef}>
         <mesh castShadow position={[2, 0, 0]}>
-          <sphereGeometry args={[0.1, 64, 64]} />
+          <sphereGeometry args={[0.1, 24, 16]} />
           <meshLambertMaterial color="#748ffc" />
         </mesh>
 
         <mesh castShadow position={[-2, 0, 0]}>
-          <sphereGeometry args={[0.1, 64, 64]} />
+          <sphereGeometry args={[0.1, 24, 16]} />
           <meshLambertMaterial color="#748ffc" />
         </mesh>
       </group>

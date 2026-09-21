@@ -14,7 +14,7 @@ export default function FloatingElectron() {
 
   return (
     <animated.mesh castShadow {...positionProps(electronSpring.position)}>
-      <sphereGeometry args={[0.4, 64, 64]} />
+      <sphereGeometry args={[0.4, 24, 16]} />
       <meshLambertMaterial color="#228be6" />
     </animated.mesh>
   );

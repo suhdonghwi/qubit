@@ -13,6 +13,7 @@ interface FunctionPlaneProps {
 }
 
 function FunctionPlane({ run, loop, tension, f }: FunctionPlaneProps) {
+  const previous = useRef<{ value: number; f: typeof f } | null>(null);
   const plane = useRef<THREE.PlaneGeometry>(null);
 
   const { anim } = useSpring({
@@ -37,9 +38,12 @@ function FunctionPlane({ run, loop, tension, f }: FunctionPlaneProps) {
   useSceneFrame(() => {
     const geometry = plane.current;
     if (!geometry) return;
+    const value = anim.get();
+    if (previous.current?.value === value && previous.current.f === f) return;
+    previous.current = { value, f };
     const position = geometry.attributes.position;
     for (let i = 0; i < position.count; i++) {
-      position.setZ(i, f(position.getX(i), position.getY(i), anim.get()));
+      position.setZ(i, f(position.getX(i), position.getY(i), value));
     }
     position.needsUpdate = true;
     geometry.computeVertexNormals();

@@ -11,7 +11,7 @@ interface BitProps {
 export default function Bit({ one, radius, ...props }: BitProps & ThreeElements["mesh"]) {
   return (
     <mesh castShadow rotation={[0, -Math.PI / 4, Math.PI / 2]} {...props}>
-      <sphereGeometry args={[radius, 64, 64]} />
+      <sphereGeometry args={[radius, 24, 16]} />
       <meshLambertMaterial color={one ? "#ff6b6b" : "#339af0"} />
       <Text
         fontSize={radius * 1.4}

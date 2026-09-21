@@ -1,3 +1,4 @@
+import { useMemo, useRef } from "react";
 import { useSceneFrame } from "components/graphics/SceneRuntime";
 import * as THREE from "three";
 import {  ThreeElements } from "@react-three/fiber";
@@ -18,7 +19,8 @@ export default function Qubit({
 }: QubitProps & ThreeElements["mesh"]) {
   const offset = -(oneProbability * 1.4 - 0.7);
 
-  const material = new THREE.ShaderMaterial({
+  const material = useRef<THREE.ShaderMaterial>(null);
+  const shader = useMemo(() => ({
     uniforms: {
       color1: {
         value: new THREE.Color("#fa5252"),
@@ -44,23 +46,25 @@ export default function Qubit({
     varying vec2 vUv;
     
     void main() {
-      gl_FragColor = vec4(mix(color1, color2, vUv.y + offset), 1.0);
+      gl_FragColor = vec4(mix(color1, color2, clamp(vUv.y + offset, 0.0, 1.0)), 1.0);
+      #include <tonemapping_fragment>
+      #include <colorspace_fragment>
     }
   `,
-  });
+  }), []);
 
   useSceneFrame(() => {
-    material.uniforms.offset.value = offset;
+    if (material.current) material.current.uniforms.offset.value = offset;
   });
 
   return (
     <mesh
       castShadow
-      material={material}
       rotation={[0, -Math.PI / 4, Math.PI / 2]}
       {...props}
     >
-      <sphereGeometry args={[radius, 64, 64]} />
+      <shaderMaterial ref={material} {...shader} uniforms-offset-value={offset} />
+      <sphereGeometry args={[radius, 24, 16]} />
       <group
         position={[radius * 0.6, 0, radius]}
         rotation={[0, 0, -Math.PI / 2]}
@@ -68,7 +72,7 @@ export default function Qubit({
         <Text fontSize={radius * 1.4} font={fonts.raleway} renderOrder={-1}>
           <animated.meshBasicMaterial
             color="white"
-            opacity={1 - oneProbability}
+            transparent opacity={1 - oneProbability}
           />
           0
         </Text>
@@ -78,7 +82,7 @@ export default function Qubit({
           font={fonts.raleway}
           renderOrder={-1}
         >
-          <animated.meshBasicMaterial color="white" opacity={oneProbability} />1
+          <animated.meshBasicMaterial color="white" transparent opacity={oneProbability} />1
         </Text>
       </group>
     </mesh>

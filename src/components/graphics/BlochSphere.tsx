@@ -46,7 +46,7 @@ export default function BlochSphere({
         <meshLambertMaterial color="#f8f9fa" transparent opacity={0.2} />
 
         <mesh>
-          <torusGeometry args={[radius, 0.02, 64, 64]} />
+          <torusGeometry args={[radius, 0.02, 12, 64]} />
           <meshLambertMaterial color="#f8f9fa" />
         </mesh>
 

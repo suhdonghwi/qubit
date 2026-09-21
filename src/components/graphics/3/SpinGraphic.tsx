@@ -19,7 +19,7 @@ function Spinner(props: ThreeElements["group"]) {
   return (
     <group ref={groupRef} {...props}>
       <mesh position={[0, 0, 0]} castShadow>
-        <sphereGeometry args={[1, 64, 64]} />
+        <sphereGeometry args={[1, 24, 16]} />
         <meshLambertMaterial color="#5c7cfa" />
       </mesh>
 

@@ -204,4 +204,3 @@ export default function Model(props: ThreeElements["group"]) {
   );
 }
 
-useGLTF.preload("/models/computer.glb");

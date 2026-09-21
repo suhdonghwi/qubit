@@ -1,6 +1,7 @@
+import ImpactPattern from "./ImpactPattern";
 import { useSceneFrame } from "components/graphics/SceneRuntime";
 import { positionProps } from "utils/AnimatedVector";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 
@@ -52,42 +53,13 @@ export default function ElectronSlitsGraphic({
     position: paragraphIndex > 0 ? [0, 0, -0.1] : [0, 0, -0.5],
   });
 
-  const particles = useMemo(() => {
-    const list = [];
-    for (let i = 0; i < 33; i++) {
-      list.push(
-        <mesh key={3 * i} position={[-3.8 + Math.random(), -i * 0.08, -4]}>
-          <sphereGeometry args={[0.08, 8, 8]} />
-          <meshLambertMaterial color="#228be6" />
-        </mesh>
-      );
-
-      list.push(
-        <mesh key={3 * i + 1} position={[3.7 - Math.random(), -i * 0.08, -4]}>
-          <sphereGeometry args={[0.08, 8, 8]} />
-          <meshLambertMaterial color="#228be6" />
-        </mesh>
-      );
-
-      list.push(
-        <mesh
-          key={3 * i + 2}
-          position={[-0.6 + Math.random(), -i * 0.12 + 1.2, -4]}
-        >
-          <sphereGeometry args={[0.08, 8, 8]} />
-          <meshLambertMaterial color="#228be6" />
-        </mesh>
-      );
-    }
-    return list;
-  }, []);
 
   return (
     <>
       <ProjectionScreen />
       <DoubleSlits position={[0, -1.4, 0.5]} />
 
-      <animated.group {...positionProps(particlesSpring.position)}>{particles}</animated.group>
+      <animated.group {...positionProps(particlesSpring.position)}><ImpactPattern observed={false} /></animated.group>
 
       <mesh position={[0, -1, 5]}>
         <boxGeometry args={[1.0, 0.6, 0.5]} />

@@ -49,7 +49,7 @@ export default function QuantumComputerGraphic() {
       </mesh>
 
       <animated.mesh castShadow {...positionProps(quantumMeshSpring.position)}>
-        <sphereGeometry args={[0.3, 64, 64]} />
+        <sphereGeometry args={[0.3, 24, 16]} />
         <animated.meshLambertMaterial {...quantumMaterialSpring} />
       </animated.mesh>
 
