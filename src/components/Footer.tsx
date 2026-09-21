@@ -27,7 +27,7 @@ export default function Footer() {
   return (
     <Container>
       <Paragraph>
-        Made with a lot of love by{" "}
+        Made by{" "}
         <a href="https://github.com/suhdonghwi">@suhdonghwi</a>
         <br />
         <a href="https://github.com/suhdonghwi/qubit">
