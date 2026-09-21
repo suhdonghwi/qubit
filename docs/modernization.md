@@ -17,3 +17,7 @@ Source audit: eight routes, approximately 6,100 source lines, no application tes
 React 19.2.8 is deliberate: Fiber 9.7.0 declares React >=19 and <19.3. Do not bypass that peer requirement. Dependencies are pinned in package.json and package-lock.json. Use Node 24.15+ LTS and npm ci.
 
 Styling is initially retained during the renderer migration. Full CSS Modules conversion and build-time lesson prerendering are separate architectural changes and must be tracked honestly if deferred.
+
+## Interface constraint
+
+Preserve the existing interface and copy. Do not introduce controls, helper text, status messages, or other product UI without an explicit request. Performance settings and lifecycle behavior remain internal.
