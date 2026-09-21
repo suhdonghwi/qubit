@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ScrollToTop from "./ScrollToTop";
 
 import MainPage from "../pages/MainPage";
@@ -15,17 +15,17 @@ export default function Root() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Switch>
-        <Route path="/" exact component={MainPage} />
-        <Route path="/basic/1" exact component={Basic1Page} />
-        <Route path="/basic/2" exact component={Basic2Page} />
-        <Route path="/principle/1" exact component={Principle1Page} />
-        <Route path="/principle/2" exact component={Principle2Page} />
-        <Route path="/principle/3" exact component={Principle3Page} />
-        <Route path="/myth/1" exact component={Myth1Page} />
-        <Route path="/myth/2" exact component={Myth2Page} />
-        <Redirect path="*" to="/" />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/basic/1" element={<Basic1Page />} />
+        <Route path="/basic/2" element={<Basic2Page />} />
+        <Route path="/principle/1" element={<Principle1Page />} />
+        <Route path="/principle/2" element={<Principle2Page />} />
+        <Route path="/principle/3" element={<Principle3Page />} />
+        <Route path="/myth/1" element={<Myth1Page />} />
+        <Route path="/myth/2" element={<Myth2Page />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </BrowserRouter>
   );
 }

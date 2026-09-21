@@ -1,9 +1,10 @@
+import { positionProps } from "utils/AnimatedVector";
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 import { useSpring, animated } from "@react-spring/three";
-import { Canvas } from "react-three-fiber";
+import { Canvas } from "@react-three/fiber";
 
 const StyledCanvas = styled(Canvas)`
   position: absolute !important;
@@ -14,9 +15,9 @@ const StyledCanvas = styled(Canvas)`
 `;
 
 export default function MainSphere() {
-  const torusRef = useRef<THREE.Mesh>();
-  const boxRef = useRef<THREE.Mesh>();
-  const cylinderRef = useRef<THREE.Mesh>();
+  const torusRef = useRef<THREE.Mesh>(null);
+  const boxRef = useRef<THREE.Mesh>(null);
+  const cylinderRef = useRef<THREE.Mesh>(null);
 
   function onScroll() {
     const scroll = document.documentElement.scrollTop;
@@ -37,9 +38,9 @@ export default function MainSphere() {
   });
 
   const { torusPos, cylinderPos, boxPos } = useSpring<{
-    boxPos: any;
-    torusPos: any;
-    cylinderPos: any;
+    boxPos: [number, number, number];
+    torusPos: [number, number, number];
+    cylinderPos: [number, number, number];
   }>({
     config: {
       tension: 100,
@@ -79,25 +80,25 @@ export default function MainSphere() {
 
       <animated.mesh
         ref={boxRef}
-        position={boxPos}
+        {...positionProps(boxPos)}
         rotation={[Math.PI / 4, 0, Math.PI / 3]}
       >
-        <boxBufferGeometry args={[1.7, 1.7, 1.7]} />
+        <boxGeometry args={[1.7, 1.7, 1.7]} />
         <meshLambertMaterial color="#495057" />
       </animated.mesh>
 
       <animated.mesh
         ref={torusRef}
-        position={torusPos}
+        {...positionProps(torusPos)}
         rotation={[Math.PI / 4, Math.PI / 4, 0]}
       >
-        <torusBufferGeometry args={[1.2, 0.4, 32, 100]} />
+        <torusGeometry args={[1.2, 0.4, 32, 100]} />
         <meshLambertMaterial color="#495057" />
       </animated.mesh>
 
       <animated.mesh
         ref={cylinderRef}
-        position={cylinderPos}
+        {...positionProps(cylinderPos)}
         rotation={[Math.PI / 4, 0, Math.PI / 6]}
       >
         <cylinderGeometry args={[1.3, 1.3, 3, 100]} />

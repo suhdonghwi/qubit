@@ -1,5 +1,6 @@
+import { useRef } from "react";
 import * as THREE from "three";
-import { useFrame } from "react-three-fiber";
+import { useFrame } from "@react-three/fiber";
 
 import { useSpring } from "@react-spring/three";
 
@@ -11,7 +12,7 @@ interface FunctionPlaneProps {
 }
 
 function FunctionPlane({ run, loop, tension, f }: FunctionPlaneProps) {
-  const plane = new THREE.PlaneGeometry(9, 9, 30, 30);
+  const plane = useRef<THREE.PlaneGeometry>(null);
 
   const { anim } = useSpring({
     config: {
@@ -33,20 +34,23 @@ function FunctionPlane({ run, loop, tension, f }: FunctionPlaneProps) {
   });
 
   useFrame(() => {
-    plane.vertices.forEach((v) => {
-      v.z = f(v.x, v.y, anim.get());
-    });
-
-    plane.computeVertexNormals();
-    plane.verticesNeedUpdate = true;
+    const geometry = plane.current;
+    if (!geometry) return;
+    const position = geometry.attributes.position;
+    for (let i = 0; i < position.count; i++) {
+      position.setZ(i, f(position.getX(i), position.getY(i), anim.get()));
+    }
+    position.needsUpdate = true;
+    geometry.computeVertexNormals();
+    geometry.computeBoundingSphere();
   });
 
   return (
     <mesh
-      geometry={plane}
       rotation={[Math.PI / 2, 0, 0]}
       position={[0, -2.9, 0]}
     >
+      <planeGeometry ref={plane} args={[9, 9, 30, 30]} />
       <meshLambertMaterial color="#ced4da" side={THREE.DoubleSide} />
     </mesh>
   );

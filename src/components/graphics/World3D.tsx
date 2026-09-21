@@ -2,7 +2,7 @@ import { OrthographicCamera } from "@react-three/drei";
 import React, { useLayoutEffect, useState } from "react";
 // import { Perf } from "r3f-perf";
 
-import { Canvas } from "react-three-fiber";
+import { Canvas } from "@react-three/fiber";
 
 interface World3DProps {
   children: React.ReactNode;
@@ -31,7 +31,7 @@ export default function World3D({ children }: World3DProps) {
   });
 
   return (
-    <Canvas shadowMap gl={{ antialias: true }}>
+    <Canvas shadows gl={{ antialias: true }}>
       <OrthographicCamera
         position={[0, 3.5, 10]}
         rotation={[-Math.PI / 8, 0, 0]}

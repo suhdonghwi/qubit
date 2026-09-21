@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
 @font-face {
   font-family: "IBM Plex Sans KR";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Light.woff")
@@ -22,7 +24,7 @@
   font-style: normal;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
 
 * {
   box-sizing: border-box;

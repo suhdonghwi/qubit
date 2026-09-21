@@ -1,6 +1,7 @@
+import { useRef } from "react";
 import * as THREE from "three";
 
-import { useFrame, MeshProps } from "react-three-fiber";
+import { useFrame, ThreeElements } from "@react-three/fiber";
 
 interface WaveProps {
   xOffset: number;
@@ -24,8 +25,8 @@ export default function Wave({
   height,
   lod,
   ...props
-}: WaveProps & MeshProps) {
-  const plane = new THREE.PlaneGeometry(width, height, lod || 16, lod || 16);
+}: WaveProps & ThreeElements["mesh"]) {
+  const plane = useRef<THREE.PlaneGeometry>(null);
 
   function f(x: number, y: number, anim: number) {
     const z =
@@ -41,19 +42,21 @@ export default function Wave({
     return z;
   }
 
-  useFrame(() => {
-    const a = performance.now() * 0.01;
-    plane.vertices.forEach((v) => {
-      v.z = f(v.x, v.y, a);
-    });
-
-    plane.computeVertexNormals();
-
-    plane.verticesNeedUpdate = true;
+  useFrame(({ clock }) => {
+    const geometry = plane.current;
+    if (!geometry) return;
+    const position = geometry.attributes.position;
+    for (let i = 0; i < position.count; i++) {
+      position.setZ(i, f(position.getX(i), position.getY(i), clock.elapsedTime * 10));
+    }
+    position.needsUpdate = true;
+    geometry.computeVertexNormals();
+    geometry.computeBoundingSphere();
   });
 
   return (
-    <mesh geometry={plane} rotation={[Math.PI / 2, 0, 0]} {...props}>
+    <mesh rotation={[Math.PI / 2, 0, 0]} {...props}>
+      <planeGeometry ref={plane} args={[width, height, lod ?? 16, lod ?? 16]} />
       <meshLambertMaterial color="#ced4da" side={THREE.DoubleSide} />
     </mesh>
   );

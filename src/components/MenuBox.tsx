@@ -1,9 +1,9 @@
 import { useState, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
-import { Canvas } from "react-three-fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrthographicCamera } from "@react-three/drei";
 import toc from "toc.json";
 
@@ -146,7 +146,7 @@ const StyledCanvas = styled(Canvas)`
 interface MenuBoxProps {
   num: number;
   description: string;
-  graphic: JSX.Element;
+  graphic: React.ReactElement;
 }
 
 export default function MenuBox({ num, description, graphic }: MenuBoxProps) {
@@ -186,7 +186,7 @@ export default function MenuBox({ num, description, graphic }: MenuBoxProps) {
         ))}
       </ChapterList>
 
-      <StyledCanvas shadowMap>
+      <StyledCanvas shadows>
         <OrthographicCamera
           position={[0, 2, 10]}
           rotation={[-Math.PI / 8, 0, 0]}

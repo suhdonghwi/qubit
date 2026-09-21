@@ -1,9 +1,10 @@
+import type * as THREE from "three";
 import { useRef, useEffect } from "react";
 
-import { useFrame } from "react-three-fiber";
+import { useFrame } from "@react-three/fiber";
 
 export default function Electron() {
-  const meshRef = useRef<THREE.Mesh>();
+  const meshRef = useRef<THREE.Mesh>(null);
 
   function reset() {
     meshRef.current?.position.set(0, -1, 5);
@@ -18,7 +19,7 @@ export default function Electron() {
   }, []);
 
   useFrame(() => {
-    if (meshRef.current === undefined) return;
+    if (meshRef.current == null) return;
     meshRef.current.translateZ(-0.5);
 
     if (meshRef.current.position.z < 0.6) {
@@ -28,7 +29,7 @@ export default function Electron() {
 
   return (
     <mesh ref={meshRef} castShadow>
-      <sphereBufferGeometry args={[0.08, 8, 8]} />
+      <sphereGeometry args={[0.08, 8, 8]} />
       <meshLambertMaterial color="#228be6" />
     </mesh>
   );

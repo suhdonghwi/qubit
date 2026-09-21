@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { useFrame, MeshProps } from "react-three-fiber";
+import { useFrame, ThreeElements } from "@react-three/fiber";
 
 import { animated } from "@react-spring/three";
 import { Text } from "@react-three/drei";
@@ -14,7 +14,7 @@ export default function Qubit({
   oneProbability,
   radius,
   ...props
-}: QubitProps & MeshProps) {
+}: QubitProps & ThreeElements["mesh"]) {
   const offset = -(oneProbability * 1.4 - 0.7);
 
   const material = new THREE.ShaderMaterial({
@@ -59,7 +59,7 @@ export default function Qubit({
       rotation={[0, -Math.PI / 4, Math.PI / 2]}
       {...props}
     >
-      <sphereBufferGeometry args={[radius, 64, 64]} />
+      <sphereGeometry args={[radius, 64, 64]} />
       <group
         position={[radius * 0.6, 0, radius]}
         rotation={[0, 0, -Math.PI / 2]}

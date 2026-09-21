@@ -1,3 +1,4 @@
+import { positionProps } from "utils/AnimatedVector";
 import React, { useMemo, useRef } from "react";
 
 import { animated, useSpring } from "@react-spring/three";
@@ -13,14 +14,14 @@ interface GraphicsViewerProps {
 function Graphics({ graphics }: GraphicsViewerProps) {
   const { sceneIndex, paragraphIndex } = useViewerStore((state) => state);
 
-  const groupSpring = useSpring<{ position: any }>({
+  const groupSpring = useSpring<{ position: [number, number, number] }>({
     position: [-sceneIndex * 17, 0, 0],
   });
 
-  const rendered = useRef<JSX.Element[]>();
+  const rendered = useRef<React.ReactElement[]>(null);
 
   useMemo(() => {
-    if (rendered.current === undefined) {
+    if (rendered.current == null) {
       rendered.current = graphics.map((G) => (
         <G paragraphIndex={paragraphIndex} />
       ));
@@ -34,7 +35,7 @@ function Graphics({ graphics }: GraphicsViewerProps) {
   }, [graphics, paragraphIndex]);
 
   return (
-    <animated.group {...groupSpring}>
+    <animated.group {...positionProps(groupSpring.position)}>
       {rendered.current &&
         rendered.current.map((content, i) => (
           <group

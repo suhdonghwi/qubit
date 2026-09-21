@@ -1,3 +1,4 @@
+import { positionProps } from "utils/AnimatedVector";
 import { useState, useEffect } from "react";
 import { useSpring, animated } from "@react-spring/three";
 
@@ -18,12 +19,12 @@ export default function QuantumGuessGraphic({
   const [pressed, setPressed] = useState(false);
 
   const { buttonPosition } = useSpring({
-    buttonPosition: [-3, paragraphIndex > 0 ? -2.75 : -3.5, 3] as any,
+    buttonPosition: [-3, paragraphIndex > 0 ? -2.75 : -3.5, 3] as [number, number, number],
   });
 
   const [props, set] = useSpring(() => ({
-    inputScale: [1, 1, 0] as any,
-    bitsPosition: [-1.1, 2, 0] as any,
+    inputDepth: 0,
+    bitsPosition: [-1.1, 2, 0] as [number, number, number],
     boxOpacity: 1,
     lightOpacity: 0,
     prob1: 0.5,
@@ -34,7 +35,7 @@ export default function QuantumGuessGraphic({
 
   useEffect(() => {
     async function animate() {
-      await set({ inputScale: [1, 1, 1], config: { duration: 500 } });
+      await set({ inputDepth: 1, config: { duration: 500 } });
       await set({
         bitsPosition: [-1.1, -2, 0],
         config: { duration: 1000 },
@@ -60,13 +61,13 @@ export default function QuantumGuessGraphic({
     <>
       <AnimatedBox
         boxOpacity={props.boxOpacity}
-        inputScale={props.inputScale}
+        inputDepth={props.inputDepth}
         lightOpacity={props.lightOpacity}
         outputOpacity={props.outputOpacity}
         correct={false}
       />
 
-      <animated.group position={props.bitsPosition}>
+      <animated.group {...positionProps(props.bitsPosition)}>
         {[props.prob1, props.prob2, props.prob3].map((p, i) => (
           <AnimatedQubit
             key={i}
@@ -81,7 +82,7 @@ export default function QuantumGuessGraphic({
       <AnimatedButton
         click={pressed}
         onClick={() => setPressed(true)}
-        position={buttonPosition}
+        {...positionProps(buttonPosition)}
       />
 
       <Plane />

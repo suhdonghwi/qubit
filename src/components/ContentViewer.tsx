@@ -1,6 +1,5 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components/macro";
-import { Helmet } from "react-helmet";
+import styled, { keyframes } from "styled-components";
 
 import Scene, { GraphicContent } from "../types/Scene";
 import GraphicsViewer from "./GraphicsViewer";
@@ -294,9 +293,9 @@ export default function ContentViewer({
 
   return (
     <Container>
-      <Helmet>
+      <>
         <title>{`${chapter}-${index}. ${title} ― Qubit`}</title>
-      </Helmet>
+      </>
 
       <Navigation />
 

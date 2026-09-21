@@ -12,7 +12,7 @@ export default function SingleQuantumGate({
   radius,
   name,
 }: SingleQuantumGateProps) {
-  const geometry = new THREE.TorusBufferGeometry(radius, 0.2, 64, 64);
+  const geometry = new THREE.TorusGeometry(radius, 0.2, 64, 64);
   geometry.computeBoundingBox();
 
   const material = new THREE.ShaderMaterial({

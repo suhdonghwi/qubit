@@ -1,3 +1,4 @@
+import { positionProps } from "utils/AnimatedVector";
 import { useState } from "react";
 
 import { animated, useSpring } from "@react-spring/three";
@@ -16,18 +17,18 @@ export default function EntanglementGraphic({
   const probability1 = clicked ? Math.round(Math.random()) : 0.5;
   const probability2 = probability1 === 1 ? 0 : probability1 === 0 ? 1 : 0.5;
 
-  const buttonSpring = useSpring<{ position: any }>({
+  const buttonSpring = useSpring<{ position: [number, number, number] }>({
     position: paragraphIndex > 0 ? [0, -2.75, 3] : [0, -3.5, 3],
   });
 
   return (
     <>
       <mesh position={[-4, -0.5, -1.5]} rotation={[0, 0, 0]} castShadow>
-        <boxBufferGeometry args={[0.7, 0.5, 0.5]} />
+        <boxGeometry args={[0.7, 0.5, 0.5]} />
         <meshLambertMaterial color="#495057" />
       </mesh>
       <mesh position={[-2, -0.5, -1.5]} rotation={[0, 0, -Math.PI / 2]}>
-        <cylinderBufferGeometry args={[0.45, 0.1, 4, 32]} />
+        <cylinderGeometry args={[0.45, 0.1, 4, 32]} />
         <animated.meshLambertMaterial
           color="#ffd43b"
           transparent
@@ -38,7 +39,7 @@ export default function EntanglementGraphic({
         onDown={() => setClicked(true)}
         onUp={() => setClicked(false)}
         click={clicked}
-        {...buttonSpring}
+        {...positionProps(buttonSpring.position)}
       />
       <WobblySphere
         oneProbability={probability1}

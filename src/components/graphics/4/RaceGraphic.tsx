@@ -1,3 +1,4 @@
+import { positionProps } from "utils/AnimatedVector";
 import { animated, useSpring } from "@react-spring/three";
 
 import Plane from "../Plane";
@@ -13,7 +14,7 @@ export default function RaceGraphic() {
       tension: 100,
     },
     from: {
-      bitPosition: [-3, -2, -2] as any,
+      bitPosition: [-3, -2, -2] as [number, number, number],
     },
     to: async (next) => {
       while (1) {
@@ -25,7 +26,7 @@ export default function RaceGraphic() {
 
   const { qubitPosition } = useSpring({
     from: {
-      qubitPosition: [-3, -2, 2] as any,
+      qubitPosition: [-3, -2, 2] as [number, number, number],
     },
     to: async (next) => {
       while (1) {
@@ -37,11 +38,11 @@ export default function RaceGraphic() {
 
   return (
     <>
-      <AnimatedBit radius={0.5} one={false} position={bitPosition} />
+      <AnimatedBit radius={0.5} one={false} {...positionProps(bitPosition)} />
       <AnimatedQubit
         radius={0.5}
         oneProbability={0.5}
-        position={qubitPosition}
+        {...positionProps(qubitPosition)}
       />
       <Plane />
     </>

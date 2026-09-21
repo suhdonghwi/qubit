@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 import * as THREE from "three";
-import { useFrame } from "react-three-fiber";
+import { useFrame } from "@react-three/fiber";
 import { useSpring } from "@react-spring/three";
 
 import Plane from "../../Plane";
@@ -13,7 +13,7 @@ import ProbCurve from "./ProbCurve";
 import { GraphicContentProps } from "../../../../types/Scene";
 
 function Particle({ move }: { move: boolean }) {
-  const meshRef = useRef<THREE.Mesh>();
+  const meshRef = useRef<THREE.Mesh>(null);
   const [passed, setPassed] = useState(false);
   const [speed, setSpeed] = useState(0.1);
 
@@ -32,7 +32,7 @@ function Particle({ move }: { move: boolean }) {
   }, []);
 
   useFrame(() => {
-    if (!move || meshRef.current === undefined) return;
+    if (!move || meshRef.current == null) return;
     meshRef.current.translateZ(-speed);
 
     if (!passed && meshRef.current.position.z < 0.6) {
@@ -57,7 +57,7 @@ function Particle({ move }: { move: boolean }) {
 
   return (
     <mesh ref={meshRef} castShadow>
-      <sphereBufferGeometry args={[0.1, 64, 64]} />
+      <sphereGeometry args={[0.1, 64, 64]} />
       <meshLambertMaterial color="#fa5252" />
     </mesh>
   );
@@ -101,7 +101,7 @@ export default function ParticleGraphic({
       />
 
       <mesh position={[0, -1, 5]}>
-        <boxBufferGeometry args={[1.0, 0.6, 0.5]} />
+        <boxGeometry args={[1.0, 0.6, 0.5]} />
         <meshLambertMaterial color="#ced4da" />
       </mesh>
 
