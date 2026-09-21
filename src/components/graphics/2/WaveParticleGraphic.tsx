@@ -7,6 +7,8 @@ import FloatingElectron from "../FloatingElectron";
 import { GraphicContentProps } from "types/Scene";
 import fonts from "fonts.json";
 
+const AnimatedText = animated(Text);
+
 export default function WaveParticleGraphic({
   paragraphIndex,
 }: GraphicContentProps) {
@@ -19,7 +21,6 @@ export default function WaveParticleGraphic({
     position: paragraphIndex > 0 ? [0, -7, 0] : [0, -4, 0],
   });
 
-  const AnimatedText = animated(Text);
 
   return (
     <animated.group {...positionProps(groupSpring.position)} {...rotationProps(groupSpring.rotation)}>

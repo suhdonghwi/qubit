@@ -1,5 +1,6 @@
+import { useSceneFrame } from "components/graphics/SceneRuntime";
 import { useRef } from "react";
-import { useFrame, ThreeElements } from "@react-three/fiber";
+import {  ThreeElements } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -9,9 +10,9 @@ import fonts from "fonts.json";
 function Spinner(props: ThreeElements["group"]) {
   const groupRef = useRef<THREE.Group>(null);
 
-  useFrame(() => {
+  useSceneFrame((_, delta) => {
     if (groupRef.current != null) {
-      groupRef.current.rotation.y -= 0.1;
+      groupRef.current.rotation.y -= 6 * Math.min(delta, 0.05);
     }
   });
 

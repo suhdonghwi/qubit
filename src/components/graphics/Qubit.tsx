@@ -1,5 +1,6 @@
+import { useSceneFrame } from "components/graphics/SceneRuntime";
 import * as THREE from "three";
-import { useFrame, ThreeElements } from "@react-three/fiber";
+import {  ThreeElements } from "@react-three/fiber";
 
 import { animated } from "@react-spring/three";
 import { Text } from "@react-three/drei";
@@ -48,7 +49,7 @@ export default function Qubit({
   `,
   });
 
-  useFrame(() => {
+  useSceneFrame(() => {
     material.uniforms.offset.value = offset;
   });
 

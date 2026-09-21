@@ -1,9 +1,8 @@
-import React, { useMemo, useRef, useState, useEffect } from "react";
+import React, { useMemo, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 import Scene, { GraphicContent } from "../types/Scene";
 import GraphicsViewer from "./GraphicsViewer";
-import useViewerStore from "../stores/ViewerStore";
 import Quote from "../types/Quote";
 
 import StartFlag from "./graphics/StartFlag";
@@ -271,21 +270,18 @@ export default function ContentViewer({
   scenes,
   quote,
 }: ContentViewerProps) {
-  const setIndex = useViewerStore((state) => state.setIndex);
+  const [{ sceneIndex, paragraphIndex }, setStep] = useState({ sceneIndex: 0, paragraphIndex: 0 });
+  const setIndex = (sceneIndex: number, paragraphIndex: number) => {
+    setStep((step) => step.sceneIndex === sceneIndex && step.paragraphIndex === paragraphIndex
+      ? step : { sceneIndex, paragraphIndex });
+  };
   const graphics = useMemo(
     () =>
       [StartFlag as GraphicContent].concat(scenes.map((c) => c.graphicContent)),
     [scenes]
   );
 
-  const textSectionRef = useRef<HTMLElement | null>(null);
-
-  const [, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-
-    return () => setIndex(0, 0);
-  }, [setIndex]);
+  const [textRoot, setTextRoot] = useState<HTMLElement | null>(null);
 
   const chapterTitle = toc[chapter - 1].title;
   const title = toc[chapter - 1].content[index - 1].title;
@@ -299,7 +295,7 @@ export default function ContentViewer({
 
       <Navigation />
 
-      <TextSection ref={textSectionRef}>
+      <TextSection ref={setTextRoot} tabIndex={0} aria-label="학습 내용">
         <DownArrow>
           <FaChevronDown />
         </DownArrow>
@@ -314,7 +310,7 @@ export default function ContentViewer({
             </Title>
             <Description>{description}</Description>
             <InView
-              root={textSectionRef.current}
+              root={textRoot}
               rootMargin="-45% 0%"
               onChange={(inView) => inView && setIndex(0, 0)}
             >
@@ -332,13 +328,13 @@ export default function ContentViewer({
           {scenes.map((scene, sIndex) =>
             scene.textContent.map((paragraph, pIndex) => (
               <InView
-                key={sIndex * 10 + pIndex}
-                root={textSectionRef.current}
+                key={`${sIndex}-${pIndex}`}
+                root={textRoot}
                 rootMargin="-45% 0%"
                 onChange={(inView) => inView && setIndex(sIndex + 1, pIndex)}
               >
                 {({ inView, ref }) => (
-                  <Block ref={ref} className={inView ? "current" : ""}>
+                  <Block ref={ref} data-step={`${sIndex + 1}-${pIndex}`} className={inView ? "current" : ""}>
                     {paragraph}
                   </Block>
                 )}
@@ -352,8 +348,8 @@ export default function ContentViewer({
         </NextPrevContainer>
       </TextSection>
 
-      <GraphicSection>
-        <GraphicsViewer graphics={graphics} />
+      <GraphicSection data-scene={sceneIndex} data-paragraph={paragraphIndex}>
+        <GraphicsViewer graphics={graphics} sceneIndex={sceneIndex} paragraphIndex={paragraphIndex} />
       </GraphicSection>
     </Container>
   );

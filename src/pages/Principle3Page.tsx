@@ -1,3 +1,4 @@
+import { thetaFromProbability } from "../domain/quantum";
 import React from "react";
 import ContentViewer from "../components/ContentViewer";
 
@@ -55,9 +56,9 @@ AND 게이트는 NOT 게이트와는 다르게 두 개의 비트를 입력으로
 `.paragraph(() => (
   <QuantumGraphic
     inputPhi={0}
-    inputTheta={Math.PI * 0.2}
+    inputTheta={thetaFromProbability(0.2)}
     outputPhi={0}
-    outputTheta={Math.PI * 0.8}
+    outputTheta={thetaFromProbability(0.8)}
     name="Pauli X"
   />
 ))`

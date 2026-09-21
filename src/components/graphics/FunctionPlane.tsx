@@ -1,6 +1,7 @@
+import { useSceneFrame } from "components/graphics/SceneRuntime";
 import { useRef } from "react";
 import * as THREE from "three";
-import { useFrame } from "@react-three/fiber";
+
 
 import { useSpring } from "@react-spring/three";
 
@@ -33,7 +34,7 @@ function FunctionPlane({ run, loop, tension, f }: FunctionPlaneProps) {
     },
   });
 
-  useFrame(() => {
+  useSceneFrame(() => {
     const geometry = plane.current;
     if (!geometry) return;
     const position = geometry.attributes.position;

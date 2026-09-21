@@ -1,7 +1,8 @@
+import { useSceneFrame } from "components/graphics/SceneRuntime";
 import type * as THREE from "three";
 import { useRef, useEffect } from "react";
 
-import { useFrame } from "@react-three/fiber";
+
 
 export default function Electron() {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -18,9 +19,9 @@ export default function Electron() {
     reset();
   }, []);
 
-  useFrame(() => {
+  useSceneFrame((_, delta) => {
     if (meshRef.current == null) return;
-    meshRef.current.translateZ(-0.5);
+    meshRef.current.translateZ(-30 * Math.min(delta, 0.05));
 
     if (meshRef.current.position.z < 0.6) {
       reset();

@@ -1,7 +1,8 @@
+import { useSceneFrame } from "components/graphics/SceneRuntime";
 import { useState, useEffect, useRef } from "react";
 
 import * as THREE from "three";
-import { useFrame } from "@react-three/fiber";
+
 import { useSpring } from "@react-spring/three";
 
 import Plane from "../../Plane";
@@ -31,9 +32,9 @@ function Particle({ move }: { move: boolean }) {
     reset();
   }, []);
 
-  useFrame(() => {
+  useSceneFrame((_, delta) => {
     if (!move || meshRef.current == null) return;
-    meshRef.current.translateZ(-speed);
+    meshRef.current.translateZ(-speed * 60 * Math.min(delta, 0.05));
 
     if (!passed && meshRef.current.position.z < 0.6) {
       if (

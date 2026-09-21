@@ -1,7 +1,8 @@
+import { useSceneFrame } from "components/graphics/SceneRuntime";
 import { useRef } from "react";
 import * as THREE from "three";
 
-import { useFrame, ThreeElements } from "@react-three/fiber";
+import {  ThreeElements } from "@react-three/fiber";
 
 interface WaveProps {
   xOffset: number;
@@ -42,7 +43,7 @@ export default function Wave({
     return z;
   }
 
-  useFrame(({ clock }) => {
+  useSceneFrame(({ clock }) => {
     const geometry = plane.current;
     if (!geometry) return;
     const position = geometry.attributes.position;

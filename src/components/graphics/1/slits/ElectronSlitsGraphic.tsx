@@ -1,8 +1,9 @@
+import { useSceneFrame } from "components/graphics/SceneRuntime";
 import { positionProps } from "utils/AnimatedVector";
 import { useEffect, useRef, useMemo } from "react";
 import * as THREE from "three";
 
-import { useFrame } from "@react-three/fiber";
+
 import { useSpring, animated } from "@react-spring/three";
 
 import Plane from "../../Plane";
@@ -24,9 +25,9 @@ function Electron() {
     reset();
   }, []);
 
-  useFrame(() => {
+  useSceneFrame((_, delta) => {
     if (meshRef.current == null) return;
-    meshRef.current.translateZ(-0.5);
+    meshRef.current.translateZ(-30 * Math.min(delta, 0.05));
 
     if (meshRef.current.position.z < 0.6) {
       reset();

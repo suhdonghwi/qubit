@@ -1,3 +1,4 @@
+import { measure } from "../../../domain/quantum";
 import { positionProps } from "utils/AnimatedVector";
 import { useState } from "react";
 
@@ -13,8 +14,9 @@ const AnimatedButton = animated(Button);
 export default function EntanglementGraphic({
   paragraphIndex,
 }: GraphicContentProps) {
-  const [clicked, setClicked] = useState(false);
-  const probability1 = clicked ? Math.round(Math.random()) : 0.5;
+  const [outcome, setOutcome] = useState<0 | 1 | null>(null);
+  const clicked = outcome !== null;
+  const probability1 = outcome ?? 0.5;
   const probability2 = probability1 === 1 ? 0 : probability1 === 0 ? 1 : 0.5;
 
   const buttonSpring = useSpring<{ position: [number, number, number] }>({
@@ -36,8 +38,8 @@ export default function EntanglementGraphic({
         />
       </mesh>
       <AnimatedButton
-        onDown={() => setClicked(true)}
-        onUp={() => setClicked(false)}
+        onDown={() => setOutcome(measure(0.5, Math.random()))}
+        onUp={() => setOutcome(null)}
         click={clicked}
         {...positionProps(buttonSpring.position)}
       />
@@ -51,7 +53,7 @@ export default function EntanglementGraphic({
         position={[0, -0.5, 1.5]}
         size={0.5}
       />
-      <Plane />;
+      <Plane />
     </>
   );
 }

@@ -1,15 +1,16 @@
+import { useSceneFrame } from "components/graphics/SceneRuntime";
 import React, { useRef } from "react";
 import * as THREE from "three";
 
 import Plane from "../Plane";
 
-import { useFrame } from "@react-three/fiber";
+
 
 export function BohrAtom() {
   const groupRef = useRef<THREE.Group>(null);
   const electronsRef = useRef<THREE.Group>(null);
 
-  useFrame(() => {
+  useSceneFrame(() => {
     if (groupRef.current != null && electronsRef.current != null) {
       const time = performance.now() * 0.005;
       groupRef.current.rotation.set(time * 0.5, time * 0.5, 0);

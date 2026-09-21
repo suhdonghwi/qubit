@@ -1,5 +1,6 @@
+import { useSceneFrame } from "components/graphics/SceneRuntime";
 import { useRef } from "react";
-import { ThreeElements, useFrame } from "@react-three/fiber";
+import { ThreeElements } from "@react-three/fiber";
 import { createNoise3D } from "simplex-noise";
 import * as THREE from "three";
 
@@ -33,7 +34,7 @@ export default function WobblySphere({
 
   const geometry = useRef<THREE.SphereGeometry>(null);
 
-  useFrame(({ clock }) => {
+  useSceneFrame(({ clock }) => {
     const sphere = geometry.current;
     if (!sphere) return;
     const position = sphere.attributes.position;

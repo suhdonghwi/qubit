@@ -1,3 +1,4 @@
+import { useSceneRunning } from "components/graphics/SceneRuntime";
 import { useState, useEffect } from "react";
 import { Text } from "@react-three/drei";
 
@@ -17,13 +18,15 @@ export default function SingleGate({
 }: SingleGateProps & ThreeElements["group"]) {
   const [input, setInput] = useState(false);
 
+  const running = useSceneRunning();
   useEffect(() => {
+    if (!running) return;
     const id = setInterval(() => {
       setInput((v) => !v);
     }, 500);
 
     return () => clearInterval(id);
-  }, []);
+  }, [running]);
 
   return (
     <group {...props}>

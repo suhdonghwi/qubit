@@ -1,72 +1,50 @@
-import { positionProps } from "utils/AnimatedVector";
-import React, { useMemo, useRef } from "react";
-
-import { animated, useSpring } from "@react-spring/three";
-
+import { animated, useTransition } from "@react-spring/three";
 import World3D from "./graphics/World3D";
-import { GraphicContent } from "../types/Scene";
-import useViewerStore from "../stores/ViewerStore";
+import type { GraphicContent } from "../types/Scene";
 
 interface GraphicsViewerProps {
   graphics: GraphicContent[];
+  sceneIndex: number;
+  paragraphIndex: number;
 }
 
-function Graphics({ graphics }: GraphicsViewerProps) {
-  const { sceneIndex, paragraphIndex } = useViewerStore((state) => state);
-
-  const groupSpring = useSpring<{ position: [number, number, number] }>({
-    position: [-sceneIndex * 17, 0, 0],
+function Graphics({ graphics, sceneIndex, paragraphIndex }: GraphicsViewerProps) {
+  const transitions = useTransition({ sceneIndex, paragraphIndex }, {
+    keys: (item) => item.sceneIndex,
+    from: { x: 12 },
+    enter: { x: 0 },
+    leave: { x: -12 },
+    exitBeforeEnter: true,
+    config: { tension: 220, friction: 30 },
   });
 
-  const rendered = useRef<React.ReactElement[]>(null);
-
-  useMemo(() => {
-    if (rendered.current == null) {
-      rendered.current = graphics.map((G) => (
-        <G paragraphIndex={paragraphIndex} />
-      ));
-    } else {
-      const Graphic = graphics[sceneIndex];
-      rendered.current[sceneIndex] = (
-        <Graphic paragraphIndex={paragraphIndex} />
-      );
-    }
-    // eslint-disable-next-line
-  }, [graphics, paragraphIndex]);
-
-  return (
-    <animated.group {...positionProps(groupSpring.position)}>
-      {rendered.current &&
-        rendered.current.map((content, i) => (
-          <group
-            key={i}
-            position={[i * 17, 0, 0]}
-            rotation={[0, Math.PI / 4, 0]}
-          >
-            {content}
-          </group>
-        ))}
-    </animated.group>
-  );
+  return transitions(({ x }, item) => {
+    const Graphic = graphics[item.sceneIndex];
+    return Graphic ? (
+      <animated.group position-x={x} rotation={[0, Math.PI / 4, 0]}>
+        <Graphic paragraphIndex={item.paragraphIndex} />
+      </animated.group>
+    ) : null;
+  });
 }
 
-export default function GraphicsViewer({ graphics }: GraphicsViewerProps) {
+export default function GraphicsViewer(props: GraphicsViewerProps) {
   return (
     <World3D>
-      <ambientLight intensity={0.1} />
-      <pointLight
-        intensity={0.5}
-        position={[5, 15, 5]}
+      <ambientLight intensity={0.7} />
+      <directionalLight
+        intensity={2.5}
+        position={[5, 10, 5]}
         castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-        shadow-camera-far={30}
-        shadow-camera-left={-10}
-        shadow-camera-right={10}
-        shadow-camera-top={10}
-        shadow-camera-bottom={-10}
+        shadow-mapSize={[1024, 1024]}
+        shadow-camera-far={35}
+        shadow-camera-left={-9}
+        shadow-camera-right={9}
+        shadow-camera-top={9}
+        shadow-camera-bottom={-9}
+        shadow-normalBias={0.04}
       />
-      <Graphics graphics={graphics} />
+      <Graphics {...props} />
     </World3D>
   );
 }
