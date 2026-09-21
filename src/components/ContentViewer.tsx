@@ -139,11 +139,12 @@ const Description = styled.p`
 `;
 
 const Blockquote = styled.blockquote`
+  font-family: "Nanum Myeongjo", serif;
   position: relative;
   font-style: italic;
 
   font-size: 1.2rem;
-  line-height: 2.2rem;
+  line-height: 1.85;
   margin: 7rem 0 0 0;
 
   small {

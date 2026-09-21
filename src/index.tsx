@@ -1,3 +1,4 @@
+import "@fontsource/nanum-myeongjo/400.css";
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";

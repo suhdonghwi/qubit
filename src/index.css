@@ -11,6 +11,10 @@ body {
   color: #f8f9fa;
 }
 
+p {
+  line-height: 1.75;
+}
+
 .world3d {
   width: 100%;
   height: 100%;
