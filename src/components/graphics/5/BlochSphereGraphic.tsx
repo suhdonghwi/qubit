@@ -33,7 +33,7 @@ export default function BlochSphereGraphic({
     <>
       <Text
         fontSize={0.7}
-        font={fonts.pretendard}
+        font={fonts.raleway}
         position={[0, 4.5, 0]}
         rotation={[0, -Math.PI / 4, 0]}
       >

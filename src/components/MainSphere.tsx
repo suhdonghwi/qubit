@@ -102,8 +102,8 @@ export default function MainSphere() {
       orthographic
       camera={{ zoom: 100 }}
     >
-      <pointLight position={[-2, 0, 1]} intensity={12} />
-      <ambientLight intensity={0.6} />
+      <directionalLight position={[-2, 0, 1]} intensity={1} />
+      <ambientLight intensity={0.4} />
 
       <animated.mesh
         ref={boxRef}

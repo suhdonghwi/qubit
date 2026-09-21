@@ -52,7 +52,7 @@ export default function SpinGraphic() {
       <Spinner position={[-1.5, 0.5, -1.5]} />
       <Text
         fontSize={1}
-        font={fonts.pretendard}
+        font={fonts.raleway}
         position={[-1.5, 4, -1.5]}
         rotation={[0, -Math.PI / 4, 0]}
       >
@@ -62,7 +62,7 @@ export default function SpinGraphic() {
       <Spinner position={[1.5, 0.5, 1.5]} rotation={[Math.PI, 0, 0]} />
       <Text
         fontSize={1}
-        font={fonts.pretendard}
+        font={fonts.raleway}
         position={[1.5, 4, 1.5]}
         rotation={[0, -Math.PI / 4, 0]}
       >

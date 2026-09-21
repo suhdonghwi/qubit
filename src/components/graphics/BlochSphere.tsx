@@ -53,7 +53,7 @@ export default function BlochSphere({
         <AxisArrow dir={new Vector3(1, 0, 0)} radius={radius * 1.4} />
         <Text
           fontSize={radius * 0.25}
-          font={fonts.pretendard}
+          font={fonts.raleway}
           position={[radius * 1.6, 0, 0]}
           rotation={[Math.PI / 2, 0, 0]}
           color="#adb5bd"
@@ -65,7 +65,7 @@ export default function BlochSphere({
         <AxisArrow dir={new Vector3(0, 1, 0)} radius={radius * 1.4} />
         <Text
           fontSize={radius * 0.25}
-          font={fonts.pretendard}
+          font={fonts.raleway}
           position={[0, radius * 1.6, 0]}
           rotation={[Math.PI / 2, -Math.PI / 2, 0]}
           color="#adb5bd"
@@ -77,7 +77,7 @@ export default function BlochSphere({
         <AxisArrow dir={new Vector3(0, 0, 1)} radius={radius * 1.4} />
         <Text
           fontSize={radius * 0.25}
-          font={fonts.pretendard}
+          font={fonts.raleway}
           position={[0, 0, radius * 1.6]}
           rotation={[Math.PI / 2, Math.PI / 2, 0]}
           color="#adb5bd"
@@ -88,7 +88,7 @@ export default function BlochSphere({
 
         <Text
           fontSize={radius * 0.3}
-          font={fonts.pretendard}
+          font={fonts.raleway}
           position={[0, radius * 0.25, radius * 1.3]}
           rotation={[Math.PI / 2, Math.PI / 2, 0]}
           color="#adb5bd"
@@ -99,7 +99,7 @@ export default function BlochSphere({
 
         <Text
           fontSize={radius * 0.3}
-          font={fonts.pretendard}
+          font={fonts.raleway}
           position={[0, 0, -radius * 1.2]}
           rotation={[Math.PI / 2, Math.PI / 2, 0]}
           color="#adb5bd"

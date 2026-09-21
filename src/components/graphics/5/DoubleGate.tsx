@@ -47,7 +47,7 @@ export default function SingleGate({
 
         <Text
           fontSize={0.4}
-          font={fonts.pretendard}
+          font={fonts.raleway}
           position={[-1.55, 0.5, 0]}
           rotation={[0, -Math.PI / 2, 0]}
         >
@@ -56,7 +56,7 @@ export default function SingleGate({
 
         <Text
           fontSize={0.4}
-          font={fonts.pretendard}
+          font={fonts.raleway}
           position={[0, 0.5, 1.55]}
           rotation={[0, 0, 0]}
         >
@@ -66,7 +66,7 @@ export default function SingleGate({
         {name && (
           <Text
             fontSize={0.8}
-            font={fonts.pretendard}
+            font={fonts.raleway}
             position={[0, 3, 0]}
             rotation={[0, -Math.PI / 4, 0]}
           >

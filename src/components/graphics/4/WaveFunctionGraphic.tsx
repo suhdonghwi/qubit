@@ -56,7 +56,7 @@ export default function WaveFunctionGraphic({
     <>
       <AnimatedText
         fontSize={0.7}
-        font={fonts.pretendard}
+        font={fonts.raleway}
         {...positionProps(wrongPosition)}
         rotation={[0, -Math.PI / 4, 0]}
         color="#e03131"
@@ -66,7 +66,7 @@ export default function WaveFunctionGraphic({
 
       <AnimatedText
         fontSize={0.7}
-        font={fonts.pretendard}
+        font={fonts.raleway}
         {...positionProps(correctPosition)}
         rotation={[0, -Math.PI / 4, 0]}
         color="#2f9e44"
@@ -76,7 +76,7 @@ export default function WaveFunctionGraphic({
 
       <AnimatedText
         fontSize={0.7}
-        font={fonts.pretendard}
+        font={fonts.raleway}
         position={[0, 4, 0]}
         rotation={[0, -Math.PI / 4, 0]}
       >

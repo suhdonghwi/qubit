@@ -19,7 +19,7 @@ export default function Bit({
       <meshLambertMaterial color={one ? "#ff6b6b" : "#339af0"} />
       <Text
         fontSize={radius * 1.4}
-        font={fonts.pretendard}
+        font={fonts.raleway}
         position={[radius * 0.6, 0, radius]}
         rotation={[0, 0, -Math.PI / 2]}
         renderOrder={-1}
