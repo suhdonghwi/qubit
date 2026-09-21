@@ -72,7 +72,7 @@ export default function Qubit({
         position={[radius * 0.6, 0, radius]}
         rotation={[0, 0, -Math.PI / 2]}
       >
-        <Text fontSize={radius * 1.4} font={fonts.raleway} renderOrder={-1}>
+        <Text fontSize={radius * 1.4} font={fonts.pretendard} renderOrder={-1}>
           <animated.meshBasicMaterial
             color="white"
             transparent
@@ -83,7 +83,7 @@ export default function Qubit({
         <Text
           position={[0, 0, 0.05]}
           fontSize={radius * 1.4}
-          font={fonts.raleway}
+          font={fonts.pretendard}
           renderOrder={-1}
         >
           <animated.meshBasicMaterial

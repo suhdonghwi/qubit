@@ -24,7 +24,7 @@ npm ci
 npm run dev
 ```
 
-The app uses Vite 8, TypeScript 6, React 19.2 with React Compiler, React Three Fiber 9, Three.js, Drei, and React Spring. Fonts are bundled locally; their licenses are in `public/font-licenses`.
+The app uses Vite 8, TypeScript 6, React 19.2 with React Compiler, React Three Fiber 9, Three.js, Drei, and React Spring. Pretendard fonts are bundled locally; their licenses are in `public/font-licenses`.
 
 ```sh
 npm run typecheck

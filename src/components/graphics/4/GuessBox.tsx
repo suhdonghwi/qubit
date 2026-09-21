@@ -39,7 +39,7 @@ export default function GuessGraphic({
 
         <Text
           fontSize={0.7}
-          font={fonts.raleway}
+          font={fonts.pretendard}
           position={[0.5, 1.1, 0]}
           rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
         >
@@ -71,7 +71,7 @@ export default function GuessGraphic({
 
       <Text
         fontSize={0.8}
-        font={fonts.raleway}
+        font={fonts.pretendard}
         position={[0, 2, 0]}
         rotation={[0, -Math.PI / 4, 0]}
       >

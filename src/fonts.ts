@@ -1,3 +1,3 @@
-import raleway from "@fontsource/raleway/files/raleway-latin-400-normal.woff?url";
+import pretendard from "pretendard/dist/web/static/woff/Pretendard-Regular.woff?url";
 
-export default { raleway };
+export default { pretendard };

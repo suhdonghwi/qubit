@@ -1,7 +1,4 @@
-import "@fontsource/ibm-plex-sans-kr/300.css";
-import "@fontsource/ibm-plex-sans-kr/400.css";
-import "@fontsource/ibm-plex-sans-kr/500.css";
-import "@fontsource/nanum-myeongjo/400.css";
+import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import "./index.css";

@@ -36,7 +36,7 @@ export default function BitCountGraphic() {
     <>
       <Text
         fontSize={1}
-        font={fonts.raleway}
+        font={fonts.pretendard}
         position={[0, 2, 0]}
         rotation={[0, -Math.PI / 4, 0]}
       >

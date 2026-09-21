@@ -12,7 +12,7 @@ export default function LogicGatesGraphic() {
     <>
       <Text
         fontSize={0.8}
-        font={fonts.raleway}
+        font={fonts.pretendard}
         position={[0, 2, 0]}
         rotation={[0, -Math.PI / 4, 0]}
       >

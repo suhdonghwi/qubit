@@ -44,11 +44,7 @@ const TextSection = styled(Section)`
 `;
 
 const TextContainer = styled.div`
-  padding: 0 2.5rem 35% 2.5rem;
-
-  @media screen and (min-width: 2000px) {
-    padding-bottom: 45%;
-  }
+  padding: 0 2.5rem 4rem 2.5rem;
 
   @media screen and (max-width: 800px) {
     padding-bottom: 15%;
@@ -144,7 +140,6 @@ const Description = styled.p`
 
 const Blockquote = styled.blockquote`
   position: relative;
-  font-family: "Nanum Myeongjo", serif;
   font-style: italic;
 
   font-size: 1.2rem;

@@ -32,7 +32,7 @@ export default function WaveParticleGraphic({
       <Text
         color="white"
         fontSize={1}
-        font={fonts.raleway}
+        font={fonts.pretendard}
         position={[-0.4, 1.5, -2]}
         rotation={[0, 0, 0]}
       >
@@ -42,7 +42,7 @@ export default function WaveParticleGraphic({
       <Text
         color="white"
         fontSize={1}
-        font={fonts.raleway}
+        font={fonts.pretendard}
         position={[1.5, 1.5, 0.7]}
         rotation={[0, -Math.PI / 2, 0]}
       >
@@ -52,7 +52,7 @@ export default function WaveParticleGraphic({
       <AnimatedText
         color="white"
         fontSize={1}
-        font={fonts.raleway}
+        font={fonts.pretendard}
         rotation={[Math.PI, 0, 0]}
         {...positionProps(soWhatSpring.position)}
       >
