@@ -1,4 +1,11 @@
-import { animated, useTransition } from "@react-spring/three";
+import { useMediaQuery } from "../utils/useMediaQuery";
+import { animated, SpringContext, useSpring } from "@react-spring/three";
+import { Suspense, useState } from "react";
+import {
+  SceneActive,
+  SceneRunning,
+  useSceneRunning,
+} from "./graphics/SceneRuntime";
 import World3D from "./graphics/World3D";
 import type { GraphicContent } from "../types/Scene";
 
@@ -8,24 +15,66 @@ interface GraphicsViewerProps {
   paragraphIndex: number;
 }
 
-function Graphics({ graphics, sceneIndex, paragraphIndex }: GraphicsViewerProps) {
-  const transitions = useTransition({ sceneIndex, paragraphIndex }, {
-    keys: (item) => item.sceneIndex,
-    from: { x: 12 },
-    enter: { x: 0 },
-    leave: { x: -12 },
-    exitBeforeEnter: true,
+function SceneSlot({
+  Graphic,
+  active,
+  running,
+  paragraphIndex,
+}: {
+  Graphic: GraphicContent;
+  active: boolean;
+  running: boolean;
+  paragraphIndex: number;
+}) {
+  const [lastParagraph, setLastParagraph] = useState(0);
+  if (active && lastParagraph !== paragraphIndex) {
+    setLastParagraph(paragraphIndex);
+  }
+  return (
+    <SpringContext value={{ pause: !running }}>
+      <SceneActive value={active}>
+        <SceneRunning value={running}>
+          <Suspense fallback={null}>
+            <Graphic paragraphIndex={active ? paragraphIndex : lastParagraph} />
+          </Suspense>
+        </SceneRunning>
+      </SceneActive>
+    </SpringContext>
+  );
+}
+
+function Graphics({
+  graphics,
+  sceneIndex,
+  paragraphIndex,
+}: GraphicsViewerProps) {
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const running = useSceneRunning();
+  // One moving strip keeps outgoing and incoming scenes connected in both directions.
+  const { x } = useSpring({
+    x: -sceneIndex * 17,
+    immediate: reducedMotion,
     config: { tension: 220, friction: 30 },
   });
 
-  return transitions(({ x }, item) => {
-    const Graphic = graphics[item.sceneIndex];
-    return Graphic ? (
-      <animated.group position-x={x} rotation={[0, Math.PI / 4, 0]}>
-        <Graphic paragraphIndex={item.paragraphIndex} />
-      </animated.group>
-    ) : null;
-  });
+  return (
+    <animated.group position-x={x}>
+      {graphics.map((Graphic, index) => (
+        <group
+          key={index}
+          position={[index * 17, 0, 0]}
+          rotation={[0, Math.PI / 4, 0]}
+        >
+          <SceneSlot
+            Graphic={Graphic}
+            active={index === sceneIndex}
+            running={running && Math.abs(index - sceneIndex) <= 1}
+            paragraphIndex={paragraphIndex}
+          />
+        </group>
+      ))}
+    </animated.group>
+  );
 }
 
 export default function GraphicsViewer(props: GraphicsViewerProps) {

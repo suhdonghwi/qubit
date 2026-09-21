@@ -1,6 +1,9 @@
+import { useContext, useEffect } from "react";
 import { positionProps } from "utils/AnimatedVector";
-import { ThreeElements } from "@react-three/fiber";
+import { useThree, ThreeElements } from "@react-three/fiber";
 import { animated, useSpring } from "@react-spring/three";
+
+import { SceneActive } from "./SceneRuntime";
 
 interface ButtonProps {
   onClick?(): void;
@@ -16,13 +19,58 @@ export default function Button({
   click,
   ...props
 }: ButtonProps & ThreeElements["group"]) {
+  const active = useContext(SceneActive);
+  const canvas = useThree((state) => state.gl.domElement);
+  useEffect(() => {
+    if (!active) return;
+    const previousTabIndex = canvas.getAttribute("tabindex");
+    canvas.setAttribute("tabindex", "0");
+    canvas.setAttribute("role", "button");
+    const labelledBy = canvas
+      .closest("section")
+      ?.getAttribute("aria-labelledby");
+    if (labelledBy) canvas.setAttribute("aria-labelledby", labelledBy);
+    const down = (event: KeyboardEvent) => {
+      if ((event.key === " " || event.key === "Enter") && !event.repeat) {
+        event.preventDefault();
+        onDown?.();
+      }
+    };
+    const up = (event: KeyboardEvent) => {
+      if (event.key === " " || event.key === "Enter") {
+        event.preventDefault();
+        onUp?.();
+        onClick?.();
+      }
+    };
+    const blur = () => onUp?.();
+    canvas.addEventListener("keydown", down);
+    canvas.addEventListener("keyup", up);
+    canvas.addEventListener("blur", blur);
+    return () => {
+      canvas.removeEventListener("keydown", down);
+      canvas.removeEventListener("keyup", up);
+      canvas.removeEventListener("blur", blur);
+      if (previousTabIndex === null) canvas.removeAttribute("tabindex");
+      else canvas.setAttribute("tabindex", previousTabIndex);
+      canvas.removeAttribute("role");
+      canvas.removeAttribute("aria-labelledby");
+      document.documentElement.style.cursor = "default";
+    };
+  }, [active, canvas, onClick, onDown, onUp]);
+  useEffect(() => {
+    if (!active) return;
+    canvas.setAttribute("aria-pressed", String(click));
+    return () => canvas.removeAttribute("aria-pressed");
+  }, [active, canvas, click]);
+
   function onOver() {
     document.documentElement.style.cursor = "pointer";
   }
 
   function onOut() {
     document.documentElement.style.cursor = "default";
-    onUp && onUp();
+    onUp?.();
   }
 
   const buttonSpring = useSpring<{ position: [number, number, number] }>({
